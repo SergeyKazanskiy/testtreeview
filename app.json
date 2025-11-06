@@ -12,6 +12,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.sergeyk.testtreeview.v2",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -43,6 +44,14 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b1695966-f656-4f29-94d9-4765d34bba44"
+      }
+    },
+    "owner": "sergeykazanskiy",
+    "platforms": ["ios", "android", "web"]
   }
 }
