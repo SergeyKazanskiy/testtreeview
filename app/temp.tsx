@@ -1,0 +1,86 @@
+// import { useRouter } from 'expo-router';
+// import React, { useEffect } from 'react';
+// import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+// import './app.css';
+
+
+// export default function Index() {
+//   const router = useRouter();
+
+//   // if (__DEV__) {
+//     return (
+//       <View style={styles.container}>
+//         <Text style={styles.title}>Choose App</Text>
+
+//         <TouchableOpacity style={styles.button} onPress={() => router.push('/dashboards/employee')}>
+//           <Text style={styles.buttonText}>Employee</Text>
+//         </TouchableOpacity>
+
+//         <TouchableOpacity style={styles.button} onPress={() => router.push('/dashboards/leader')}>
+//           <Text style={styles.buttonText}>Leader</Text>
+//         </TouchableOpacity>
+
+//         <TouchableOpacity style={styles.button} onPress={() => router.push('/dashboards/manager')}>
+//           <Text style={styles.buttonText}>Manager</Text>
+//         </TouchableOpacity>
+//       </View>
+//     );
+//   // } else {
+//   //   const role = Constants.expoConfig?.extra?.APP_ROLE ?? 'employee';
+//   //   router.replace(`/dashboards/${role}` as any);
+//   //   return null;
+//   // }
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#f5f5f5',
+//     width: 360
+//   },
+//   title: {
+//     fontSize: 24,
+//     fontWeight: 'bold',
+//     marginBottom: 20,
+//   },
+//   button: {
+//     padding: 12,
+//     backgroundColor: '#007AFF',
+//     borderRadius: 8,
+//     marginVertical: 10,
+//     width: '60%',
+//     alignItems: 'center',
+//   },
+//   buttonText: {
+//     color: '#fff',
+//     fontSize: 18,
+//     fontWeight: 'bold',
+//   },
+// });
+
+// // # Разработка (локально)
+// // expo start --env-file .env.development
+
+// // # Тест-сборка (.apk для телефона)
+// // eas build -p android --profile preview
+
+// // # Продакшен
+// // eas build -p android --profile production
+
+import { Text, View } from "react-native";
+
+export default function Index() {
+  return (
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Text>Loading...</Text>
+    </View>
+  );
+}

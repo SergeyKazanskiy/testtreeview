@@ -1,76 +1,33 @@
-import { useRouter } from 'expo-router';
-//import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import './app.css';
+import Constants from "expo-constants";
+import { useRouter } from "expo-router";
+import React, { useEffect } from "react";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 
 
 export default function Index() {
   const router = useRouter();
 
-  // if (__DEV__) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Choose App</Text>
+  useEffect(() => {
+    const role = process.env.APP_ROLE || Constants.expoConfig?.extra?.appRole;
 
-        <TouchableOpacity style={styles.button}
-          onPress={() => router.push('/dashboards/employee')}
-        >
-          <Text style={styles.buttonText}>Employee</Text>
-        </TouchableOpacity>
+    // Отложенный переход — безопасен
+    const timeout = setTimeout(() => {
+      if (role === "employee") router.replace("/dashboards/employee");
+      else if (role === "leader") router.replace("/dashboards/leader");
+      else if (role === "manager") router.replace("/dashboards/manager");
+      else router.replace("/dashboards/employee"); // fallback
+    }, 0);
 
-        <TouchableOpacity style={styles.button}
-          onPress={() => router.push('/dashboards/leader')}
-        >
-          <Text style={styles.buttonText}>Leader</Text>
-        </TouchableOpacity>
+    return () => clearTimeout(timeout);
+  }, [router]);
 
-        <TouchableOpacity style={styles.button}
-          onPress={() => router.push('/dashboards/manager')}
-        >
-          <Text style={styles.buttonText}>Manager</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  // } else {
-  //   const role = Constants.expoConfig?.extra?.APP_ROLE ?? 'employee';
-  //   router.replace(`/dashboards/${role}` as any);
-  //   return null;
-  // }
+  return (
+    <View style={styles.container}>
+      <ActivityIndicator size="large" />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-    width: 360
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  button: {
-    padding: 12,
-    backgroundColor: '#007AFF',
-    borderRadius: 8,
-    marginVertical: 10,
-    width: '60%',
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
+  container: { flex: 1, justifyContent: "center", alignItems: "center" },
 });
-
-// # Разработка (локально)
-// expo start --env-file .env.development
-
-// # Тест-сборка (.apk для телефона)
-// eas build -p android --profile preview
-
-// # Продакшен
-// eas build -p android --profile production

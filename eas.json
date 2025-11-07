@@ -3,17 +3,107 @@
     "version": ">= 3.13.1"
   },
   "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    },
-    "preview": {
-      "distribution": "internal"
-    },
-    "production": {
+    "employee-android-preview": {
+      "env": {
+        "APP_ROLE": "employee", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "employee-preview",
+      "distribution": "internal",
       "android": {
         "buildType": "apk"
       }
+    },
+    "employee-android-production": {
+      "env": {
+        "APP_ROLE": "employee", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "employee-production",
+      "distribution": "store",
+      "android": {
+        "buildType": "app-bundle"
+      }
+    },
+    "employee-ios-preview": {
+      "env": {
+        "APP_ROLE": "employee", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "employee-preview",
+      "distribution": "internal"
+    },
+    "employee-ios-production": {
+      "env": {
+        "APP_ROLE": "employee", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "employee-production",
+      "distribution": "store"
+    },
+    "leader-android-preview": {
+      "env": {
+        "APP_ROLE": "leader", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "leader-preview",
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "leader-android-production": {
+      "env": {
+        "APP_ROLE": "leader", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "leader-production",
+      "distribution": "store",
+      "android": {
+        "buildType": "app-bundle"
+      }
+    },
+    "leader-ios-preview": {
+      "env": {
+        "APP_ROLE": "leader", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "leader-preview",
+      "distribution": "internal"
+    },
+    "leader-ios-production": {
+      "env": {
+        "APP_ROLE": "leader", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "leader-production",
+      "distribution": "store"
+    },
+    "manager-android-preview": {
+      "env": {
+        "APP_ROLE": "manager", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "manager-preview",
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "manager-android-production": {
+      "env": {
+        "APP_ROLE": "manager", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "manager-production",
+      "distribution": "store",
+      "android": {
+        "buildType": "app-bundle"
+      }
+    },
+    "manager-ios-preview": {
+      "env": {
+        "APP_ROLE": "manager", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "manager-preview",
+      "distribution": "internal"
+    },
+    "manager-ios-production": {
+      "env": {
+        "APP_ROLE": "manager", "METRO_CONFIG": "metro.config.role.js"
+      },
+      "channel": "manager-production",
+      "distribution": "store"
     }
   },
   "submit": {

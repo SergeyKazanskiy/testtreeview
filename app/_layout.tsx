@@ -1,31 +1,19 @@
-// import { useColorScheme } from '@/hooks/use-color-scheme';
-// import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-// import { StatusBar } from 'expo-status-bar';
-// import 'react-native-reanimated';
-
-// export const unstable_settings = {
-//   anchor: '(tabs)',
-// };
-
-// export default function RootLayout() {
-//   const colorScheme = useColorScheme();
-
-//   return (
-//     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-//       <Stack>
-//         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-//         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-//       </Stack>
-//       <StatusBar style="auto" />
-//     </ThemeProvider>
-//   );
-// }
+import { Slot } from 'expo-router';
 
 export default function RootLayout() {
-  return (
-    <Stack screenOptions={{ headerShown: false }}>
-      {/* Stack автоматически подхватит все экраны в папке app */}
-    </Stack>
-  );
+  return <Slot />;
+  // const router = useRouter();
+  // const navState = useRootNavigationState();
+  // const role = Constants.expoConfig?.extra?.appRole ?? 'employee';
+
+  // useEffect(() => {
+  //   if (!navState?.key) return; // ждём, пока навигация инициализируется
+
+  //   if (role === 'leader') router.replace('/dashboards/leader');
+  //   else if (role === 'manager') router.replace('/dashboards/manager');
+  //   else router.replace('/dashboards/employee');
+  // }, [navState, role]);
+
+  // return <Stack screenOptions={{ headerShown: false }} />;
 }
+
