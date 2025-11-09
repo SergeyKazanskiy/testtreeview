@@ -1,15 +1,14 @@
-import { Text, View } from "react-native";
+import React, { useEffect } from 'react';
+import { Text } from 'react-native';
 
 export default function Index() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
-  );
+  //const router = useRouter();
+
+  useEffect(() => {
+    //router.push('/(tabs)/home');
+  }, []);
+
+  return <Text style={{ fontSize: 20, marginBottom: 20 }}>📄 Экран деталей</Text>;
+      {/* <Slot /> */}
+
 }

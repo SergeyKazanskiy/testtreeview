@@ -1,11 +1,11 @@
 import 'dotenv/config'; // если используешь .env (не обязательно)
 
 export default ({ config }: any) => {
-  const appRole = process.env.APP_ROLE || "employee";
+  const appRole = process.env.APP_ROLE || "student";
 
   const projectIds: Record<string, string> = {
-    employee: "79add351-9990-4a24-b2ab-ed6798aeb729",
-    leader: "PROJECT_ID_FOR_LEADER",
+    student: "PROJECT_ID_FOR_STUDENT",
+    coach: "PROJECT_ID_FOR_COACH",
     manager: "PROJECT_ID_FOR_MANAGER",
   };
 

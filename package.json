@@ -11,15 +11,31 @@
     "lint": "expo lint",
     "deploy": "npx gh-pages -d dist",
 
-    "start-employee": "APP_ROLE=employee expo start",
-    "start-leader": "APP_ROLE=leader expo start",
-    "start-manager": "APP_ROLE=manager expo start",
+    "start:student": "APP_ROLE=student expo start",
+    "start:coach": "APP_ROLE=coach expo start",
+    "starth:manager": "APP_ROLE=manager expo start",
 
-    "update:preview": "eas update --branch preview --message \"Test version\"",
-    "update:production": "eas update --branch production --message \"Production version\"",
+    "test:student": "eas update --profile student-test --message 'Student test update'",
+    "test:coach": "eas update --profile coach-test --message 'Coach test update'",
+    "test:manager": "eas update --profile manager-test --message 'Manager test update'",
 
-    "build:android": "eas build -p android --profile production",
-    "build:ios": "eas build -p ios --profile production"
+    "publish:student": "eas update --profile student-production --message 'Student OTA update'",
+    "publish:coach": "eas update --profile coach-production --message 'Coach OTA update'",
+    "publish:manager": "eas update --profile manager-production --message 'Manager OTA update'",
+
+    "build:student:android:preview": "eas build --platform android --profile student-android-preview",
+    "build:student:ios:preview": "eas build --platform ios --profile student-ios-preview",
+    "build:coach:android:preview": "eas build --platform android --profile coach-android-preview",
+    "build:coach:ios:preview": "eas build --platform ios --profile coach-ios-preview",
+    "build:manager:android:preview": "eas build --platform android --profile manager-android-preview",
+    "build:manager:ios:preview": "eas build --platform ios --profile manager-ios-preview",
+
+    "build:student:android:production": "eas build --platform android --profile student-android-production",
+    "build:student:ios:production": "eas build --platform ios --profile student-ios-production",
+    "build:coach:android:production": "eas build --platform android --profile coach-android-production",
+    "build:coach:ios:production": "eas build --platform ios --profile coach-ios-production",
+    "build:manager:android:production": "eas build --platform android --profile manager-android-production",
+    "build:manager:ios:production": "eas build --platform ios --profile manager-ios-production"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",

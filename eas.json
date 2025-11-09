@@ -1,112 +1,36 @@
 {
   "cli": {
-    "version": ">= 3.13.1"
+    "version": ">= 3.22.3"
   },
   "build": {
-    "employee-android-preview": {
-      "env": {
-        "APP_ROLE": "employee", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "employee-preview",
-      "distribution": "internal",
-      "android": {
-        "buildType": "apk"
-      }
-    },
-    "employee-android-production": {
-      "env": {
-        "APP_ROLE": "employee", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "employee-production",
-      "distribution": "store",
-      "android": {
-        "buildType": "app-bundle"
-      }
-    },
-    "employee-ios-preview": {
-      "env": {
-        "APP_ROLE": "employee", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "employee-preview",
-      "distribution": "internal"
-    },
-    "employee-ios-production": {
-      "env": {
-        "APP_ROLE": "employee", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "employee-production",
-      "distribution": "store"
-    },
-    "leader-android-preview": {
-      "env": {
-        "APP_ROLE": "leader", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "leader-preview",
-      "distribution": "internal",
-      "android": {
-        "buildType": "apk"
-      }
-    },
-    "leader-android-production": {
-      "env": {
-        "APP_ROLE": "leader", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "leader-production",
-      "distribution": "store",
-      "android": {
-        "buildType": "app-bundle"
-      }
-    },
-    "leader-ios-preview": {
-      "env": {
-        "APP_ROLE": "leader", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "leader-preview",
-      "distribution": "internal"
-    },
-    "leader-ios-production": {
-      "env": {
-        "APP_ROLE": "leader", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "leader-production",
-      "distribution": "store"
-    },
-    "manager-android-preview": {
-      "env": {
-        "APP_ROLE": "manager", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "manager-preview",
-      "distribution": "internal",
-      "android": {
-        "buildType": "apk"
-      }
-    },
-    "manager-android-production": {
-      "env": {
-        "APP_ROLE": "manager", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "manager-production",
-      "distribution": "store",
-      "android": {
-        "buildType": "app-bundle"
-      }
-    },
-    "manager-ios-preview": {
-      "env": {
-        "APP_ROLE": "manager", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "manager-preview",
-      "distribution": "internal"
-    },
-    "manager-ios-production": {
-      "env": {
-        "APP_ROLE": "manager", "METRO_CONFIG": "metro.config.role.js"
-      },
-      "channel": "manager-production",
-      "distribution": "store"
-    }
+    "student-android-preview": { "env": { "APP_ROLE": "student" }, "channel": "student-test", "android": { "buildType": "apk" }, "distribution": "internal" },
+    "student-ios-preview": { "env": { "APP_ROLE": "student" }, "channel": "student-test", "distribution": "internal" },
+    "student-android-production": { "env": { "APP_ROLE": "student" }, "channel": "student-production", "android": { "buildType": "app-bundle" }, "distribution": "store" },
+    "student-ios-production": { "env": { "APP_ROLE": "student" }, "channel": "student-production", "distribution": "store" },
+
+    "coach-android-preview": { "env": { "APP_ROLE": "coach" }, "channel": "coach-test", "android": { "buildType": "apk" }, "distribution": "internal" },
+    "coach-ios-preview": { "env": { "APP_ROLE": "coach" }, "channel": "coach-test", "distribution": "internal" },
+    "coach-android-production": { "env": { "APP_ROLE": "coach" }, "channel": "coach-production", "android": { "buildType": "app-bundle" }, "distribution": "store" },
+    "coach-ios-production": { "env": { "APP_ROLE": "coach" }, "channel": "coach-production", "distribution": "store" },
+
+    "manager-android-preview": { "env": { "APP_ROLE": "manager" }, "channel": "manager-test", "android": { "buildType": "apk" }, "distribution": "internal" },
+    "manager-ios-preview": { "env": { "APP_ROLE": "manager" }, "channel": "manager-test", "distribution": "internal" },
+    "manager-android-production": { "env": { "APP_ROLE": "manager" }, "channel": "manager-production", "android": { "buildType": "app-bundle" }, "distribution": "store" },
+    "manager-ios-production": { "env": { "APP_ROLE": "manager" }, "channel": "manager-production", "distribution": "store" }
+  },
+  "update": {
+    "student-test": { "branch": "student-test", "channel": "student-test", "env": { "APP_ROLE": "student" } },
+    "coach-test": { "branch": "coach-test", "channel": "coach-test", "env": { "APP_ROLE": "coach" } },
+    "manager-test": { "branch": "manager-test", "channel": "manager-test", "env": { "APP_ROLE": "manager" } },
+
+    "student-production": { "branch": "student-production", "channel": "student-production", "env": { "APP_ROLE": "student" } },
+    "coach-production": { "branch": "coach-production", "channel": "coach-production", "env": { "APP_ROLE": "coach" } },
+    "manager-production": { "branch": "manager-production", "channel": "manager-production", "env": { "APP_ROLE": "manager" } }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": { "appleId": "your-apple-id@example.com" },
+      "android": { "serviceAccountKeyPath": "./google-service-account.json" }
+    }
   }
 }
