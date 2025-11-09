@@ -1,7 +1,7 @@
 import 'dotenv/config'; // если используешь .env (не обязательно)
 
 export default ({ config }: any) => {
-  const appRole = process.env.APP_ROLE || "student";
+  const appRole = process.env.APP_ROLE || "manager";
 
   const projectIds: Record<string, string> = {
     student: "PROJECT_ID_FOR_STUDENT",

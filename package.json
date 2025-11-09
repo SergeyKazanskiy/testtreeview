@@ -13,7 +13,7 @@
 
     "start:student": "APP_ROLE=student expo start",
     "start:coach": "APP_ROLE=coach expo start",
-    "starth:manager": "APP_ROLE=manager expo start",
+    "start:manager": "APP_ROLE=manager expo start",
 
     "test:student": "eas update --profile student-test --message 'Student test update'",
     "test:coach": "eas update --profile coach-test --message 'Coach test update'",
