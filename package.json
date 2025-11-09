@@ -11,9 +11,9 @@
     "lint": "expo lint",
     "deploy": "npx gh-pages -d dist",
 
-    "start:student": "APP_ROLE=student expo start",
-    "start:coach": "APP_ROLE=coach expo start",
-    "start:manager": "APP_ROLE=manager expo start",
+    "start:student": "APP_ROLE=student expo start -c",
+    "start:coach": "APP_ROLE=coach expo start -c",
+    "start:manager": "APP_ROLE=manager expo start -c",
 
     "test:student": "eas update --profile student-test --message 'Student test update'",
     "test:coach": "eas update --profile coach-test --message 'Coach test update'",

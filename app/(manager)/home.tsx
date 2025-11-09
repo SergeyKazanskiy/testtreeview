@@ -9,7 +9,7 @@ export default function HomeScreen() {
     <ScreenContainer>
       <Text style={{ fontSize: 20, marginBottom: 20 }}>🏠 Главная</Text>
       <Button
-        title="Перейти на экран деталей"
+        title="Перейти на экран деталей2"
         onPress={() => router.push('/shared/details')}
       />
     </ScreenContainer>

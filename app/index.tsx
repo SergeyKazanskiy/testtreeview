@@ -3,13 +3,14 @@ import { useRouter } from "expo-router";
 import React, { useEffect } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 
-
 export default function Index() {
   const router = useRouter();
 
   useEffect(() => {
-    const role = Constants.expoConfig?.extra?.appRole;
-    //const role = process.env.APP_ROLE || 'student';
+    const role = Constants.expoConfig?.extra?.appRole || 'student';
+    //const role = process.env.APP_ROLE ?? Constants.expoConfig?.extra?.appRole ?? 'student';
+
+    //const role = process.env.APP_ROLE || 'coach';
     alert(`App Role: ${role}`);
 
     const timeout = setTimeout(() => {
