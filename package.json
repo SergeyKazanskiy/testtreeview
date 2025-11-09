@@ -10,9 +10,16 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "deploy": "npx gh-pages -d dist",
+
     "start-employee": "APP_ROLE=employee expo start",
     "start-leader": "APP_ROLE=leader expo start",
-    "start-manager": "APP_ROLE=manager expo start"
+    "start-manager": "APP_ROLE=manager expo start",
+
+    "update:preview": "eas update --branch preview --message \"Test version\"",
+    "update:production": "eas update --branch production --message \"Production version\"",
+
+    "build:android": "eas build -p android --profile production",
+    "build:ios": "eas build -p ios --profile production"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
