@@ -1,36 +1,85 @@
 {
   "cli": {
-    "version": ">= 3.22.3"
+    "version": ">= 16.0.0"
   },
   "build": {
-    "student-android-preview": { "env": { "APP_ROLE": "student" }, "channel": "student-test", "android": { "buildType": "apk" }, "distribution": "internal" },
-    "student-ios-preview": { "env": { "APP_ROLE": "student" }, "channel": "student-test", "distribution": "internal" },
-    "student-android-production": { "env": { "APP_ROLE": "student" }, "channel": "student-production", "android": { "buildType": "app-bundle" }, "distribution": "store" },
-    "student-ios-production": { "env": { "APP_ROLE": "student" }, "channel": "student-production", "distribution": "store" },
+    "student-android-preview": {
+      "channel": "student-test",
+      "distribution": "internal",
+      "env": { "APP_ROLE": "student" },
+      "android": { "buildType": "apk" }
+    },
+    "student-ios-preview": {
+      "channel": "student-test",
+      "distribution": "internal",
+      "env": { "APP_ROLE": "student" }
+    },
+    "student-android-production": {
+      "channel": "student-production",
+      "distribution": "store",
+      "env": { "APP_ROLE": "student" },
+      "android": { "buildType": "app-bundle" }
+    },
+    "student-ios-production": {
+      "channel": "student-production",
+      "distribution": "store",
+      "env": { "APP_ROLE": "student" }
+    },
 
-    "coach-android-preview": { "env": { "APP_ROLE": "coach" }, "channel": "coach-test", "android": { "buildType": "apk" }, "distribution": "internal" },
-    "coach-ios-preview": { "env": { "APP_ROLE": "coach" }, "channel": "coach-test", "distribution": "internal" },
-    "coach-android-production": { "env": { "APP_ROLE": "coach" }, "channel": "coach-production", "android": { "buildType": "app-bundle" }, "distribution": "store" },
-    "coach-ios-production": { "env": { "APP_ROLE": "coach" }, "channel": "coach-production", "distribution": "store" },
+    "coach-android-preview": {
+      "channel": "coach-test",
+      "distribution": "internal",
+      "env": { "APP_ROLE": "coach" },
+      "android": { "buildType": "apk" }
+    },
+    "coach-ios-preview": {
+      "channel": "coach-test",
+      "distribution": "internal",
+      "env": { "APP_ROLE": "coach" }
+    },
+    "coach-android-production": {
+      "channel": "coach-production",
+      "distribution": "store",
+      "env": { "APP_ROLE": "coach" },
+      "android": { "buildType": "app-bundle" }
+    },
+    "coach-ios-production": {
+      "channel": "coach-production",
+      "distribution": "store",
+      "env": { "APP_ROLE": "coach" }
+    },
 
-    "manager-android-preview": { "env": { "APP_ROLE": "manager" }, "channel": "manager-test", "android": { "buildType": "apk" }, "distribution": "internal" },
-    "manager-ios-preview": { "env": { "APP_ROLE": "manager" }, "channel": "manager-test", "distribution": "internal" },
-    "manager-android-production": { "env": { "APP_ROLE": "manager" }, "channel": "manager-production", "android": { "buildType": "app-bundle" }, "distribution": "store" },
-    "manager-ios-production": { "env": { "APP_ROLE": "manager" }, "channel": "manager-production", "distribution": "store" }
-  },
-  "update": {
-    "student-test": { "branch": "student-test", "channel": "student-test", "env": { "APP_ROLE": "student" } },
-    "coach-test": { "branch": "coach-test", "channel": "coach-test", "env": { "APP_ROLE": "coach" } },
-    "manager-test": { "branch": "manager-test", "channel": "manager-test", "env": { "APP_ROLE": "manager" } },
-
-    "student-production": { "branch": "student-production", "channel": "student-production", "env": { "APP_ROLE": "student" } },
-    "coach-production": { "branch": "coach-production", "channel": "coach-production", "env": { "APP_ROLE": "coach" } },
-    "manager-production": { "branch": "manager-production", "channel": "manager-production", "env": { "APP_ROLE": "manager" } }
+    "manager-android-preview": {
+      "channel": "manager-test",
+      "distribution": "internal",
+      "env": { "APP_ROLE": "manager" },
+      "android": { "buildType": "apk" }
+    },
+    "manager-ios-preview": {
+      "channel": "manager-test",
+      "distribution": "internal",
+      "env": { "APP_ROLE": "manager" }
+    },
+    "manager-android-production": {
+      "channel": "manager-production",
+      "distribution": "store",
+      "env": { "APP_ROLE": "manager" },
+      "android": { "buildType": "app-bundle" }
+    },
+    "manager-ios-production": {
+      "channel": "manager-production",
+      "distribution": "store",
+      "env": { "APP_ROLE": "manager" }
+    }
   },
   "submit": {
     "production": {
-      "ios": { "appleId": "your-apple-id@example.com" },
-      "android": { "serviceAccountKeyPath": "./google-service-account.json" }
+      "ios": {
+        "appleId": "your-apple-id@example.com"
+      },
+      "android": {
+        "serviceAccountKeyPath": "./google-service-account.json"
+      }
     }
   }
 }

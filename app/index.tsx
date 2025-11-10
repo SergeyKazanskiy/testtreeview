@@ -11,7 +11,7 @@ export default function Index() {
     //const role = process.env.APP_ROLE ?? Constants.expoConfig?.extra?.appRole ?? 'student';
 
     //const role = process.env.APP_ROLE || 'coach';
-    alert(`App Role: ${role}`);
+    //alert(`App Role: ${role}`);
 
     const timeout = setTimeout(() => {
       if (role === "student") router.replace("/(student)/home");

@@ -2,28 +2,6 @@
   "expo": {
     "name": "testtreeview",
     "slug": "testtreeview",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "userInterfaceStyle": "automatic",
-    "plugins": [
-      "expo-router"
-    ],
-    "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
-    },
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/79add351-9990-4a24-b2ab-ed6798aeb729"
-    },
-    "android": {},
-    "ios": {}
+    "owner": "sergeykazanskiy"
   }
 }

@@ -1,12 +1,11 @@
-import 'dotenv/config'; // если используешь .env (не обязательно)
-
 export default ({ config }: any) => {
-  const appRole = process.env.APP_ROLE || "manager";
+  const appRole = process.env.APP_ROLE || "student";
 
+  // Укажи реальные projectId (можно взять из expo.dev → Project Settings → General)
   const projectIds: Record<string, string> = {
-    student: "PROJECT_ID_FOR_STUDENT",
-    coach: "PROJECT_ID_FOR_COACH",
-    manager: "PROJECT_ID_FOR_MANAGER",
+    student: "2d081913-084b-46d1-b13a-1f743377f78d",
+    coach: "YOUR_COACH_PROJECT_ID",
+    manager: "YOUR_MANAGER_PROJECT_ID",
   };
 
   return {
@@ -15,50 +14,34 @@ export default ({ config }: any) => {
     slug: `testtreeview-${appRole}`,
     version: "1.0.0",
     orientation: "portrait",
-    icon: "./assets/icon.png", 
+    icon: "./assets/images/icon.png",
     scheme: "testtreeview",
     userInterfaceStyle: "light",
+    android: {
+      package: `com.testtreeview.${appRole}`, // 👈 обязательно уникальный!
+      versionCode: 1,
+    },
+    ios: {
+      bundleIdentifier: `com.testtreeview.${appRole}`,
+      buildNumber: '1.0.0',
+    },
     extra: {
       appRole,
       eas: {
         projectId: projectIds[appRole],
       },
     },
+    updates: {
+      url: `https://u.expo.dev/${projectIds[appRole]}`,
+    },
+    runtimeVersion: {
+      policy: "appVersion",
+    },
+    platforms: ["ios", "android", "web"],
+    plugins: ["expo-router"],
+    experiments: {
+      typedRoutes: true,
+      reactCompiler: true,
+    },
   };
 };
-
-
-// import { capitalize } from './utils/capitalize.js';
-
-// const role = process.env.APP_ROLE || 'employee';
-
-// export default {
-//   expo: {
-//     name: `testtreeview-${role}`,
-//     slug: `testtreeview-${role}`,
-//     entryPoint: `./App${capitalize(role)}.ts`,
-//     version: '1.0.0',
-
-//     android: {
-//       package: `com.testtreeview.${role}`,
-//     },
-//     ios: {
-//       bundleIdentifier: `com.testtreeview.${role}`,
-//     },
-
-//     extra: {
-//       role,
-//       eas: {
-//         projectId: '79add351-9990-4a24-b2ab-ed6798aeb729',
-//       },
-//     },
-
-//     // 👇 Добавляем вручную
-//     updates: {
-//       url: 'https://u.expo.dev/79add351-9990-4a24-b2ab-ed6798aeb729',
-//     },
-//     runtimeVersion: {
-//       policy: 'appVersion',
-//     },
-//   },
-// };
