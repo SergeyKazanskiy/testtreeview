@@ -8,10 +8,7 @@ export default function Index() {
 
   useEffect(() => {
     const role = Constants.expoConfig?.extra?.appRole || 'student';
-    //const role = process.env.APP_ROLE ?? Constants.expoConfig?.extra?.appRole ?? 'student';
 
-    //const role = process.env.APP_ROLE || 'coach';
-    //alert(`App Role: ${role}`);
 
     const timeout = setTimeout(() => {
       if (role === "student") router.replace("/(student)/home");
