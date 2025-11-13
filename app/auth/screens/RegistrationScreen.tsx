@@ -4,8 +4,9 @@ import { AuthButton } from '../../components/buttons/AuthButton';
 import { ScreenContainer } from '../../components/containers/ScreenContainer';
 import { AuthInput } from '../../components/inputs/AuthInput';
 import { api } from '../api';
+import { EMAIL_REGEX } from '../constants';
 import { useAuthState } from '../store';
-import { EMAIL_REGEX, httpWrapper } from '../utils';
+import { request } from '../utils';
 
 
 interface Props {
@@ -24,10 +25,9 @@ export default function RegistrationScreen({ onSwitch }: Props) {
     if (password !== confirm) return Alert.alert('Passwords do not match');
     if (!EMAIL_REGEX.test(email)) return Alert.alert('Invalid email');
 
-    httpWrapper(
-      () => api.post('register', { first_name: first, last_name: last, email, password }),
-      (data) => setAuth(data.token, data.user_id)
-    );
+    request(() => api.post('register', { first_name: first, last_name: last, email, password }), (data) => {
+      setAuth(data.token, data.user_id);
+    });
   };
 
   return (

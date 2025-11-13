@@ -1,32 +1,73 @@
 import Constants from 'expo-constants';
 import { useRouter } from "expo-router";
-import React, { useEffect } from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import Toast from 'react-native-toast-message';
+import LoginScreen from './auth/screens/LoginScreen';
+import RegistrationScreen from './auth/screens/RegistrationScreen';
+import WelcomeScreen from './auth/screens/WelcomeScreen';
+import { useAuthState } from "./auth/store";
+
 
 export default function Index() {
   const router = useRouter();
+  const { isAuthenticated, loadAuth } = useAuthState();
 
+  const [showWelcome, setShowWelcome] = useState(true);
+  const [showLogin, setShowLogin] = useState(true);
+  const [role, setRole] = useState<"student" | "coach" | "manager">("student");
+
+  // Initializing a role and loading saved authorization
   useEffect(() => {
-    const role = Constants.expoConfig?.extra?.appRole || 'student';
+    const appRole = Constants.expoConfig?.extra?.appRole ?? "student";
+    setRole(appRole);
+    loadAuth();
+  }, [loadAuth]);
 
-
+  // After a second, hide the welcome screen. If authorized, navigate to the appropriate home screen.
+  useEffect(() => {
     const timeout = setTimeout(() => {
-      if (role === "student") router.replace("/(student)/home");
-      else if (role === "coach") router.replace("/(coach)/home");
-      else if (role === "manager") router.replace("/(manager)/home");
-      else router.replace("/(student)/home"); // fallback
-    }, 0);
+      setShowWelcome(false);
+
+      if (isAuthenticated) {
+        switch (role) {
+          case "student":
+            router.replace("/(student)/home");
+            break;
+          case "coach":
+            router.replace("/(coach)/home");
+            break;
+          case "manager":
+            router.replace("/(manager)/home");
+            break;
+          default:
+            router.replace("/(student)/home");
+        }
+      } else {
+        setShowLogin(true);
+      }
+    }, 1000);
 
     return () => clearTimeout(timeout);
-  }, [router]);
+  }, [router, isAuthenticated, role]);
 
-  return (
-    <View style={styles.container}>
-      <ActivityIndicator size="large" />
-    </View>
-  );
+  // Welcome screen
+  if (showWelcome) {
+    return <WelcomeScreen />;
+  }
+
+  // If not authorized, we show the login/registration screens
+  if (!isAuthenticated) {
+    return (
+      <>
+        {showLogin ? (
+          <LoginScreen onSwitch={() => setShowLogin(false)} />
+        ) : (
+          <RegistrationScreen onSwitch={() => setShowLogin(true)} />
+        )}
+        <Toast position="bottom" />
+      </>
+    );
+  }
+
+  return null;
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" },
-});

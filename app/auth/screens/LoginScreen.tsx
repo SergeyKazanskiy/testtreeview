@@ -4,8 +4,9 @@ import { AuthButton } from '../../components/buttons/AuthButton';
 import { ScreenContainer } from '../../components/containers/ScreenContainer';
 import { AuthInput } from '../../components/inputs/AuthInput';
 import { api } from '../api';
+import { EMAIL_REGEX } from '../constants';
 import { useAuthState } from '../store';
-import { EMAIL_REGEX, httpWrapper } from '../utils';
+import { request } from '../utils';
 
 
 interface Props {
@@ -21,7 +22,7 @@ export default function LoginScreen({ onSwitch }: Props) {
     if (!EMAIL_REGEX.test(email)) return alert('Invalid email');
     if (password.length < 6) return alert('Password too short');
 
-    httpWrapper(() => api.post('login', { email, password }), (data) => {
+    request(() => api.post('login', { email, password }), (data) => {
       setAuth(data.token, data.user_id);
     });
   };

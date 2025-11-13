@@ -1,13 +1,17 @@
+import { useState } from 'react';
 import Toast from 'react-native-toast-message';
 import { firebaseAuth } from './setup';
-import { useAuthState, useHttpClient } from './store';
+import { useAuthState } from './store';
 
 
-export const httpWrapper = async (
+export const request = async (
   apiCall: () => Promise<any>,
   callback: (data: any) => void
 ) => {
-  const { setLoading, setError } = useHttpClient.getState();
+  const [loading, setLoading] = useState(true);
+  if (loading) {
+    Toast.show({ type: 'info', text1: 'Loading...', position: 'bottom', visibilityTime: 1200, autoHide: true});
+  }
 
   const run = async (): Promise<boolean> => {
     try {
@@ -20,12 +24,11 @@ export const httpWrapper = async (
       const status = error?.response?.status;
 
       if (status === 401) {
-        const refreshed = await retryWithFreshToken(apiCall, callback, setError);
+        const refreshed = await retryWithFreshToken(apiCall, callback);
         return refreshed;
       }
 
-      setError(message);
-      Toast.show({ type: 'error', text1: 'Request failed', text2: message, position: 'top' });
+      Toast.show({ type: 'error', text1: 'Request failed', text2: message, position: 'top', visibilityTime: 1200, autoHide: true });
       return false;
     } finally {
       setLoading(false);
@@ -37,8 +40,7 @@ export const httpWrapper = async (
 
 async function retryWithFreshToken(
   apiCall: () => Promise<any>,
-  callback: (data: any) => void,
-  setError: (msg: string) => void
+  callback: (data: any) => void
 ): Promise<boolean> {
   try {
     const newToken = await firebaseAuth.currentUser?.getIdToken(true);
@@ -50,9 +52,7 @@ async function retryWithFreshToken(
 
     return true;
   } catch (err: any) {
-    setError('Auth retry failed: ' + err.message);
+    Toast.show({ type: 'error', text1: 'Auth retry failed', text2: err.message, position: 'top', visibilityTime: 1200, autoHide: true });
     return false;
   }
 }
-
-export const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
