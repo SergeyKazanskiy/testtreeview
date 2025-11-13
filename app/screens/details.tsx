@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
 import { Button, Text } from 'react-native';
-import ScreenContainer from '../../components/containers/ScreenContainer';
+import { ScreenContainer } from '../components/containers/ScreenContainer';
+
 
 export default function DetailsScreen() {
   const router = useRouter();

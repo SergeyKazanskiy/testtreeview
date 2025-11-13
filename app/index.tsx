@@ -25,9 +25,11 @@ export default function Index() {
 
   // After a second, hide the welcome screen. If authorized, navigate to the appropriate home screen.
   useEffect(() => {
+    setShowWelcome(true);
+
     const timeout = setTimeout(() => {
       setShowWelcome(false);
-
+   
       if (isAuthenticated) {
         switch (role) {
           case "student":
@@ -42,10 +44,8 @@ export default function Index() {
           default:
             router.replace("/(student)/home");
         }
-      } else {
-        setShowLogin(true);
-      }
-    }, 1000);
+      } 
+    }, 3000);
 
     return () => clearTimeout(timeout);
   }, [router, isAuthenticated, role]);

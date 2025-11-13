@@ -25,17 +25,18 @@ export const AuthInput: React.FC<Props> = ({ label, placeholder, value, secureTe
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 17,
+    marginTop: 12,
+    marginBottom: 4,
+    fontSize: 16,
     color: 'gold',
-    alignSelf: 'center'
+    alignSelf: 'flex-start'
   },
   value: {
-    marginTop: 14,
     color: '#444',
     fontSize: 18,
     paddingVertical: 4,
     paddingHorizontal: 12,
-    width: '92%',
+    width: '100%',
     borderRadius: 8,
     backgroundColor: 'rgb(180, 216, 158)',
     minHeight: 32,

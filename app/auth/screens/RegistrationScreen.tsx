@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { AuthButton } from '../../components/buttons/AuthButton';
 import { ScreenContainer } from '../../components/containers/ScreenContainer';
 import { AuthInput } from '../../components/inputs/AuthInput';
@@ -20,12 +20,13 @@ export default function RegistrationScreen({ onSwitch }: Props) {
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const { setAuth } = useAuthState();
-
+  
   const handleRegister = () => {
-    if (password !== confirm) return Alert.alert('Passwords do not match');
-    if (!EMAIL_REGEX.test(email)) return Alert.alert('Invalid email');
-
+    if (password !== confirm) return alert('Passwords do not match');
+    if (!EMAIL_REGEX.test(email)) return alert('Invalid email');
+    alert('Registering...');
     request(() => api.post('register', { first_name: first, last_name: last, email, password }), (data) => {
+      alert('Registration successful');
       setAuth(data.token, data.user_id);
     });
   };
@@ -43,15 +44,20 @@ export default function RegistrationScreen({ onSwitch }: Props) {
       <AuthInput label="Confirm password" value={confirm} secureTextEntry
         onChange={setConfirm} />
 
-      <AuthButton title="Зарегистрироваться" onClick={handleRegister} />
-      <AuthButton title="Go to Login" onClick={onSwitch} secondary />
+      <View style={{ marginTop: 12 }}>
+        <AuthButton title="Зарегистрироваться" onClick={handleRegister} />
+        <AuthButton title="Go to Login" onClick={onSwitch} secondary />
+      </View>
     </ScreenContainer>
   );
 }
       
 const styles = StyleSheet.create({
   title: {
-    fontSize: 28,
-    marginBottom: 20,
+    marginTop: 20,
+    marginBottom: 12,
+    fontSize: 24,
+    alignSelf: 'center',
+    color: 'white'
   },
 });

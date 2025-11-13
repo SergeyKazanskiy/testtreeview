@@ -1,7 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { Button, Text, View } from "react-native";
+import { Button, StyleSheet, Text } from "react-native";
+import { ScreenContainer } from '../../components/containers/ScreenContainer';
 import { firebaseAuth } from "../setup";
 
 
@@ -20,9 +21,19 @@ export default function WelcomeScreen() {
   };
 
   return (
-    <View style={{ padding: 20 }}>
-      <Text style={{ fontSize: 22, marginBottom: 20 }}>Добро пожаловать, пользователь {userId}</Text>
+    <ScreenContainer>
+      <Text style={styles.title}>Добро пожаловать, пользователь {userId}</Text>
       <Button title="Выйти" onPress={handleLogout} />
-    </View>
+    </ScreenContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    marginTop: 20,
+    marginBottom: 12,
+    fontSize: 24,
+    alignSelf: 'center',
+    color: 'white'
+  },
+});

@@ -17,7 +17,7 @@ export default function LoginScreen({ onSwitch }: Props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { setAuth } = useAuthState();
-
+  
   const handleLogin = () => {
     if (!EMAIL_REGEX.test(email)) return alert('Invalid email');
     if (password.length < 6) return alert('Password too short');
@@ -30,8 +30,8 @@ export default function LoginScreen({ onSwitch }: Props) {
   return (
     <ScreenContainer>
       <Text style={styles.title}>Login</Text>
-      <AuthInput placeholder="Email" value={email} onChange={setEmail} />
-      <AuthInput placeholder="Password" value={password} onChange={setPassword} secureTextEntry />
+      <AuthInput label="Email" placeholder="Email" value={email} onChange={setEmail} />
+      <AuthInput label="Password" placeholder="Password" value={password} onChange={setPassword} secureTextEntry />
 
       <AuthButton title="Login" onClick={handleLogin} />
       <AuthButton title="Go to Registration" onClick={onSwitch} secondary />
@@ -41,7 +41,10 @@ export default function LoginScreen({ onSwitch }: Props) {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 28,
-    marginBottom: 20,
+    marginTop: 20,
+    marginBottom: 12,
+    fontSize: 24,
+    alignSelf: 'center',
+    color: 'white'
   },
 });

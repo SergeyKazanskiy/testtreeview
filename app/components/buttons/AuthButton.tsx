@@ -19,7 +19,9 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 14,
     width: '60%',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    borderRadius: 8,
+    overflow: 'hidden',
   },
 });
 

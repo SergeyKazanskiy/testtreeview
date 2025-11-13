@@ -10,7 +10,7 @@ interface Props {
 export function ScreenContainer({ children }: Props) {
   return (
     <LinearGradient colors={["#2E4A7C", "#152B52"]} style={styles.container}>
-
+      {children}
     </LinearGradient>
   );
 }
