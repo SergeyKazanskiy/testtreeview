@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { AuthButton } from '../../components/buttons/AuthButton';
+import { AlertContainer } from "../../components/containers/AlertContainer";
 import { ScreenContainer } from '../../components/containers/ScreenContainer';
 import { AuthInput } from '../../components/inputs/AuthInput';
-import { api } from '../api';
-import { EMAIL_REGEX } from '../constants';
-import { useAuthState } from '../store';
-import { request } from '../utils';
+import { LoadingToast } from "../../components/toasts/LoadingToast";
+import { EMAIL_REGEX, PASSWORD_REGEX } from '../../constants/auth_regex';
+import { request } from '../request';
+import { useAuthState } from "../state";
+import { useAuthStore } from '../store';
+import { api } from '../utils';
 
 
 interface Props {
@@ -19,20 +22,27 @@ export default function RegistrationScreen({ onSwitch }: Props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
-  const { setAuth } = useAuthState();
+
+  const { loginUser } = useAuthStore();
+  const { isError, errorMessage, clearMessages, setError } = useAuthState();
   
   const handleRegister = () => {
     if (password !== confirm) return alert('Passwords do not match');
-    if (!EMAIL_REGEX.test(email)) return alert('Invalid email');
-    alert('Registering...');
-    request(() => api.post('register', { first_name: first, last_name: last, email, password }), (data) => {
-      alert('Registration successful');
-      setAuth(data.token, data.user_id);
+    if (!EMAIL_REGEX.test(email)) return setError('Invalid email');
+    if (!PASSWORD_REGEX.test(password)) return setError('Invalid password');
+    
+    request(() => api.post('auth/register', { first_name: first, last_name: last, email, password }), (data) => {
+      loginUser(data.token, data.user_id);
     });
   };
 
   return (
     <ScreenContainer>
+      <AlertContainer visible={isError} title="Auth error!"
+        onClose={() => clearMessages()}>
+        <Text style={styles.alertText}>{errorMessage}</Text> 
+      </AlertContainer>
+
       <Text style={styles.title}>Registration</Text>
 
       <AuthInput label="First name" value={first} onChange={setFirst} />
@@ -48,6 +58,8 @@ export default function RegistrationScreen({ onSwitch }: Props) {
         <AuthButton title="Зарегистрироваться" onClick={handleRegister} />
         <AuthButton title="Go to Login" onClick={onSwitch} secondary />
       </View>
+
+      <LoadingToast/>
     </ScreenContainer>
   );
 }
@@ -59,5 +71,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     alignSelf: 'center',
     color: 'white'
+  },
+  alertText: {
+    fontSize: 15,
+    color: '#ddd'
   },
 });

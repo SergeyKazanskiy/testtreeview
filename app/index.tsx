@@ -1,73 +1,63 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { useRouter } from "expo-router";
-import React, { useEffect, useState } from "react";
-import Toast from 'react-native-toast-message';
-import LoginScreen from './auth/screens/LoginScreen';
-import RegistrationScreen from './auth/screens/RegistrationScreen';
-import WelcomeScreen from './auth/screens/WelcomeScreen';
-import { useAuthState } from "./auth/store";
+import { useEffect, useState } from "react";
+import LoginScreen from './api/screens/LoginScreen';
+import RegistrationScreen from './api/screens/RegistrationScreen';
+import WelcomeScreen from './api/screens/WelcomeScreen';
 
 
 export default function Index() {
   const router = useRouter();
-  const { isAuthenticated, loadAuth } = useAuthState();
+  const appRole = Constants.expoConfig?.extra?.appRole ?? "student";
+
+  function gotoRoleHome() {
+    switch (appRole) {
+      case "student":
+        router.replace("/(student)/home");
+        break;
+      case "coach":
+        router.replace("/(coach)/home");
+        break;
+      case "manager":
+        router.replace("/(manager)/home");
+        break;
+      default:
+        router.replace("/(student)/home");
+    }
+  }
 
   const [showWelcome, setShowWelcome] = useState(true);
-  const [showLogin, setShowLogin] = useState(true);
-  const [role, setRole] = useState<"student" | "coach" | "manager">("student");
+  const [showLogin, setShowLogin] = useState(false);
 
-  // Initializing a role and loading saved authorization
   useEffect(() => {
-    const appRole = Constants.expoConfig?.extra?.appRole ?? "student";
-    setRole(appRole);
-    loadAuth();
-  }, [loadAuth]);
-
-  // After a second, hide the welcome screen. If authorized, navigate to the appropriate home screen.
-  useEffect(() => {
-    setShowWelcome(true);
-
     const timeout = setTimeout(() => {
-      setShowWelcome(false);
+      const token = AsyncStorage.getItem("token");
+      const userIdStr = AsyncStorage.getItem("user_id");
+      alert("Token: " + token + ", UserID: " + userIdStr);
+      const isAuth = token !== null && userIdStr !== null;
    
-      if (isAuthenticated) {
-        switch (role) {
-          case "student":
-            router.replace("/(student)/home");
-            break;
-          case "coach":
-            router.replace("/(coach)/home");
-            break;
-          case "manager":
-            router.replace("/(manager)/home");
-            break;
-          default:
-            router.replace("/(student)/home");
-        }
-      } 
-    }, 3000);
+      if (isAuth) {
+        gotoRoleHome();
+      } else {
+        setShowWelcome(false);
+        setShowLogin(true);
+      }
+    }, 5000);
 
     return () => clearTimeout(timeout);
-  }, [router, isAuthenticated, role]);
+  }, []);
 
-  // Welcome screen
   if (showWelcome) {
-    return <WelcomeScreen />;
+    return <WelcomeScreen onLogout={() => (setShowWelcome(false), setShowLogin(true))}/>;
   }
-
-  // If not authorized, we show the login/registration screens
-  if (!isAuthenticated) {
-    return (
-      <>
-        {showLogin ? (
-          <LoginScreen onSwitch={() => setShowLogin(false)} />
-        ) : (
-          <RegistrationScreen onSwitch={() => setShowLogin(true)} />
-        )}
-        <Toast position="bottom" />
-      </>
-    );
-  }
-
-  return null;
+  return (
+    <>
+      {showLogin ? (
+        <LoginScreen onSwitch={() => setShowLogin(false)}/>
+      ) : (
+        <RegistrationScreen onSwitch={() => setShowLogin(true)}/>
+      )}
+    </>
+  );
 }

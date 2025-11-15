@@ -1,21 +1,16 @@
-import { useState } from 'react';
-import Toast from 'react-native-toast-message';
 import { firebaseAuth } from './setup';
-import { useAuthState } from './store';
+import { useAuthState } from './state';
+import { useAuthStore } from './store';
 
 
 export const request = async (
   apiCall: () => Promise<any>,
-  callback: (data: any) => void
-) => {
-  const [loading, setLoading] = useState(true);
-  if (loading) {
-    Toast.show({ type: 'info', text1: 'Loading...', position: 'bottom', visibilityTime: 1200, autoHide: true});
-  }
+  callback: (data: any) => void) => {
+
+  useAuthState.getState().showLoading();
 
   const run = async (): Promise<boolean> => {
     try {
-      setLoading(true);
       const response = await apiCall();
       callback(response.data);
       return true;
@@ -27,14 +22,12 @@ export const request = async (
         const refreshed = await retryWithFreshToken(apiCall, callback);
         return refreshed;
       }
-
-      Toast.show({ type: 'error', text1: 'Request failed', text2: message, position: 'top', visibilityTime: 1200, autoHide: true });
+      useAuthState.getState().setError(message);
       return false;
     } finally {
-      setLoading(false);
+      useAuthState.getState().hideLoading();
     }
   };
-
   await run();
 };
 
@@ -46,13 +39,14 @@ async function retryWithFreshToken(
     const newToken = await firebaseAuth.currentUser?.getIdToken(true);
     if (!newToken) throw new Error('Token refresh failed');
 
-    await useAuthState.getState().refreshToken(newToken);
+    await useAuthStore.getState().refreshToken(newToken);
     const retryResponse = await apiCall();
     callback(retryResponse.data);
 
     return true;
-  } catch (err: any) {
-    Toast.show({ type: 'error', text1: 'Auth retry failed', text2: err.message, position: 'top', visibilityTime: 1200, autoHide: true });
+  } catch (error: any) {
+    const message = error?.response?.data?.detail || 'Server error';
+    useAuthState.getState().setError(message);
     return false;
   }
 }
