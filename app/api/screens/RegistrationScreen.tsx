@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { AuthButton } from '../../components/buttons/AuthButton';
 import { AlertContainer } from "../../components/containers/AlertContainer";
 import { ScreenContainer } from '../../components/containers/ScreenContainer';
 import { AuthInput } from '../../components/inputs/AuthInput';
 import { LoadingToast } from "../../components/toasts/LoadingToast";
-import { EMAIL_REGEX, PASSWORD_REGEX } from '../../constants/auth_regex';
+import { EMAIL_REGEX, PASSWORD_REGEX } from '../../constants/regex';
+import { alertStyles, screenStyles } from '../../styles/appStyles';
 import { request } from '../request';
 import { useAuthState } from "../state";
 import { useAuthStore } from '../store';
@@ -40,10 +41,10 @@ export default function RegistrationScreen({ onSwitch }: Props) {
     <ScreenContainer>
       <AlertContainer visible={isError} title="Auth error!"
         onClose={() => clearMessages()}>
-        <Text style={styles.alertText}>{errorMessage}</Text> 
+        <Text style={alertStyles.text}>{errorMessage}</Text> 
       </AlertContainer>
 
-      <Text style={styles.title}>Registration</Text>
+      <Text style={screenStyles.title}>Registration</Text>
 
       <AuthInput label="First name" value={first} onChange={setFirst} />
       <AuthInput label="Second name" value={last} onChange={setLast} />
@@ -63,17 +64,3 @@ export default function RegistrationScreen({ onSwitch }: Props) {
     </ScreenContainer>
   );
 }
-      
-const styles = StyleSheet.create({
-  title: {
-    marginTop: 20,
-    marginBottom: 12,
-    fontSize: 24,
-    alignSelf: 'center',
-    color: 'white'
-  },
-  alertText: {
-    fontSize: 15,
-    color: '#ddd'
-  },
-});

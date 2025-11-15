@@ -1,6 +1,7 @@
 import React from "react";
-import { Button, StyleSheet, Text } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import { ScreenContainer } from '../../components/containers/ScreenContainer';
+import { screenStyles } from '../../styles/appStyles';
 import { firebaseAuth } from "../setup";
 import { useAuthStore } from '../store';
 
@@ -20,18 +21,19 @@ export default function WelcomeScreen({ onLogout }: Props) {
 
   return (
     <ScreenContainer>
-      <Text style={styles.title}>Welcome, user</Text>
-      <Button title="Logout" onPress={handleLogout} />
+      <Text style={screenStyles.title}>Welcome, user</Text>
+      <View style={{ marginVertical: 20 }}>
+        <Button title="Logout" onPress={handleLogout} />
+      </View>
     </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  title: {
+  button: {
     marginTop: 20,
-    marginBottom: 12,
-    fontSize: 24,
-    alignSelf: 'center',
-    color: 'white'
+    backgroundColor: '#FF5733',
+    padding: 10,
+    borderRadius: 5,
   },
 });

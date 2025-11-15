@@ -1,5 +1,6 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { useAuthState } from '../../api/state';
+import { colors } from '../../constants/colors';
 
 
 export const LoadingToast = () => {
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   toastText: {
-    color: 'white',
+    color: colors.white,
     marginLeft: 10,
     fontSize: 16,
   },

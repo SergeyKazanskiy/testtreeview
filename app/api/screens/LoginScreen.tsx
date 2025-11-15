@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Text } from 'react-native';
 import { AuthButton } from '../../components/buttons/AuthButton';
 import { AlertContainer } from '../../components/containers/AlertContainer';
 import { ScreenContainer } from '../../components/containers/ScreenContainer';
 import { AuthInput } from '../../components/inputs/AuthInput';
 import { LoadingToast } from '../../components/toasts/LoadingToast';
-import { EMAIL_REGEX, PASSWORD_REGEX } from '../../constants/auth_regex';
+import { EMAIL_REGEX, PASSWORD_REGEX } from '../../constants/regex';
+import { alertStyles, screenStyles } from '../../styles/appStyles';
 import { request } from '../request';
 import { useAuthState } from '../state';
 import { useAuthStore } from '../store';
@@ -36,10 +37,10 @@ export default function LoginScreen({ onSwitch }: Props) {
     <ScreenContainer>
       <AlertContainer visible={isError} title="Auth error!"
         onClose={() => clearMessages()}>
-        <Text style={styles.alertText}>{errorMessage}</Text> 
+        <Text style={alertStyles.text}>{errorMessage}</Text> 
       </AlertContainer>
 
-      <Text style={styles.title}>Login</Text>
+      <Text style={screenStyles.title}>Login</Text>
       <AuthInput label="Email" placeholder="Email" value={email} onChange={setEmail} />
       <AuthInput label="Password" placeholder="Password" value={password} onChange={setPassword} secureTextEntry />
 
@@ -50,18 +51,3 @@ export default function LoginScreen({ onSwitch }: Props) {
     </ScreenContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    marginTop: 20,
-    marginBottom: 12,
-    fontSize: 24,
-    alignSelf: 'center',
-    color: 'white'
-  },
-  alertText: {
-    fontSize: 15,
-    color: '#ddd'
-  },
-});
-
