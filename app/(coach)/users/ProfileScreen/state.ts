@@ -1,10 +1,11 @@
+import { AvatarName } from '@/app/constants/avatars';
 import { get_user, update_user } from '../http';
 import { User } from '../model';
 
 
 export interface ProfileSlice {
     user: User | null;
-    photo: string;
+    photo: AvatarName;
     first_name: string;
     last_name: string;
     email: string;
@@ -23,7 +24,7 @@ export interface ProfileSlice {
 
 export const createProfileSlice = (set: any, get: any): ProfileSlice => ({
     user: null,
-    photo: 'Photo',
+    photo: 'stab_avatar',
     first_name: "Name",
     last_name: "Name",
     email: "123456789",

@@ -4,7 +4,9 @@ import { AuthButton } from '../../components/buttons/AuthButton';
 import { AlertContainer } from "../../components/containers/AlertContainer";
 import { ScreenContainer } from '../../components/containers/ScreenContainer';
 import { AuthInput } from '../../components/inputs/AuthInput';
+import { Option, SelectedField } from '../../components/selects/SelectedField';
 import { LoadingToast } from "../../components/toasts/LoadingToast";
+import avatars from '../../constants/avatars';
 import { EMAIL_REGEX, PASSWORD_REGEX } from '../../constants/regex';
 import { alertStyles, screenStyles } from '../../styles/appStyles';
 import { request } from '../request';
@@ -18,6 +20,7 @@ interface Props {
 }
 
 export default function RegistrationScreen({ onSwitch }: Props) {
+  const [avatarIndex, setAvatarIndex] = useState(0);
   const [first, setFirst] = useState('');
   const [last, setLast] = useState('');
   const [email, setEmail] = useState('');
@@ -27,13 +30,20 @@ export default function RegistrationScreen({ onSwitch }: Props) {
   const { loginUser } = useAuthStore();
   const { isError, errorMessage, clearMessages, setError } = useAuthState();
   
+  const avatarNames: Option[] = Object.keys(avatars)
+    .slice(0, -1)
+    .map((name, index) => ({ id: index, name }));
+
   const handleRegister = () => {
     if (password !== confirm) return alert('Passwords do not match');
     if (!EMAIL_REGEX.test(email)) return setError('Invalid email');
     if (!PASSWORD_REGEX.test(password)) return setError('Invalid password');
     
-    request(() => api.post('auth/register', { first_name: first, last_name: last, email, password }), (data) => {
-      loginUser(data.token, data.user_id);
+    const photo = avatarNames[avatarIndex];
+    const user_data = { first_name: first, last_name: last, email, password, photo }
+
+    request(() => api.post('auth/register', user_data), (res) => {
+      loginUser(res.token, res.user_id);
     });
   };
 
@@ -45,6 +55,7 @@ export default function RegistrationScreen({ onSwitch }: Props) {
       </AlertContainer>
 
       <Text style={screenStyles.title}>Registration</Text>
+      <SelectedField data={avatarNames} selectedIndex={avatarIndex} onSelect={setAvatarIndex}/>
 
       <AuthInput label="First name" value={first} onChange={setFirst} />
       <AuthInput label="Second name" value={last} onChange={setLast} />
@@ -56,7 +67,7 @@ export default function RegistrationScreen({ onSwitch }: Props) {
         onChange={setConfirm} />
 
       <View style={{ marginTop: 12 }}>
-        <AuthButton title="Зарегистрироваться" onClick={handleRegister} />
+        <AuthButton title="Register" onClick={handleRegister} />
         <AuthButton title="Go to Login" onClick={onSwitch} secondary />
       </View>
 

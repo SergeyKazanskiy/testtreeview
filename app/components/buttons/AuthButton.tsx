@@ -4,13 +4,14 @@ import { Button, StyleSheet, View } from 'react-native';
 interface Props {
   title: string;
   secondary?: boolean;
+  disabled?: boolean;
   onClick: () => void; 
 }
 
-export const AuthButton: React.FC<Props> = ({ title, secondary, onClick }) => {
+export const AuthButton: React.FC<Props> = ({ title, secondary, disabled, onClick }) => {
   return (
     <View style={[styles.button, secondary && { opacity: 0.7 }]}>
-      <Button title={title} onPress={onClick}/>
+      <Button title={title} onPress={onClick} disabled={disabled}/>
     </View>
   );
 };

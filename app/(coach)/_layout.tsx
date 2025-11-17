@@ -21,6 +21,8 @@ export default function Layout() {
       <Tabs>
         <Tabs.Screen name="home" options={{ title: 'Главная', headerShown: false }}/>
         <Tabs.Screen name="profile" options={{ title: 'Профиль', headerShown: false }}/>
+        <Tabs.Screen name="ProfileScreen" options={{ title: 'RRR', headerShown: false }}/>
+        <Tabs.Screen name="UsersScreen" options={{ title: 'EEE', headerShown: false }}/>
       </Tabs>
     </ScreenContainer>
   );
