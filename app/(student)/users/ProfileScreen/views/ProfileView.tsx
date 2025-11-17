@@ -11,7 +11,7 @@ import { LoadingToast } from "../../../../components/toasts/LoadingToast";
 import avatars, { AvatarName } from '../../../../constants/avatars';
 import { EMAIL_REGEX } from '../../../../constants/regex';
 import { alertStyles, screenStyles } from '../../../../styles/appStyles';
-import { useStore } from '../../store';
+import { useStore } from '../../_store';
 
 
 export function ProfileView() {

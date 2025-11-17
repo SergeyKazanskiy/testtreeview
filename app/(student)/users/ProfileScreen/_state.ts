@@ -1,6 +1,6 @@
 import { AvatarName } from '@/app/constants/avatars';
-import { get_user, update_user } from '../http';
-import { User } from '../model';
+import { get_user, update_user } from '../_http';
+import { User } from '../_model';
 
 
 export interface ProfileSlice {
