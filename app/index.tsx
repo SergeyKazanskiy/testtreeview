@@ -11,7 +11,7 @@ export default function Index() {
     const timeout = setTimeout(() => {
       switch (appRole) {
         case "student":
-          router.replace("/(student)/home");
+          router.replace("/(student)/users/UsersScreen");
           break;
         case "coach":
           router.replace("/(coach)/users/UsersScreen");
@@ -20,7 +20,7 @@ export default function Index() {
           router.replace("/(manager)/home");
           break;
         default:
-          router.replace("/(student)/home");
+          router.replace("/(student)/users/UsersScreen");
       }
     }, 2000);
     return () => clearTimeout(timeout);

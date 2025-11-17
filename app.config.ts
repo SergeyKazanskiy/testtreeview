@@ -4,7 +4,7 @@ export default ({ config }: any) => {
   // Укажи реальные projectId (можно взять из expo.dev → Project Settings → General)
   const projectIds: Record<string, string> = {
     student: "2d081913-084b-46d1-b13a-1f743377f78d",
-    coach: "YOUR_COACH_PROJECT_ID",
+    coach: "5f787446-47a9-4a7e-99d7-ecfce63e0996",
     manager: "YOUR_MANAGER_PROJECT_ID",
   };
 
