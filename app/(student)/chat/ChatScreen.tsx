@@ -1,5 +1,5 @@
+import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
 import { Text } from 'react-native';
-import { ScreenContainer } from '../../components/containers/ScreenContainer';
 
 
 export default function ChatScreen() {

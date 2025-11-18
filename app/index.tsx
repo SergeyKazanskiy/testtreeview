@@ -14,7 +14,7 @@ export default function Index() {
           router.replace("/(student)/users/UsersScreen");
           break;
         case "coach":
-          router.replace("/(coach)/users/UsersScreen");
+          router.replace("/(coach)/home");
           break;
         case "manager":
           router.replace("/(manager)/home");

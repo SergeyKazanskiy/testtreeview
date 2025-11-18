@@ -1,22 +1,19 @@
+import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
+import { colors } from '@/src/constants/colors';
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import { useEffect } from 'react';
-import LoginScreen from '../api/screens/LoginScreen';
-import { useAuthStore } from '../api/store';
-import { ScreenContainer } from '../components/containers/ScreenContainer';
-import { colors } from '../constants/colors';
 
 
 export default function RootLayout() {
-  const { isLogin, restoreAuth } = useAuthStore();
+  // const { isLogin, restoreAuth } = useAuthStore();
 
-  useEffect(() => {
-    restoreAuth();
-  }, []);
+  // useEffect(() => {
+  //   restoreAuth();
+  // }, []);
 
-  if (isLogin === false) {
-    return <LoginScreen onSwitch={() => {}} />;
-  }
+  // if (isLogin === false) {
+  //   return <LoginScreen onSwitch={() => {}} />;
+  // }
 
   return (
     <ScreenContainer>
@@ -27,7 +24,8 @@ export default function RootLayout() {
           tabBarStyle: {
             backgroundColor: colors.cyan[900],
             height: 60,
-            paddingTop: 5,
+            paddingTop: 4,
+            marginBottom: 40,
             borderTopWidth: 1,
             borderTopColor: colors.gray[500],
           },

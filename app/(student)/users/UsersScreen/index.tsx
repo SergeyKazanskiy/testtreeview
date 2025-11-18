@@ -1,6 +1,6 @@
+import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
 import { useRouter } from 'expo-router';
 import { Button, Text } from 'react-native';
-import { ScreenContainer } from '../../../components/containers/ScreenContainer';
 import { UsersView } from './views/UsersView';
 
 

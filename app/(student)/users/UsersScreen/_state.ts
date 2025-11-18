@@ -1,6 +1,6 @@
-import { delete_user, get_users } from '../_http';
-import { User } from '../_model';
-import { ProfileSlice } from '../ProfileScreen/_state';
+import { delete_user, get_users } from '../http';
+import { User } from '../model';
+import { ProfileSlice } from '../ProfileScreen/state';
 
 
 export interface UsersSlice {

@@ -1,6 +1,6 @@
-import { request } from '../../api/request';
-import { api } from '../../api/utils';
-import { User } from './_model';
+import { request } from '@/src/api/request';
+import { api } from '@/src/api/utils';
+import { User } from './model';
 
 
 

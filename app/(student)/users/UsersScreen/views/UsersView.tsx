@@ -1,8 +1,8 @@
+import { UserCell } from '@/src/components/cells/UserCell';
+import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
 import { useRouter } from 'expo-router';
 import { FlatList, TouchableOpacity } from 'react-native';
-import { UserCell } from '../../../../components/cells/UserCell';
-import { ScreenContainer } from '../../../../components/containers/ScreenContainer';
-import { useStore } from '../../_store';
+import { useStore } from '../../store';
 
 
 export function UsersView() {

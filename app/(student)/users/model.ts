@@ -1,4 +1,4 @@
-import { AvatarName } from '../../constants/avatars';
+import { AvatarName } from '@/src/constants/avatars';
 
 export interface User {
   id: number;

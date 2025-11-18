@@ -1,17 +1,17 @@
-import { AlertContainer } from '@/app/components/containers/AlertContainer';
+import { useAuthState } from "@/src/api/state";
+import { AuthButton } from '@/src/components/buttons/AuthButton';
+import { AlertContainer } from '@/src/components/containers/AlertContainer';
+import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
+import { AuthInput } from '@/src/components/inputs/AuthInput';
+import { SelectedField } from '@/src/components/selects/SelectedField';
+import { LoadingToast } from "@/src/components/toasts/LoadingToast";
+import avatars, { AvatarName } from '@/src/constants/avatars';
+import { EMAIL_REGEX } from '@/src/constants/regex';
+import { alertStyles, screenStyles } from '@/src/styles/appStyles';
 import { useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
 import { Text, View } from "react-native";
-import { useAuthState } from "../../../../api/state";
-import { AuthButton } from '../../../../components/buttons/AuthButton';
-import { ScreenContainer } from '../../../../components/containers/ScreenContainer';
-import { AuthInput } from '../../../../components/inputs/AuthInput';
-import { SelectedField } from '../../../../components/selects/SelectedField';
-import { LoadingToast } from "../../../../components/toasts/LoadingToast";
-import avatars, { AvatarName } from '../../../../constants/avatars';
-import { EMAIL_REGEX } from '../../../../constants/regex';
-import { alertStyles, screenStyles } from '../../../../styles/appStyles';
-import { useStore } from '../../_store';
+import { useStore } from '../../store';
 
 
 export function ProfileView() {

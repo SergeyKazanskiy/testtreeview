@@ -1,9 +1,9 @@
+import { firebaseAuth } from "@/src/api/setup";
+import { useAuthStore } from '@/src/api/store';
+import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
+import { screenStyles } from '@/src/styles/appStyles';
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import { ScreenContainer } from '../../components/containers/ScreenContainer';
-import { screenStyles } from '../../styles/appStyles';
-import { firebaseAuth } from "../setup";
-import { useAuthStore } from '../store';
 
 
 interface Props {
