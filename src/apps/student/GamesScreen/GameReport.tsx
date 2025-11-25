@@ -23,10 +23,10 @@ const formatSec = (s: number) =>
 
 
 interface Props {
-  onBack: () => void;
+  pressBack: () => void;
 }
 
-const GameReport = ({ onBack }: Props) => {
+const GameReport = ({ pressBack }: Props) => {
   const { teams_totals, currentRole, round_times, gameDate, game_report_id } = useStore();
   const { loadGameReport } = useStore();
 
@@ -45,11 +45,12 @@ const GameReport = ({ onBack }: Props) => {
   const titleHeader = 'Dinivrey - ' + formatDate(gameDate)
 
   const handleBack = () => {
-    if (navigation.canGoBack()) {
-      router.back();
-    } else {
-      router.push('/dashboards/student/GamesScreen'); 
-    }
+    pressBack();
+    // if (navigation.canGoBack()) {
+    //   router.back();
+    // } else {
+    //   router.push('/dashboards/student/GamesScreen'); 
+    // }
   };
 
   return (

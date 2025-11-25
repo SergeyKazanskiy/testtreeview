@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
-import { firebaseAuth } from './setup';
+import { firebaseAuth } from './firebaseConfig';
 import { setToken } from './utils';
 
 

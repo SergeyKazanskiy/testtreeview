@@ -1,6 +1,6 @@
 import { BACKEND_APP_IMAGES_URL, examColors, RuleTests } from '@/src/constants/constants';
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AvatarWrapper } from '../../components/AvatarWrapper';
 import { ExamBanner } from '../../components/ExamBanner';
 import { ScoreBanner } from '../../components/ScoreBanner';
@@ -30,9 +30,9 @@ export const HeaderView = () => {
       </View>
 
       <View style={styles.info}>
-        <TouchableOpacity style={{alignSelf: 'flex-end', paddingTop: 8, paddingRight: 4}} onPress={() => {}}>
+        {/* <TouchableOpacity style={{alignSelf: 'flex-end', paddingTop: 8, paddingRight: 4}} onPress={() => {}}>
           <Image source={require("../../../../../assets/images/edit-contained.png")} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <Text style={styles.name}>{student.first_name + ' ' + student.last_name}</Text>
         <TeamPanel w={152} teamName={group_name} fontS={14}/>

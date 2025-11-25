@@ -2,7 +2,7 @@ import { RadarChart } from '@/src/components/widgets/RadarChart';
 import { StatsIndicators } from '@/src/components/widgets/StatsIndicators';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -44,7 +44,7 @@ export const StatisticView = ({ onExam, onGame, onLiders }: Props) => {
         <StatsIndicators stats={[last_test.climbing, last_test.stamina, last_test.speed, last_test.evasion, last_test.hiding]}/>  
       </View> */}
       
-      <View style={[styles.section, { paddingHorizontal: 16 }]}>
+      {/* <View style={[styles.section, { paddingHorizontal: 16 }]}>
         <TouchableOpacity onPress={() => onGame('Caught')}>
           <Text style={styles.label}>Caught: 
             <Text style={styles.text}>{last_game.caught}</Text>
@@ -62,8 +62,8 @@ export const StatisticView = ({ onExam, onGame, onLiders }: Props) => {
         <Text style={styles.label}>Survived: 
           <Text style={styles.text}>{last_game.is_survived ? '2' : '0'}</Text>
         </Text>
-      </TouchableOpacity>
-    </View>
+      </TouchableOpacity>*/}
+    </View> 
   );
 };
 

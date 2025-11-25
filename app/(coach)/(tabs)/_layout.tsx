@@ -1,7 +1,6 @@
 import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
 import { IconPair, TabIconRenderProps } from '@/src/styles/types';
 import { Tabs } from 'expo-router';
-import React from 'react';
 import { Image, StyleSheet, View } from "react-native";
 
 

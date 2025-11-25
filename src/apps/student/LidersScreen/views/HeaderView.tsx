@@ -35,7 +35,7 @@ export const HeaderView = () => {
 
         <View style={styles.row}>
           {[last_test.speed, last_test.stamina, last_test.climbing, last_test.evasion, last_test.hiding].map((item, inx) => (
-            <TouchableOpacity onPress={() => selectTest(TestFields[inx])}>
+            <TouchableOpacity key={item} onPress={() => selectTest(TestFields[inx])}>
                <ExamBanner value={item?? 0} color={examColors[inx]} icon={RuleTests[inx]}
                 isSelected={currentExam === TestFields[inx]}/>
             </TouchableOpacity>

@@ -1,4 +1,4 @@
-import { firebaseAuth } from './setup';
+import { firebaseAuth } from './firebaseConfig';
 import { useAuthState } from './state';
 import { useAuthStore } from './store';
 

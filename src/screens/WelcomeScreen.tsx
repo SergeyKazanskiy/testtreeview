@@ -1,4 +1,4 @@
-import { firebaseAuth } from "@/src/api/setup";
+import { firebaseAuth } from "@/src/api/firebaseConfig";
 import { useAuthStore } from '@/src/api/store';
 import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
 import { screenStyles } from '@/src/styles/appStyles';

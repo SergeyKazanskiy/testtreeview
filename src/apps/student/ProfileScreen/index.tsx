@@ -23,7 +23,7 @@ const ProfileScreen = () => {
   
   const [showHeaderButton, setShowHeaderButton] = useState(false);
   const { userId } = useAuthStore();
-  //alert(userId)
+
   const navigation = useNavigation();
   const router = useRouter();
 
@@ -32,15 +32,6 @@ const ProfileScreen = () => {
       loadStudent(userId);
     }, [])
   );
-
-  // const handleClickAchievement = (achievement_id: number) => {
-  //   setShowHeaderButton(true);
-  //   clickAchievement(achievement_id);
-
-  //   setTimeout(() => {
-  //     setShowHeaderButton(false);
-  //   }, 3000);
-  // };
 
   const scaleAnim = useRef(new Animated.Value(0)).current;
 
@@ -56,48 +47,6 @@ const ProfileScreen = () => {
       scaleAnim.setValue(0); // Сброс масштаба обратно
     }
   }, [showHeaderButton]);
-
-  // useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () => 
-  //       showHeaderButton ? (
-  //         <Animated.View style={{ marginRight: 15, transform: [{ scale: scaleAnim }] }}>
-  //           <Pressable onPress={detachAchievement} >
-  //             <Ionicons name='trash-outline' size={24} color="red" />
-  //           </Pressable>
-  //         </Animated.View>
-  //       ): null,
-  //   });
-  // }, [navigation, showHeaderButton]);
-  
-  // const openAchievesScreen = () => {
-  //   showAchievesModal()
-  //   router.push("/dashboards/student/AchievesScreen");
-  // };
-
-  // const openTestStatistic = (metric: string) => {
-  //   const metricName = metric.charAt(0).toUpperCase() + metric.slice(1);
-  //   loadTest(last_test.timestamp || 0, metricName);
-  //   router.push("/dashboards/student/StatisticsScreen");
-  //   setBackDrawer(false);
-  // }
-  
-  // const openGameStatistic = (metric: string) => {
-  //   loadGame(last_game.timestamp || 0, metric);
-  //   router.push("/dashboards/student/StatisticsScreen");
-  //   setBackDrawer(false);
-  // }
-
-  // const openEventsScreen = (event_id: number, timestamp: number) => {
-  //   loadEvent(event_id, timestamp);
-  //   router.push("/dashboards/student/EventsScreen");
-  //   setBackDrawer(false);
-  // }
-
-  // const openLidersScreen = () => {
-  //   router.push("/dashboards/student/LidersScreen");
-  //   setBackDrawer(false);
-  // }
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.background} >

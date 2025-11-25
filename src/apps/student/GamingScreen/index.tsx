@@ -21,7 +21,11 @@ import { PlayersView } from './views/PlayersView';
 import { TitleView } from './views/TitleView';
 
 
-export default function GamingScreen() {
+interface Props {
+  pressBack: () => void;
+}
+
+export default function GamingScreen({ pressBack }: Props) {
   const { isHeader, currentRound, gameStep, gameState, gameDate, isEvadersDialog } = useStore();
   const { currentTeam, pointsDifference, winner } = useStore();
   const { loadStudents, onNavbarBack, hideBackAlert, onErrorExit, step_on_settings, clearPlayers} = useStore();
@@ -56,11 +60,12 @@ export default function GamingScreen() {
 
   const returnBack = () => {
     setGamingScreen(false);
-    if (navigation.canGoBack()) {
-      router.back();
-    } else {
-      router.push('/dashboards/student/GamesScreen'); 
-    }
+    pressBack();
+    // if (navigation.canGoBack()) {
+    //   router.back();
+    // } else {
+    //   router.push('/dashboards/student/GamesScreen'); 
+    // }
   };
 
   return (

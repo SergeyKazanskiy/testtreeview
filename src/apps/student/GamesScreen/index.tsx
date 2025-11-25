@@ -10,7 +10,12 @@ import { GamesView } from './views/GamesView';
 import { HeaderView } from './views/HeaderView';
 
 
-export default function GamesScreen() {
+interface Props {
+  pressNewGame: () => void;
+  pressGameReport: () => void;
+}
+
+export default function GamesScreen( {pressNewGame, pressGameReport}: Props) {
   const { loadLastGameData, selectGameReport, setGamingScreen } = useStore();
 
   const router = useRouter();
@@ -22,13 +27,15 @@ export default function GamesScreen() {
   );
 
   const onNewGame = () => {
-    setGamingScreen(true)
-    router.push("/dashboards/student/GamingScreen");
+    setGamingScreen(true);
+    pressNewGame();
+    //router.push("/dashboards/student/GamingScreen");
   };
 
   const onGameReport = (id: number) => {
     selectGameReport(id);
-    router.push("/dashboards/student/GamesScreen/GameReport");
+    pressGameReport();
+    //router.push("/dashboards/student/GamesScreen/GameReport");
   };
 
   return (
