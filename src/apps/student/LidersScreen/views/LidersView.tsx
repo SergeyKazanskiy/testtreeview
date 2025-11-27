@@ -22,7 +22,7 @@ export const LidersView = () => {
     });
   
   return (
-    <FlatList data={filtered} contentContainerStyle={{paddingBottom: 32}}
+    <FlatList data={filtered} contentContainerStyle={{paddingBottom: 100}}
       keyExtractor={(index) => index.toString()}
       renderItem={({ item, index }) => {
       const average=(item.speed + item.stamina + item.climbing + item.evasion + item.hiding) / 5

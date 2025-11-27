@@ -27,14 +27,13 @@ export const CustomNavbar: React.FC<Props> = ({ title, onClick, children }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 8,
     flexDirection:'row',
-    paddingVertical: 16,
     backgroundColor: '#152B52',
-
     justifyContent: 'center',
+    paddingTop: 32,
+    paddingBottom: 16,
   //  position: 'relative',
-    height: 56
+    height: 68
   },
   backIcons: {
     position: 'absolute',

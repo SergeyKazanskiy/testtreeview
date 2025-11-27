@@ -1,5 +1,5 @@
 import { Button } from '@/src/components/buttons/CustomButton';
-import { Icon } from '@/src/components/icons/CustomIcon';
+import { Ionicons } from '@expo/vector-icons';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { Role, Team } from '../../model';
 import { useStore } from '../../store';
@@ -31,13 +31,13 @@ export function PlayersView({ team, role }: Props) {
             <Text style={styles.column2}>{item.points}</Text>
             <View style={styles.actions}>
               <Button
-                icon={<Icon name="remove" color="white" />}
+                icon={<Ionicons name='remove' size={20} color='white' />}
                 buttonStyle={styles.removeBtn}
                 disabled={blockPointsAdding}
                 onPress={() => removePoint(item.id)}
               />
               <Button
-                icon={<Icon name="add" color="white" />}
+                icon={<Ionicons name='add' size={20} color='white' />}
                 buttonStyle={styles.addBtn}
                 disabled={blockPointsAdding}
                 onPress={() => addPoint(item.id)}

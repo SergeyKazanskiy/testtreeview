@@ -1,4 +1,5 @@
 import { Icon } from '@/src/components/icons/CustomIcon';
+import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import { Role, Team } from '../../model';
 import { useStore } from '../../store';
@@ -21,7 +22,7 @@ export function TitleView({ team, role }: Props) {
         <Text style={styles.teamName}>{teamName}</Text>
         
         <View style={styles.wrapperAdd}>
-          <Icon name="person-add" color="#333" size={18}
+          <Ionicons name='add-circle-outline' size={25} color='#333'
             disabled={blockPlayersAdding}
             onPress={() => (setCurrentTeam(team), setCurrentRole(role), showAddingPopup())}
           />
@@ -66,8 +67,8 @@ const styles = StyleSheet.create({
   },
   wrapperAdd: {
     backgroundColor: 'white',
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+    paddingVertical: 2,
+    paddingHorizontal: 6,
 
     borderRadius: 4,
     borderWidth: 1,

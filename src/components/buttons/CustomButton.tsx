@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { TouchableOpacity, View, Text, StyleProp, ViewStyle, TextStyle } from 'react-native';
+import { StyleProp, Text, TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 
 interface ExpoButtonProps {
@@ -59,7 +59,7 @@ export const Button: React.FC<ExpoButtonProps> = ({
         ]}
       >
         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-          {icon && <View style={{marginRight: 6}}>{icon}</View>}
+          {icon && <View style={{marginRight: 0}}>{icon}</View>}
             {children ? (
             children
             ) : (
