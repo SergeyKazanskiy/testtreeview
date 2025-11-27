@@ -1,14 +1,14 @@
-import { useCallback } from 'react';
-import { useFocusEffect } from '@react-navigation/native';
-import { View, StyleSheet, ScrollView, Text } from 'react-native';
-import { useNavigation, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { AchievesPanel } from './views/AchievesPanel';
-import { useStore } from '../store';
+import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { HeaderView } from './views/HeaderView';
-import { CustomAlert } from './components/CustomAlert';
+import { useNavigation, useRouter } from 'expo-router';
+import { useCallback } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useStore } from '../store';
 import { AchievesModal } from './components/AchievesModal';
+import { CustomAlert } from './components/CustomAlert';
+import { AchievesPanel } from './views/AchievesPanel';
+import { HeaderView } from './views/HeaderView';
 
 
 export const AchievesScreen = () => {
@@ -24,18 +24,6 @@ export const AchievesScreen = () => {
     }, [])
   );
 
-  // function handleBackButton() {
-  //   hideAchievesModal();
-  //   router.back();
-  // }
-
-  function handleClickAchieve(id: number) {
-    // if (isAchievesModal) {
-    //   selectAchieve(id);
-    //   router.back();
-    // }
-  }
-
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.background} >
 
@@ -48,23 +36,23 @@ export const AchievesScreen = () => {
           achieves={unlocked_achieves}
           onAchievement={selectAchieve}
           onPlace={selectPlace}
-          />
+        />
       </CustomAlert>
 
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <HeaderView/>
         
         <View style={[{flexDirection: 'row', justifyContent: 'flex-start', marginTop: 20}, styles.line]}>
           <Text style={[styles.title]}>Unlocked</Text>
           <Ionicons name='lock-open' size={18} color="green" />
         </View>
-        <AchievesPanel isUnlocked={true} achieves={unlocked_achieves} onClick={handleClickAchieve}/>
+        <AchievesPanel achieves={unlocked_achieves} />
 
         <View style={[{flexDirection: 'row', justifyContent: 'flex-start', marginTop: 16}, styles.line]}>
           <Text style={[styles.title]}>Locked</Text>
           <Ionicons name='lock-closed' size={18} color="red" />
         </View>
-         <AchievesPanel isUnlocked={false} achieves={locked_achieves} onClick={()=>{}}/>
+        <AchievesPanel achieves={locked_achieves} />
         
       </ScrollView>
     </LinearGradient>
@@ -80,7 +68,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingBottom: 100
+    paddingBottom: 200
   },
   title: {
     fontSize: 15,

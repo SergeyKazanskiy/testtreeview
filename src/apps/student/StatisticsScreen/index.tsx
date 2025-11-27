@@ -1,8 +1,7 @@
-import { useAuthStore } from '@/src/api/store';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useNavigation, useRouter } from 'expo-router';
+import { useNavigation } from 'expo-router';
 import { useCallback, useLayoutEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
 import { useStore } from '../store';
@@ -10,13 +9,15 @@ import { ChartsView } from './views/ChartsView';
 import { HeaderView } from './views/HeaderView';
 
 
-export default function StatisticsScreen() {
+interface Props {
+  logout: () => void;
+}
+
+export default function StatisticsScreen({ logout }: Props) {
   const { student_id } = useStore();
   const { togleStatistic, loadLimitTests } = useStore();
-  const { logoutUser } = useAuthStore();
 
   const navigation = useNavigation();
-  const router = useRouter();
 
   useFocusEffect(
     useCallback(() => {
@@ -35,13 +36,13 @@ export default function StatisticsScreen() {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.background} >
-      <ScrollView style={{paddingBottom: 100}}>
+      <ScrollView style={{paddingBottom: 100}} showsVerticalScrollIndicator={false}>
         <HeaderView/>
 
         <ChartsView/>
 
         <Text style={{color: 'red', fontSize: 18, fontWeight: 600, alignSelf: 'center', paddingTop: 16}}
-          onPress={logoutUser}>
+          onPress={logout}>
           Logout
         </Text>
       </ScrollView>

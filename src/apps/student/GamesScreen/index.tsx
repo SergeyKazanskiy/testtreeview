@@ -40,7 +40,7 @@ export default function GamesScreen( {pressNewGame, pressGameReport}: Props) {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.background} >
-      <ScrollView style={{paddingBottom: 56}}>
+      <ScrollView style={{paddingBottom: 56}} showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <HeaderView/>
         

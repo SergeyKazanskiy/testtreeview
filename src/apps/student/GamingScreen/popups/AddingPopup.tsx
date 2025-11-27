@@ -24,7 +24,7 @@ export function AddingPopup() {
      <PopupWrapper visible={isAddingPopup} title='Choose players to add' onClose={hideAddingPopup}>
       {columns.length === 0 && <Text style={styles.title}>No available students</Text>}
 
-      <ScrollView horizontal contentContainerStyle={styles.rowScroll}>
+      <ScrollView horizontal contentContainerStyle={styles.rowScroll} showsHorizontalScrollIndicator={false}>
         {columns.map((column, colIndex) => (
 
           <View key={colIndex} style={styles.column}>

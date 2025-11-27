@@ -1,41 +1,36 @@
 import { formatDateTime } from '@/src/utils/utils';
 import React from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { useStore } from '../../store';
+import { StyleSheet, Text, View } from 'react-native';
+import { Event } from "../../model";
 import { EventCell } from '../components/EventCell';
 
 
-export type Props = {
-  onClick: (event_id: number, timestamp: number) => void;
-};
+interface Props {
+  events: Event[];
+}
 
-export const EventsView: React.FC<Props> = ({onClick}) => {
-  const { upcoming_events } = useStore();
-
+export const EventsView = ({ events }: Props) => {
   return (
     <View style={styles.container}>
-      {upcoming_events.length === 0 && 
-        <View style={styles.col}>
+      {events.length === 0 && 
+        <View style={styles.center}>
           <Text style={styles.text}>No events</Text>
         </View>
       }     
-      {upcoming_events.length > 0 &&
-        <FlatList data={upcoming_events}
-          keyExtractor={(index) => '№' + index}
-          renderItem={({ item }) => {
+      {events.length > 0 &&
+        events.map((item, index) => {
           const time2 = item.timestamp + item.duration
 
           return (
-          // <TouchableOpacity onPress={() => onClick(item.id, item.timestamp)}>
             <EventCell
+              key={'№' + index}
               isSelected={false}
               date={formatDateTime(item.timestamp).date}
               time={formatDateTime(item.timestamp).time + ' - ' + formatDateTime(time2).time}
               desc={item.desc}
-            />  
-          // </TouchableOpacity>
-          )}
-          } style={styles.list} />
+            />
+          )
+        })
       }
     </View>
   );
@@ -49,17 +44,10 @@ const styles = StyleSheet.create({
     borderBottomColor: '#6F6F6F',
     marginBottom: 20
   },
-  summary: {    
-    paddingTop: 20,
-    paddingBottom: 10
-  },
-  list: {    
-    borderRadius: 10,
-  },
-  col: {
+  center: {
     flexDirection: 'column',
-    justifyContent: 'center',    // центр по вертикали
-    alignItems: 'center',        // центр по горизонтали
+    justifyContent: 'center',
+    alignItems: 'center', 
     padding: 16,
     flex: 1 
   },

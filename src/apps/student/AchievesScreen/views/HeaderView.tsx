@@ -2,8 +2,8 @@ import { AchieveIcon } from '@/src/components/icons/AchieveIcon';
 import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
 import React from "react";
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { AvatarWrapper } from '../../components/AvatarWrapper';
-import { ProgressBar } from '../../components/ProgressBar';
+import { AvatarWrapper } from '../../../../components/avatars/AvatarWrapper';
+import { ProgressBar } from '../../../../components/bars/ProgressBar';
 import { useStore } from '../../store';
 
 

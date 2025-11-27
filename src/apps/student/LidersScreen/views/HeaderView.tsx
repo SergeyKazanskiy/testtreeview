@@ -1,10 +1,10 @@
 import { BACKEND_APP_IMAGES_URL, examColors, RuleTests } from '@/src/constants/constants';
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { AvatarWrapper } from '../../components/AvatarWrapper';
-import { ExamBanner } from '../../components/ExamBanner';
-import { ScoreBanner } from '../../components/ScoreBanner';
-import { TeamPanel } from '../../components/TeamPanel';
+import { AvatarWrapper } from '../../../../components/avatars/AvatarWrapper';
+import { ExamBanner } from '../../../../components/bars/ExamBanner';
+import { ScoreBanner } from '../../../../components/bars/ScoreBanner';
+import { TeamPanel } from '../../../../components/bars/TeamPanel';
 import { TestFields } from '../../model';
 import { useStore } from '../../store';
 

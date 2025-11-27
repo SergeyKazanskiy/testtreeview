@@ -1,7 +1,7 @@
 import { getYearAndMonth } from "@/src/utils/utils";
 import { get_group_events, get_group_last_event, get_group_schedule } from '../http';
 import { Event, Schedule } from "../model";
-import { ProfileSlice } from '../ProfileScreen/state';
+import { ProfileSlice } from './state';
 
 
 export interface EventsSlice {

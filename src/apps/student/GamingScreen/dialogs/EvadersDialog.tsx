@@ -45,7 +45,7 @@ export function EvadersDialog() {
     <View style={styles.container} >
       <Text style={styles.title}>Select Untagged Evaders</Text>
 
-      <ScrollView horizontal contentContainerStyle={styles.rowScroll}>
+      <ScrollView horizontal contentContainerStyle={styles.rowScroll} showsHorizontalScrollIndicator={false}>
         {columns.map((column, colIndex) => (
 
           <View key={colIndex} style={styles.column}>

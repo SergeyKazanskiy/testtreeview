@@ -56,7 +56,7 @@ export const AchievesModal: React.FC<Props> = ({ profile_place, profileAchieves,
 
             {achieves.length === 0 && <Text style={styles.emptyLabel}>No achievements</Text>}
             {achieves.length > 0 &&
-                <ScrollView contentContainerStyle={styles.section}>
+                <ScrollView contentContainerStyle={styles.section} showsVerticalScrollIndicator={false}>
                     {achieves.map((item, index) => (
 
                         <AchieveIcon onClick={() => onAchievement(item.id)}

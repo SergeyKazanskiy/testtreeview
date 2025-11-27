@@ -239,35 +239,3 @@ function getLevelData(level: number): {color: string, factor: number} {
   else return {color: '#D9D9D9', factor: 1};
 }
 
-// saveNotificationToken: async (student_id: number) => {
-//     const now = Date.now();
-
-//     if (Platform.OS === "web") { // only for test
-//       const testToken = "web-test-token";
-//       save_notification_token(student_id, { token_FCM: testToken }, (res => {
-//         if (res.isOk) {
-//             AsyncStorage.setItem(TOKEN_KEY, testToken);
-//             AsyncStorage.setItem(TOKEN_TS_KEY, now.toString());
-//           }
-//       }));
-//       return;
-//     }
-
-//     const storedToken = await AsyncStorage.getItem(TOKEN_KEY);
-//     const storedTs = await AsyncStorage.getItem(TOKEN_TS_KEY);
-//     const isExpired = !storedTs || now - parseInt(storedTs, 10) > WEEK_MS;
-
-//     if (!storedToken || isExpired) {
-//       try {
-//         const newToken = await messaging().getToken(); // onTokenRefresh where?
-//         save_notification_token(student_id, {token_FCM: newToken}, (res => {
-//           if (res.isOk) {
-//             AsyncStorage.setItem(TOKEN_KEY, newToken);
-//             AsyncStorage.setItem(TOKEN_TS_KEY, now.toString());
-//           }
-//         }));
-//       } catch (err) {
-//         Alert.alert('FCM onTokenRefresh error:', JSON.stringify(err));
-//       }
-//     }
-//   },

@@ -43,7 +43,6 @@ export const AchieveIcon: React.FC<AnimatedIconProps> = ({ onClick, image, label
 
   const frameSize = level === 3 ? size * 0.975 : size; 
   const iconSize = size * 0.75;
-  const iconOffset = frameSize / 2; // for center
 
   return (
     <Animatable.View

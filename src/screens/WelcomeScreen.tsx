@@ -1,4 +1,4 @@
-import { firebaseAuth } from "@/src/api/firebaseConfig";
+import { auth } from "@/src/api/firebaseConfig";
 import { useAuthStore } from '@/src/api/store';
 import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
 import { screenStyles } from '@/src/styles/appStyles';
@@ -15,7 +15,7 @@ export default function WelcomeScreen({ onLogout }: Props) {
 
   const handleLogout = async () => {
     logoutUser();
-    await firebaseAuth.signOut();
+    await auth.signOut();
     onLogout();
   };
 

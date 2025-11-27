@@ -21,8 +21,7 @@ const GroupsScreen = () => {
   };
 
   return (
-        
-      <ScrollView style={styles.screen}>
+      <ScrollView style={styles.screen} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <FlatList data={groups}
             keyExtractor={(index) => index.toString()}

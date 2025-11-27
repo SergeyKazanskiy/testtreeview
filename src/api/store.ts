@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
-import { firebaseAuth } from './firebaseConfig';
+import { auth } from './firebaseConfig';
 import { setToken } from './utils';
 
 
@@ -32,12 +32,12 @@ export const useAuthStore = create<AuthStore>((set: any) => ({
 
   logoutUser: () => {
     set({ token: null, userId: null, isLogin: false })
-
+    
     AsyncStorage.multiRemove(['token', 'user_id']);
   },
 
   refreshToken: async (newToken: string) => {
-    const token = newToken ?? (await firebaseAuth.currentUser?.getIdToken(true));
+    const token = newToken ?? (await auth.currentUser?.getIdToken(true));
 
     if (token) {
       await AsyncStorage.setItem("token", newToken);

@@ -58,7 +58,6 @@ export default function Layout() {
 const styles = StyleSheet.create({
   tabbar: {
     position: 'absolute',
-    bottom: 11,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -72,6 +71,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOpacity: 0.1,
     paddingHorizontal: 4,
+    marginBottom: 32
   },
   icon: {
     width: 26,

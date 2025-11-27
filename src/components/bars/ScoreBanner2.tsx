@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground, StyleSheet, Text } from "react-native";
 
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 
 export const ScoreBanner2: React.FC<Props> = ({ average }) => (
   <ImageBackground
-    source={require("../../../../assets/images/totalScoreBanner.png")}
+    source={require("../../../assets/images/totalScoreBanner.png")}
     style={styles.banner}
     resizeMode="contain"
   >

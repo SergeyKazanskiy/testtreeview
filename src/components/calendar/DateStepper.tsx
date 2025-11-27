@@ -1,6 +1,6 @@
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; 
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
 interface Props {
@@ -17,7 +17,7 @@ export function DateStepper({ title, onPrev, onNext, canNext }: Props) {
                 <Ionicons name="chevron-back" size={20} color="#ddd" />
             </TouchableOpacity>
 
-            <View style={{ width: 80, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ width: 86, alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={styles.title}>
                     {title}
                 </Text>

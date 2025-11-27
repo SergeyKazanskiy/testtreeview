@@ -1,14 +1,18 @@
-import Constants from 'expo-constants';
+import Constants from "expo-constants";
 import { useRouter } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 
 export default function Index() {
   const router = useRouter();
   const appRole = Constants.expoConfig?.extra?.appRole ?? "student";
+  const redirected = useRef(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    if (redirected.current) return;
+    redirected.current = true;
+
+    setTimeout(() => {
       switch (appRole) {
         case "student":
           router.replace("/(student)");
@@ -17,13 +21,12 @@ export default function Index() {
           router.replace("/(coach)");
           break;
         // case "manager":
-        //   router.replace("/(manager)/home");
+        //   router.replace("/(manager)");
         //   break;
         default:
           router.replace("/(student)");
       }
     }, 2000);
-    return () => clearTimeout(timeout);
   }, []);
 
   return null;

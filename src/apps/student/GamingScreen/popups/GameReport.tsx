@@ -31,7 +31,7 @@ export const GameReport = () => {
   return (
     <PopupWrapper visible={isGameReport} title={titleHeader} onClose={hideGameReport}>
       <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+        <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
 
           <View style={styles.section}>
             <Text style={styles.text}>Players - {teams_totals[0].amount} </Text>

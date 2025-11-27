@@ -50,7 +50,7 @@ export function RemovingPopup() {
     <PopupWrapper visible={isRemovingPopup} title='Remove players' onClose={hideRemovingPopup}>
       <RemoveAlert name={name} onCancel={closeAlert} onRemove={handleRemove}/>
 
-      <ScrollView horizontal contentContainerStyle={styles.rowScroll}>
+      <ScrollView horizontal contentContainerStyle={styles.rowScroll} showsVerticalScrollIndicator={false}>
         {columns.map((column, colIndex) => (
           <View key={colIndex} style={styles.column}>
             {column.map((player) => {

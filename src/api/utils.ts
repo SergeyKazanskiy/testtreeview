@@ -1,5 +1,6 @@
 const appRole = process.env.APP_ROLE || "student";
-export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://your-server.com/api';
+//export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://admin.dinivrey.com/api';
+export const API_BASE_URL = 'https://admin.dinivrey.com/api'
 
 let token: string | null = null;
 
@@ -27,11 +28,14 @@ export const api = {
 
 async function makeRequest(method: string, endpoint: string, body?: any) {
   const url = `${API_BASE_URL}/${appRole}_api/${endpoint}`;
-  //alert(`Making ${method} request to ${url}`);
+  
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
   if (token) headers['Authorization'] = `Bearer ${token}`;
+
+  ///alert(`Making ${method} request to ${url} and Bearer ${token}`);
+
 
   const response = await fetch(url, {
     method,

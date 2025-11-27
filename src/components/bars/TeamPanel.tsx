@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground, StyleSheet, Text } from "react-native";
 
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 
 export const TeamPanel: React.FC<Props> = ({ w, h, teamName, fontS = 12 }) => (
   <ImageBackground
-    source={require("../../../../assets/images/studentTeam-Back.png")}
+    source={require("../../../assets/images/studentTeam-Back.png")}
     style={[styles.background, {width: w}, {height: h}]}
     resizeMode='stretch'
   >

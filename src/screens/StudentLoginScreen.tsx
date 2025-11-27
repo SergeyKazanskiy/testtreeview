@@ -1,7 +1,7 @@
-import { request } from '@/src/api/request';
+import { auth } from "@/src/api/firebaseConfig";
 import { useAuthState } from "@/src/api/state";
 import { useAuthStore } from '@/src/api/store';
-import { api } from '@/src/api/utils';
+import { API_BASE_URL } from '@/src/api/utils';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { LoadingToast } from '@/src/components/toasts/LoadingToast';
 import { DinivreyHeader } from '@/src/components/widgets/DinivreyHeader';
@@ -9,25 +9,55 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React, { useState } from "react";
 import { Button, Image, Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
-export default function StudentLoginScreen() {
+interface Props {
+  login: () => void;
+}
+
+export default function StudentLoginScreen({login}: Props) {
+
   const { loginUser } = useAuthStore();
-  const { isError, errorMessage, clearMessages } = useAuthState();
+  const { isError, errorMessage, clearMessages, setError, showLoading, hideLoading } = useAuthState();
 
   const [email, setEmail] = useState("Sergey_Procopenko@gmail.com");
   const [password, setPassword] = useState("Sergey_Procopenko");
 
+
   const handleLogin = async () => {
-    request(() => api.post('student/login', { email, password }), (data) => {
-      loginUser(data.token, data.id_student);
-    });
+    showLoading();
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/student/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(err || "Login failed");
+      }
+
+      const { id_student, token } = await res.json();
+      //await signInWithToken(token);
+      const idToken = await auth.currentUser?.getIdToken(true)!;
+
+      loginUser(idToken, id_student);
+      login();
+    } catch (error: any) {
+      setError(error.message || "Unknown login error");
+    } finally {
+      hideLoading();
+    }
   };
 
   return (
+    <SafeAreaView style={{ flex: 1 }}>
     <LinearGradient colors={["#2E4A7C", "#152B52"]} style={styles.wrapper}>
       <DinivreyHeader title='Authorization' onExit={()=>router.replace('/')}/>
-      <Image source={require("../../../assets/images/DinivreyCompany.png")} style={styles.image} />
+      <Image source={require("../../assets/images/DinivreyCompany.png")} style={styles.image} />
 
       <CustomAlert visible={isError} title="Auth error!"
         onClose={clearMessages}>
@@ -53,6 +83,7 @@ export default function StudentLoginScreen() {
 
       <LoadingToast/>
     </LinearGradient>
+    </SafeAreaView>
   );
 }
 

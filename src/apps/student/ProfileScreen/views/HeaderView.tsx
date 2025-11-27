@@ -2,9 +2,9 @@ import { AchieveIcon } from '@/src/components/icons/AchieveIcon';
 import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { AvatarWrapper } from '../../components/AvatarWrapper';
-import { ScoreBanner } from '../../components/ScoreBanner';
-import { TeamPanel } from '../../components/TeamPanel';
+import { AvatarWrapper } from '../../../../components/avatars/AvatarWrapper';
+import { ScoreBanner } from '../../../../components/bars/ScoreBanner';
+import { TeamPanel } from '../../../../components/bars/TeamPanel';
 import { useStore } from '../../store';
 
 

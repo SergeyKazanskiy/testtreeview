@@ -2,8 +2,8 @@ import { AchieveIcon } from '@/src/components/icons/AchieveIcon';
 import { BACKEND_APP_IMAGES_URL, examColors, RuleTests } from '@/src/constants/constants';
 import React from "react";
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
-import { ExamBanner2 } from '../../components/ExamBanner2';
-import { ScoreBanner2 } from '../../components/ScoreBanner2';
+import { ExamBanner2 } from '../../../../components/bars/ExamBanner2';
+import { ScoreBanner2 } from '../../../../components/bars/ScoreBanner2';
 import { getAttendanceLevel } from "../../ProfileScreen/state";
 import { useStore } from '../../store';
 

@@ -13,13 +13,14 @@ export default ({ config }: any) => {
     name: `testtreeview-${appRole}`,
     slug: `testtreeview-${appRole}`,
     version: "1.0.0",
-    orientation: "portrait",
+    orientation: "default",
     icon: "./assets/images/icon.png",
     scheme: "testtreeview",
     userInterfaceStyle: "light",
     android: {
       package: `com.testtreeview.${appRole}`, // 👈 обязательно уникальный!
       versionCode: 1,
+      googleServicesFile: "./google-services.json"
     },
     ios: {
       bundleIdentifier: `com.testtreeview.${appRole}`,
@@ -45,3 +46,10 @@ export default ({ config }: any) => {
     },
   };
 };
+
+
+//npx expo config --json   Это для проверки - после этого в терминале должно быть
+// "android": {
+//   "googleServicesFile": "./google-services.json", - это для пушей
+//   "package": "com.testtreeview.student"
+// }
