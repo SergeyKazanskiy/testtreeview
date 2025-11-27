@@ -1,133 +1,76 @@
-import { Icon } from '@/src/components/icons/CustomIcon';
-import React, { useEffect, useRef } from 'react';
-import { Animated, Dimensions, Modal, Platform, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, LayoutChangeEvent, Pressable, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 
-const SCREEN_HEIGHT = Dimensions.get('window').height;
-const SCREEN_WIDTH = Dimensions.get('window').width;
-
-type Direction = 'bottom' | 'left' | 'right';
-
-interface Props {
+interface PopupProps {
   visible: boolean;
-  title: string;
   children: React.ReactNode;
-  onClose: () => void;
-  direction?: Direction; // <- добавлено
 }
 
-export const PopupWrapper: React.FC<Props> = ({ visible, title, children, onClose, direction = 'bottom' }) => {
-  const translateAnim = useRef(new Animated.Value(getInitialValue(direction))).current;
+export function PopupContainer({ visible, children }: PopupProps) {
+  const insets = useSafeAreaInsets();
+  const [parentSize, setParentSize] = useState({ width: 0, height: 0 });
+
+  // смещение popup-а
+  const translateY = useRef(new Animated.Value(0)).current;
+  const hiddenPosition =  parentSize.height + insets.bottom + 40;
+
+  const handleLayout = (e: LayoutChangeEvent) => {
+    const { width, height } = e.nativeEvent.layout;
+    setParentSize({ width, height });
+  };
 
   useEffect(() => {
-    Animated.timing(translateAnim, {
-      toValue: visible ? 0 : getInitialValue(direction),
-      duration: 300,
-      useNativeDriver: false,
+    if (parentSize.height === 0) return;
+
+    Animated.spring(translateY, {
+      toValue: visible ? 0 : hiddenPosition,
+      useNativeDriver: true,
+      damping: 20,
+      stiffness: 160,
     }).start();
-  }, [visible]);
-
-  function getInitialValue(direction: Direction) {
-    switch (direction) {
-      case 'left':
-        return -SCREEN_WIDTH;
-      case 'right':
-        return SCREEN_WIDTH;
-      case 'bottom':
-        return SCREEN_HEIGHT;
-      default:
-        return SCREEN_HEIGHT;
-    }
-  }
-
-  function getTransformStyle() {
-    switch (direction) {
-      case 'left':
-      case 'right':
-        return {
-          transform: [
-            {
-              translateX: translateAnim.interpolate({
-                inputRange: [-SCREEN_WIDTH, 0, SCREEN_WIDTH],
-                outputRange: [direction === 'left' ? 0 : 0, 0, 0],
-              }),
-            },
-          ],
-        };
-      case 'bottom':
-      default:
-        return {
-          transform: [
-            {
-              translateY: translateAnim.interpolate({
-                inputRange: [250, SCREEN_HEIGHT],
-                outputRange: [0, SCREEN_HEIGHT],
-              }),
-            },
-          ],
-        };
-    }
-  }
+  }, [visible, parentSize.height]);
 
   return (
-    <Modal transparent visible={visible} animationType="none">
-      <TouchableWithoutFeedback onPress={onClose}>
-        <View style={styles.backdrop} />
-      </TouchableWithoutFeedback>
+    <View style={styles.root} onLayout={handleLayout}>
+      {visible && <Pressable style={styles.backdrop} onPress={() => {}}/>}
+
       <Animated.View
-        style={[
-          styles.modal,
-          direction === 'left' || direction === 'right' ? styles.horizontalModal : {},
-          getTransformStyle(),
+        pointerEvents={visible ? 'auto' : 'none'}
+        style={[styles.popup,
+          {
+            width: parentSize.width,
+            transform: [{ translateY: translateY }],
+            paddingBottom: insets.bottom, // учитываем SafeArea
+          },
         ]}
       >
-        <View style={styles.header}>
-        <Text style={styles.title}>  </Text>
-          <Text style={styles.title}>{title}</Text>
-          <Icon size={20} color="#D1FF4D" name="close" onPress={onClose} />
-        </View>
         {children}
       </Animated.View>
-    </Modal>
+    </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  backdrop: {
+  root: {
     flex: 1,
-    backgroundColor: '#00000055',
   },
-  modal: {
+
+  backdrop: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+  },
+
+  popup: {
     position: 'absolute',
-    bottom: 0,
-    height: Platform.OS === 'web' ? 358 : SCREEN_HEIGHT - 8,
-    width: Platform.OS === 'web' ? 760 : '100%',
-    backgroundColor: '#152B52',
-    borderRadius: 16,
+    left: 0,
+    bottom: 0, // всегда снизу, независимо от ориентации!
+    backgroundColor: '#1B2A3D',
+    borderTopLeftRadius: 18,
+    borderTopRightRadius: 18,
+    minHeight: 120,
+    paddingHorizontal: 16,
     paddingTop: 16,
-    //margin: 8,
-  },
-  horizontalModal: {
-    top: 0,
-    bottom: 0,
-    height: '100%',
-    width: SCREEN_WIDTH - 4,
-    position: 'absolute',
-    backgroundColor: '#4169E1',
-    borderRadius: 16,
-    padding: 16,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
-    paddingVertical: 5,
-    padding: 20
-  },
-  title: {
-    color: '#D1FF4D',
-    fontSize: 20,
-    fontWeight: '400',
   },
 });

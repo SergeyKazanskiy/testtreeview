@@ -1,4 +1,4 @@
-import { PopupWrapper } from '@/src/components/containers/PopupContainer';
+import { PopupWrapper } from '@/src/components/containers/PopupWrapper';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Role, Team } from '../../model';
 import { useStore } from '../../store';

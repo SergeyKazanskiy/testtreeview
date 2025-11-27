@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   name: {
     color: "#fff",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "700",
     paddingTop: 8,
     paddingBottom: 8,

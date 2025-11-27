@@ -46,7 +46,6 @@ export const HeaderView = () => {
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
     marginTop: 16,

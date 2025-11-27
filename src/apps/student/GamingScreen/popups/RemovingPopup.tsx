@@ -1,5 +1,5 @@
 import { Button } from '@/src/components/buttons/CustomButton';
-import { PopupWrapper } from '@/src/components/containers/PopupContainer';
+import { PopupWrapper } from '@/src/components/containers/PopupWrapper';
 import { Icon } from '@/src/components/icons/CustomIcon';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';

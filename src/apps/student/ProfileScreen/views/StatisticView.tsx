@@ -7,13 +7,11 @@ import { useStore } from '../../store';
 
 
 export type Props = {
-  onExam: (metric: string) => void;
-  onGame: (metric: string) => void;
   onLiders: () => void;
 };
 
-export const StatisticView = ({ onExam, onGame, onLiders }: Props) => {
-  const { last_test, last_game, notifications } = useStore();
+export const StatisticView = ({ onLiders }: Props) => {
+  const { last_test, notifications } = useStore();
   const { showNotificationsModal } = useStore();
 
   return (
@@ -38,31 +36,6 @@ export const StatisticView = ({ onExam, onGame, onLiders }: Props) => {
           last_test.evasion || 0, 
           last_test.hiding || 0
           ]}/>
-
-      {/* <View style={styles.section}>
-        <RadarChart test={last_test} onExam={onExam} onLiders={onLiders} />
-        <StatsIndicators stats={[last_test.climbing, last_test.stamina, last_test.speed, last_test.evasion, last_test.hiding]}/>  
-      </View> */}
-      
-      {/* <View style={[styles.section, { paddingHorizontal: 16 }]}>
-        <TouchableOpacity onPress={() => onGame('Caught')}>
-          <Text style={styles.label}>Caught: 
-            <Text style={styles.text}>{last_game.caught}</Text>
-          </Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity onPress={() => onGame('Freeded')}>
-          <Text style={styles.label}>Freeded: 
-            <Text style={styles.text}>{last_game.freeded}</Text>
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <TouchableOpacity onPress={() => onGame('Survived') } style={styles.col}>
-        <Text style={styles.label}>Survived: 
-          <Text style={styles.text}>{last_game.is_survived ? '2' : '0'}</Text>
-        </Text>
-      </TouchableOpacity>*/}
     </View> 
   );
 };
@@ -70,6 +43,7 @@ export const StatisticView = ({ onExam, onGame, onLiders }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginTop: 12,
     paddingBottom: 12

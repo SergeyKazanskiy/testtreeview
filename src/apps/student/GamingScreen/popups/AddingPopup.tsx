@@ -1,5 +1,5 @@
 import { Button } from '@/src/components/buttons/CustomButton';
-import { PopupWrapper } from '@/src/components/containers/PopupContainer';
+import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { Icon } from '@/src/components/icons/CustomIcon';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Student } from '../../model';
@@ -21,7 +21,14 @@ export function AddingPopup() {
   }
 
   return (
-     <PopupWrapper visible={isAddingPopup} title='Choose players to add' onClose={hideAddingPopup}>
+     <PopupContainer visible={isAddingPopup}>
+
+      <View style={styles.header}>
+        <Text style={styles.title}>  </Text>
+        <Text style={styles.title}>'Choose players to add'</Text>
+        <Icon size={20} color="#D1FF4D" name="close" onPress={hideAddingPopup} />
+      </View>
+
       {columns.length === 0 && <Text style={styles.title}>No available students</Text>}
 
       <ScrollView horizontal contentContainerStyle={styles.rowScroll} showsHorizontalScrollIndicator={false}>
@@ -57,11 +64,19 @@ export function AddingPopup() {
           onPress={() => (addPlayers(), hideAddingPopup())}
         />
       </View>
-    </PopupWrapper>
+    </PopupContainer>
   );
 }
 
 const styles = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+    paddingVertical: 5,
+    padding: 20
+  },
   title: {
     fontSize: 22,
     color: 'white',

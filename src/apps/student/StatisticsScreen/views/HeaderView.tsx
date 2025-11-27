@@ -21,7 +21,7 @@ export const HeaderView = () => {
             avatar={{uri: `${BACKEND_APP_IMAGES_URL}/avatars/${student.avatar}.png`}}
             level={level}
             percent={percent}
-           levelColor={levelColor}
+            levelColor={levelColor}
           />
         </View>
         <View style={{marginTop: -20, marginBottom: 10}}>
@@ -30,16 +30,12 @@ export const HeaderView = () => {
       </View>
 
       <View style={styles.info}>
-        {/* <TouchableOpacity style={{alignSelf: 'flex-end', paddingTop: 8, paddingRight: 4}} onPress={() => {}}>
-          <Image source={require("../../../../../assets/images/edit-contained.png")} />
-        </TouchableOpacity> */}
-
         <Text style={styles.name}>{student.first_name + ' ' + student.last_name}</Text>
         <TeamPanel w={152} teamName={group_name} fontS={14}/>
 
         <View style={styles.row}>
           {[last_test.speed, last_test.stamina, last_test.climbing, last_test.evasion, last_test.hiding].map((item, inx) => (
-            <TouchableOpacity onPress={() => selectTest(TestFields[inx])}>
+            <TouchableOpacity key={item} onPress={() => selectTest(TestFields[inx])}>
                <ExamBanner value={item?? 0} color={examColors[inx]} icon={RuleTests[inx]} />
             </TouchableOpacity>
           ))}
@@ -65,22 +61,20 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   info: {
-    flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    //backgroundColor: 'gray'
-    //paddingTop: 20,
+    paddingTop: 10,
     paddingRight: 8
   },
   name: {
     color: "#fff",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "700",
-    paddingVertical: 8
+    paddingVertical: 10
   },
   row: {
     flexDirection: "row",
-    marginTop: 8,
+    marginTop: 12,
     gap: 6,
   },
 });

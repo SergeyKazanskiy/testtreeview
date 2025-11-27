@@ -54,7 +54,9 @@ export default function StudentLoginScreen({login}: Props) {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#152B52' }}
+      edges={['top', 'bottom']}
+    >
     <LinearGradient colors={["#2E4A7C", "#152B52"]} style={styles.wrapper}>
       <DinivreyHeader title='Authorization' onExit={()=>router.replace('/')}/>
       <Image source={require("../../assets/images/DinivreyCompany.png")} style={styles.image} />

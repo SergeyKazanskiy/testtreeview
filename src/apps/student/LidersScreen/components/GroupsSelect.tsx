@@ -55,9 +55,11 @@ const styles = StyleSheet.create({
     paddingLeft: 2,
   },
   button: {
-    height: 28,
-    paddingHorizontal: 8,
-    borderRadius: 5,
+    borderWidth: 0
+    // height: 28,
+    // paddingHorizontal: 8,
+    //borderRadius: 5,
+
   },
   title: {
     fontSize: 15,

@@ -40,20 +40,16 @@ const ProfileScreen = () => {
         <AvatarsModal onAvatar ={clickAvatar}/>
       </AlertContainer>
 
-      <AlertContainer visible={notificationsAlert.length > 0} 
+      {/* <AlertContainer visible={notificationsAlert.length > 0} 
         title="Push Notifications registration"
         onClose={hideNotificationsAlert}>
         <Text style={[styles.upcomingClass]}>{notificationsAlert}</Text>
-      </AlertContainer>
+      </AlertContainer> */}
 
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <HeaderView />
 
-        <StatisticView
-            onExam={()=>{}}
-            onGame={()=>{}}
-            onLiders={()=>{}}
-        />
+        <StatisticView  onLiders={()=>{}}/>
         
         <Text style={[styles.upcomingClass]}>Upcoming class</Text>
         <EventsView events={upcoming_events}/>

@@ -1,6 +1,6 @@
-import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { StyleSheet, TextInput, View } from "react-native";
 
 
 type Props = {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 28,
+    height: 36,
     fontSize: 15,
     width: 130
   },

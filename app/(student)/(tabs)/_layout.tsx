@@ -41,6 +41,7 @@ export default function Layout() {
       <Tabs screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
+          tabBarSafeAreaInset: { bottom: 'never', top: 'never' },
           tabBarStyle: styles.tabbar,
           tabBarIcon: createIcon(ICONS[route.name]),
         })}
@@ -57,6 +58,7 @@ export default function Layout() {
 
 const styles = StyleSheet.create({
   tabbar: {
+    borderTopWidth: 0,
     position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -64,14 +66,9 @@ const styles = StyleSheet.create({
     height: 54,
     backgroundColor: '#D8F207',
     borderRadius: 26,
-    marginHorizontal: 14,
-    borderTopWidth: 0,
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 10 },
-    shadowRadius: 10,
-    shadowOpacity: 0.1,
     paddingHorizontal: 4,
-    marginBottom: 32
+    marginHorizontal: 14,
+    marginBottom: 8
   },
   icon: {
     width: 26,

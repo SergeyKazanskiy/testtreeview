@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 
 export type Props = {
@@ -27,12 +27,13 @@ export const CustomNavbar: React.FC<Props> = ({ title, onClick, children }) => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 8,
     flexDirection:'row',
     paddingVertical: 16,
     backgroundColor: '#152B52',
 
     justifyContent: 'center',
-    position: 'relative',
+  //  position: 'relative',
     height: 56
   },
   backIcons: {

@@ -55,7 +55,7 @@ export const SelectWrapper: React.FC<SelectWrapperProps> =
             onPress={open}
         />
         {isIcon && <Ionicons name='chevron-down-outline' size={18} color="#777"
-          style={{marginRight: 5, marginTop: 5}} onPress={open} />}
+          style={{marginRight: 8, marginTop: 10}} onPress={open} />}
       </View>
       <Modal transparent visible={visible} animationType="fade" >
         <TouchableOpacity style={styles.backdrop} activeOpacity={1}
