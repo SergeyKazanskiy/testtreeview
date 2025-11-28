@@ -15,9 +15,9 @@ export type Props = {
 };
 
 export const AchievesModal: React.FC<Props> = ({ profile_place, profileAchieves, achieves, onPlace, onAchievement }) => {  
-    const achievement1 = profileAchieves.find(el => el.profile_place === 1);
-    const achievement2 = profileAchieves.find(el => el.profile_place === 2);
-    const achievement3 = profileAchieves.find(el => el.profile_place === 3);
+    var achievement1 = profileAchieves.find(el => el.profile_place === 1);
+    var achievement2 = profileAchieves.find(el => el.profile_place === 2);
+    var achievement3 = profileAchieves.find(el => el.profile_place === 3);
 
     return (
         <View style={styles.container}>

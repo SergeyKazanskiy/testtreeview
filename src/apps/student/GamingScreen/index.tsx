@@ -1,8 +1,8 @@
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { formatDateTime } from '@/src/utils/utils';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 import { useCallback } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import { useStore } from '../store';
@@ -34,9 +34,6 @@ export default function GamingScreen({ pressBack }: Props) {
   const { isGamingScreen } = useStore();
   const w = isGamingScreen ? 760 : 360
 
-  const router = useRouter();
-  const navigation = useNavigation();
-
   useFocusEffect(
     useCallback(() => {
       loadStudents();
@@ -61,15 +58,10 @@ export default function GamingScreen({ pressBack }: Props) {
   const returnBack = () => {
     setGamingScreen(false);
     pressBack();
-    // if (navigation.canGoBack()) {
-    //   router.back();
-    // } else {
-    //   router.push('/dashboards/student/GamesScreen'); 
-    // }
   };
 
   return (
-    <LinearGradient colors={['#2E4A7C', '#152B52']} style={[styles.wrapper, {width: w}]} >
+    <LinearGradient colors={['#2E4A7C', '#152B52']} style={[styles.wrapper, ]} >
       <Stack.Screen options={{ headerShown: false }} />
       <CustomNavbar title={formatDateTime(gameDate).date + ', Game Mode ('  + gameStep + ', '+ gameState + ')'} onClick={handleBack}>
         <HeaderView/>
@@ -128,13 +120,14 @@ const styles = StyleSheet.create({
   wrapper: {
       flex: 1,
       alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-      maxWidth: Platform.OS === 'web' ? 760 : undefined,
-      maxHeight: Platform.OS === 'web' ? 360 : undefined,
-     // width: 760,
+    //  maxWidth: Platform.OS === 'web' ? 960 : undefined,
+    //  maxHeight: Platform.OS === 'web' ? 360 : undefined,
+      width: '100%',
   },
   row: {
     flex: 1,
     flexDirection: 'row',
+  //  justifyContent: 'space-between'
   },
   section: {
     flex: 1,

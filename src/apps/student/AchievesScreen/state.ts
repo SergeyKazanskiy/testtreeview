@@ -21,8 +21,6 @@ export interface AshievesSlice {
 
   showAchievesModal: () => void;
   hideAchievesModal: () => void;
-
-  detachAchievement: () => void;
 }
 
 export const createAshievesSlice = (set: any, get: () => Store): AshievesSlice => ({
@@ -76,11 +74,13 @@ export const createAshievesSlice = (set: any, get: () => Store): AshievesSlice =
                   oldAchieve.profile_place = 0;
                   newAchieve.in_profile = true;
                   newAchieve.profile_place = profile_place;
-
+                
                   const profileAchievements = unlocked_achieves.filter(el => el.in_profile === true);
                   if (profileAchievements) {
                     set({
-                      profile_achievements: profileAchievements.sort((a, b) => a.profile_place - b.profile_place),
+                      profile_achievements: [...profileAchievements].sort(
+                        (a, b) => a.profile_place - b.profile_place
+                      ),
                       profile_place: 0
                     });
                   }
@@ -104,10 +104,5 @@ export const createAshievesSlice = (set: any, get: () => Store): AshievesSlice =
   },
 
   showAchievesModal: () => set({ isAchievesModal: true }),
-  hideAchievesModal: () => set({ isAchievesModal: false, profile_place: 0 }),
-
-  detachAchievement: () => {
-      const { achievement_id }: AshievesSlice = get();
-      
-    },  
+  hideAchievesModal: () => set({ isAchievesModal: false, profile_place: 0 }), 
 });

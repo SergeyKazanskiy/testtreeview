@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
     height: 64
   },
   backIcons: {
-    position: 'absolute',
+  //  position: 'absolute',
     top: 14,
   },
   titleWrapper: {
-    position: 'absolute',
+  //  position: 'absolute',
     top: 8,
     left: 12,
     right: 0,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     pointerEvents: 'none', // чтобы не блокировать нажатия на иконки
   },
   iconsWrapper: {
-    position: 'absolute',
+    //position: 'absolute',
     top: 12,
     right: 16,
     flexDirection: 'row',

@@ -95,8 +95,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
       alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-      width: Platform.OS === 'web' ? 760 : undefined,
-      maxHeight: Platform.OS === 'web' ? 360 : undefined,
+      // width: Platform.OS === 'web' ? 760 : undefined,
+      // maxHeight: Platform.OS === 'web' ? 360 : undefined,
+      width: '100%',
       backgroundColor: '#152B52'
   },
   header: {
