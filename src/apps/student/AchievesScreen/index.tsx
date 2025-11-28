@@ -39,7 +39,7 @@ export const AchievesScreen = () => {
         />
       </CustomAlert>
 
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
         <HeaderView/>
         
         <View style={[{flexDirection: 'row', justifyContent: 'flex-start', marginTop: 20}, styles.line]}>

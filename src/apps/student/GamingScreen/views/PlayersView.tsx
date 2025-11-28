@@ -1,4 +1,3 @@
-import { Button } from '@/src/components/buttons/CustomButton';
 import { Ionicons } from '@expo/vector-icons';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { Role, Team } from '../../model';
@@ -30,18 +29,18 @@ export function PlayersView({ team, role }: Props) {
             <Text style={styles.column}>{item.name}</Text>
             <Text style={styles.column2}>{item.points}</Text>
             <View style={styles.actions}>
-              <Button
-                icon={<Ionicons name='remove' size={20} color='white' />}
-                buttonStyle={styles.removeBtn}
-                disabled={blockPointsAdding}
-                onPress={() => removePoint(item.id)}
-              />
-              <Button
-                icon={<Ionicons name='add' size={20} color='white' />}
-                buttonStyle={styles.addBtn}
-                disabled={blockPointsAdding}
-                onPress={() => addPoint(item.id)}
-              />
+              <View style={styles.removeBtn}>
+                <Ionicons name='remove' size={22} color='white'
+                  disabled={blockPointsAdding}
+                  onPress={() => removePoint(item.id)}
+                />
+              </View>
+              <View style={styles.addBtn}>
+                <Ionicons name='add' size={22} color='white'
+                  disabled={blockPointsAdding}
+                  onPress={() => removePoint(item.id)}
+                />
+              </View>
             </View>
           </View>
         )}
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
     //height: '100%'
   },
   column: {
-    minWidth: 92,
+    minWidth: '50%',
     color: '#ccc',
     fontWeight: '600',
   },
@@ -92,12 +91,14 @@ const styles = StyleSheet.create({
     height: 36,
     width: 36,
     marginLeft: 8,
-    borderRadius: 4
+    borderRadius: 4,
+    padding: 6
   },
   removeBtn: {
     backgroundColor: '#ef4444',
     height: 36,
     width: 36,
-    borderRadius: 4
+    borderRadius: 4,
+    padding: 6
   },
 });

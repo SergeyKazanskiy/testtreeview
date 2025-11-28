@@ -1,5 +1,5 @@
-import { StyleSheet, Pressable, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -30,5 +30,6 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'center'
   },
 });

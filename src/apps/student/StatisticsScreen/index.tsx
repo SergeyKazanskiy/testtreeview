@@ -36,7 +36,7 @@ export default function StatisticsScreen({ logout }: Props) {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.background} >
-      <ScrollView style={{paddingBottom: 200}} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{paddingBottom: 200}} showsVerticalScrollIndicator={false}>
         <HeaderView/>
 
         <ChartsView/>

@@ -29,19 +29,20 @@ const styles = StyleSheet.create({
   container: {
     flexDirection:'row',
     backgroundColor: '#152B52',
-    justifyContent: 'center',
-    paddingTop: 32,
+    justifyContent: 'space-around',
+    paddingTop: 16,
     paddingBottom: 16,
-  //  position: 'relative',
-    height: 68
+    position: 'relative',
+    height: 64
   },
   backIcons: {
     position: 'absolute',
-    left: 20,
+    top: 14,
   },
   titleWrapper: {
     position: 'absolute',
-    left: 0,
+    top: 8,
+    left: 12,
     right: 0,
     alignItems: 'center',
     justifyContent: 'center',
@@ -49,7 +50,8 @@ const styles = StyleSheet.create({
   },
   iconsWrapper: {
     position: 'absolute',
-    right: 20,
+    top: 12,
+    right: 16,
     flexDirection: 'row',
     alignItems: 'center',
    // gap: 26, // если используешь RN >= 0.71

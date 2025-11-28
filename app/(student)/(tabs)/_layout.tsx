@@ -31,13 +31,13 @@ const ICONS: Record<string, IconPair> = {
 export default function Layout() {
 
   const createIcon = (icons: IconPair) => ({ focused }: TabIconRenderProps) => (
-    <View style={focused && styles.icon_focused}>
+    <View style={[focused && styles.icon_focused, {marginTop: 20}]}>
       <Image source={focused ? icons.active : icons.inactive} style={styles.icon} />
     </View>
   );
 
   return (
-    <ScreenContainer>
+    <ScreenContainer> 
       <Tabs screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
@@ -61,14 +61,11 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     position: 'absolute',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-around',
     height: 54,
     backgroundColor: '#D8F207',
     borderRadius: 26,
-    paddingHorizontal: 4,
     marginHorizontal: 14,
-    marginBottom: 8
   },
   icon: {
     width: 26,

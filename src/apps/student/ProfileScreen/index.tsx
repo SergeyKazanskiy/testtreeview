@@ -46,7 +46,7 @@ const ProfileScreen = () => {
         <Text style={[styles.upcomingClass]}>{notificationsAlert}</Text>
       </AlertContainer> */}
 
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
         <HeaderView />
 
         <StatisticView  onLiders={()=>{}}/>
