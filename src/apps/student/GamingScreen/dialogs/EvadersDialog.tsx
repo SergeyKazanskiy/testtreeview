@@ -48,7 +48,7 @@ export function EvadersDialog() {
       <ScrollView horizontal contentContainerStyle={styles.rowScroll} showsHorizontalScrollIndicator={false}>
         {columns.map((column, colIndex) => (
 
-          <View key={colIndex} style={styles.column}>
+          <View key={`column-${colIndex}`} style={styles.column}>
             {column.map((item) => {
               const isSelected = selectedIds.includes(item.id);
               return (

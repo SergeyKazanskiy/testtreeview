@@ -24,7 +24,7 @@ const GroupsScreen = () => {
       <ScrollView style={styles.screen} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <FlatList data={groups}
-            keyExtractor={(index) => index.toString()}
+            keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) =>
 
               <TouchableOpacity onPress={() => handlePress(item.id, item.name)}>

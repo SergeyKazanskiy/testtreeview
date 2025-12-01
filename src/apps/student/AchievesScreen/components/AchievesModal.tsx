@@ -26,7 +26,6 @@ export const AchievesModal: React.FC<Props> = ({ profile_place, profileAchieves,
                     {achievement1 ? <AchieveIcon onClick={() => onPlace(1)}
                             size={68}
                             image={achievement1.image}
-                            label={''}
                             level={achievement1.level}
                             effect={achievement1.effect}
                         /> : <Ionicons name="add" size={32} color="white" style={{paddingVertical: 20}} />}
@@ -36,7 +35,6 @@ export const AchievesModal: React.FC<Props> = ({ profile_place, profileAchieves,
                     {achievement2 ? <AchieveIcon onClick={() => onPlace(2)}
                             size={68}
                             image={achievement2.image}
-                            label={''}
                             level={achievement2.level}
                             effect={achievement2.effect}
                         /> : <Ionicons name="add" size={32} color="white" style={{paddingVertical: 20}}/>}
@@ -46,7 +44,6 @@ export const AchievesModal: React.FC<Props> = ({ profile_place, profileAchieves,
                     {achievement3 ? <AchieveIcon onClick={() => onPlace(3)}
                             size={68}
                             image={achievement3.image}
-                            label={''}
                             level={achievement3.level}
                             effect={achievement3.effect}
                         /> : <Ionicons name="add" size={32} color="white" style={{paddingVertical: 20}} />}
@@ -58,8 +55,7 @@ export const AchievesModal: React.FC<Props> = ({ profile_place, profileAchieves,
             {achieves.length > 0 &&
                 <ScrollView contentContainerStyle={styles.section} showsVerticalScrollIndicator={false}>
                     {achieves.map((item, index) => (
-
-                        <AchieveIcon onClick={() => onAchievement(item.id)}
+                        <AchieveIcon key={`achieve-${index}`} onClick={() => onAchievement(item.id)}
                             size={68}
                             image={item.image}
                             label={item.name}
@@ -74,6 +70,7 @@ export const AchievesModal: React.FC<Props> = ({ profile_place, profileAchieves,
 
 const styles = StyleSheet.create({
     container: {
+        maxHeight:300
     },
     section: {
         flexDirection: 'row',

@@ -20,7 +20,7 @@ export const AchievesPanel: React.FC<Props> = ({ achieves }) => {
                         const progress = "progress" in item ? item.progress : 1;
 
                         return (
-                            <AchieveIcon key={item.id}
+                            <AchieveIcon key={`achieve2-${item.id}`}
                                 image={item.image}
                                 label={item.name}
                                 level={level?? 1}
@@ -37,6 +37,7 @@ export const AchievesPanel: React.FC<Props> = ({ achieves }) => {
 const styles = StyleSheet.create({
     section: {
         flexDirection: 'row',
+        justifyContent: 'center',
         flexWrap: 'wrap',
         rowGap: 24,
         columnGap: 36,

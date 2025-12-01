@@ -13,7 +13,7 @@ import { HeaderView } from './views/HeaderView';
 
 export const AchievesScreen = () => {
   const { unlocked_achieves, locked_achieves, isAchievesModal, profile_place } = useStore();
-  const { loadAchieves, selectAchieve, hideAchievesModal, selectPlace } = useStore();
+  const { loadAchieves, selectAchieve, hideAchievesModal, selectPlace, detacheAchieve } = useStore();
   
   const navigation = useNavigation();
   const router = useRouter();
@@ -29,7 +29,8 @@ export const AchievesScreen = () => {
 
       <CustomAlert visible={isAchievesModal} 
         title="Hall of fame"
-        onClose={hideAchievesModal}>
+        closeLabel={profile_place > 0 ? 'REMOVE' : 'DONE'}
+        onClose={() => profile_place > 0 ? detacheAchieve() :  hideAchievesModal()}>
         <AchievesModal
           profile_place ={profile_place}
           profileAchieves={unlocked_achieves}
@@ -39,7 +40,7 @@ export const AchievesScreen = () => {
         />
       </CustomAlert>
 
-      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{paddingBottom: 200}} showsVerticalScrollIndicator={false}>
         <HeaderView/>
         
         <View style={[{flexDirection: 'row', justifyContent: 'flex-start', marginTop: 20}, styles.line]}>
@@ -65,10 +66,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     paddingHorizontal: 16,
-  },
-  container: {
-    flex: 1,
-    paddingBottom: 200
   },
   title: {
     fontSize: 15,

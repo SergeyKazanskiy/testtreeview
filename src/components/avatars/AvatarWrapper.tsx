@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import Svg, { Circle, Defs, LinearGradient, Stop } from "react-native-svg";
 
 
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   levelText: {
     color: "#fff",
     fontWeight: "700",
-    fontSize: 14,
+    fontSize: 12,
     alignSelf: 'center',
     paddingTop: 2
   },

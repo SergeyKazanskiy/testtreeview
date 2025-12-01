@@ -22,7 +22,7 @@ export const useAuthStore = create<AuthStore>((set: any) => ({
   isLogin: false,
 
 
-  loginUser: (token: string, userId: number) => {
+  loginUser: (token: string = '', userId: number) => {
     set({ token, userId, isLogin: true });
     setToken(token);
 

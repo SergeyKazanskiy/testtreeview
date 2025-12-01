@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from 'react';
-import { Modal, View, Text, TouchableWithoutFeedback, Animated, StyleSheet, TouchableOpacity, Platform} from 'react-native';
+import { Animated, Modal, Platform, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 
 interface Props {
   visible: boolean;
   title: string;
+  closeLabel: string;
   children: React.ReactNode;
   onClose?: () => void;
 }
 
-export const CustomAlert: React.FC<Props> = ({ visible, title, children, onClose }) => {
+export const CustomAlert: React.FC<Props> = ({ visible, title, closeLabel, children, onClose }) => {
   const slideAnim = useRef(new Animated.Value(-16)).current;
   const top = 5;
 
@@ -30,7 +31,7 @@ export const CustomAlert: React.FC<Props> = ({ visible, title, children, onClose
               <Text style={styles.title}> </Text>
               <Text style={styles.title}>{title}</Text>
               <TouchableOpacity style={styles.button} onPress={onClose}>
-                <Text style={styles.buttonText}>DONE</Text>
+                <Text style={styles.buttonText}>{closeLabel}</Text>
               </TouchableOpacity>
             </View>
 

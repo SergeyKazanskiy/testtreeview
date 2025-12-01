@@ -3,7 +3,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useCallback } from 'react';
-import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, Text } from 'react-native';
 import { useStore } from '../store';
 import { CalendarView } from './views/CalendarView';
 import { GamesView } from './views/GamesView';
@@ -39,9 +39,8 @@ export default function GamesScreen( {pressNewGame, pressGameReport}: Props) {
   };
 
   return (
-    <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.background} >
+    <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.container} >
       <ScrollView contentContainerStyle={{paddingBottom: 200}} showsVerticalScrollIndicator={false}>
-      <View style={styles.container}>
         <HeaderView/>
         
         <Button title='Start Dinivrey Game'
@@ -56,23 +55,19 @@ export default function GamesScreen( {pressNewGame, pressGameReport}: Props) {
 
          {/* <ButtonsView onNewGame={onNewGame}/> */}
         <GamesView onSelect={onGameReport}/>
-      </View>
       </ScrollView>
     </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
-  background: {
+  container: {
     flex: 1,
     alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
     maxWidth: Platform.OS === 'web' ? 360 : undefined,
     width: '100%',
     height: '100%',
     paddingHorizontal: 16
-  },
-  container: {
-    flex: 1,
   },
   button: {
     alignSelf: 'center',

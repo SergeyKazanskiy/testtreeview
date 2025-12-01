@@ -1,6 +1,6 @@
 import { Icon } from '@/src/components/icons/CustomIcon';
 import { useCallback } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Team } from '../../model';
 import { useStore } from '../../store';
 
@@ -19,12 +19,11 @@ export function GamesView({ onSelect }: Props) {
   }, [selectGameReport, onSelect]);
 
   return (
-    <FlatList contentContainerStyle={styles.container}
-      data={game_reports}
-      keyExtractor={item => item.game.id.toString()}
-      renderItem={({item}) => {
-      const bgTeam = item.team === Team.GREEN ? '#0FA919' : '#A90F11';
-      const bgWon = item.team === Team.GREEN ? '#00ff11db' : '#FF0004';
+    <>
+      {game_reports.map((item, index) => {
+
+        const bgTeam = item.team === Team.GREEN ? '#0FA919' : '#A90F11';
+        const bgWon = item.team === Team.GREEN ? '#00ff11db' : '#FF0004';
         
         const date = new Date(item.game.timestamp);
         const day = String(date.getDate()).padStart(2, '0');
@@ -32,7 +31,7 @@ export function GamesView({ onSelect }: Props) {
         const year = date.getFullYear();
 
         return (
-          <TouchableOpacity style={[styles.section, styles.cell]}
+          <TouchableOpacity key={index} style={[styles.section, styles.cell]}
             onPress={()=>handleSelect(item.game.id)}>
 
             <View style={[styles.col, {borderRightWidth: 1, borderRightColor: '#777', paddingRight: 4}]}>
@@ -63,17 +62,16 @@ export function GamesView({ onSelect }: Props) {
               
             </View> 
           </TouchableOpacity>  
-        )}
-      }/>
+        )})
+      }
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    //flex: 1,
     width: '100%',
     marginTop: 8,
-    //paddingBottom: 24
   },
   section: {
     flexDirection: 'row',
@@ -81,6 +79,7 @@ const styles = StyleSheet.create({
   },
   cell: {
     padding: 8,
+    paddingBottom: 4,
     backgroundColor: '#000', 
     borderBottomWidth: 2,
     borderRightWidth: 2,
@@ -100,23 +99,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 16,
+    fontSize: 15,
     color: 'white',
     alignSelf: 'center',
   },
   winner: {
-    fontSize: 16,
+    fontSize: 15,
     color: 'white',
     alignSelf: 'center',
   },
   text: {
     color: '#ddd',
-    fontSize: 13,
-    paddingBottom: 3
+    fontSize: 12,
+    paddingBottom: 2
   },
   small_text: {
     color: '#ddd',
-    fontSize: 12,
+    fontSize: 11,
   },
   button: {
     height: 28,

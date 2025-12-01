@@ -13,11 +13,14 @@ export interface AshievesSlice {
 
   isAchievesModal: boolean;
   profile_achievements: Achievement[];
+  
 
   loadAchieves: () => void;
 
   selectPlace: (profilePlace: number) => void;
   selectAchieve: (achieve_id: number) => void;
+
+  detacheAchieve: () => void;
 
   showAchievesModal: () => void;
   hideAchievesModal: () => void;
@@ -100,6 +103,25 @@ export const createAshievesSlice = (set: any, get: () => Store): AshievesSlice =
             }
           }
       }));
+    }
+  },
+
+  detacheAchieve: () => {
+    const { profile_place, unlocked_achieves }:  AshievesSlice = get();
+    const oldAchieve = unlocked_achieves.find(el => el.profile_place === profile_place);
+    if (oldAchieve) {
+      update_student_achieve(oldAchieve.id, { "in_profile": false, "profile_place": 0 }, (res => {
+        if (res.isOk) {
+          oldAchieve.in_profile = false;
+          oldAchieve.profile_place = 0;
+          set({ profile_place: 0 });
+
+          const profileAchievements = unlocked_achieves.filter(el => el.in_profile === true);
+          if (profileAchievements) {
+            set({ profile_achievements: profileAchievements.sort((a, b) => a.profile_place - b.profile_place) });
+          }
+        }
+      }))
     }
   },
 

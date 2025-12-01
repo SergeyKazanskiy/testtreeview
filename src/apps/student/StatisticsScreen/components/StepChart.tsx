@@ -14,29 +14,51 @@ interface StepChartProps {
 export const StepChart: React.FC<StepChartProps> = ({ data, width, height }) => {
   const margin = { top: 16, right: 16, bottom: 30, left: 30 };
 
-  // Ось Y: масштаб от 0 до максимума
-  const maxY = Math.max(...data.map(d => d.y));
-  const stepY = maxY <= 3 ? 1 : maxY <= 6 ? 2 : 3; // шаг делений
-  const yTicks = Array.from({ length: Math.floor(maxY / stepY) + 1 }, (_, i) => i * stepY);
+  // Если данных мало — просто рисуем пустой холст
+  if (!data || data.length === 0) {
+    return (
+      <View>
+        <Svg width={width} height={height} />
+      </View>
+    );
+  }
 
-  const yScale = (value: number) =>
-    height - margin.bottom - (value / maxY) * (height - margin.top - margin.bottom);
+  // Ось Y
+  const maxY = Math.max(...data.map(d => d.y), 0);
+  const stepY = maxY <= 3 ? 1 : maxY <= 6 ? 2 : 3;
+  const yTicks = Array.from(
+    { length: Math.floor(maxY / stepY) + 1 },
+    (_, i) => i * stepY
+  );
 
-  // Ось X: равномерное распределение дат
-  const xScale = (index: number) =>
-    margin.left +
-    (index / (data.length - 1)) * (width - margin.left - margin.right);
+  const yScale = (value: number) => {
+    if (maxY === 0) return height - margin.bottom;
+    return (
+      height -
+      margin.bottom -
+      (value / maxY) * (height - margin.top - margin.bottom)
+    );
+  };
 
-  // Построение ступенчатого path
-  let pathD = "";
+  // Ось X — защищено от деления на ноль
+  const xScale = (index: number) => {
+    if (data.length <= 1) return margin.left;
+    return (
+      margin.left +
+      (index / (data.length - 1)) * (width - margin.left - margin.right)
+    );
+  };
+
+  // Создание ступенчатого path
+  let pathD: string | null = null;
+
   data.forEach((d, i) => {
     const x = xScale(i);
     const y = yScale(d.y);
+
     if (i === 0) {
       pathD = `M${x},${y}`;
     } else {
-      const prevX = xScale(i - 1);
-      const prevY = yScale(data[i - 1].y);
       pathD += ` H${x} V${y}`;
     }
   });
@@ -45,8 +67,8 @@ export const StepChart: React.FC<StepChartProps> = ({ data, width, height }) => 
     <View>
       <Svg width={width} height={height}>
         {/* Горизонтальные линии + подписи Y */}
-        {yTicks.map(t => (
-          <React.Fragment key={t}>
+        {yTicks.map((t, i) => (
+          <React.Fragment key={`ytick-${t}-${i}`}>
             <Line
               x1={margin.left}
               x2={width - margin.right}
@@ -69,7 +91,7 @@ export const StepChart: React.FC<StepChartProps> = ({ data, width, height }) => 
 
         {/* Вертикальные линии + подписи X */}
         {data.map((d, i) => (
-          <React.Fragment key={d.x}>
+          <React.Fragment key={`xtick-${d.x}-${i}`}>
             <Line
               x1={xScale(i)}
               x2={xScale(i)}
@@ -90,15 +112,33 @@ export const StepChart: React.FC<StepChartProps> = ({ data, width, height }) => 
           </React.Fragment>
         ))}
 
-        {/* Заливка под графиком */}
-        <Path
-          d={`${pathD} V${yScale(0)} H${xScale(0)} Z`}
-          fill="orange"
-          opacity={0.1}
-        />
+        {/* Если минимум 2 точки — рисуем график и заливку */}
+        {pathD && data.length > 1 && (
+          <>
+            <Path
+              d={`${pathD} V${yScale(0)} H${xScale(0)} Z`}
+              fill="orange"
+              opacity={0.1}
+            />
 
-        {/* Линия */}
-        <Path d={pathD} stroke="orange" strokeWidth={3} fill="none" />
+            <Path
+              d={pathD}
+              stroke="orange"
+              strokeWidth={3}
+              fill="none"
+            />
+          </>
+        )}
+
+        {/* Если одна точка — рисуем просто кружок */}
+        {data.length === 1 && pathD && (
+          <Path
+            d={pathD}
+            stroke="orange"
+            strokeWidth={4}
+            fill="none"
+          />
+        )}
       </Svg>
     </View>
   );

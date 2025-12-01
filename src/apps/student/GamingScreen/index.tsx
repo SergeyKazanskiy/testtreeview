@@ -1,10 +1,9 @@
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
-import { formatDateTime } from '@/src/utils/utils';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack } from 'expo-router';
 import { useCallback } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useStore } from '../store';
 import { BackAlert } from './alerts/BackAlert';
 import { CheckingAlert } from './alerts/CheckingAlert';
@@ -61,9 +60,11 @@ export default function GamingScreen({ pressBack }: Props) {
   };
 
   return (
-    <LinearGradient colors={['#2E4A7C', '#152B52']} style={[styles.wrapper, ]} >
+    // <SafeAreaView edges={['left']}>
+        
+    <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
       <Stack.Screen options={{ headerShown: false }} />
-      <CustomNavbar title={formatDateTime(gameDate).date + ', Game Mode ('  + gameStep + ', '+ gameState + ')'} onClick={handleBack}>
+      <CustomNavbar title='    Dinivrey - Game Mode    ' onClick={handleBack}>
         <HeaderView/>
       </CustomNavbar>
 
@@ -113,13 +114,14 @@ export default function GamingScreen({ pressBack }: Props) {
 
       {!isHeader && !isEvadersDialog && <FooterView/>}
     </LinearGradient>
+    // </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
       flex: 1,
-      alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
+    //  alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
     //  maxWidth: Platform.OS === 'web' ? 960 : undefined,
     //  maxHeight: Platform.OS === 'web' ? 360 : undefined,
       width: '100%',

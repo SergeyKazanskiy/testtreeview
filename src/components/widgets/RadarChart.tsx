@@ -96,8 +96,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ test, onExam, onLiders }
         {values.map((_, i) => {
           const { x, y } = getPoint(10, i); // max value radius
           return (
-            <Line
-              key={i}
+            <Line key={`value-${i}`}
               x1={center}
               y1={center}
               x2={x}
@@ -119,8 +118,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ test, onExam, onLiders }
       </Svg>
 
       {outerPoints.map((p, i) => (
-        <TouchableOpacity
-          key={i}
+        <TouchableOpacity key={`points-${i}`}
           style={[styles.iconWrapper, { left: p.x - 20, top: p.y - 20 }]} // center icon
           onPress={() => onExam(labels[i])}
         >

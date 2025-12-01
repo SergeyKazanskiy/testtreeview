@@ -58,11 +58,11 @@ export function RemovingPopup() {
 
       <ScrollView horizontal contentContainerStyle={styles.rowScroll} showsVerticalScrollIndicator={false}>
         {columns.map((column, colIndex) => (
-          <View key={colIndex} style={styles.column}>
+          <View key={`column3-${colIndex}`} style={styles.column}>
             {column.map((player) => {
               const isSelected = playersToRemove.includes(player.id);
               return (
-                <Pressable key={player.id}
+                <Pressable key={`player-${player.id}`}
                   style={[styles.cell, { backgroundColor: isSelected ? '#ef4444' : 'white'}]}
                   onPress={() => handleSelect(player.id, player.name)}
                 >

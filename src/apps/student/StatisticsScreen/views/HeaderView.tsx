@@ -31,11 +31,11 @@ export const HeaderView = () => {
 
       <View style={styles.info}>
         <Text style={styles.name}>{student.first_name + ' ' + student.last_name}</Text>
-        <TeamPanel w={152} teamName={group_name} fontS={14}/>
+        <TeamPanel w={152} teamName={group_name} fontS={13}/>
 
         <View style={styles.row}>
           {[last_test.speed, last_test.stamina, last_test.climbing, last_test.evasion, last_test.hiding].map((item, inx) => (
-            <TouchableOpacity key={item} onPress={() => selectTest(TestFields[inx])}>
+            <TouchableOpacity key={`exam3-${inx}`} onPress={() => selectTest(TestFields[inx])}>
                <ExamBanner value={item?? 0} color={examColors[inx]} icon={RuleTests[inx]} />
             </TouchableOpacity>
           ))}

@@ -1,4 +1,4 @@
-import { ScrollView, Text, TouchableOpacity, TextStyle } from "react-native";
+import { ScrollView, Text, TextStyle, TouchableOpacity } from "react-native";
 
 
 type Item = { id: number; name: string };
@@ -22,7 +22,7 @@ export const ListView: React.FC<Props> = ({ data, onItem, item_id, textStyle, ga
     }}
   >
     {data.map((item, inx) => (
-      <TouchableOpacity key={item.id}
+      <TouchableOpacity key={`list-${item.id}`}
         onPress={() => onItem(item.id, inx)}
         style={{
           marginRight: isHorizontal && inx < data.length - 1 ? gap : 0,

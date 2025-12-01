@@ -30,7 +30,7 @@ export function RoundView({ team, role, title }: Props) {
       <Text style={styles.title}>{title}</Text>
 
       {players.map((item) => (
-        <View key={item.id} style={[styles.cell]}>
+        <View key={`player2-${item.id}`} style={[styles.cell]}>
           <View style={styles.row}>
 
             {item.is_survived && item.role === Role.EVADER &&

@@ -74,8 +74,8 @@ export const RadarChart: React.FC<RadarChartProps> = ({ test, onExam, onLiders }
         <Circle cx={center} cy={center} r={radius}
           fill="url(#grad)" fillOpacity={0.8} stroke="limegreen" strokeWidth={5}/>
         
-        {outerPoints.map((p, i) => (
-          <Line key={i}
+        {outerPoints.map((p, inx) => (
+          <Line key={`outerPoints-${inx}`}
             x1={center} y1={center} x2={p.x} y2={p.y}
             stroke="white" strokeWidth={2}
           />
@@ -83,12 +83,12 @@ export const RadarChart: React.FC<RadarChartProps> = ({ test, onExam, onLiders }
         <Polygon points={points} fill="green"  fillOpacity={0.9} stroke="limegreen" strokeWidth={3}/>
       </Svg>
 
-      {outerPoints.map((p, i) => (
-        <TouchableOpacity key={i}
+      {outerPoints.map((p, inx) => (
+        <TouchableOpacity key={`outerPoints2-${inx}`}
           style={[styles.iconWrapper, { left: p.x - 24, top: p.y + 50 }]}
-          onPress={() => onExam(labels[i])} >
+          onPress={() => onExam(labels[inx])} >
 
-          <Image key={i} source={{ uri: icons[i] }}
+          <Image source={{ uri: icons[inx] }}
             style={styles.icon}
           />
         </TouchableOpacity>

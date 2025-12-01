@@ -28,11 +28,11 @@ export const CustomNavbar: React.FC<Props> = ({ title, onClick, children }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection:'row',
+    position: 'relative',
     backgroundColor: '#152B52',
     justifyContent: 'space-around',
-    paddingTop: 16,
-    paddingBottom: 16,
-    position: 'relative',
+    paddingVertical: 16,
+    paddingHorizontal: 32,
     height: 64
   },
   backIcons: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   titleWrapper: {
   //  position: 'absolute',
-    top: 8,
+    top: 2,
     left: 12,
     right: 0,
     alignItems: 'center',
@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
     pointerEvents: 'none', // чтобы не блокировать нажатия на иконки
   },
   iconsWrapper: {
-    //position: 'absolute',
-    top: 12,
-    right: 16,
+  //  position: 'absolute',
+    top: 8,
+    //right: 16,
     flexDirection: 'row',
     alignItems: 'center',
    // gap: 26, // если используешь RN >= 0.71
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: '400',
-    fontSize: 22,
+    fontSize: 20,
     color: '#D1FF4D',
   },
 });

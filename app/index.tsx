@@ -3,6 +3,12 @@ import { useRouter } from "expo-router";
 import { useEffect, useRef } from "react";
 
 
+// Text.defaultProps = Text.defaultProps || {};
+// Text.defaultProps.allowFontScaling = false;
+
+// TextInput.defaultProps = TextInput.defaultProps || {};
+// TextInput.defaultProps.allowFontScaling = false;
+
 export default function Index() {
   const router = useRouter();
   const appRole = Constants.expoConfig?.extra?.appRole ?? "student";

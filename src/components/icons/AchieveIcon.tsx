@@ -7,7 +7,7 @@ import * as Animatable from 'react-native-animatable';
 interface AnimatedIconProps {
   onClick: () => void;
   image: string;
-  label: string;
+  label?: string;
   level: number;
   size?: number;
   effect?: string; //'fade' | 'rotate' | 'pulse' | 'jump' | 'ripple';
@@ -62,7 +62,7 @@ export const AchieveIcon: React.FC<AnimatedIconProps> = ({ onClick, image, label
                 { width: iconSize, height: iconSize, top: (frameSize - iconSize) / 2, marginLeft: -(iconSize / 2) } ]}
             resizeMode="cover"
           />
-          <Text style={styles.label}>{label}</Text>
+          {label && <Text style={styles.label}>{label}</Text>}
         </Animatable.View>
       </TouchableOpacity>
     </Animatable.View>

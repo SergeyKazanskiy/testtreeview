@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, Text } from 'react-native';
+import { FlatList, StyleSheet, Text } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -7,7 +7,7 @@ export const NotificationsView = () => {
 
   return (
     <FlatList data={notifications} contentContainerStyle={{paddingBottom: 4}}
-      keyExtractor={(index) => index.toString()}
+      keyExtractor={(item) => item}
       renderItem={({ item }) =>
         <Text style={styles.text}>{item}</Text> 
       } style={styles.list}

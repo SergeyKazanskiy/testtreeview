@@ -14,17 +14,17 @@ export function ChartsView() {
   return (
       <View style={styles.container}>
         {RuleTests.map(item => (
-          <TouchableOpacity onPress={() => showExamChartModal(item)}>
+          <TouchableOpacity key={`exam-${item}`} onPress={() => showExamChartModal(item)}>
 
             {item === metricName ?
-              <ChartWidget key={item}
+              <ChartWidget
                 metricName={metricName}
                 timestamps={timestamps}
                 metrics_modal={metrics_modal}
                 w={screenWidth - 58}
                 onHide={hideExamChartModal}/>
             :
-              <ChartCell key={item}
+              <ChartCell
                 exam={item}
                 metrics={metrics.filter(el => el.name === item)}
                 colors={ExamGradientColors[item]}

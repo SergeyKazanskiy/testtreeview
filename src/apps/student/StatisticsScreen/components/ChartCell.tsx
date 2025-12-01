@@ -59,7 +59,7 @@ export const ChartCell: React.FC<Props> = ({ exam, metrics, colors, onShow }) =>
       </View>    
 
        <View style={styles.widget}>
-          <StepChart data={points} width={152} height={100}/>
+          <StepChart data={points} width={160} height={110}/>
        </View>
    </LinearGradient>
   )
@@ -93,18 +93,18 @@ const styles = StyleSheet.create({
   },
   label: {
     color: "#000",
-    fontSize: 13,
-    fontWeight: "300",
+    fontSize: 14,
+    fontWeight: "600",
     paddingBottom: 2
   },
   value: {
     color: "#000",
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: "400",
   },
   date: {
     color: "#000",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "200",
     alignSelf: 'center',
     paddingTop: 2

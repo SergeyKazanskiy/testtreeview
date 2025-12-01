@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16
   },
   dinivrey: {
-    fontSize: 26,
+    fontSize: 22,
     fontWeight: 600,
     color: '#D8F207',
     paddingBottom: 6

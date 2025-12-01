@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 
 type Stat = {
@@ -15,7 +15,7 @@ type Props = {
 
 const labels = ['Climbing', 'Endurance', 'Speed', 'Evading', 'Hiding'];
 const colors = ['#f59e0b', '#e81cbf', '#fef08a', '#4ade80', '#38bdf8'];
-const w = 65;
+const w = 76;
 
 export const StatsIndicators: React.FC<Props> = ({ stats }) => {
   const items: Stat[] = stats.map((value, index) => ({
@@ -27,7 +27,7 @@ export const StatsIndicators: React.FC<Props> = ({ stats }) => {
   return (
     <View style={[styles.container && {width: w}]}>
       {items.map((item, index) => (
-        <View key={index} style={styles.itemContainer}>
+        <View key={`exam4-${index}`} style={styles.itemContainer}>
           <View style={[styles.circle, { backgroundColor: item.color }]}>
             <View style={styles.innerCircle} />
             <Text style={styles.circleText}>{item.value.toFixed(1)}</Text>
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   circleText: {
     color: 'white',
-    fontSize: 14,
+    fontSize: 13,
   },
   bar: {
     height: 36,
@@ -97,11 +97,12 @@ const styles = StyleSheet.create({
     marginLeft: 14,
     backgroundColor: '#000',
     color: '#ddd',
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: 600,
     paddingVertical: 2,
     borderRadius: 2,
     overflow: 'hidden',
+    width:'100%'
   },
 });
 

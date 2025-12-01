@@ -48,7 +48,7 @@ export const HeaderView = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={{paddingHorizontal: 8, paddingBottom: 8, marginTop: -8, alignItems: 'center'}}>
+      <View style={{paddingHorizontal: 8, paddingBottom: 8, alignItems: 'center'}}>
         <Text style={styles.name}>Achievement Progress</Text>
         <View style={{width: '100%', flexDirection: 'row', justifyContent: 'space-around'}}>
           <Text style={styles.name}>{precent}%</Text>
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
   },
   name: {
     color: "#ddd",
-    fontSize: 16,
-    fontWeight: "300",
+    fontSize: 15,
+    fontWeight: "200",
     paddingBottom: 4
   },
   section: {

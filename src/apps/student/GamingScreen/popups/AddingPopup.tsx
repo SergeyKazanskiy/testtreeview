@@ -21,7 +21,7 @@ export function AddingPopup() {
 
   return (
     <Modal visible={isAddingPopup} animationType='fade'>
-      <View  style={styles.container}>
+      <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>  </Text>
         <Text style={styles.title}>Choose players to add</Text>
@@ -33,7 +33,7 @@ export function AddingPopup() {
       <ScrollView horizontal contentContainerStyle={styles.rowScroll} showsHorizontalScrollIndicator={false}>
         {columns.map((column, colIndex) => (
 
-          <View key={colIndex} style={styles.column}>
+          <View key={`column2-${colIndex}`} style={styles.column}>
             {column.map((student) => {
               const isSelected = selectedStudentIds.includes(student.id);
 
@@ -72,11 +72,13 @@ export function AddingPopup() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-      alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-      // width: Platform.OS === 'web' ? 760 : undefined,
-      // maxHeight: Platform.OS === 'web' ? 360 : undefined,
-      width: '100%',
-      backgroundColor: '#152B52'
+    alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
+    //   // width: Platform.OS === 'web' ? 760 : undefined,
+    //   // maxHeight: Platform.OS === 'web' ? 360 : undefined,
+       width: '100%',
+       backgroundColor: '#152B52',
+       height: '100%',
+       //marginRight: 40
   },
   header: {
     flexDirection: 'row',

@@ -1,12 +1,12 @@
-import { useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { View, StyleSheet, Text } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useCallback } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useStore } from '../store';
+import { GroupsSelect } from './components/GroupsSelect';
+import { SearchBox } from './components/SearchBox';
 import { HeaderView } from './views/HeaderView';
 import { LidersView } from './views/LidersView';
-import { useStore } from '../store';
-import { LinearGradient } from 'expo-linear-gradient';
-import { SearchBox } from './components/SearchBox';
-import { GroupsSelect } from './components/GroupsSelect';
 
 
 export default function LidersScreen() {
@@ -21,7 +21,7 @@ export default function LidersScreen() {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.background} >
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={{paddingBottom: 200}} showsVerticalScrollIndicator={false}>
         <HeaderView/>
         <Text style={styles.title}>LEADER BOARD</Text> 
 
@@ -33,7 +33,7 @@ export default function LidersScreen() {
         </View>
         
         <LidersView/>
-      </View>
+      </ScrollView>
     </LinearGradient>
   );
 };
@@ -44,9 +44,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     paddingHorizontal: 16,
-  },
-  container: {
-    flex: 1,
   },
   title: {
     color: "#fff",

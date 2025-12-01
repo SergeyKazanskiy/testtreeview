@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
     height: 54,
     backgroundColor: '#D8F207',
     borderRadius: 26,
-    marginHorizontal: 14,
+    marginHorizontal: 16,
+    //marginBottom: 8,
   },
   icon: {
     width: 26,
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#161D21',
     borderRadius: 45,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 18,
   },
 })

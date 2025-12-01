@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:735296528155:android:92b35af0cb45e99d84bdbe",
         "android_client_info": {
-          "package_name": "android.package"
+          "package_name": "com.testtreeview.student"
         }
       },
       "oauth_client": [

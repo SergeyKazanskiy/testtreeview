@@ -27,12 +27,12 @@ export const HeaderView = () => {
 
           <View style={{flexDirection: 'column', alignItems: 'center'}}>
             <View style={{zIndex:100}}>
-              <TeamPanel teamName={group_name} w={104} h={16}/>
+              <TeamPanel teamName={group_name} w={104} h={16} fontS={10}/>
             </View>
             
             <ScoreBanner average={average}/>
           </View>
-
+          <View style={{paddingBottom: 6}}>
           { profile_achievement ? 
             <AchieveIcon onClick={() => {}}
               size={60}
@@ -46,6 +46,7 @@ export const HeaderView = () => {
               style={{width: 63, height: 52, marginRight: 12}}
             />
           }
+          </View>
         </View>
       </View>
     </View>

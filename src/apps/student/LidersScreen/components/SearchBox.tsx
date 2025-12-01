@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 36,
-    fontSize: 15,
+  //  height: 36,
+    fontSize: 14,
     width: 130
   },
   icon: {
