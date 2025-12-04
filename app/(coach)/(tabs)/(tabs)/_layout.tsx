@@ -6,13 +6,18 @@ import { Ionicons } from '@expo/vector-icons';
 import { router, Tabs } from 'expo-router';
 import { Image, StyleSheet, Text, View } from "react-native";
 
+
 function getIconsData(routeName: string) {
   let iconName: any;
   let label = '';
 
-  if (routeName === 'Groups') {
+  if (routeName === 'profile') {
     iconName = 'people';
-    label = 'Groups';
+    label = 'Profile';
+  }
+  else if (routeName === 'achieves') {
+    iconName = 'people';
+    label = 'Achievements';
   } else {
     iconName = 'calendar-number-outline';
     label = 'Events';
@@ -44,8 +49,9 @@ export default function Layout() {
           }
         })}
       >
+        <Tabs.Screen name="profile" />
+        <Tabs.Screen name="achieves" /> 
         <Tabs.Screen name="events" />
-        <Tabs.Screen name="groups" /> 
       </Tabs>
     </ScreenContainer>
   );

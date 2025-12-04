@@ -1,26 +1,13 @@
-import LidersScreen from '@/src/apps/student/LidersScreen';
+import ProfileScreen from '@/src/apps/student/ProfileScreen';
 //import { useRouter } from "expo-router";
 import React from "react";
 //import { Button, Text } from 'react-native';
 
 
-export default function LeadersPage() {
-  return <LidersScreen />;
+export default function HomePage() {
+  return <ProfileScreen />;
 }
 
-// export default function HomeScreen() {
-//   const router = useRouter();
-
-//   return (
-//     <>
-//       <Text style={{ fontSize: 20, marginBottom: 20 }}>🏠 Главная</Text>
-//       <Button
-//         title="Перейти на экран деталей2"
-//         onPress={() => router.push('/shared/DetailsScreen')}
-//       />
-//     </>
-//   );
-// }
 
 
 
