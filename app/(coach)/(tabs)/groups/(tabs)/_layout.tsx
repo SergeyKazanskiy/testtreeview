@@ -4,7 +4,7 @@ import { DinivreyHeader } from '@/src/components/widgets/DinivreyHeader';
 import { TabIconRenderProps } from '@/src/styles/types';
 import { Ionicons } from '@expo/vector-icons';
 import { router, Tabs } from 'expo-router';
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 
 function getIconsData(routeName: string) {
@@ -12,15 +12,15 @@ function getIconsData(routeName: string) {
   let label = '';
 
   if (routeName === 'profile') {
-    iconName = 'people';
+    iconName = 'person-outline';
     label = 'Profile';
   }
   else if (routeName === 'achieves') {
-    iconName = 'people';
+    iconName = 'bookmark-outline';
     label = 'Achievements';
   } else {
-    iconName = 'calendar-number-outline';
-    label = 'Events';
+    iconName = 'document-text-outline';
+    label = 'Statistics';
   }
 
   return { iconName, label };
@@ -32,7 +32,6 @@ export default function Layout() {
   return (
     <ScreenContainer>
       <DinivreyHeader title='Coach' onExit={()=>(router.replace('/'), logoutUser())}/>
-      <Image style={[styles.image]} source={require('../../../assets/images/DinivreyCompany.png')} />
 
       <Tabs screenOptions={({ route }) => ({
           headerShown: false,
@@ -41,7 +40,7 @@ export default function Layout() {
           tabBarIcon: ({ focused }: TabIconRenderProps) => {
             const { iconName, label } = getIconsData(route.name);
             return (
-              <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: 8 }}>
                 <Ionicons name={iconName} style={[styles.icon, focused && styles.focused]} />
                 <Text style={[styles.label, focused && styles.focused]}>{label}</Text>
               </View>
@@ -51,7 +50,7 @@ export default function Layout() {
       >
         <Tabs.Screen name="profile" />
         <Tabs.Screen name="achieves" /> 
-        <Tabs.Screen name="events" />
+        <Tabs.Screen name="statistics" />
       </Tabs>
     </ScreenContainer>
   );
@@ -59,21 +58,10 @@ export default function Layout() {
 
 const styles = StyleSheet.create({
   tabbar: {
-    position: 'absolute',
-    bottom: 11,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 54,
-    backgroundColor: '#D8F207',
-    borderRadius: 26,
-    marginHorizontal: 14,
+    backgroundColor: '#0C1B30',
+    height: 70,
     borderTopWidth: 0,
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 10 },
-    shadowRadius: 10,
-    shadowOpacity: 0.1,
-    paddingHorizontal: 4,
+    paddingTop: 12,
   },
   label: {
     color: '#888888',

@@ -15,9 +15,10 @@ import { Text } from 'react-native';
 
 interface Props {
   onSwitch: () => void;
+  onLogin: () => void;
 }
 
-export default function LoginScreen({ onSwitch }: Props) {
+export default function LoginScreen({ onSwitch, onLogin }: Props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -30,6 +31,7 @@ export default function LoginScreen({ onSwitch }: Props) {
 
     request(() => api.post('auth/login', { email, password }), (data) => {
       loginUser(data.token, data.user_id);
+      onLogin();
     });
   };
 

@@ -1,10 +1,10 @@
-import ProfileScreen from '@/src/apps/student/ProfileScreen';
+import ProfileScreen from '@/src/apps/coach/groups/ProfileScreen';
 //import { useRouter } from "expo-router";
 import React from "react";
 //import { Button, Text } from 'react-native';
 
 
-export default function HomePage() {
+export default function ProfileRoute() {
   return <ProfileScreen />;
 }
 

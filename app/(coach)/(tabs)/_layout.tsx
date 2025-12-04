@@ -4,13 +4,15 @@ import { DinivreyHeader } from '@/src/components/widgets/DinivreyHeader';
 import { TabIconRenderProps } from '@/src/styles/types';
 import { Ionicons } from '@expo/vector-icons';
 import { router, Tabs } from 'expo-router';
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { useRoutersState } from '../state';
+
 
 function getIconsData(routeName: string) {
   let iconName: any;
   let label = '';
 
-  if (routeName === 'Groups') {
+  if (routeName === 'groups') {
     iconName = 'people';
     label = 'Groups';
   } else {
@@ -23,20 +25,21 @@ function getIconsData(routeName: string) {
 
 export default function Layout() {
   const { logoutUser } = useAuthStore();
-  
+  const { showRootTabs } = useRoutersState();
+
   return (
     <ScreenContainer>
-      <DinivreyHeader title='Coach' onExit={()=>(router.replace('/'), logoutUser())}/>
-      <Image style={[styles.image]} source={require('../../../assets/images/DinivreyCompany.png')} />
+      {showRootTabs && <DinivreyHeader title='Coach' onExit={()=>(router.replace('/'), logoutUser())}/>}
+      {/* <Image style={[styles.image]} source={require('../../../assets/images/DinivreyCompany.png')} /> */}
 
       <Tabs screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarStyle: styles.tabbar,
+          tabBarStyle: showRootTabs ? styles.tabbar : { display: 'none' },
           tabBarIcon: ({ focused }: TabIconRenderProps) => {
             const { iconName, label } = getIconsData(route.name);
             return (
-              <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <View style={{ alignItems: 'center', justifyContent: 'center'}}>
                 <Ionicons name={iconName} style={[styles.icon, focused && styles.focused]} />
                 <Text style={[styles.label, focused && styles.focused]}>{label}</Text>
               </View>
@@ -44,8 +47,8 @@ export default function Layout() {
           }
         })}
       >
-        <Tabs.Screen name="events" />
         <Tabs.Screen name="groups" /> 
+        <Tabs.Screen name="events" />
       </Tabs>
     </ScreenContainer>
   );
@@ -53,21 +56,10 @@ export default function Layout() {
 
 const styles = StyleSheet.create({
   tabbar: {
-    position: 'absolute',
-    bottom: 11,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 54,
-    backgroundColor: '#D8F207',
-    borderRadius: 26,
-    marginHorizontal: 14,
+    backgroundColor: '#0C1B30',
+    height: 70,
     borderTopWidth: 0,
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 10 },
-    shadowRadius: 10,
-    shadowOpacity: 0.1,
-    paddingHorizontal: 4,
+    paddingTop: 12,
   },
   label: {
     color: '#888888',
