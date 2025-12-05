@@ -1,0 +1,21 @@
+import { create } from "zustand";
+import { AchievesSlice, createAchievesSlice } from "./AchievesScreen/state";
+import { CommentsSlice, createCommentsSlice } from "./CommentsScreen/state";
+import { GroupsSlice, createGroupsSlice } from "./GroupsScreen/state";
+import { ProfileSlice, createProfileSlice } from "./ProfileScreen/state";
+import { StatisticsSlice, createStatisticsSlice } from "./StatisticsScreen/state";
+
+
+export type Store = GroupsSlice & ProfileSlice & StatisticsSlice & AchievesSlice & CommentsSlice;
+
+export const useStore = create<Store>((set, get) => ({
+  ...createGroupsSlice(set, get),
+  ...createProfileSlice(set, get),
+  ...createStatisticsSlice(set, get),
+  ...createAchievesSlice(set, get),
+  ...createCommentsSlice(set, get),
+}));
+
+export const configureStore = () => {
+  useStore.getState();
+};

@@ -1,9 +1,7 @@
-import { useAuthStore } from '@/src/api/store';
 import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
-import { DinivreyHeader } from '@/src/components/widgets/DinivreyHeader';
 import { TabIconRenderProps } from '@/src/styles/types';
 import { Ionicons } from '@expo/vector-icons';
-import { router, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { StyleSheet, Text, View } from "react-native";
 
 
@@ -27,12 +25,8 @@ function getIconsData(routeName: string) {
 }
 
 export default function Layout() {
-  const { logoutUser } = useAuthStore();
-  
   return (
     <ScreenContainer>
-      <DinivreyHeader title='Coach' onExit={()=>(router.replace('/'), logoutUser())}/>
-
       <Tabs screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,

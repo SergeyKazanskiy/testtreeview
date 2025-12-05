@@ -1,15 +1,70 @@
-import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
-import { Text } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { Icon, ListItem } from '@rneui/themed';
+import { LinearGradient } from 'expo-linear-gradient';
+import React, { useCallback } from 'react';
+import { Platform, ScrollView, StyleSheet } from 'react-native';
+import { useAuthState } from '../../../../shared/http/state';
+import { useStore } from '../store';
+import { StudentList } from './views/StudentList';
 
 
-interface Props {
-  pressStudent: () => void;
-}
+export default function GroupsScreen() {
+  const { groups, group_id } = useStore();
+  const { loadGroups, selectGroup } = useStore();
 
-export default function Index({pressStudent}: Props) {
+  const { userId } = useAuthState();
+
+  useFocusEffect(
+    useCallback(() => {
+      loadGroups(userId);
+    }, [])
+  );
+
   return (
-    <ScreenContainer>
-      <Text onPress={pressStudent}>GroupsScreen</Text>
-    </ScreenContainer>
+    <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
+      <ScrollView> 
+        {groups.map((group, index) => 
+            <ListItem.Accordion key={index}
+              containerStyle={styles.group}
+              isExpanded={group.id === group_id}
+              onPress={() => selectGroup(group.id, index)}
+              icon={{}}
+              content={
+                <>
+                  <Icon name={group.id === group_id ? 'chevron-down' : 'chevron-right'}
+                    type="material-community" color="white" style={{ marginRight: 10 }} />
+                  <ListItem.Content>
+                    <ListItem.Title style={styles.title}>{group.camp_name}, {group.name}</ListItem.Title>
+                    <ListItem.Subtitle style={styles.subtitle}>{group.description}</ListItem.Subtitle>
+                  </ListItem.Content>
+                  {/* <Badge value={students.length} status="primary" /> */}
+                </>
+              }
+            >
+              <StudentList/>
+            </ListItem.Accordion>
+        )}
+      </ScrollView>
+    </LinearGradient>
   );
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
+    maxWidth: Platform.OS === 'web' ? 360 : undefined,
+    width: '100%',
+    padding: 16,
+  },
+  group: {
+    backgroundColor: '#152B52',
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    borderColor: 'green',
+    paddingVertical: 12,
+    marginVertical: 3
+  },
+  title: { color: '#ddd', fontWeight: '500' },
+  subtitle: { color: '#A7CFF5' },
+});

@@ -1,7 +1,10 @@
-import AchievesScreen from "@/src/apps/student/AchievesScreen";
+import AchievesScreen from "@/src/apps/coach/groups/AchievesScreen";
+import { useRouter } from "expo-router";
 import React from 'react';
 
 
 export default function AchievesRoute() {
-  return <AchievesScreen />;
+  const router = useRouter();
+
+  return <AchievesScreen onBack={() => router.back()} />;
 }

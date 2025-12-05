@@ -8,7 +8,6 @@ export default function Index() {
   const pathname = usePathname();
 
   useEffect(() => {
-    alert(pathname);
     const isInsideGroupTabs = pathname.startsWith("/groups/profile") ||
     pathname.startsWith("/groups/achieves") || pathname.startsWith("/groups/statistics");
 

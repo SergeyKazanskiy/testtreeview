@@ -1,11 +1,13 @@
 import ProfileScreen from '@/src/apps/coach/groups/ProfileScreen';
-//import { useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import React from "react";
 //import { Button, Text } from 'react-native';
 
 
 export default function ProfileRoute() {
-  return <ProfileScreen />;
+  const router = useRouter();
+
+  return <ProfileScreen onBack={() => router.back()} />;
 }
 
 

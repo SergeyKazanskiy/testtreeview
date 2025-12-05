@@ -8,8 +8,8 @@ export default function AttendanceRoute() {
 
   return (
     <AttendanceScreen
-      pressGame={() => router.push("/shared/gaming")}
-      pressTest={() => router.push('/shared/report')}
+      onGame={() => router.push("/shared/gaming")}
+      onTest={() => router.push('/shared/report')}
     />
   );
 }

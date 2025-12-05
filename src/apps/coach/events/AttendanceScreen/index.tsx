@@ -3,16 +3,16 @@ import { Text } from 'react-native';
 
 
 interface Props {
-  pressTest: () => void;
-  pressGame: () => void;
+  onTest: () => void;
+  onGame: () => void;
 }
   
-export default function Index({pressTest, pressGame}: Props) {
+export default function Index({onTest, onGame}: Props) {
   return (
     <ScreenContainer>
       <Text >AttendanceScreen</Text>
-      <Text onPress={pressTest}>TestScreen</Text>
-      <Text onPress={pressGame}>GameScreen</Text>
+      <Text onPress={onTest}>TestScreen</Text>
+      <Text onPress={onGame}>GameScreen</Text>
     </ScreenContainer>
   );
 }

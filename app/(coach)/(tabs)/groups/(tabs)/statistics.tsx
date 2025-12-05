@@ -1,7 +1,10 @@
 import StatisticsScreen from '@/src/apps/coach/groups/StatisticsScreen';
+import { useRouter } from "expo-router";
 import React from 'react';
 
 
 export default function StatisticsRoute() {
-  return <StatisticsScreen />;
+  const router = useRouter();
+  
+  return <StatisticsScreen onBack={() => router.replace('/(coach)/(tabs)/groups')} />;
 }
