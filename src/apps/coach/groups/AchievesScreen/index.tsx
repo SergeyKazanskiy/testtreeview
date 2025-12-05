@@ -49,7 +49,7 @@ export const AchievesScreen = ({ onBack }: Props) => {
           />
       </CustomAlert>
 
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false}>
         <AchievesSection title='Test achievements' category='Test' />
         <AchievesSection title='Game achievements' category='Game' />
         <AchievesSection title='Participate achievements' category='Participate' />

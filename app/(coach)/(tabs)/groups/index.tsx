@@ -7,8 +7,6 @@ export default function GroupsRoute() {
   const router = useRouter();
   
   return (
-    <GroupsScreen
-      pressStudent={() => router.push('/(coach)/(tabs)/groups/(tabs)/profile')}
-    />
+     <GroupsScreen pressStudent={() => router.push('/(coach)/(tabs)/groups/(tabs)/profile')}/>
   );
 }

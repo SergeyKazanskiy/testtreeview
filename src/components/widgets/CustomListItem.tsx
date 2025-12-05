@@ -1,13 +1,12 @@
 import React, { ReactNode, useState } from 'react';
 import {
-  View,
-  Text,
-  TouchableOpacity,
   StyleSheet,
-  ViewStyle,
+  Text,
   TextStyle,
+  TouchableOpacity,
+  View,
+  ViewStyle,
 } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 interface ListItemProps {
   children?: ReactNode;
@@ -93,24 +92,9 @@ ListItem.Accordion = ({
   };
 
   return (
-    <View style={[styles.accordionContainer, containerStyle]}>
+    <View style={ containerStyle }>
       <TouchableOpacity onPress={handlePress} style={styles.accordionHeader}>
         {content}
-        {icon?.name ? (
-          <MaterialCommunityIcons
-            name={icon.name as any}
-            size={icon.size || 22}
-            color={icon.color || 'white'}
-            style={{ marginLeft: 8 }}
-          />
-        ) : (
-          <MaterialCommunityIcons
-            name={expanded ? 'chevron-down' : 'chevron-right'}
-            size={22}
-            color="white"
-            style={{ marginLeft: 8 }}
-          />
-        )}
       </TouchableOpacity>
 
       {expanded && <View style={styles.accordionContent}>{children}</View>}
@@ -122,9 +106,9 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#2a2a2a',
+    backgroundColor: 'transparent',
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 48,
   },
   bottomDivider: {
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -145,20 +129,14 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginTop: 2,
   },
-  accordionContainer: {
-    backgroundColor: '#333',
-    borderRadius: 8,
-    marginVertical: 4,
-    overflow: 'hidden',
-  },
   accordionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 12,
   },
   accordionContent: {
-    paddingHorizontal: 16,
+  //  paddingHorizontal: 16,
     paddingVertical: 8,
-    backgroundColor: '#444',
+    backgroundColor: 'transparent',
   },
 });

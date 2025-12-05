@@ -9,7 +9,7 @@ export type Props = {
   children?: React.ReactNode;
 };
   
-export const CustomNavbar: React.FC<Props> = ({ title, onClick, children }) => {
+export const HorizontalNavbar: React.FC<Props> = ({ title, onClick, children }) => {
   return (
     <View style={styles.container}>
         <Ionicons name='chevron-back' size={20} color='#D1FF4D' style={styles.backIcons}
@@ -30,14 +30,14 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     position: 'relative',
     backgroundColor: '#152B52',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     paddingVertical: 16,
     paddingHorizontal: 32,
     height: 64
   },
   backIcons: {
   //  position: 'absolute',
-    top: 10,
+    top: 14,
   },
   titleWrapper: {
   //  position: 'absolute',
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   iconsWrapper: {
   //  position: 'absolute',
-    top: 4,
+    top: 8,
     //right: 16,
     flexDirection: 'row',
     alignItems: 'center',

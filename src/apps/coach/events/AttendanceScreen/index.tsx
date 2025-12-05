@@ -7,7 +7,7 @@ import { isFuture, isPast } from '@/src/utils/utils';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
+//import { useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NotificationsView } from '../AttendanceScreen/views/NotificationsView';
@@ -20,13 +20,14 @@ import { StudentsView } from './views/StudentsView';
 
 
 interface Props {
+  onBack: () => void;
   onTest: () => void;
   onGame: () => void;
   onGameReport: () => void;
   onStudent: () => void;
 }
   
-export default function AttendanceScreen({ onTest, onGame, onGameReport, onStudent }: Props) {
+export default function AttendanceScreen({ onBack, onTest, onGame, onGameReport, onStudent }: Props) {
   const { isStudentsView, isAttendanceView, students, event_timestamp, isAllChecked, event_type, group_name } = useStore();
   const { studentsAmount, attendancesAmount, isSendingReport, isReportSent, wasReportSent, games, attendances} = useStore();
   const { isNotificationsModal, notifications } = useStore();
@@ -38,8 +39,6 @@ export default function AttendanceScreen({ onTest, onGame, onGameReport, onStude
   const [isDeleteAlert, setIsDeleteAlert] = useState<boolean>(false);
   const [isMailAlert, setIsMailAlert] = useState<boolean>(false);
   const [tense, setTenses] = useState<string>('');
-
-  const router = useRouter();
 
   useFocusEffect(
     useCallback(() => {
@@ -78,7 +77,7 @@ export default function AttendanceScreen({ onTest, onGame, onGameReport, onStude
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-      <CustomNavbar title={`${group_name} (${attendancesAmount}/${studentsAmount})`} onClick={() => router.back()}>
+      <CustomNavbar title={`${group_name} (${attendancesAmount}/${studentsAmount})`} onClick={onBack}>
         {!wasReportSent && <Ionicons name='airplane-outline' size={20} color='#D1FF4D' style={{ marginRight: 8, marginTop: 0 }}
           onPress={()=>setIsMailAlert(true)}
         />}

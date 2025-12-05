@@ -3,6 +3,7 @@ import { PopupWrapper } from '@/src/components/containers/PopupWrapper';
 import { StatsIndicators } from '@/src/components/widgets/StatsIndicators';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
@@ -32,7 +33,7 @@ export default function ProfileScreen({ onBack }: Props) {
   );
 
   return (
-    <>
+    <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
       <CustomNavbar title='Student' onClick={onBack}>
         <Ionicons name='clipboard-outline' size={20} color='#D1FF4D' style={{ marginRight: 8, marginTop: 0 }}
           onPress={()=>showComments(true)}
@@ -43,7 +44,7 @@ export default function ProfileScreen({ onBack }: Props) {
         <CommentsScreen/>
       </PopupWrapper>
 
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false}>
         <ProfileView/>
         <PerentsView/>
         <AddressView/>
@@ -57,11 +58,16 @@ export default function ProfileScreen({ onBack }: Props) {
       <View style={styles.summary}>
         <AttendanceView/>
       </View>
-    </>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
   container: {
     flex: 1,
     padding: 16,

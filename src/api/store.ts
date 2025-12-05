@@ -9,6 +9,7 @@ interface AuthStore {
   userId: number;
   isLogin: boolean;
 
+
   loginUser: (token: string, userId: number) => void;
   logoutUser: () => void;
 
@@ -23,11 +24,11 @@ export const useAuthStore = create<AuthStore>((set: any) => ({
 
 
   loginUser: (token: string = '', userId: number) => {
-    set({ token, userId, isLogin: true });
     setToken(token);
-
-    AsyncStorage.setItem("token", token);
+    set({ token, isLogin: true, userId });
+    
     AsyncStorage.setItem("user_id", userId.toString());
+    AsyncStorage.setItem("token", token);
   },
 
   logoutUser: () => {

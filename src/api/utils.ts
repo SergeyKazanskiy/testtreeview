@@ -1,6 +1,8 @@
-const appRole = process.env.APP_ROLE || "student";
-//export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://admin.dinivrey.com/api';
-export const API_BASE_URL = 'https://admin.dinivrey.com/api'
+import Constants from "expo-constants";
+
+const appRole = Constants.expoConfig?.extra?.appRole;
+export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://admin.dinivrey.com/api';
+//export const API_BASE_URL = 'https://admin.dinivrey.com/api'
 
 let token: string | null = null;
 
@@ -34,7 +36,7 @@ async function makeRequest(method: string, endpoint: string, body?: any) {
   };
   if (token) headers['Authorization'] = `Bearer ${token}`;
 
-  ///alert(`Making ${method} request to ${url} and Bearer ${token}`);
+  //alert(`Making ${method} request to ${url} and Bearer ${token}`);
 
 
   const response = await fetch(url, {

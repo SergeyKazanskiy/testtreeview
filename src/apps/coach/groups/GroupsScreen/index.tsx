@@ -4,7 +4,7 @@ import { ListItem } from '@/src/components/widgets/CustomListItem';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback } from 'react';
-import { Platform, ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { useStore } from '../store';
 import { StudentList } from './views/StudentList';
 
@@ -27,27 +27,26 @@ export default function GroupsScreen({ pressStudent }: Props) {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-      <ScrollView> 
-        {groups.map((group, index) => 
-            <ListItem.Accordion key={index}
-              containerStyle={styles.group}
-              isExpanded={group.id === group_id}
-              onPress={() => selectGroup(group.id, index)}
-              icon={{}}
-              content={
-                <>
-                  <Icon name={group.id === group_id ? 'chevron-down' : 'chevron-right'}
-                    type="material-community" color="white" style={{ marginRight: 10 }} />
-                  <ListItem.Content>
-                    <ListItem.Title style={styles.title}>{group.camp_name}, {group.name}</ListItem.Title>
-                    <ListItem.Subtitle style={styles.subtitle}>{group.description}</ListItem.Subtitle>
-                  </ListItem.Content>
-                  {/* <Badge value={students.length} status="primary" /> */}
-                </>
-              }
-            >
-              <StudentList pressStudent={pressStudent}/>
-            </ListItem.Accordion>
+      <ScrollView contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false}> 
+        {groups.map((group, index) =>
+          <ListItem.Accordion key={index}
+            containerStyle={styles.group}
+            isExpanded={group.id === group_id}
+            onPress={() => selectGroup(group.id, index)}
+            icon={{}}
+            content={
+              <>
+                <Icon name={group.id === group_id ? 'chevron-down' : 'chevron-right'}
+                  type="material-community" color="white" style={{ marginRight: 10 }} />
+                <ListItem.Content>
+                  <ListItem.Title style={styles.title}>{group.camp_name}, {group.name}</ListItem.Title>
+                  <ListItem.Subtitle style={styles.subtitle}>{group.description}</ListItem.Subtitle>
+                </ListItem.Content>
+              </>
+            }
+          >
+            <StudentList pressStudent={pressStudent}/>
+          </ListItem.Accordion>
         )}
       </ScrollView>
     </LinearGradient>
@@ -57,17 +56,16 @@ export default function GroupsScreen({ pressStudent }: Props) {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-    maxWidth: Platform.OS === 'web' ? 360 : undefined,
     width: '100%',
     padding: 16,
   },
   group: {
     backgroundColor: '#152B52',
-    borderTopWidth: 1,
-    borderLeftWidth: 1,
-    borderColor: 'green',
-    paddingVertical: 12,
+    // borderTopWidth: 1,
+    // borderLeftWidth: 1,
+    // borderColor: 'green',
+    paddingTop: 6,
+    paddingBottom: 4,
     marginVertical: 3
   },
   title: { color: '#ddd', fontWeight: '500' },

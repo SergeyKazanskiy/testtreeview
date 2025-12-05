@@ -1,4 +1,4 @@
-import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
+import { HorizontalNavbar } from '@/src/components/bars/HorizontalNavbar';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack } from 'expo-router';
@@ -64,9 +64,9 @@ export default function GamingScreen({ pressBack }: Props) {
         
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
       <Stack.Screen options={{ headerShown: false }} />
-      <CustomNavbar title='    Dinivrey - Game Mode    ' onClick={handleBack}>
+      <HorizontalNavbar title='    Dinivrey - Game Mode    ' onClick={handleBack}>
         <HeaderView/>
-      </CustomNavbar>
+      </HorizontalNavbar>
 
       {/* Alerts */}
       <BackAlert

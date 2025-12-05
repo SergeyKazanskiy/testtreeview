@@ -1,7 +1,7 @@
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 import { useCallback } from 'react';
 import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { FooterReport } from '../GamingScreen/views/FooterReport';
@@ -36,9 +36,6 @@ const GameReport = ({ pressBack }: Props) => {
     }, [])
   );
 
-  const router = useRouter();
-  const navigation = useNavigation();
-
   const role_2 = currentRole
   const role_1 = role_2 === Role.CHASER ? Role.EVADER : Role.CHASER
 
@@ -46,11 +43,6 @@ const GameReport = ({ pressBack }: Props) => {
 
   const handleBack = () => {
     pressBack();
-    // if (navigation.canGoBack()) {
-    //   router.back();
-    // } else {
-    //   router.push('/dashboards/student/GamesScreen'); 
-    // }
   };
 
   return (

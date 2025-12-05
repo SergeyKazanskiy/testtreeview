@@ -8,8 +8,11 @@ export default function AttendanceRoute() {
 
   return (
     <AttendanceScreen
+      onBack={() => router.back()}
       onGame={() => router.push("/shared/gaming")}
-      onTest={() => router.push('/shared/report')}
+      onTest={() => router.push('/(coach)/(tabs)/events/attendance/testing')}
+      onGameReport={() => router.push('/shared/report')}
+      onStudent={() => router.push('/(coach)/(tabs)/groups/(tabs)/profile')}
     />
   );
 }

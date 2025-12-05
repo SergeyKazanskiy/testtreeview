@@ -1,20 +1,23 @@
-import { StyleSheet, Platform } from 'react-native';
+import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { LinearGradient } from 'expo-linear-gradient';
-import { CustomNavbar } from '../../../../shared/components/CustomNavbar';
-import { useRouter } from 'expo-router';
-import { DrillView } from './views/DrillView';
 import { Stack } from 'expo-router';
+import { Platform, StyleSheet } from 'react-native';
 import { useStore } from '../store';
+import { DrillView } from './views/DrillView';
 
-export default function DrillScreen() {
+
+type DrillScreenProps = {
+  onBack: () => void;
+};
+
+export default function DrillScreen({ onBack }: DrillScreenProps) {
   const { drill } = useStore();
-  const router = useRouter();
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
 
       <Stack.Screen options={{ headerShown: false }} />
-      <CustomNavbar title={ drill.name } onClick={() => router.back()}/>
+      <CustomNavbar title={ drill.name } onClick={onBack}/>
 
       <DrillView/>
 

@@ -4,7 +4,7 @@ import { widgetStyles } from '@/src/styles/appStyles';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useState } from 'react';
-import { Platform, ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import CompetitionsScreen from '../CompetitionsScreen';
 import HistoryScreen from '../HistoryScreen';
 import { useStore } from '../store';
@@ -34,7 +34,7 @@ export default function EventsScreen({ onEvent }: EventsScreenProps) {
   );
 
   return (
-    <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper}>
+    <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
       <ButtonsView onPast={() => setIsPast(true)} onFuture={()=>setIsFuture(true)}/>
 
       <PopupWrapper visible={isPast} title='History' onClose={() => setIsPast(false)}>
@@ -67,11 +67,13 @@ export default function EventsScreen({ onEvent }: EventsScreenProps) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-    maxWidth: Platform.OS === 'web' ? 360 : undefined,
-    width: '100%',
+    // flex: 1,
+    // alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
+    // maxWidth: Platform.OS === 'web' ? 360 : undefined,
+    // width: '100%',
     paddingHorizontal: 16,
+    flex: 1,
+    height: '100%',
   },
   title: {   
     paddingTop: 60,

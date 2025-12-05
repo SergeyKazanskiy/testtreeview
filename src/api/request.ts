@@ -1,4 +1,4 @@
-import { firebaseAuth } from './firebaseConfig';
+import { auth } from './firebaseConfig';
 import { useAuthState } from './state';
 import { useAuthStore } from './store';
 
@@ -36,7 +36,7 @@ async function retryWithFreshToken(
   callback: (data: any) => void
 ): Promise<boolean> {
   try {
-    const newToken = await firebaseAuth.currentUser?.getIdToken(true);
+    const newToken = await auth.currentUser?.getIdToken(true);
     if (!newToken) throw new Error('Token refresh failed');
 
     await useAuthStore.getState().refreshToken(newToken);

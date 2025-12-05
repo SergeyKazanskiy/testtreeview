@@ -9,8 +9,7 @@ export default function CoachLayout() {
 
   useEffect(() => {
     if (isLogin === false) {
-      //router.replace("/(coach)/login");
-      router.replace("/(coach)/(tabs)/groups");
+      router.replace("/(coach)/login");
     } else {
       router.replace("/(coach)/(tabs)/groups");
     }
