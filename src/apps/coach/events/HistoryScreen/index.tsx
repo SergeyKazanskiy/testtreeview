@@ -1,11 +1,59 @@
-import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
-import { Text } from 'react-native';
+import { widgetStyles } from '@/src/styles/appStyles';
+import { useFocusEffect } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
+import React, { useCallback } from 'react';
+import { Platform, ScrollView, StyleSheet, Text } from 'react-native';
+import { useStore } from '../store';
+import { CalendarView } from './views/CalendarView';
+import { GroupEventsView } from './views/GroupEventsView';
+import { WeekEventsView } from './views/WeekEventsView';
 
 
-export default function Index() {
+export default function HistoryScreen() {
+  const { isWeekFilter, days, groups, group_inx } = useStore();
+  const { loadGroups, selectGroup } = useStore();
+  
+  useFocusEffect(
+    useCallback(() => {
+      loadGroups(2, () => {});
+    }, [])
+  );
+
   return (
-    <ScreenContainer>
-      <Text>HistoryScreen</Text>
-    </ScreenContainer>
+    <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper}>
+       <CalendarView/>
+
+      {isWeekFilter &&
+        <>
+          {days.length === 0 && <Text style={[widgetStyles.label, styles.title]}>No events</Text>}
+          
+          {days.length > 0 &&
+          <ScrollView> 
+            {days.map(day => (
+              <WeekEventsView key={day.day} day={day.day} weekday={day.weekday}/>
+            ))}
+          </ScrollView>}
+        </>
+      }
+      {!isWeekFilter && <GroupEventsView/>}
+    </LinearGradient>
   );
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
+    maxWidth: Platform.OS === 'web' ? 360 : undefined,
+    width: '100%',
+    paddingHorizontal: 16,
+  },
+  section: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
+  title: {   
+    paddingTop: 60,
+    alignSelf:'center'
+  },
+});

@@ -1,11 +1,31 @@
-import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
-import { Text } from 'react-native';
+import { PopupWrapper } from '@/src/components/containers/PopupWrapper';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Platform, StyleSheet } from 'react-native';
+import { useStore } from '../store';
+import { DrillsView } from './views/DrillsView';
 
 
-export default function Index() {
+export default function DrillsScreen() {
+    const { isDrillsModal } = useStore();
+    const { closeDrillsModal } = useStore();
+
   return (
-    <ScreenContainer>
-      <Text>DrillsScreen</Text>
-    </ScreenContainer>
+     <PopupWrapper visible={isDrillsModal} title='Select drills' onClose={closeDrillsModal}>
+      <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
+
+        <DrillsView/>
+        
+      </LinearGradient>
+      </PopupWrapper>
   );
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
+    maxWidth: Platform.OS === 'web' ? 360 : undefined,
+    width: '100%',
+    height: '100%',
+  },
+});

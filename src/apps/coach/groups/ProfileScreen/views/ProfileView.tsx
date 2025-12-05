@@ -1,7 +1,7 @@
+import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { useStore } from '../../store';
-import { BACKEND_APP_IMAGES_URL } from '../../../../../shared/constants';
 
 
 export const ProfileView = () => {

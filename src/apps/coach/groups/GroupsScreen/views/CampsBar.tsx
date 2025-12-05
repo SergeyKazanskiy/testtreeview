@@ -1,6 +1,6 @@
+import { Button } from '@/src/components/buttons/CustomButton';
 import React from 'react';
-import { StyleSheet, FlatList } from 'react-native';
-import { Button } from '@rneui/themed';
+import { FlatList, StyleSheet } from 'react-native';
 import { Camp } from '../../model';
 
 

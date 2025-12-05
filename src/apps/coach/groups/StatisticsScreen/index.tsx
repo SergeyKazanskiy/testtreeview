@@ -1,11 +1,11 @@
+import { CustomAlert } from '@/src/components/alerts/CustomAlert';
+import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
+import { screenStyles } from '@/src/styles/appStyles';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useCallback, useEffect, useState } from 'react';
 import { Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { CustomAlert } from '../../../../shared/components/CustomAlert';
-import { CustomNavbar } from '../../../../shared/components/CustomNavbar';
-import { screenStyles } from '../../../../shared/styles/appStyles';
 import { useStore } from '../store';
 import { CalendarView } from './views/CalendarView';
 import { ChartView } from './views/ChartView';

@@ -1,18 +1,23 @@
+import { useAuthStore } from '@/src/api/store';
+import { Icon } from '@/src/components/icons/CustomIcon';
+import { ListItem } from '@/src/components/widgets/CustomListItem';
 import { useFocusEffect } from '@react-navigation/native';
-import { Icon, ListItem } from '@rneui/themed';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback } from 'react';
 import { Platform, ScrollView, StyleSheet } from 'react-native';
-import { useAuthState } from '../../../../shared/http/state';
 import { useStore } from '../store';
 import { StudentList } from './views/StudentList';
 
 
-export default function GroupsScreen() {
+interface Props {
+  pressStudent: () => void;
+}
+  
+export default function GroupsScreen({ pressStudent }: Props) {
   const { groups, group_id } = useStore();
   const { loadGroups, selectGroup } = useStore();
 
-  const { userId } = useAuthState();
+  const { userId } = useAuthStore();
 
   useFocusEffect(
     useCallback(() => {
@@ -41,7 +46,7 @@ export default function GroupsScreen() {
                 </>
               }
             >
-              <StudentList/>
+              <StudentList pressStudent={pressStudent}/>
             </ListItem.Accordion>
         )}
       </ScrollView>

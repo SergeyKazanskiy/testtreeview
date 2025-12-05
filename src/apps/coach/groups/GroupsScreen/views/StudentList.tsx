@@ -1,7 +1,9 @@
-import { Avatar, Badge, ListItem } from '@rneui/themed';
+import { Avatar } from '@/src/components/avatars/CustomAvatar';
+import { Badge } from '@/src/components/buttons/CustomBadge';
+import { ListItem } from '@/src/components/widgets/CustomListItem';
+import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
 import { useRouter } from 'expo-router';
 import { StyleSheet } from 'react-native';
-import { BACKEND_APP_IMAGES_URL } from '../../../../../shared/constants';
 import { useStore } from '../../store';
 
 

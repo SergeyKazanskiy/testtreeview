@@ -1,0 +1,238 @@
+//Events
+export interface Schedule {
+  id: number;
+  group_id: number;
+  weekday: number; // 7 (Sanday)
+  hour: number; // 16
+  minute: number; // 30
+}
+
+export interface Event {
+  id: number;
+  camp_id: number
+  timestamp: number; // San 16:30, (no year, month, day)
+  type: string;
+  desc: string;
+  day?: number;
+  group1_id: number;
+  group2_id: number;
+}
+
+export interface GroupEvent {
+  id: number;
+  timestamp: number; // San 7, 16:30
+  type: string;
+  desc: string;
+  amound: number;
+}
+
+
+//Gaming
+export interface Student {
+  id: number; // !!!
+  first_name: string;
+  last_name: string;
+  age: number;
+}
+
+export type Player = {
+  id: number;
+  name: string;
+  age: number;
+  points: number;
+  team: Team;
+  role: Role;
+  is_survived?: boolean;
+};
+
+export enum Team {
+    RED = "Red",
+    GREEN = "Green"
+};
+
+export enum Role {
+    EVADER = "Evader",
+    CHASER = "Chaser"
+};
+
+export type GameRound = {
+  round: number;
+  teams: {team: Team, role: Role}[];
+};
+
+export type Game = { 
+  id: number;
+  event_id: number;
+  group_id: number;
+  timestamp: number;
+  first_team: 'Green' | 'Red';
+
+  time1: number;
+  time2: number;
+  
+  points1: number;
+  points2: number;
+
+  tags: number;
+  rescues: number;
+  winner: Team | 'Equally';
+  presence: string;
+}
+
+export type Total = {
+  caught: number;
+  freeded: number;
+  survived: number;
+}
+
+export type TeamTotals = {
+  team: Team;
+  amount: number;
+
+  caught: number;
+  freeded: number;
+  survived: number;
+  bonus: number;
+  total: number;
+  info: { points: string, tags: string, bonus: string, rescues: string }; // 36 + 12 + 33 = 81, ...
+}
+
+export type Gamer = {
+  id?: number;
+  game_id?: number;
+  student_id: number;
+  name?: string;
+
+  team: 'Green' | 'Red';
+  caught: number;
+  freeded: number;
+  is_survived: boolean;
+};
+
+//Testing
+export type Test = {
+  id: number;
+  student_id: number;
+  timestamp: number;
+  date: string;
+
+  speed: number;
+  stamina: number;
+  climbing: number;
+  evasion: number;
+  hiding: number;
+
+  speed_time: number;
+  stamina_time: number;
+  climbing_time: number;
+};
+  
+
+
+
+export interface Tester {
+    id: number;
+    participate: boolean;
+    first_name: string;
+    last_name: string;
+
+    test_id: number;
+    speed: number;
+    stamina: number;
+    climbing: number;
+    evasion: number;
+    hiding: number;
+
+    speed_time: number;
+    stamina_time: number;
+    climbing_time: number;
+}
+
+export interface Metric {
+  timestamp: number;
+  name: string;
+  score: number;
+  unit: string;
+};
+
+export interface Attendance {
+  id: number;
+  student_id: number;
+  first_name: string;
+  last_name: string;
+  present: boolean;
+  comment: string;
+  test_id: number;
+}
+
+export interface EventDrill {
+  id: number;
+  event_id: number;
+  drill_id: number;
+  completed: boolean;
+}
+
+export interface Drill {
+  id: number;
+  name: string;
+  time: string;
+  level: string;
+  link: string;
+  desc: string;
+  category: string;
+  actors: number;
+}
+
+export interface ShortEventDrill {
+  id: number;
+  drill_id: number;
+  name: string;
+  time: string;
+  level: string;
+  category: string;
+  actors: number;
+  completed: boolean;
+}
+
+export interface ShortDrill {
+  id: number;
+  name: string;
+  time: string;
+  level: string;
+  category: string;
+  actors: number;
+  present: boolean;
+}
+
+export interface TestUpdate {
+  exam: string;
+  value: number;
+  camp_id: number;
+}
+
+export interface AttendanceDataForReport {
+    date: string;
+    time: string;
+    group_id: number;
+    event_id: number;
+    camp_name: string;
+    group_name: string;
+    group_number: number;
+    coach_id: number;
+}
+
+export interface Achieve {
+  isNew: boolean;
+  name: string;
+  level: string;
+  rule: string;
+}
+
+export interface Notification {
+    first_name: string;
+    second_name: string;
+    added?: number;
+    updated?: number;
+    achievements: Achieve[];
+    error_message?: string;
+}

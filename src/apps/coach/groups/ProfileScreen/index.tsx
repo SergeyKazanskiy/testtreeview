@@ -1,11 +1,11 @@
+import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
+import { PopupWrapper } from '@/src/components/containers/PopupWrapper';
+import { StatsIndicators } from '@/src/components/widgets/StatsIndicators';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { CustomNavbar } from '../../../../shared/components/CustomNavbar';
-import { ScreenWrapper } from '../../../../shared/components/ScreenWrapper';
-import { StatsIndicators } from '../../../../shared/components/StatsIndicators';
 import CommentsScreen from '../CommentsScreen';
 import { useStore } from '../store';
 import { AddressView } from './views/AddressView';
@@ -39,9 +39,9 @@ export default function ProfileScreen({ onBack }: Props) {
         />
       </CustomNavbar>
 
-      <ScreenWrapper visible={isCommentsScreen} title='Coach comments' onClose={() => showComments(false)}>
+      <PopupWrapper visible={isCommentsScreen} title='Coach comments' onClose={() => showComments(false)}>
         <CommentsScreen/>
-      </ScreenWrapper>
+      </PopupWrapper>
 
       <ScrollView style={styles.container}>
         <ProfileView/>

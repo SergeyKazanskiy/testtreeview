@@ -1,8 +1,7 @@
+import { LineChart } from '@/src/components/widgets/LineChart';
+import { formatDateTime } from '@/src/utils/utils';
 import { StyleSheet, View } from 'react-native';
 import { useStore } from '../../store';
-import { LineChart } from '../../../../../shared/components/LineChart';
-import { formatDateTime } from '../../../../../shared/utils';
-import { objectToJson } from '../../../../../shared/utils';
 
 
 export function ChartView() {

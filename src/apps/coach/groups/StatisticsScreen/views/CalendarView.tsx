@@ -1,8 +1,8 @@
+import { DateStepper } from '@/src/components/calendar/DateStepper';
+import { months } from '@/src/constants/constants';
+import { getCurrentMonth, getCurrentYear } from '@/src/utils/utils';
 import { StyleSheet, View } from 'react-native';
 import { useStore } from '../../store';
-import { DateStepper } from '../../../../../shared/components/DateStepper';
-import { getCurrentYear, getCurrentMonth } from '../../../../../shared/utils';
-import { months } from '../../../../../shared/constants';
 
 
 export function CalendarView() {

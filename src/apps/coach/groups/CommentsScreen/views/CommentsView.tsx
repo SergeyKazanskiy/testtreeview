@@ -1,8 +1,8 @@
-import { StyleSheet, FlatList, ScrollView } from 'react-native';
+import { CommentCell } from '@/src/components/cells/CommentCell';
+import { months } from '@/src/constants/constants';
+import { getDayAndWeekday, getYearAndMonth } from '@/src/utils/utils';
+import { FlatList, ScrollView, StyleSheet } from 'react-native';
 import { useStore } from '../../store';
-import { CommentCell } from '../../../../../shared/components/CommentCell';
-import { getYearAndMonth, getDayAndWeekday } from '../../../../../shared/utils';
-import { months } from '../../../../../shared/constants';
 
 
 export function CommentsView() {

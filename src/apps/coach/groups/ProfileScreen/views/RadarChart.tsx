@@ -1,8 +1,9 @@
+import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
 import React from 'react';
-import { View, Text, Image, StyleSheet, useWindowDimensions, TouchableOpacity } from 'react-native';
-import Svg, { Polygon, Line, Circle, Defs, RadialGradient, Stop } from 'react-native-svg';
-import { BACKEND_APP_IMAGES_URL } from '../../../../../shared/constants';
+import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import Svg, { Circle, Defs, Line, Polygon, RadialGradient, Stop } from 'react-native-svg';
 import { Test } from '../../model';
+
 
 type RadarChartProps = {
   test: Test;

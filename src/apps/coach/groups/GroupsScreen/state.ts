@@ -1,6 +1,6 @@
-import { Group, Student } from '../model';
+import { sanitizeName } from '@/src/utils/utils';
 import { get_groups, get_students } from '../http';
-import { objectToJson, sanitizeName } from '@/app/shared/utils';
+import { Group, Student } from '../model';
 
 
 export interface GroupsSlice {
