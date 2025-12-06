@@ -1,13 +1,17 @@
-import React, { useCallback, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { StyleSheet, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import React, { useCallback } from 'react';
+import { Platform, StyleSheet } from 'react-native';
+import { useStore } from '../store';
 import { CalendarView } from './views/CalendarView';
 import { CampsView } from './views/CampsView';
-import { useStore } from '../store';
 
 
-export default function CampsScreen() {
+type Props = {
+  onCamp:() => void;
+};
+
+export default function CampsScreen({ onCamp }: Props) {
   const { loadCamps } = useStore();
 
   useFocusEffect(
@@ -19,7 +23,7 @@ export default function CampsScreen() {
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper}>
       <CalendarView/>
-      <CampsView/>
+      <CampsView onCamp={onCamp} />
     </LinearGradient>
   );
 }

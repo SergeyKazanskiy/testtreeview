@@ -1,25 +1,29 @@
-import { StyleSheet, FlatList, TouchableOpacity, Text, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { FlatList, Pressable, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useStore } from '../../store';
 
 
-export function GroupsView() {
+type Props = {
+  onGroup:() => void;
+};
+
+export function GroupsView({ onGroup }: Props) {
   const { groups } = useStore();
   const { selectGroup, showAddGroupAlert, setGroup } = useStore();
-
-  const router = useRouter();
 
   function handleSelect(group_id: number, groupInx: number) {
     selectGroup(group_id, groupInx);
     setGroup(groups[groupInx]);
-    router.push(`/dashboards/manager/groups/GroupScreen`);
+    onGroup();
   }
 
   return (
     <>
-      <FlatList data={groups} contentContainerStyle={{paddingBottom: 24}}
-          renderItem={({ item, index }) =>
+      <FlatList
+        data={groups}
+        contentContainerStyle={{paddingBottom: 24}}
+        renderItem={({ item, index }) =>
+
           <TouchableOpacity key={item.id} style={styles.group}
               onPress={() => handleSelect(item.id, index)}>
 

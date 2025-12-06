@@ -1,9 +1,6 @@
-import { Achieve, Achievement, AchieveAttach } from "../model";
-import { get_student_achieves, get_base_achieves } from '../http';
-import { attach_student_achieve, detach_student_achieve, update_student_achieves_summary } from '../http';
-import { GroupsSlice } from '../GroupsScreen/state';
-import { objectToJson } from '../../../../shared/utils';
-import {  RuleLevels } from '../../../../shared/constants';
+import { RuleLevels } from '@/src/constants/constants';
+import { attach_student_achieve, detach_student_achieve, get_base_achieves, get_student_achieves, update_student_achieves_summary } from '../http';
+import { Achieve, AchieveAttach, Achievement } from "../model";
 import { StudentsSlice } from "../StudentsScreen/state";
 
 

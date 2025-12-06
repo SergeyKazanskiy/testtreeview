@@ -1,11 +1,10 @@
-import { Camp, Group, Schedule } from '../model';
+import { weekDays } from '@/src/constants/constants';
+import { getChanges, objectToJson } from '@/src/utils/utils';
+import { get_coaches } from '../../coaches/http';
 import { CoachShort } from '../../coaches/model';
 import { GroupsSlice } from '../GroupsScreen/state';
-import { update_group, delete_group, get_group_coach, change_group_coach } from '../http';
-import { get_group_schedule, create_group_schedule, delete_group_schedule, update_group_schedule } from '../http';
-import { get_coaches } from '../../coaches/http';
-import { objectToJson, getChanges } from '@/app/shared/utils';
-import { weekDays } from '../../../../shared/constants';
+import { change_group_coach, create_group_schedule, delete_group, delete_group_schedule, get_group_coach, get_group_schedule, update_group, update_group_schedule } from '../http';
+import { Group, Schedule } from '../model';
 
 
 export interface GroupSlice {

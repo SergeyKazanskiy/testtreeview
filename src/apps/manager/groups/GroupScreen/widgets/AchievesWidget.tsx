@@ -1,7 +1,7 @@
+import { AchieveIcon } from '@/src/components/icons/AchieveIcon';
 import React from 'react';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { Achieve } from '../../model';
-import { AchieveIcon } from '../../../../../shared/components/AchieveIcon';
 
 
 export type Props = {
@@ -27,7 +27,7 @@ export const AchievesWidget: React.FC<Props> = ({ title, achieves, category }) =
                             size={80}
                             image={item.image}
                             label={item.name + ' x' + item.count}
-                            level={'Common'}
+                            level={1}
                         />
                     }
                 />

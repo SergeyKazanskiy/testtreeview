@@ -1,7 +1,7 @@
+import { LineChart } from '@/src/components/widgets/LineChart';
 import React from 'react';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { Metric } from '../../model';
-import { LineChart } from '../../../../../shared/components/LineChart';
 
 
 export type Props = {

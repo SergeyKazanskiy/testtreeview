@@ -1,7 +1,7 @@
+import { AchieveIcon } from '@/src/components/icons/AchieveIcon';
 import React from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { Achieve } from '../../model';
-import { AchieveIcon } from '../../../../../shared/components/AchieveIcon';
 
 
 export type Props = {
@@ -27,7 +27,7 @@ export const AchievesPanel: React.FC<Props> = ({ achieves, achieve_id, category,
                             size={80}
                             image={item.image}
                             label={item.name}
-                            level={item.level}
+                            level={1}
                             effect={item.effect}
                         />
                     </View>

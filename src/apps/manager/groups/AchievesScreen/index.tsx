@@ -1,12 +1,12 @@
+import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
+import { screenStyles } from '@/src/styles/appStyles';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Platform, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
-import { CustomAlert } from '../../../../shared/components/CustomAlert';
-import { screenStyles } from '../../../../shared/styles/appStyles';
 import { useStore } from '../store';
 import { AchievesSection } from './views/AchievesSection';
 

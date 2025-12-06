@@ -10,7 +10,11 @@ import { AddStudentAlert } from './alerts/AddStudentAlert';
 import { StudentsView } from './views/StudentsView';
 
 
-export default function StudentsScreen() {
+type Props = {
+  onStudent: () => void;
+};
+
+export default function StudentsScreen({ onStudent }: Props) {
   const { group_id, groups } = useStore();
   const { loadStudents, clearStudents, showAddAlert } = useStore();
 
@@ -38,7 +42,7 @@ export default function StudentsScreen() {
 
       <AddStudentAlert/>
 
-      <StudentsView/>
+      <StudentsView onStudent={onStudent} />
     </LinearGradient>
   );
 }

@@ -2,7 +2,7 @@ import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 import React, { useCallback } from 'react';
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useStore } from '../store';
@@ -15,12 +15,15 @@ import { SchedulesView } from './views/SchedulesView';
 import { TimeView } from './views/TimeView';
 
 
-export default function GroupScreen() {
+type Props = {
+  onStudents: () => void;
+  onBack: () => void;
+};
+
+export default function GroupScreen({ onStudents, onBack }: Props) {
   const { camp_id, group_id, isTimeMenu } = useStore();
   const { loadSchedule, showDeleteGroupAlert, loadCoaches } = useStore();
   const { showAchievesScreen, showStatisticsScreen } = useStore();
-
-  const router = useRouter();
 
   useFocusEffect(
     useCallback(() => {
@@ -33,13 +36,13 @@ export default function GroupScreen() {
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
       <Stack.Screen options={{ headerShown: false }} />
 
-      <CustomNavbar title='Group info' onClick={() => router.back()}>
+      <CustomNavbar title='Group info' onClick={onBack}>
         <Pressable onPress={showDeleteGroupAlert} style={{ marginRight: 4}}>
           <Ionicons name='trash-outline' size={20} color="rgb(180, 216, 158)" />
         </Pressable>
       </CustomNavbar>
 
-      <DeleteGroupAlert onDelete={() => router.back()}/>
+      <DeleteGroupAlert onDelete={onBack}/>
 
       <InfoView/>
 
@@ -49,7 +52,7 @@ export default function GroupScreen() {
       </View>
       
       <ButtonsView
-        onStudents={() => router.push(`/dashboards/manager/groups/StudentsScreen`)}
+        onStudents={onStudents}
         onStatistics={showStatisticsScreen}
         onAchievemens={showAchievesScreen}
       />

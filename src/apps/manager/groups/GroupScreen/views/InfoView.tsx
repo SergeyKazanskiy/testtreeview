@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, TextInput } from 'react-native';
+import { Option, SelectedField } from '@/src/components/selects/SelectedField';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { useStore } from '../../store';
-import { SelectedField, Option } from '../../../../../shared/components/SelectedField';
 
 
 export const InfoView = () => {

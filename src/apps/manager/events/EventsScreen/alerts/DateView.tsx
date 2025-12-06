@@ -34,17 +34,9 @@ export const DateView: React.FC<Props> = ({ timestamp, setDate }) => {
         {Array.from({ length: adjustedFirstDay }).map((_, i) => (
           <View key={`empty-${i}`} style={styles.emptyCell} />
         ))}
+        
         {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => {
           return (
-            // <TouchableOpacity key={day}
-            //   style={[styles.dayButton, dateTime.getDate() === day ? styles.todayButton : styles.defaultButton,
-            //     day < dateTime.getDate() && styles.disabledButton]}
-            //   disabled={day < dateTime.getDate()}
-            //   onPress={() => handleDateClick(day)}
-            // >
-            //   <Text style={styles.buttonText}>{day}</Text>
-            // </TouchableOpacity>
-
             <Button key={day}
               title={day.toString()}
               type={day === dateTime.getDate() ? 'solid' : 'outline'}

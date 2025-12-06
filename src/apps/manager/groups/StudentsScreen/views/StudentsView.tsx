@@ -1,20 +1,21 @@
 import { Avatar } from '@/src/components/avatars/CustomAvatar';
 import { ListItem } from '@/src/components/widgets/CustomListItem';
 import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
-import { useRouter } from 'expo-router';
 import { ScrollView, StyleSheet } from 'react-native';
 import { useStore } from '../../store';
 
 
-export function StudentsView() {
-  const { students, student_id, camp_name, group_name } = useStore();
-  const { selectStudent } = useStore();
+type Props = {
+  onStudent: () => void;
+};
 
-  const router = useRouter();
+export function StudentsView({ onStudent }: Props) {
+  const { students, camp_name, group_name } = useStore();
+  const { selectStudent } = useStore();
 
   function handlePress(id: number) {
     selectStudent(id);
-    router.push(`/dashboards/manager/groups`)
+    onStudent();
   }
 
   return (

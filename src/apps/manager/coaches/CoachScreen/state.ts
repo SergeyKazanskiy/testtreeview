@@ -1,8 +1,6 @@
-import { Coach, CoachGroup, FreeGroup } from '../model';
-import { get_coach, update_coach, add_coach_group } from '../http';
-import { get_coache_groups, remove_coach_group, get_free_groups } from '../http';
-import { objectToJson } from '../../../../shared/utils';
 import { CoachesSlice } from '../CoachesScreen/state';
+import { add_coach_group, get_coach, get_coache_groups, get_free_groups, remove_coach_group, update_coach } from '../http';
+import { Coach, CoachGroup, FreeGroup } from '../model';
 
 
 export interface CoachSlice {

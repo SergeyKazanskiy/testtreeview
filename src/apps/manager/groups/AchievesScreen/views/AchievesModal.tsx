@@ -1,5 +1,4 @@
 import { AchieveIcon } from '@/src/components/icons/AchieveIcon';
-import { RuleLevels } from '@/src/constants/constants';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Achieve } from '../../model';
@@ -21,7 +20,7 @@ export const AchievesModal: React.FC<Props> = ({ achieves, onClick }) => {
                         size={80}
                         image={item.image}
                         label={item.name}
-                        level={RuleLevels[0]}
+                        level={1}
                         isAnimate={false}
                     />
                 ))}

@@ -1,12 +1,12 @@
-import { useState, useCallback } from "react";
+import { AttendanceCell } from '@/src/components/cells/AttendanceCell';
+import { DrillCell } from '@/src/components/cells/DrillCell';
+import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { useFocusEffect } from '@react-navigation/native';
-import { StyleSheet, FlatList, ScrollView, Text, View } from "react-native";
-import { DrillCell } from '../../../../../shared/components/DrillCell';
-import { AttendanceCell } from '../../../../../shared/components/AttendanceCell';
-import { useStore } from '../../store';
-import { Attendance, ShortDrill } from '../../model';
+import { useCallback, useState } from "react";
+import { FlatList, ScrollView, StyleSheet, Text } from "react-native";
 import { get_attendances, get_event_drills } from '../../http';
-import { ScreenWrapper } from '../../../../../shared/components/ScreenWrapper';
+import { Attendance, ShortDrill } from '../../model';
+import { useStore } from '../../store';
 
 
 export const AttendanceReport = () => { 
@@ -30,7 +30,7 @@ export const AttendanceReport = () => {
   );
 
   return (
-    <ScreenWrapper visible={isAttendanceReport} title='Attendance report' onClose={hideAttendanceReport}>
+    <PopupContainer visible={isAttendanceReport} title='Attendance report' onClose={hideAttendanceReport}>
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Drills</Text>
 
@@ -63,7 +63,7 @@ export const AttendanceReport = () => {
               />
         }/>
       </ScrollView>
-    </ScreenWrapper>
+    </PopupContainer>
   );
 };
 

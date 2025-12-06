@@ -1,8 +1,7 @@
-import { Camp, Parent, StudentShort } from '../model';
-import { create_student, create_student_parents, get_students } from '../http';
-import { objectToJson } from '@/app/shared/utils';
+import { StudentsIcons } from '@/src/constants/constants';
 import { GroupsSlice } from '../GroupsScreen/state';
-import { StudentsIcons } from '../../../../shared/constants';
+import { create_student, create_student_parents, get_students } from '../http';
+import { Parent, StudentShort } from '../model';
 
 
 export interface StudentsSlice {

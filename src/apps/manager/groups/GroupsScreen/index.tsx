@@ -1,13 +1,17 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import { useEffect } from 'react';
-import { StyleSheet, Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { useStore } from '../store';
+import { AddGroupAlert } from './alerts/AddGroupAlert';
 import { CampsView } from './views/CampsView';
 import { GroupsView } from './views/GroupsView';
-import { AddGroupAlert } from './alerts/AddGroupAlert';
-import { LinearGradient } from 'expo-linear-gradient';
 
 
-export default function GroupsScreen() {
+type Props = {
+  onGroup:() => void;
+};
+
+export default function GroupsScreen({ onGroup }: Props) {
   const {  } = useStore();
   const { loadCamps, updateGroup } = useStore();
 
@@ -15,18 +19,12 @@ export default function GroupsScreen() {
     loadCamps();
   }, [updateGroup]);
 
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     loadCamps();
-  //   }, [])
-  // );
-
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
       <AddGroupAlert/>
       
       <CampsView/>
-      <GroupsView/>
+      <GroupsView onGroup={onGroup}/>
     </LinearGradient>
   );
 }

@@ -15,7 +15,6 @@ const FilterCheckBox: React.FC<TypeProps> = ({ label, checked, onPress }) => (
   <TouchableOpacity style={styles.section} onPress={onPress}>
     <CheckBox
       checked={checked}
-      iconType="material-community"
       checkedIcon="checkbox-outline"
       uncheckedIcon={'checkbox-blank-outline'}
       containerStyle={{margin:0, padding: 0, backgroundColor: 'rgba(45, 75, 10, 0.3)'}}

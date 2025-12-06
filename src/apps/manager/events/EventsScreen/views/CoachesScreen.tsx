@@ -1,7 +1,7 @@
-import { StyleSheet, FlatList, Platform, ScrollView } from 'react-native';
-import { useStore } from '../../store';
+import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ScreenWrapper } from '../../../../../shared/components/ScreenWrapper';
+import { FlatList, Platform, StyleSheet } from 'react-native';
+import { useStore } from '../../store';
 import { CoachCell } from '../cells/CoachCell';
 
 
@@ -10,9 +10,8 @@ export function CoachesScreen() {
   const { hideCoachesView, selectNewCoach } = useStore();
 
   return (
-     <ScreenWrapper visible={isCoachesView} title='Select other coach' onClose={hideCoachesView}>
+     <PopupContainer visible={isCoachesView} title='Select other coach' onClose={hideCoachesView}>
       <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-        <ScrollView>
           <FlatList data={coaches}
             renderItem={({ item }) =>
               <CoachCell
@@ -23,9 +22,8 @@ export function CoachesScreen() {
               />
             } style={styles.list}
           />
-        </ScrollView>
       </LinearGradient>
-      </ScreenWrapper>
+      </PopupContainer>
   );
 }
 

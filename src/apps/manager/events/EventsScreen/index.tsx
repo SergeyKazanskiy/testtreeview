@@ -1,13 +1,13 @@
+import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
+import { months } from '@/src/constants/constants';
+import { widgetStyles } from '@/src/styles/appStyles';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack, useRouter } from 'expo-router';
 import React, { useCallback } from 'react';
 import { Platform, ScrollView, StyleSheet, Text } from 'react-native';
-import { CustomAlert } from '../../../../shared/components/CustomAlert';
-import { months } from '../../../../shared/constants';
-import { widgetStyles } from '../../../../shared/styles/appStyles';
 import { AttendanceReport } from '../EventsScreen/reports/AttendanceReport';
 import { useStore } from '../store';
 import { AddCompetitionAlert } from './alerts/AddCompetitionAlert';

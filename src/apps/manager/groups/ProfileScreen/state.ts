@@ -1,7 +1,6 @@
+import { get_last_test, get_student, get_student_attendance_percent, get_student_parents } from '../http';
+import { Attendance, Parent, Student, Test } from "../model";
 import { Store } from "../store";
-import { Student, Parent, Attendance, Test } from "../model";
-import { get_student, get_student_parents, get_last_test, get_student_attendance_percent } from '../http';
-import { objectToJson } from '../../../../shared/utils';
 
 
 export interface ProfileSlice {

@@ -1,6 +1,6 @@
+import { DatesBar } from '@/src/components/calendar/DatesBar';
 import { StyleSheet, View } from 'react-native';
 import { useStore } from '../../store';
-import { DatesBar } from '../../../../../shared/components/DatesBar';
 
 
 export function DatesView() {

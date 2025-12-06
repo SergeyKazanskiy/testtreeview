@@ -1,12 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { useFocusEffect } from '@react-navigation/native';
-import { StyleSheet, View, Text} from 'react-native';
-import { useStore } from '../../store';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ScreenWrapper } from '../../../../../shared/components/ScreenWrapper';
-import { AchievesWidget } from '../widgets/AchievesWidget';
+import React, { useCallback, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { get_group_achieves } from '../../http';
 import { Achieve } from '../../model';
+import { useStore } from '../../store';
+import { AchievesWidget } from '../widgets/AchievesWidget';
 
 
 export const AchievesReport = () => {
@@ -26,7 +26,7 @@ export const AchievesReport = () => {
   );
 
   return (
-    <ScreenWrapper visible={isAchievesScreen} title='Group Achievements' onClose={hideAchievesScreen}>
+    <PopupContainer visible={isAchievesScreen} title='Group Achievements' onClose={hideAchievesScreen}>
       <LinearGradient colors={['#2E4A7C', '#152B52']}>
         <View style={styles.container}>
           
@@ -39,7 +39,7 @@ export const AchievesReport = () => {
           </Text>
         </View>  
       </LinearGradient>
-    </ScreenWrapper>
+    </PopupContainer>
   )
 }
 

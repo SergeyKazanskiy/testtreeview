@@ -1,6 +1,6 @@
-import { Camp } from '../model';
+import { getCurrentMonth, getCurrentYear } from "@/src/utils/utils";
 import { get_camps } from '../http';
-import { objectToJson, getCurrentYear, getCurrentMonth } from "../../../../shared/utils";
+import { Camp } from '../model';
 
 
 export interface CampsSlice {

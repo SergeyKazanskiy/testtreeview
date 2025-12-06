@@ -1,9 +1,6 @@
-import { Test, Game, Metric } from "../model";
-import { get_last_test_date, get_last_game_date, get_student_tests, get_student_games } from '../http';
-import { update_student_tests_summary, update_student_games_summary } from '../http';
-import { GroupsSlice } from '../GroupsScreen/state';
-import { MeasureUnits } from '../../../../shared/constants';
-import { objectToJson, getYearAndMonth, formatSeconds, formatSecondsWithMilli } from '../../../../shared/utils';
+import { formatSeconds, formatSecondsWithMilli, getYearAndMonth } from '@/src/utils/utils';
+import { get_last_game_date, get_last_test_date, get_student_games, get_student_tests, update_student_games_summary, update_student_tests_summary } from '../http';
+import { Game, Metric, Test } from "../model";
 import { ProfileSlice } from "../ProfileScreen/state";
 import { StudentsSlice } from "../StudentsScreen/state";
 

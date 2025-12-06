@@ -1,6 +1,6 @@
+import { MetricTable } from '@/src/components/widgets/MetricTable';
 import { StyleSheet, View } from 'react-native';
 import { useStore } from '../../store';
-import { MetricTable } from '../../../../../shared/components/MetricTable';
 
 
 export function TableView() {

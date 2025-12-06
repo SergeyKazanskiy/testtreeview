@@ -1,6 +1,6 @@
-import { Camp, Group, Student } from '../model';
-import { get_camps, get_groups, get_students, create_group, delete_group } from '../http';
-import { objectToJson, sanitizeName } from '@/app/shared/utils';
+import { sanitizeName } from '@/src/utils/utils';
+import { create_group, get_camps, get_groups } from '../http';
+import { Camp, Group } from '../model';
 
 
 export interface GroupsSlice {

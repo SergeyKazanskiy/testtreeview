@@ -1,8 +1,7 @@
-import { StyleSheet, FlatList, TouchableOpacity, Text, View } from 'react-native';
-import { useRouter } from 'expo-router';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useStore } from '../../store';
-import { cellStyles } from '../../../../../shared/styles/appStyles'
   
+
 const CampProp: React.FC<{label: string, value: number}> = ({label, value}) => {
   return (
         <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
@@ -13,15 +12,17 @@ const CampProp: React.FC<{label: string, value: number}> = ({label, value}) => {
 };
 
 
-export function CampsView() {
+type Props = {
+  onCamp:() => void;
+};
+
+export function CampsView({ onCamp }: Props) {
   const { camps } = useStore();
   const { selectCamp } = useStore();
 
-  const router = useRouter();
-
   function handleSelect(camp_id: number, camp_inx: number) {
     selectCamp(camp_id, camp_inx);
-    router.push(`/dashboards/manager/events/EventsScreen`);
+    onCamp();
   }
 
   return (

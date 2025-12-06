@@ -1,10 +1,8 @@
-import { Event, CoachShort, Group, Schedule, Filters } from "../model";
-import { get_camp_groups, get_camp_events, get_camp_schedule, get_all_coaches } from '../http';
-import { change_group_schedule_coach, add_event, update_event, delete_event } from '../http';
-import { objectToJson, getChanges, isToday } from "../../../../shared/utils";
+import { eventTypes, weekDays } from '@/src/constants/constants';
+import { getChanges } from "@/src/utils/utils";
 import { CampsSlice } from "../CampsScreen/state";
-import { eventTypes, weekDays } from '../../../../shared/constants';
-import { EventSlice } from '../EventScreen/state';
+import { add_event, change_group_schedule_coach, delete_event, get_all_coaches, get_camp_events, get_camp_groups, get_camp_schedule, update_event } from '../http';
+import { CoachShort, Event, Filters, Group, Schedule } from "../model";
 
 
 export interface EventsSlice {
@@ -141,7 +139,7 @@ export const createEventsSlice = (set: any, get: any): EventsSlice => ({
             filterEvents(filters);
 
             if (events.length === 0) {
-                const { clearEvent }: EventSlice = get();
+                const { clearEvent } = get();
                 clearEvent();
             }
         });
