@@ -8,15 +8,20 @@ export function GroupEventsView() {
   const { group_events } = useStore();
 
   return (
-    <FlatList data={group_events} contentContainerStyle={{paddingBottom: 24}}
+    <FlatList
+      data={group_events}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{paddingBottom: 24}}
+      keyExtractor={item => item.id.toString()}
       renderItem={({ item }) =>
+
         <GroupEventCell key={item.id}
           type={item.type}  
           datetime={formatDateTime(item.timestamp).date + ', ' + formatDateTime(item.timestamp).time}
           desc={item.desc}
           amount={item.amound}
         />
-      } style={styles.list}
+      }
     />
   );
 }
@@ -29,6 +34,9 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     marginVertical: 3
   },
-  title: { color: '#ddd', fontWeight: '500', fontSize: 16 },
-  list: { borderRadius: 10 },
+  title: {
+    color: '#ddd',
+    fontWeight: '500',
+    fontSize: 16
+  },
 });

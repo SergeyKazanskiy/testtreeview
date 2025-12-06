@@ -26,7 +26,7 @@ export default function CoachLoginScreen({onLogin}: Props) {
   const [verificationId, setVerificationId] = useState<string | null>(null);
   const [isCode, setIsCode] = useState(false);
   
-  const role = process.env.APP_ROLE || "student";
+  const role = Constants.expoConfig?.extra?.appRole;
   const webRecaptcha = useRef<RecaptchaVerifier | null>(null);
 
   useEffect(() => {
@@ -66,7 +66,6 @@ export default function CoachLoginScreen({onLogin}: Props) {
       const userData = await signInWithCredential(auth, credential);
       const token = await userData.user.getIdToken(true);
 
-      const role = Constants.expoConfig?.extra?.appRole;
       const res = await fetch(`${API_BASE_URL}/user/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },

@@ -2,7 +2,7 @@ import { TesterCell } from '@/src/components/cells/TesterCell';
 import { MeasureUnits } from '@/src/constants/constants';
 import { formatSeconds, formatSecondsWithMilli } from '@/src/utils/utils';
 import React from "react";
-import { FlatList, ScrollView, StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import { Tester } from "../../model";
 import { useStore } from '../../store';
 
@@ -22,19 +22,21 @@ export const TestersView = () => {
   }
 
   return (
-    <ScrollView style={styles.container}>
-      <FlatList data={testers} 
-        keyExtractor={(index) => index.toString()}
-        renderItem={({ item }) =>
-          <TesterCell
-            checked={item.participate}
-            onCheck={() => onTesterCheck(item.id)}
-            name={`${item.first_name} ${item.last_name}`}
-            value={getValue(item, exam)}
-            onClick={() => onTesterClick(item.id)}
-          />
-        }/>
-    </ScrollView>
+    <FlatList
+      data={testers}
+      contentContainerStyle={{padding: 16}}
+      showsVerticalScrollIndicator={false}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item }) =>
+        
+        <TesterCell
+          checked={item.participate}
+          onCheck={() => onTesterCheck(item.id)}
+          name={`${item.first_name} ${item.last_name}`}
+          value={getValue(item, exam)}
+          onClick={() => onTesterClick(item.id)}
+        />
+      }/>
   );
 };
 

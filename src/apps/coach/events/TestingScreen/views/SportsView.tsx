@@ -11,13 +11,13 @@ export const SportsView = () => {
 
     return (
         <View style={styles.container} >
-            <FlatList 
-                data={exams} 
-                horizontal
+            <FlatList horizontal
+                data={exams}
                 keyExtractor={(item) => item}
                 contentContainerStyle={styles.section}
                 renderItem={({ item }) => {
                     const capitalizedItem = item.charAt(0).toUpperCase() + item.slice(1);
+                    
                     return (
                         <TouchableOpacity onPress={() => selectExam(item)}>
                             <Image style={[styles.image, item === exam && styles.examSelected]} 

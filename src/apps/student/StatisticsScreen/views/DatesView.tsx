@@ -1,4 +1,4 @@
-import { DatesBar } from '@/src/components/widgets/DatesBar';
+import { DatesBar } from '@/src/components/calendar/DatesBar';
 import { StyleSheet, View } from 'react-native';
 import { useStore } from '../../store';
 

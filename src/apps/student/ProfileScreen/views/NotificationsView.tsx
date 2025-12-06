@@ -6,9 +6,13 @@ export const NotificationsView = () => {
   const { notifications } = useStore();
 
   return (
-    <FlatList data={notifications} contentContainerStyle={{paddingBottom: 4}}
+    <FlatList
+      data={notifications}
+      contentContainerStyle={{paddingBottom: 4}}
+      showsVerticalScrollIndicator={false}
       keyExtractor={(item) => item}
       renderItem={({ item }) =>
+
         <Text style={styles.text}>{item}</Text> 
       } style={styles.list}
     />

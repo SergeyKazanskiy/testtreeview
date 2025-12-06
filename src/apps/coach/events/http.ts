@@ -11,7 +11,7 @@ export function get_coach_last_event(group_ids: number[], callback: (res: {year:
 
 export function get_coach_schedule(group_ids: number[], callback: (res: {schedules: Schedule[], events: Event[]}) => void) {
     const query = group_ids.map(id => `group_ids=${id}`).join("&");
-    return httpWrapper(() => api.get(`/camps/groups/schedule?${query}`), callback);
+    return httpWrapper(() => api.get(`camps/groups/schedule?${query}`), callback);
 };
 
 export function get_coach_events(year: number, month: number, week: number, group_ids: number[], callback: (events: Event[]) => void) {

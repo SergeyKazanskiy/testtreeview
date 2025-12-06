@@ -1,5 +1,5 @@
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
-import { PopupWrapper } from '@/src/components/containers/PopupWrapper';
+import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { widgetStyles } from '@/src/styles/appStyles';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -37,13 +37,13 @@ export default function EventsScreen({ onEvent }: EventsScreenProps) {
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
       <ButtonsView onPast={() => setIsPast(true)} onFuture={()=>setIsFuture(true)}/>
 
-      <PopupWrapper visible={isPast} title='History' onClose={() => setIsPast(false)}>
+      <PopupContainer visible={isPast} title='History' onClose={() => setIsPast(false)}>
         <HistoryScreen/>
-      </PopupWrapper>
+      </PopupContainer>
 
-      <PopupWrapper visible={isFuture} title='Competitions' onClose={() => setIsFuture(false)}>
+      <PopupContainer visible={isFuture} title='Competitions' onClose={() => setIsFuture(false)}>
         <CompetitionsScreen/>
-      </PopupWrapper>
+      </PopupContainer>
 
       <CustomAlert visible={isEventAddAlert} 
         title="Adding an event!"
@@ -56,23 +56,21 @@ export default function EventsScreen({ onEvent }: EventsScreenProps) {
 
       {schedule_days.length === 0 && <Text style={[widgetStyles.label, styles.title]}>No events</Text>}
       
-      {schedule_days.length > 0 && <ScrollView> 
-        {schedule_days.map(day => (
-          <EventsView key={day.day} day={day.day} weekday={day.weekday} onEvent={onEvent}/>
-        ))}
-      </ScrollView>}
+      {schedule_days.length > 0 &&
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 100}}> 
+          {schedule_days.map(day => (
+            <EventsView key={day.day} day={day.day} weekday={day.weekday} onEvent={onEvent}/>
+          ))}
+        </ScrollView>
+      }
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-    // flex: 1,
-    // alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-    // maxWidth: Platform.OS === 'web' ? 360 : undefined,
-    // width: '100%',
-    paddingHorizontal: 16,
     flex: 1,
+    paddingHorizontal: 16,
     height: '100%',
   },
   title: {   

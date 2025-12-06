@@ -49,22 +49,26 @@ export function EventsView({ onEvent, day, weekday }: EventsViewProps) {
           onPress={() => setExpanded(!expanded)}
         />
       {expanded &&
-          <FlatList data={dayEvents} contentContainerStyle={{paddingBottom: 24}}
-            keyExtractor={(item) => item.timestamp.toString()}
-            renderItem={({ item }) =>
-              <View style={item.id === 0 && { opacity: 0.6}}>
-                <CoachEventCell
-                  type={item.type}  
-                  time={formatDateTime(item.timestamp).time}
-                  desc={item.desc}
-                  group1={groups.find(el => el.id === item.group1_id)!}
-                  onGroup={(group_id, group_number) => handlePressGroup(item.id, group_id, item.timestamp, group_number)}
-                  group2={groups.find(el => el.id === item.group2_id)}
-                />
-              </View>
-            } style={styles.list}
-          />
-        }
+        <FlatList
+          data={dayEvents}
+          contentContainerStyle={{paddingBottom: 24}}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item.timestamp.toString()}
+          renderItem={({ item }) =>
+
+            <View style={item.id === 0 && { opacity: 0.6}}>
+              <CoachEventCell
+                type={item.type}  
+                time={formatDateTime(item.timestamp).time}
+                desc={item.desc}
+                group1={groups.find(el => el.id === item.group1_id)!}
+                onGroup={(group_id, group_number) => handlePressGroup(item.id, group_id, item.timestamp, group_number)}
+                group2={groups.find(el => el.id === item.group2_id)}
+              />
+            </View>
+          }
+        />
+      }
     </>
   );
 }
@@ -77,6 +81,9 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     marginVertical: 3
   },
-  title: { color: '#ddd', fontWeight: '500', fontSize: 16 },
-  list: { borderRadius: 10 },
+  title: {
+    color: '#ddd',
+    fontWeight: '500',
+    fontSize: 16
+  },
 });

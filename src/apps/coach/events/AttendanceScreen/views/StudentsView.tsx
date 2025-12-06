@@ -1,6 +1,6 @@
 import { StudentCell } from '@/src/components/cells/StudentCell';
 import React from "react";
-import { FlatList, ScrollView, StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import { useStore } from '../../store';
 
 
@@ -8,16 +8,17 @@ export const StudentsView = () => {
   const { students } = useStore();
     
   return (
-    <ScrollView style={styles.container}>
-        <FlatList data={students} 
-            keyExtractor={(index) => index.toString()}
-            renderItem={({ item }) =>
-              <StudentCell
-                first_name={item.first_name}
-                last_name={item.last_name}
-              />
-        }/>
-    </ScrollView>
+    <FlatList
+      data={students} 
+      showsVerticalScrollIndicator={false}
+      keyExtractor={(index) => index.toString()}
+      renderItem={({ item }) =>
+
+        <StudentCell
+          first_name={item.first_name}
+          last_name={item.last_name}
+        />
+    }/>
   );
 };
 

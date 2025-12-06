@@ -22,7 +22,7 @@ export const DrillCell: React.FC<Props> = ({name, actors, time, level, checked, 
           onPress={onCheck}
           checkedIcon="checkbox-outline"
           uncheckedIcon={'checkbox-blank-outline'}
-          containerStyle={{padding: 0, top: 0, backgroundColor: 'rgba(45, 75, 10, 0.3)'}}
+          containerStyle={{padding: 0, marginRight: 12, backgroundColor: 'rgba(45, 75, 10, 0.3)'}}
           checkedColor='#ddd'
         />
       </View>

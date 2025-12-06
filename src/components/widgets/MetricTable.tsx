@@ -26,9 +26,12 @@ export function MetricTable({ metricName, metrics, onClick }: Props) {
             <Text style={styles.tableCol}>Unit</Text>
         </View>
 
-        <FlatList data={metrics}
+        <FlatList
+            data={metrics}
+            showsVerticalScrollIndicator={false}
             keyExtractor={(item) => item.name}
-            renderItem={({ item }) => 
+            renderItem={({ item }) =>
+                
                 <TouchableOpacity style={item.name === metricName ? styles.selectedRow : styles.tableRow}
                     onPress={() => onClick(item.name)} >
 
@@ -37,7 +40,8 @@ export function MetricTable({ metricName, metrics, onClick }: Props) {
                     <Text style={styles.tableCol3}>{item.time}</Text>
                     <Text style={styles.tableCol3}>{item.unit}</Text>
                 </TouchableOpacity>
-            } style={styles.list} />
+            }
+        />
     </View>
   );
 };
@@ -90,8 +94,5 @@ const styles = StyleSheet.create({
         color: '#A7CFF5',
         flex: 1,
         textAlign: 'center',
-    },
-    list: {
-  
     },
 });

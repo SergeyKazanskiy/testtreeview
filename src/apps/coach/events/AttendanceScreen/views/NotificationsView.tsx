@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import { useStore } from '../../store';
 import { NotificationCell } from '../components/NotificationCell';
 
@@ -7,9 +7,13 @@ export const NotificationsView = () => {
   const { notifications } = useStore();
 
   return (
-    <FlatList data={notifications} contentContainerStyle={{paddingBottom: 4}}
+    <FlatList
+      data={notifications}
+      contentContainerStyle={{paddingBottom: 4}}
+      showsVerticalScrollIndicator={false}
       keyExtractor={(index) => index.toString()}
       renderItem={({ item }) =>
+        
       <NotificationCell 
           first_name={item.first_name}
           second_name={item.second_name}

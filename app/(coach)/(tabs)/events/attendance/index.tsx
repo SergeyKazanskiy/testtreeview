@@ -12,6 +12,7 @@ export default function AttendanceRoute() {
       onGame={() => router.push("/shared/gaming")}
       onTest={() => router.push('/(coach)/(tabs)/events/attendance/testing')}
       onGameReport={() => router.push('/shared/report')}
+      onDrill={() => router.push('/(coach)/(tabs)/events/attendance/drill')}
       onStudent={() => router.push('/(coach)/(tabs)/groups/(tabs)/profile')}
     />
   );

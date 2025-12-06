@@ -1,17 +1,20 @@
 import { CompetitionCell } from '@/src/components/cells/CompetitionCell';
 import { formatDateTime } from '@/src/utils/utils';
-import { FlatList, ScrollView, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import { useStore } from '../../store';
-
 
 
 export function CompetitionsView() {
   const { competitions, groups } = useStore();
 
   return (
-    <ScrollView>
-      <FlatList data={competitions} contentContainerStyle={{paddingBottom: 24}}
+      <FlatList
+        data={competitions}
+        contentContainerStyle={{paddingBottom: 24}}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={item => item.id.toString()}
         renderItem={({ item }) =>
+
           <CompetitionCell
             date={formatDateTime(item.timestamp).date}  
             time={formatDateTime(item.timestamp).time}
@@ -20,9 +23,8 @@ export function CompetitionsView() {
             onGroup={(group_id) => {}}
             group2={groups.find(el => el.id === item.group2_id)}
           />
-        } style={styles.list}
+        }
       />
-    </ScrollView>
   );
 }
 
@@ -34,6 +36,9 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     marginVertical: 3
   },
-  title: { color: '#ddd', fontWeight: '500', fontSize: 16 },
-  list: { borderRadius: 10 },
+  title: {
+    color: '#ddd',
+    fontWeight: '500',
+    fontSize: 16
+  },
 });

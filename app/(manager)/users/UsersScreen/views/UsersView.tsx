@@ -20,8 +20,10 @@ export function UsersView() {
 		<ScreenContainer>
 			<FlatList
 				data={users}
+				showsVerticalScrollIndicator={false}
 				keyExtractor={(item) => item.id.toString()}
 				renderItem={({ item }) =>
+					
 					<TouchableOpacity onPress={() => handleSelect(item.id)}>
 						<UserCell
 							isCheck={false}

@@ -8,8 +8,11 @@ export default function Index() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const isInsideGroupTabs = pathname.startsWith("/groups/profile") ||
-    pathname.startsWith("/groups/achieves") || pathname.startsWith("/groups/statistics");
+    const isInsideGroupTabs =
+    pathname.startsWith("/groups/profile") ||
+    pathname.startsWith("/groups/achieves") ||
+    pathname.startsWith("/groups/statistics") ||
+    pathname.startsWith("/events/attendance");
 
     if (isInsideGroupTabs) {
       setShowRootTabs(false);

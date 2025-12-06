@@ -2,7 +2,6 @@ import { CoachEventCell } from '@/src/components/cells/CoachEventCell';
 import { Icon } from '@/src/components/icons/CustomIcon';
 import { ListItem } from '@/src/components/widgets/CustomListItem';
 import { formatDateTime } from '@/src/utils/utils';
-import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import { useStore } from '../../store';
@@ -10,17 +9,11 @@ import { useStore } from '../../store';
 
 export function WeekEventsView({ day,  weekday }: {day: number, weekday: string}) {
   const [expanded, setExpanded] = useState(false);
-
   const { events, groups } = useStore();
- // const { selectEvent } = useStore();
-
+ 
   const dayEvents = events.filter(el => el.day === day);
 
-  const router = useRouter();
-
   function handlePress(event_id: number, group_id: number) {
-    //selectEvent(event_id, group_id);
-    //router.push(`/dashboards/coach/events`)
   }
 
   return (
@@ -38,8 +31,13 @@ export function WeekEventsView({ day,  weekday }: {day: number, weekday: string}
           onPress={() => setExpanded(!expanded)}
         />
       {expanded &&
-          <FlatList data={dayEvents} contentContainerStyle={{paddingBottom: 24}}
+          <FlatList
+            data={dayEvents}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{paddingBottom: 24}}
+            keyExtractor={item => item.id.toString()}
             renderItem={({ item }) =>
+
               <CoachEventCell key={item.id}
                 type={item.type}  
                 time={formatDateTime(item.timestamp).time}
@@ -48,7 +46,7 @@ export function WeekEventsView({ day,  weekday }: {day: number, weekday: string}
                 onGroup={(group_id) => handlePress(item.id, group_id)}
                 group2={groups.find(el => el.id === item.group2_id)}
               />
-            } style={styles.list}
+            }
           />
         }
     </>
@@ -63,6 +61,9 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     marginVertical: 3
   },
-  title: { color: '#ddd', fontWeight: '500', fontSize: 16 },
-  list: { borderRadius: 10 },
+  title: {
+    color: '#ddd',
+    fontWeight: '500',
+    fontSize: 16
+  },
 });

@@ -1,9 +1,8 @@
 import { useAuthStore } from '@/src/api/store';
 import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
-import { DinivreyHeader } from '@/src/components/widgets/DinivreyHeader';
 import { TabIconRenderProps } from '@/src/styles/types';
 import { Ionicons } from '@expo/vector-icons';
-import { router, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useRoutersState } from '../state';
 
@@ -31,7 +30,7 @@ export default function Layout() {
     <ScreenContainer>
       {showRootTabs && (
         <>
-          <DinivreyHeader title='Coach' onExit={()=>(router.replace('/'), logoutUser())}/>
+          {/* <DinivreyHeader title='Coach' onExit={()=>(router.replace('/'), logoutUser())}/> */}
           <Image style={[styles.image]} source={require('@/assets/images/DinivreyCompany.png')} />
           {/* <EventsRouter /> */}
         </>

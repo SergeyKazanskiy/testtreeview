@@ -11,10 +11,12 @@ interface Props {
 
 export function DatesBar({ timestamp, timestamps, onClick }: Props) {
   return (
-    <FlatList data={timestamps} horizontal
+    <FlatList horizontal
+      data={timestamps}
       contentContainerStyle={{ justifyContent: 'space-around', alignItems: 'center', flexGrow: 1}}
       keyExtractor={(item) => '№' + item}
       renderItem={({ item }) => 
+        
           <TouchableOpacity style={item === timestamp ? styles.selectedItem : styles.item}
               onPress={() => onClick(item)} >
 

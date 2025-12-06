@@ -36,8 +36,12 @@ export function DrillsView({ onDrill }: Props) {
         onPress={() => setExpanded(!expanded)}
       />
       {expanded &&
-        <FlatList data={eventDrills} contentContainerStyle={{paddingBottom: 24}}
+        <FlatList data={eventDrills}
+          contentContainerStyle={{paddingBottom: 24}}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item => item.id.toString()}
           renderItem={({ item }) =>
+
             <TouchableOpacity onPress={() => handleSelect(item.drill_id)}>
               <DrillCell
                 name={item.category + ' ' + item.name}

@@ -16,12 +16,13 @@ export const AchievesPanel: React.FC<Props> = ({ achieves, achieve_id, category,
 
     return (
         <View style={[ styles.section]}>
-            <FlatList data={data} 
-                horizontal
+            <FlatList horizontal
+                data={data} 
                 keyExtractor={(achieve) => achieve.image}
                 contentContainerStyle={{ justifyContent: 'flex-start', alignItems: 'center', flexGrow: 1}}
                 showsHorizontalScrollIndicator={true}
                 renderItem={({ item }) =>
+                    
                     <View style={ item.id === achieve_id && styles.selected }>
                         <AchieveIcon onClick={() => onClick(item.id)}
                             size={80}

@@ -1,7 +1,7 @@
 import { CommentCell } from '@/src/components/cells/CommentCell';
 import { months } from '@/src/constants/constants';
 import { getDayAndWeekday, getYearAndMonth } from '@/src/utils/utils';
-import { FlatList, ScrollView, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -13,19 +13,21 @@ export function CommentsView() {
 
     return getDayAndWeekday(timestamp).day + ' ' +  months[month - 1] + ' ' + year 
   }
+  
   return (
-    <ScrollView>
-      <FlatList data={comments} contentContainerStyle={{paddingBottom: 24}}
+      <FlatList
+        data={comments}
+        contentContainerStyle={{paddingBottom: 24}}
         keyExtractor={(index) => index.toString()}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => 
+
           <CommentCell
             date={getDate(item.timestamp)}  
             comment={item.comment}
           />
-        } style={styles.list}
+        }
       />
-    </ScrollView>
   );
 }
 
@@ -37,6 +39,9 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     marginVertical: 3
   },
-  title: { color: '#ddd', fontWeight: '500', fontSize: 16 },
-  list: { borderRadius: 10 },
+  title: {
+    color: '#ddd',
+    fontWeight: '500',
+    fontSize: 16
+  },
 });

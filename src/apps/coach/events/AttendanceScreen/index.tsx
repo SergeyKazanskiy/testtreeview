@@ -7,7 +7,6 @@ import { isFuture, isPast } from '@/src/utils/utils';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-//import { useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NotificationsView } from '../AttendanceScreen/views/NotificationsView';
@@ -24,10 +23,11 @@ interface Props {
   onTest: () => void;
   onGame: () => void;
   onGameReport: () => void;
+  onDrill: () => void;
   onStudent: () => void;
 }
   
-export default function AttendanceScreen({ onBack, onTest, onGame, onGameReport, onStudent }: Props) {
+export default function AttendanceScreen({ onBack, onTest, onGame, onGameReport, onDrill, onStudent }: Props) {
   const { isStudentsView, isAttendanceView, students, event_timestamp, isAllChecked, event_type, group_name } = useStore();
   const { studentsAmount, attendancesAmount, isSendingReport, isReportSent, wasReportSent, games, attendances} = useStore();
   const { isNotificationsModal, notifications } = useStore();
@@ -130,31 +130,34 @@ export default function AttendanceScreen({ onBack, onTest, onGame, onGameReport,
       />
 
       <ScrollView>
-        <DrillsView onDrill={()=>{}}/>
+        <DrillsView onDrill={onDrill}/>
 
         <View style={styles.container}>
-            <View style={styles.section}>
-              {isStudentsView && <Button disabled={students.length === 0} type='outline'
-                buttonStyle={styles.button} titleStyle={styles.title} containerStyle={{marginLeft: 2}}
-                onPress={handleAddBlank}>Add Blank</Button>}
-              {isAttendanceView && <Button size='sm' color="blue" type='outline'
-                buttonStyle={styles.button} titleStyle={styles.title} containerStyle={{marginLeft: 2}}
-                onPress={handleDeleteBlank}>Delete Blank</Button>}
+          <View style={styles.section}>
 
-              <View style={[styles.section, {marginRight: 11}]}>
-                {isAttendanceView && checkedStudents.length === 0 && <>
-                  <Text style={[styles.allSelect, {paddingTop: 4}]}>All select</Text>
+            <Button title={isStudentsView ? 'Add Blank' : 'Delete Blank'}
+              disabled={students.length === 0} 
+              type='outline' 
+              buttonStyle={styles.button}
+              titleStyle={styles.title}
+              containerStyle={{marginBottom: 4}}
+              onPress={isAttendanceView ? handleAddBlank : handleDeleteBlank}
+            />  
 
-                  <CheckBox checked={isAllChecked} onPress={setAllChecked}
-                    checkedIcon="checkbox-outline" uncheckedIcon={'checkbox-blank-outline'}
-                    containerStyle={{margin:0, padding: 0, backgroundColor: 'rgba(45, 75, 10, 0.3)'}} checkedColor='#ddd'
-                  />
-                </>}
-              </View>
+            <View style={[styles.section, {marginRight: 11}]}>
+              {isAttendanceView && checkedStudents.length === 0 && <>
+                <Text style={[styles.allSelect, {paddingTop: 4}]}>All select</Text>
+
+                <CheckBox checked={isAllChecked} onPress={setAllChecked}
+                  checkedIcon="checkbox-outline" uncheckedIcon={'checkbox-blank-outline'}
+                  containerStyle={{margin:0, padding: 0, backgroundColor: 'rgba(45, 75, 10, 0.3)'}} checkedColor='#ddd'
+                />
+              </>}
             </View>
-        
-            {isStudentsView && <StudentsView/>}
-            {isAttendanceView && <AttendanceView onStudent={onStudent}/>}
+          </View>
+      
+          {isStudentsView && <StudentsView/>}
+          {isAttendanceView && <AttendanceView onStudent={onStudent}/>}
         </View>
       </ScrollView>
 

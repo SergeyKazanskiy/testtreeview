@@ -63,7 +63,7 @@ export const Button: React.FC<ExpoButtonProps> = ({
             {children ? (
             children
             ) : (
-            <Text style={[{ color: type === 'outline' ? color : '#fff', fontSize: 16 }, titleStyle]}>
+            <Text style={[{ color: '#fff', fontSize: 16 }, titleStyle]}>
                 {title}
             </Text>
             )}

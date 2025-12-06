@@ -1,7 +1,7 @@
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { AttendanceCell } from '@/src/components/cells/AttendanceCell';
 import { useState } from "react";
-import { FlatList, ScrollView, StyleSheet, Text } from "react-native";
+import { FlatList, StyleSheet, Text } from "react-native";
 import { useStore as useStudentsStore } from '../../../groups/store';
 import { useStore } from '../../store';
 
@@ -33,21 +33,23 @@ export const AttendanceView = ({ onStudent }: Props) => {
         <Text style={{color:'#ddd'}}>It is not possible to change attendance in the past</Text>
       </CustomAlert>
 
-      <ScrollView style={styles.container}>
-        <FlatList data={attendances} 
-            keyExtractor={(index) => index.toString()}
-            renderItem={({ item, index }) =>
-              <AttendanceCell
-                first_name={item.first_name}
-                last_name={item.last_name}
-                checked={item.present}
-                onCheck={() => handleCheckStudent(item.id)}
-                comment={item.comment ?? ""}
-                onUpdate={(comment) => updateComment(item.id, comment)}
-                onSelect={()=>handleSelect(item.student_id)}
-              />
-        }/>
-    </ScrollView>
+      <FlatList
+        data={attendances} 
+        contentContainerStyle={{paddingBottom: 24}}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({ item }) =>
+
+          <AttendanceCell
+            first_name={item.first_name}
+            last_name={item.last_name}
+            checked={item.present}
+            onCheck={() => handleCheckStudent(item.id)}
+            comment={item.comment ?? ""}
+            onUpdate={(comment) => updateComment(item.id, comment)}
+            onSelect={()=>handleSelect(item.student_id)}
+          />
+      }/>
     </>
   );
 };

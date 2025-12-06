@@ -27,10 +27,13 @@ export const HeaderView = () => {
 
         <View style={styles.info}>
           <Text style={styles.title}>Hall of fame</Text>
-          <FlatList data={profile_achievements} horizontal
+
+          <FlatList horizontal
+            data={profile_achievements} 
             keyExtractor={(achieve) => achieve.image}
             contentContainerStyle={{ justifyContent: 'space-between', marginTop: 4}}
             renderItem={({ item }) =>
+              
               <AchieveIcon onClick={() => {}}
                   size={52}
                   image={item.image}
@@ -50,11 +53,13 @@ export const HeaderView = () => {
 
       <View style={{paddingHorizontal: 8, paddingBottom: 8, alignItems: 'center'}}>
         <Text style={styles.name}>Achievement Progress</Text>
+
         <View style={{width: '100%', flexDirection: 'row', justifyContent: 'space-around'}}>
           <Text style={styles.name}>{precent}%</Text>
           <Text style={styles.name}>{unlocked_length}/{all_achives_length}</Text>
           <Text style={styles.name}>Achievements</Text>
         </View>
+
         <ProgressBar percent={precent}/>
       </View>     
     </View>
