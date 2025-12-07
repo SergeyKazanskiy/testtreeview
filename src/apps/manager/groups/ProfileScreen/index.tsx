@@ -4,7 +4,6 @@ import { StatsIndicators } from '@/src/components/widgets/StatsIndicators';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import { Platform, ScrollView, StyleSheet, View } from 'react-native';
 import CommentsScreen from '../CommentsScreen';
@@ -16,11 +15,13 @@ import { ProfileView } from './views/ProfileView';
 import { RadarChart } from './views/RadarChart';
 
 
-export default function ProfileScreen() {
+type Props = {
+  onBack: () => void;
+};
+
+export default function ProfileScreen({ onBack }: Props) {
   const { isCommentsScreen, last_test, student_id } = useStore();
   const { loadStudent, showComments } = useStore();
-
-  const router = useRouter();
 
   useFocusEffect(
     useCallback(() => {
@@ -30,7 +31,7 @@ export default function ProfileScreen() {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-      <CustomNavbar title='Student' onClick={() => router.back()}>
+      <CustomNavbar title='Student' onClick={onBack}>
         <Ionicons name='clipboard-outline' size={20} color='#D1FF4D' style={{ marginRight: 8, marginTop: 0 }}
           onPress={()=>showComments(true)}
         />

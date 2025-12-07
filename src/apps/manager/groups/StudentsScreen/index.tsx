@@ -2,7 +2,7 @@ import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 import React, { useCallback } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { useStore } from '../store';
@@ -12,14 +12,14 @@ import { StudentsView } from './views/StudentsView';
 
 type Props = {
   onStudent: () => void;
+  onBack: () => void;
 };
 
-export default function StudentsScreen({ onStudent }: Props) {
+export default function StudentsScreen({ onStudent, onBack }: Props) {
   const { group_id, groups } = useStore();
   const { loadStudents, clearStudents, showAddAlert } = useStore();
 
   const group = groups.find(el => el.id === group_id)
-  const router = useRouter();
 
   useFocusEffect(
     useCallback(() => {
@@ -28,8 +28,7 @@ export default function StudentsScreen({ onStudent }: Props) {
   );
 
   function handleBack() {
-    //router.navigate('/dashboards/manager/groups/GroupScreen');
-    router.back();
+    onBack();
     clearStudents();
   }
 

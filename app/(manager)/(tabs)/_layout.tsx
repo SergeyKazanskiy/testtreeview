@@ -6,15 +6,18 @@ import { Ionicons } from '@expo/vector-icons';
 import { Tabs, useRouter } from 'expo-router';
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useRoutersState } from '../_state';
-//import { EventsRouter } from './events';
+
 
 function getIconsData(routeName: string) {
   let iconName: any;
   let label = '';
 
-  if (routeName === 'groups') {
+if (routeName === 'groups') {
     iconName = 'people';
     label = 'Groups';
+  } else if (routeName === 'coaches') {
+    iconName = 'person';
+    label = 'Coaches';
   } else {
     iconName = 'calendar-number-outline';
     label = 'Events';
@@ -32,9 +35,8 @@ export default function Layout() {
     <ScreenContainer>
       {showRootTabs && (
         <>
-          <DinivreyHeader title='Coach' onExit={()=>(router.replace('/'), logoutUser())}/>
+          <DinivreyHeader title='Manager' onExit={()=>(router.replace('/'), logoutUser())}/>
           <Image style={[styles.image]} source={require('@/assets/images/DinivreyCompany.png')} />
-          {/* <EventsRouter /> */}
         </>
       )}
       
@@ -53,7 +55,8 @@ export default function Layout() {
           }
         })}
       >
-        <Tabs.Screen name="groups" /> 
+        <Tabs.Screen name="groups" />
+        <Tabs.Screen name="coaches" />
         <Tabs.Screen name="events" />
       </Tabs>
     </ScreenContainer>

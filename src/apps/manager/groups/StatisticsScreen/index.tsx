@@ -4,7 +4,6 @@ import { screenStyles } from '@/src/styles/appStyles';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useStore } from '../store';
@@ -14,11 +13,13 @@ import { DatesView } from './views/DatesView';
 import { TableView } from './views/TableView';
 
 
-export default function StatisticsScreen() {
-  const { timestamp,  metricName, summary } = useStore();
-  const { loadStatistics, togleStatistic, setSummary } = useStore();
+type Props = {
+  onBack: () => void;
+};
 
-  const router = useRouter();
+export default function StatisticsScreen({ onBack }: Props) {
+  const { timestamp, summary } = useStore();
+  const { loadStatistics, togleStatistic, setSummary } = useStore();
 
   useFocusEffect(
     useCallback(() => {
@@ -35,7 +36,7 @@ export default function StatisticsScreen() {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-      <CustomNavbar title='Statistics' onClick={() => router.back()}>
+      <CustomNavbar title='Statistics' onClick={onBack}>
         <Pressable style={{ marginRight: 15 }} onPress={togleStatistic} >
           <Ionicons name='repeat-outline' size={21} color="#D1FF4D" />
         </Pressable>

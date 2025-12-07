@@ -1,51 +1,40 @@
-import { useAuthStore } from '@/src/api/store';
 import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
-import { DinivreyHeader } from '@/src/components/widgets/DinivreyHeader';
 import { TabIconRenderProps } from '@/src/styles/types';
 import { Ionicons } from '@expo/vector-icons';
-import { Tabs, useRouter } from 'expo-router';
-import { Image, StyleSheet, Text, View } from "react-native";
-import { useRoutersState } from '../_state';
-//import { EventsRouter } from './events';
+import { Tabs } from 'expo-router';
+import { StyleSheet, Text, View } from "react-native";
+
 
 function getIconsData(routeName: string) {
   let iconName: any;
   let label = '';
 
-  if (routeName === 'groups') {
-    iconName = 'people';
-    label = 'Groups';
+  if (routeName === 'profile') {
+    iconName = 'person-outline';
+    label = 'Profile';
+  }
+  else if (routeName === 'achieves') {
+    iconName = 'bookmark-outline';
+    label = 'Achievements';
   } else {
-    iconName = 'calendar-number-outline';
-    label = 'Events';
+    iconName = 'document-text-outline';
+    label = 'Statistics';
   }
 
   return { iconName, label };
 }
 
 export default function Layout() {
-  const { logoutUser } = useAuthStore();
-  const { showRootTabs } = useRoutersState();
-  const router = useRouter();
-
   return (
     <ScreenContainer>
-      {showRootTabs && (
-        <>
-          <DinivreyHeader title='Coach' onExit={()=>(router.replace('/'), logoutUser())}/>
-          <Image style={[styles.image]} source={require('@/assets/images/DinivreyCompany.png')} />
-          {/* <EventsRouter /> */}
-        </>
-      )}
-      
       <Tabs screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarStyle: showRootTabs ? styles.tabbar : { display: 'none' },
+          tabBarStyle: styles.tabbar,
           tabBarIcon: ({ focused }: TabIconRenderProps) => {
             const { iconName, label } = getIconsData(route.name);
             return (
-              <View style={{ alignItems: 'center', justifyContent: 'center'}}>
+              <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: 8 }}>
                 <Ionicons name={iconName} style={[styles.icon, focused && styles.focused]} />
                 <Text style={[styles.label, focused && styles.focused]}>{label}</Text>
               </View>
@@ -53,8 +42,9 @@ export default function Layout() {
           }
         })}
       >
-        <Tabs.Screen name="groups" /> 
-        <Tabs.Screen name="events" />
+        <Tabs.Screen name="profile" />
+        <Tabs.Screen name="achieves" /> 
+        <Tabs.Screen name="statistics" />
       </Tabs>
     </ScreenContainer>
   );

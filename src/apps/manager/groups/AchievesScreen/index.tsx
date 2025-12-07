@@ -4,18 +4,21 @@ import { screenStyles } from '@/src/styles/appStyles';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Platform, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
 import { useStore } from '../store';
 import { AchievesSection } from './views/AchievesSection';
 
 
-export const AchievesScreen = () => {
+type Props = {
+  onBack: () => void;
+};
+
+export const AchievesScreen = ({ onBack }: Props) => {
   const { achievement_id, student } = useStore();
   const { loadStudentAchieves, detachAchieve, setAchievesSummary } = useStore();
  // alert(student.summary_achievements + "fff")
-  const router = useRouter();
+  //const router = useRouter();
 
   useFocusEffect(
     useCallback(() => {
@@ -28,7 +31,7 @@ export const AchievesScreen = () => {
   
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-      <CustomNavbar title='Achievements' onClick={() => router.back()}>
+      <CustomNavbar title='Achievements' onClick={onBack}>
         <Ionicons name='trash-outline' size={20} color={achievement_id === 0 ? 'gray' :'#D1FF4D'}
           onPress={detachAchieve}
         />
