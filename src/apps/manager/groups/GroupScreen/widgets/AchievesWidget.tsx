@@ -18,11 +18,13 @@ export const AchievesWidget: React.FC<Props> = ({ title, achieves, category }) =
             <Text style={styles.title}>{title}</Text>
 
             <View style={[ styles.container]}>
-                <FlatList data={data} horizontal
+                <FlatList horizontal
+                    data={data} 
                     keyExtractor={(achieve) => achieve.image}
                     contentContainerStyle={styles.content}
                     showsHorizontalScrollIndicator={true}
                     renderItem={({ item }) =>
+
                         <AchieveIcon onClick={() => {}}
                             size={80}
                             image={item.image}

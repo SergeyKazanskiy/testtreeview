@@ -12,8 +12,8 @@ export function DeleteGroupAlert() {
       title="Attention! Really remove?"
       buttonText='Delete'
       handleYes={removeGroup}
-      onClose={hideGroupDeleteAlert}>
-
+      onClose={hideGroupDeleteAlert}
+    >
       <Text style={styles.text}>Removing group will delete schedule with this group.</Text>
     </CustomAlert>
   )

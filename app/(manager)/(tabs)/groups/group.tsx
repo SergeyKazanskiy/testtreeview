@@ -3,12 +3,11 @@ import { useRouter } from "expo-router";
 import React from "react";
 
 
-
 export default function GroupRoute() {
   const router = useRouter();
 
   return <GroupScreen
-    onStudents={() => router.push()}
+    onStudents={() => router.push('/(manager)/(tabs)/groups/students')}
     onBack={() => router.back()}
   />;
 }

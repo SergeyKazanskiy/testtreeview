@@ -11,21 +11,29 @@ export type Props = {
 
 export const AchievesModal: React.FC<Props> = ({ achieves, onClick }) => {  
     return (
-        <View style={styles.section}>
-            {achieves.length === 0 && <Text style={styles.emptyLabel}>No achievements</Text>}
-            {achieves.length > 0 && <ScrollView contentContainerStyle={styles.container}>
-                {achieves.map((item, index) => (
-                    
-                    <AchieveIcon onClick={() => onClick(item.id)} key={index}
-                        size={80}
-                        image={item.image}
-                        label={item.name}
-                        level={1}
-                        isAnimate={false}
-                    />
-                ))}
-                </ScrollView>}
-        </View>
+      <View style={styles.section}>
+
+        {achieves.length === 0 ?
+          <Text style={styles.emptyLabel}>No achievements</Text>
+          :
+          <ScrollView
+            contentContainerStyle={styles.container}
+            showsVerticalScrollIndicator={false}
+          >
+            {achieves.map((item) => (
+              <AchieveIcon
+                key={item.id}
+                onClick={() => onClick(item.id)} 
+                size={80}
+                image={item.image}
+                label={item.name}
+                level={1}
+                isAnimate={false}
+              />
+            ))}
+          </ScrollView>
+        }
+      </View>
     );
 };
 

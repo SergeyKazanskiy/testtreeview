@@ -11,8 +11,7 @@ export const SignatureView = () => {
 
   // Save callback for mobile
   const handleOK = (sig: string) => {
-    // sig is already Base64
-    saveSignature(sig);
+    saveSignature(sig); // sig is already Base64
   };
 
   // Clear callback
@@ -76,7 +75,6 @@ const STYLES_FOR_WEBVIEW = `
     height: 100% !important;
   }
 `;
-
 
 
 const styles = StyleSheet.create({

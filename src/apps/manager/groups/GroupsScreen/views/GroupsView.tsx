@@ -22,13 +22,16 @@ export function GroupsView({ onGroup }: Props) {
       <FlatList
         data={groups}
         contentContainerStyle={{paddingBottom: 24}}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item, index }) =>
 
-          <TouchableOpacity key={item.id} style={styles.group}
-              onPress={() => handleSelect(item.id, index)}>
-
-              <Text style={styles.title}>{item.name}</Text>
-              <Text style={styles.description}>{item.description}</Text>
+          <TouchableOpacity
+            style={styles.group}
+            onPress={() => handleSelect(item.id, index)}
+          >
+            <Text style={styles.title}>{item.name}</Text>
+            <Text style={styles.description}>{item.description}</Text>
           </TouchableOpacity>
         } style={styles.list}
       />

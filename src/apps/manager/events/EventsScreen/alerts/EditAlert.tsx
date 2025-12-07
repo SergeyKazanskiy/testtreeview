@@ -1,4 +1,4 @@
-import { View, Modal, TouchableWithoutFeedback, StyleSheet, Platform, Text } from 'react-native';
+import { Modal, Platform, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 
 
 interface Props {
@@ -10,18 +10,17 @@ interface Props {
 
 export const EditAlert: React.FC<Props> = ({ isOpen, onEdit, onDelete, onClose }) => {
   return (
-      <Modal transparent visible={isOpen} animationType="fade" onRequestClose={onClose}>
-        <TouchableWithoutFeedback onPress={onClose}>
-          <View style={[styles.backdrop, styles.wrapper, Platform.OS === 'web' && styles.webWrapper]}>
+    <Modal transparent visible={isOpen} animationType="fade" onRequestClose={onClose}>
+      <TouchableWithoutFeedback onPress={onClose}>
+        <View style={[styles.backdrop, styles.wrapper, Platform.OS === 'web' && styles.webWrapper]}>
 
-
-            <View style={[ styles.popover, { top: 56, right: 16 }]}>
-              <Text style={styles.menuText} onPress={onEdit}>Update event</Text>
-              <Text style={styles.menuText} onPress={onDelete}>Delete event</Text>
-            </View>
+          <View style={[ styles.popover, { top: 56, right: 16 }]}>
+            <Text style={styles.menuText} onPress={onEdit}>Update event</Text>
+            <Text style={styles.menuText} onPress={onDelete}>Delete event</Text>
           </View>
-        </TouchableWithoutFeedback>
-      </Modal>
+        </View>
+      </TouchableWithoutFeedback>
+    </Modal>
   );
 };
 

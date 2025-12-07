@@ -7,6 +7,6 @@ export default function GroupsRoute() {
   const router = useRouter();
   
   return (
-     <GroupsScreen onGroup={() => router.push('/(coach)/(tabs)/groups/(tabs)/profile')}/>
+     <GroupsScreen onGroup={() => router.push('/(manager)/(tabs)/groups/group')}/>
   );
 }

@@ -12,15 +12,20 @@ export function CoachesScreen() {
   return (
      <PopupContainer visible={isCoachesView} title='Select other coach' onClose={hideCoachesView}>
       <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-          <FlatList data={coaches}
-            renderItem={({ item }) =>
+          
+          <FlatList
+            data={coaches}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+
               <CoachCell
                 first_name={item.first_name}
                 last_name={item.last_name}
                 camp_name={item.camp_name}
                 onSelect={() => selectNewCoach(item.id)}
               />
-            } style={styles.list}
+            )} style={styles.list}
           />
       </LinearGradient>
       </PopupContainer>

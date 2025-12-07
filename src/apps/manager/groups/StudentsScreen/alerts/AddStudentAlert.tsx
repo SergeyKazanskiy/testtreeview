@@ -64,49 +64,48 @@ export const AddStudentAlert: React.FC = () => {
       buttonText='Save'
       handleYes={handleSave}
       onClose={hideAddAlert}>
-          <View style={styles.content}>
-            <View style={styles.imageBlock}>
-              <TouchableOpacity onPress={handlePickImage}>
-                <Image source={{ uri: imageUri ||
-                  `${BACKEND_APP_IMAGES_URL}/photos/${StudentsIcons[gender as keyof typeof StudentsIcons]} `}}
-                  style={styles.avatar}
-                />
-              </TouchableOpacity>
-              {/* <Text style={styles.imageHint}>Tap image to select</Text> */}
-
-              <View style={styles.genderButtons}>
-                {Genders.map((g) => (
-                  <TouchableOpacity key={g} style={[styles.genderButton, gender === g && styles.genderSelected]}
-                    onPress={() => setGender(g)}
-                  >
-                    <Text style={styles.genderText}>{g}</Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            </View>
-
-            <View style={styles.inputBlock}>
-              <TextInput style={styles.input}
-                placeholder="First name"
-                value={firstName}
-                onChangeText={setFirstName}
+        <View style={styles.content}>
+          <View style={styles.imageBlock}>
+            <TouchableOpacity onPress={handlePickImage}>
+              <Image source={{ uri: imageUri ||
+                `${BACKEND_APP_IMAGES_URL}/photos/${StudentsIcons[gender as keyof typeof StudentsIcons]} `}}
+                style={styles.avatar}
               />
-              <TextInput style={styles.input}
-                placeholder="Last name"
-                value={lastName}
-                onChangeText={setLastName}
-              />
-              <View style={styles.ageRow}>
-                <Text style={styles.ageLabel}>Age:</Text>
-                <TextInput style={styles.ageInput}
-                  keyboardType="numeric"
-                  value={age.toString()}
-                  onChangeText={(text) => setAge(Number(text))}
-                  maxLength={2}
-                />
-              </View>
+            </TouchableOpacity>
+
+            <View style={styles.genderButtons}>
+              {Genders.map((g) => (
+                <TouchableOpacity key={g} style={[styles.genderButton, gender === g && styles.genderSelected]}
+                  onPress={() => setGender(g)}
+                >
+                  <Text style={styles.genderText}>{g}</Text>
+                </TouchableOpacity>
+              ))}
             </View>
           </View>
+
+          <View style={styles.inputBlock}>
+            <TextInput style={styles.input}
+              placeholder="First name"
+              value={firstName}
+              onChangeText={setFirstName}
+            />
+            <TextInput style={styles.input}
+              placeholder="Last name"
+              value={lastName}
+              onChangeText={setLastName}
+            />
+            <View style={styles.ageRow}>
+              <Text style={styles.ageLabel}>Age:</Text>
+              <TextInput style={styles.ageInput}
+                keyboardType="numeric"
+                value={age.toString()}
+                onChangeText={(text) => setAge(Number(text))}
+                maxLength={2}
+              />
+            </View>
+          </View>
+        </View>
       </CustomAlert>
   );
 };

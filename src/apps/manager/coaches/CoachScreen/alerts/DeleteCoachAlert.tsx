@@ -2,6 +2,7 @@ import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { StyleSheet, Text } from 'react-native';
 import { useStore } from '../../store';
 
+
 interface Props {
   onDelete: () => void;
 }

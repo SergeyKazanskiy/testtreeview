@@ -9,11 +9,11 @@ export function TableView() {
 
   return (
     <View style={styles.container}>
-        <MetricTable
-          metricName={metricName}
-          metrics={metrics.filter(el => el.timestamp === timestamp)}
-          onClick={selectMetric}
-        />
+      <MetricTable
+        metricName={metricName}
+        metrics={metrics.filter(el => el.timestamp === timestamp)}
+        onClick={selectMetric}
+      />
     </View>
   );
 };

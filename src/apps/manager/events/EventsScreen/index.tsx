@@ -5,7 +5,7 @@ import { widgetStyles } from '@/src/styles/appStyles';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 import React, { useCallback } from 'react';
 import { Platform, ScrollView, StyleSheet, Text } from 'react-native';
 import { AttendanceReport } from '../EventsScreen/reports/AttendanceReport';
@@ -19,13 +19,15 @@ import { FilterView } from './views/FilterView';
 import { SchedulesView } from './views/SchedulesView';
 
 
-export default function EventsScreen() {
+type Props = {
+  onBack: () => void;
+};
+
+export default function EventsScreen({ onBack }: Props) {
   const { days, camp_id, year, month, camps, camp_inx, event_id } = useStore();
   const { isSchedulesView, isEditAlert, isAddingErrorAlert} = useStore();
   const { loadGroups, loadEvents, loadShedules, setToday, hideAddingErrorAlert } = useStore();
-  const { showEditAlert, hideEditAlert, showAddAlert, showDeleteAlert, hideAttendanceReport } = useStore();
-
-  const router = useRouter();
+  const { showEditAlert, hideEditAlert, showAddAlert, showDeleteAlert } = useStore();
 
   useFocusEffect(
     useCallback(() => {
@@ -47,7 +49,7 @@ export default function EventsScreen() {
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper}>
       <Stack.Screen options={{ headerShown: false }} />
 
-      <CustomNavbar title={title} onClick={() => router.back()}>
+      <CustomNavbar title={title} onClick={onBack}>
         {!isSchedulesView && event_id > 0 &&
           <Ionicons name='menu-outline' size={21} color="#D1FF4D" onPress={showEditAlert}/>}
         {!isSchedulesView && event_id === 0 &&
@@ -55,10 +57,13 @@ export default function EventsScreen() {
       </CustomNavbar>
 
       <EditAlert isOpen={isEditAlert} onEdit={showAddAlert} onDelete={showDeleteAlert} onClose={hideEditAlert}/>
+      
       <AddCompetitionAlert/>
+      
       <CustomAlert visible={isAddingErrorAlert} title="Attention!" onClose={() => hideAddingErrorAlert()}>
         <Text style={styles.alertText}>Unable to create event in the past</Text>
       </CustomAlert>
+      
       <DeleteEventAlert/>
 
       <FilterView/>
@@ -68,7 +73,10 @@ export default function EventsScreen() {
           {days.length === 0 && <Text style={[widgetStyles.label, styles.title]}>No events</Text>}
           
           {days.length > 0 &&
-          <ScrollView> 
+          <ScrollView
+            contentContainerStyle={{paddingBottom: 200}}
+            showsVerticalScrollIndicator={false}
+          > 
             {days.map(day => (
               <SchedulesView key={day.day} day={day.day} weekday={day.weekday}/>
             ))}

@@ -26,9 +26,9 @@ export default function Index() {
         case "coach":
           router.replace("/(coach)");
           break;
-        // case "manager":
-        //   router.replace("/(manager)");
-        //   break;
+        case "manager":
+          router.replace("/(manager)");
+          break;
         default:
           router.replace("/(student)");
       }

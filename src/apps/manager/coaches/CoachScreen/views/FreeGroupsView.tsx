@@ -10,21 +10,25 @@ export function FreeGroupsView() {
     const { addGroup, closeFreeGroups } = useStore();
 
     return (
-        <PopupContainer visible={isFreeGroups} title='Select group' onClose={closeFreeGroups}>
-            <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-          
-                    <FlatList data={freeGroups}
-                        renderItem={({ item }) =>
-                            <TouchableOpacity key={item.id} style={styles.group}
-                                onPress={() => addGroup(item.id)}>
-                    
-                                <Text style={styles.title}>{item.camp_name}, {item.name}</Text>
-                                <Text style={cellStyles.description}>{item.desc}</Text>
-                            </TouchableOpacity>
-                        } style={styles.list}
-                    />  
-            </LinearGradient>
-        </PopupContainer>
+      <PopupContainer visible={isFreeGroups} title='Select group' onClose={closeFreeGroups}>
+        <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
+      
+          <FlatList
+            data={freeGroups}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) =>
+
+              <TouchableOpacity key={item.id} style={styles.group}
+                  onPress={() => addGroup(item.id)}>
+      
+                  <Text style={styles.title}>{item.camp_name}, {item.name}</Text>
+                  <Text style={cellStyles.description}>{item.desc}</Text>
+              </TouchableOpacity>
+            } style={styles.list}
+          />  
+        </LinearGradient>
+      </PopupContainer>
     );
 }
 

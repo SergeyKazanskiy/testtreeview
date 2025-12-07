@@ -10,9 +10,15 @@ export function GroupsView() {
 
   return (
     <View style={styles.container}>
-      <FlatList data={coachGroups} contentContainerStyle={{paddingBottom: 24}}
-          renderItem={({ item, index }) =>
-          <TouchableOpacity key={item.id} style={[styles.group, item.id === coach_group_id && styles.selected ]}
+      <FlatList
+        data={coachGroups}
+        contentContainerStyle={{paddingBottom: 24}}
+        keyExtractor={(item) => item.id.toString()}
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item, index }) =>
+
+          <TouchableOpacity
+            style={[styles.group, item.id === coach_group_id && styles.selected ]}
             onPress={() => selectGroup(item.id)}>
 
               <Text style={styles.title}>{item.name}</Text>
@@ -20,6 +26,7 @@ export function GroupsView() {
           </TouchableOpacity>
         } style={styles.list}
       />
+      
       <Pressable onPress={loadFreeGroups} style={{ marginLeft: 8}}>
           <Ionicons name='add-circle-outline' size={26} color='rgb(180, 216, 158)' />
       </Pressable>

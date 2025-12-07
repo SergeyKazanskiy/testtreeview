@@ -3,7 +3,7 @@ import { DrillCell } from '@/src/components/cells/DrillCell';
 import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback, useState } from "react";
-import { FlatList, ScrollView, StyleSheet, Text } from "react-native";
+import { ScrollView, StyleSheet, Text } from "react-native";
 import { get_attendances, get_event_drills } from '../../http';
 import { Attendance, ShortDrill } from '../../model';
 import { useStore } from '../../store';
@@ -31,37 +31,37 @@ export const AttendanceReport = () => {
 
   return (
     <PopupContainer visible={isAttendanceReport} title='Attendance report' onClose={hideAttendanceReport}>
-      <ScrollView style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={{paddingBottom: 100}}
+        showsVerticalScrollIndicator={false}
+      >
         <Text style={styles.title}>Drills</Text>
-
-        <FlatList data={drills}
-          contentContainerStyle={{paddingBottom: 24}}
-          keyExtractor={(index) => index.toString()}
-          renderItem={({ item }) =>
-              <DrillCell
-                name={item.category + ' ' + item.name}
-                time={item.time}
-                level={item.level}
-                actors={item.actors}
-                checked={item.completed}
-                onCheck={() => {}}
-              />
-        }/>
+        {drills.map((item) => (
+          <DrillCell
+            key={item.id}
+            name={item.category + ' ' + item.name}
+            time={item.time}
+            level={item.level}
+            actors={item.actors}
+            checked={item.completed}
+            onCheck={() => {}}
+          />
+        ))}
 
         <Text style={styles.title}>Students</Text>
-        <FlatList data={attendances} 
-            keyExtractor={(index) => index.toString()}
-            renderItem={({ item, index }) =>
-              <AttendanceCell
-                first_name={item.first_name}
-                last_name={item.last_name}
-                checked={item.present}
-                onCheck={() => {}}
-                comment={item.comment ?? ""}
-                onUpdate={() => {}}
-                onSelect={()=>{}}
-              />
-        }/>
+        {attendances.map((item) => (
+          <AttendanceCell
+            key={item.id}
+            first_name={item.first_name}
+            last_name={item.last_name}
+            checked={item.present}
+            onCheck={() => {}}
+            comment={item.comment ?? ""}
+            onUpdate={() => {}}
+            onSelect={()=>{}}
+          />
+        ))}
       </ScrollView>
     </PopupContainer>
   );

@@ -9,11 +9,11 @@ export function DatesView() {
 
   return (
     <View style={styles.container}>
-        <DatesBar
-          timestamp={timestamp}
-          timestamps={timestamps}
-          onClick={selectTimestamp}
-        />
+      <DatesBar
+        timestamp={timestamp}
+        timestamps={timestamps}
+        onClick={selectTimestamp}
+      />
     </View>
   );
 };

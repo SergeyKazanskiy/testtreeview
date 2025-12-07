@@ -9,8 +9,7 @@ export default function Index() {
 
   useEffect(() => {
     const isInsideGroupTabs =
-    pathname.startsWith("/groups/group") ||
-    pathname.startsWith("/groups/students");
+    pathname.startsWith("/coaches/coach");
 
     if (isInsideGroupTabs) {
       setShowRootTabs(false);

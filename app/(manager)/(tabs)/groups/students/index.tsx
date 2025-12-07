@@ -3,12 +3,11 @@ import { useRouter } from "expo-router";
 import React from "react";
 
 
-
-export default function DrillRoute() {
+export default function StudentsRoute() {
   const router = useRouter();
 
   return <StudentsScreen
-  onStudent={() => router.push()}
+  onStudent={() => router.push('/(manager)/(tabs)/groups/students/(tabs)/profile')}
     onBack={() => router.back()}
   />;
 }

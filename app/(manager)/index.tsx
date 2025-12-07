@@ -3,7 +3,7 @@ import { Slot, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 
 
-export default function CoachLayout() {
+export default function ManagerLayout() {
   const { isLogin } = useAuthStore();
   const router = useRouter()
 

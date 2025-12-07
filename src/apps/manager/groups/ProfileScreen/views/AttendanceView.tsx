@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useStore } from "../../store";
 
 
@@ -10,10 +10,6 @@ export const AttendanceView: React.FC = () => {
     <>
     <View style={styles.header}>
       <Text style={styles.title}>Attendance</Text>
-      {/* <Button title='Comments' type='outline' 
-        buttonStyle={styles.button} titleStyle={styles.label}
-        onPress={()=>showComments(true)}
-      /> */}
     </View>
 
     <View style={[styles.container, styles.section]}>

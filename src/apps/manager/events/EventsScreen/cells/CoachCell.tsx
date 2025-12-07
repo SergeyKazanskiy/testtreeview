@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 
 export type Props = {
@@ -15,6 +15,7 @@ export const CoachCell: React.FC<Props> = ({first_name, last_name, camp_name, on
       <Text style={[styles.text]}>
         {first_name} {last_name}
       </Text>
+      
       <Text style={[styles.camp]}>
         {camp_name}
       </Text>

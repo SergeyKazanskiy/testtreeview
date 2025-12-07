@@ -15,7 +15,8 @@ export function CampsView() {
       <FlatList data={camps} 
         horizontal
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item, index }) => 
+        renderItem={({ item, index }) =>
+          
           <Button key={item.id.toString()}
               size='sm'
               title={item.name}

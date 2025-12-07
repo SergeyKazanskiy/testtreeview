@@ -21,10 +21,13 @@ export function EventsView() {
 
   return (
     <>
-      <FlatList data={filtredEvents}
-        contentContainerStyle={{ paddingBottom: 300 }}
+      <FlatList
+        data={filtredEvents}
+        contentContainerStyle={{ paddingBottom: 200 }}
+        showsVerticalScrollIndicator={false}
         keyExtractor={(index) => index.toString()}
-        renderItem={({ item }) =>
+        renderItem={({ item }) => (
+
           <TouchableOpacity style={[
             item.id === event_id && {backgroundColor: '#152B52'},
             item.timestamp < today && {opacity: 0.7},
@@ -42,7 +45,7 @@ export function EventsView() {
               group2={groups.find(el => el.id === item.group2_id)}
             />
           </TouchableOpacity>
-        } style={styles.list}
+        )} style={styles.list}
       />
       <View style={styles.types}>
         <TypesView/>

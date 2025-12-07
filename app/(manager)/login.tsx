@@ -5,9 +5,9 @@ import React from 'react';
 
 export default function LoginRoute() {
   const router = useRouter();
-
+  
   function login() {
-    router.replace("/(coach)/(tabs)/groups");
+    router.replace("/(manager)/(tabs)/groups");
   }
   return <LoginScreen onLogin={login}/>;
 }

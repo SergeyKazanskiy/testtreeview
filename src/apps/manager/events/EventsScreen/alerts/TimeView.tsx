@@ -15,6 +15,7 @@ export const TimeView: React.FC<Props> = ({ hour, minute, setHour, setMinute }) 
       <Text style={styles.title}>Hours</Text>
       <View style={styles.grid}>
         {Array.from({ length: 12 }, (_, i) => i + 8).map((h) => (
+
           <Button key={h}
             title={h.toString()}
             type={hour === h ? 'solid' : 'outline'}
@@ -28,6 +29,7 @@ export const TimeView: React.FC<Props> = ({ hour, minute, setHour, setMinute }) 
       <Text style={styles.title}>Minutes</Text>
       <View style={styles.grid}>
         {Array.from({ length: 60 }, (_, i) => i).filter(m => m % 5 === 0).map((m) => (
+          
             <Button key={m}
               title={m.toString()}
               type={minute === m ? 'solid' : 'outline'}

@@ -2,7 +2,7 @@ import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 import React, { useCallback } from 'react';
 import { Platform, Pressable, StyleSheet } from 'react-native';
 import { useStore } from '../store';
@@ -15,11 +15,13 @@ import { ProfileView } from './views/ProfileView';
 import { SignatureView } from './views/SignatureView';
 
 
-export default function CoachScreen() {
+type Props = {
+  onBack: () => void;
+};
+
+export default function CoachScreen({ onBack }: Props) {
   const { coach_id, isSignature } = useStore();
   const { loadCoach, showDeleteAlert } = useStore();
-
-  const router = useRouter();
 
   useFocusEffect(
     useCallback(() => {
@@ -31,13 +33,13 @@ export default function CoachScreen() {
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper}>
       <Stack.Screen options={{ headerShown: false }} />
 
-      <CustomNavbar title='Profile' onClick={() => router.back()}>
+      <CustomNavbar title='Profile' onClick={() => onBack()}>
         <Pressable onPress={showDeleteAlert} style={{ marginRight: 4}}>
           <Ionicons name='trash-outline' size={20} color="rgb(180, 216, 158)" />
         </Pressable>
       </CustomNavbar>
 
-      <DeleteCoachAlert onDelete={() => router.back()}/>
+      <DeleteCoachAlert onDelete={() => onBack()}/>
       <DeleteGroupAlert/>
 
       <ProfileView/>

@@ -4,10 +4,10 @@ import { useStore } from '../../store';
 
 const CampProp: React.FC<{label: string, value: number}> = ({label, value}) => {
   return (
-        <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-            <Text style={styles.label}>{label}</Text>
-            <Text style={[styles.value, {paddingHorizontal: 8}]}>{value}</Text>
-        </View>
+    <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
+      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.value, {paddingHorizontal: 8}]}>{value}</Text>
+    </View>
   );
 };
 
@@ -26,16 +26,23 @@ export function CampsView({ onCamp }: Props) {
   }
 
   return (
-    <FlatList data={camps} contentContainerStyle={{paddingBottom: 24}}
-        renderItem={({ item, index }) =>
-        <TouchableOpacity key={item.id} style={styles.group}
-            onPress={() => handleSelect(item.id, index)}>
-            <Text style={styles.title}>{item.name}</Text>
+    <FlatList
+      data={camps}
+      contentContainerStyle={{paddingBottom: 24}}
+      showsVerticalScrollIndicator={false}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item, index }) =>
 
-            <View style={styles.sections}>
-                <CampProp label='Groups:' value={item.groups}/>
-                <CampProp label='Number of all students:' value={item.students}/>
-            </View>
+        <TouchableOpacity
+          style={styles.group}
+          onPress={() => handleSelect(item.id, index)}
+        >
+          <Text style={styles.title}>{item.name}</Text>
+
+          <View style={styles.sections}>
+              <CampProp label='Groups:' value={item.groups}/>
+              <CampProp label='Number of all students:' value={item.students}/>
+          </View>
         </TouchableOpacity>
       } style={styles.list}
     />

@@ -13,11 +13,12 @@ export function MakePhotoAlert({ onDelete }: Props) {
 
   return (
     <CustomAlert visible={isDeleteAlert} 
-        title="Attention! Really delete?"
-        buttonText='Delete'
-        handleYes={() => (deleteCoach(coach_id), onDelete())}
-        onClose={hideDeleteAlert}>
-            <Text style={styles.text}>All coach data will be deleted.</Text>
+      title="Attention! Really delete?"
+      buttonText='Delete'
+      handleYes={() => (deleteCoach(coach_id), onDelete())}
+      onClose={hideDeleteAlert}
+    >
+      <Text style={styles.text}>All coach data will be deleted.</Text>
     </CustomAlert>
   )
 }

@@ -17,8 +17,6 @@ type Props = {
 export const AchievesScreen = ({ onBack }: Props) => {
   const { achievement_id, student } = useStore();
   const { loadStudentAchieves, detachAchieve, setAchievesSummary } = useStore();
- // alert(student.summary_achievements + "fff")
-  //const router = useRouter();
 
   useFocusEffect(
     useCallback(() => {
@@ -51,7 +49,11 @@ export const AchievesScreen = ({ onBack }: Props) => {
           />
       </CustomAlert>
 
-      <ScrollView style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={{paddingBottom: 200}}
+        showsVerticalScrollIndicator={false}
+      >
         <AchievesSection title='Test achievements' category='Test' />
         <AchievesSection title='Game achievements' category='Game' />
         <AchievesSection title='Participate achievements' category='Participate' />

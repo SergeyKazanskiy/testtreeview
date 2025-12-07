@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -26,7 +26,7 @@ export const PerentsView = () => {
       </View>
 
       <View style={styles.section}>
-      <View style={styles.cell}>
+        <View style={styles.cell}>
           <Text style={styles.info}>Name:</Text>
           <Text style={styles.value}>{parents[1].name}</Text>
         </View>

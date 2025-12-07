@@ -19,33 +19,37 @@ export function StudentsView({ onStudent }: Props) {
   }
 
   return (
-    <ScrollView style={styles.container}>
-        {students.map(student => {
-            const itemStyle = styles.item;
-            const photoPath = student.photo === 'Student_boy.png' || student.photo === 'Student_girl.png' ?
-            BACKEND_APP_IMAGES_URL + '/photos/' + student.photo :
-            BACKEND_APP_IMAGES_URL + '/photos/' + camp_name + '/students/' + group_name + '/' + student.photo
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{paddingBottom:200}}
+      showsVerticalScrollIndicator={false}
+    >
+      {students.map(student => {
+        const itemStyle = styles.item;
+        const photoPath = student.photo === 'Student_boy.png' || student.photo === 'Student_girl.png' ?
+        BACKEND_APP_IMAGES_URL + '/photos/' + student.photo :
+        BACKEND_APP_IMAGES_URL + '/photos/' + camp_name + '/students/' + group_name + '/' + student.photo
 
-            return (
-                <ListItem key={student.id}
-                    bottomDivider
-                    onPress={() => handlePress(student.id)}
-                    containerStyle={itemStyle}
-                >
-                    <Avatar size={44} source={{ uri: `${photoPath}` }} rounded />
+        return (
+          <ListItem key={student.id}
+            bottomDivider
+            onPress={() => handlePress(student.id)}
+            containerStyle={itemStyle}
+          >
+            <Avatar size={44} source={{ uri: `${photoPath}` }} rounded />
 
-                    <ListItem.Content>
-                        <ListItem.Title style={styles.title}>
-                            {`${student.first_name} ${student.last_name}`}
-                        </ListItem.Title>
+            <ListItem.Content>
+              <ListItem.Title style={styles.title}>
+                {`${student.first_name} ${student.last_name}`}
+              </ListItem.Title>
 
-                        <ListItem.Subtitle style={styles.subtitle}>
-                            {`${student.gender}, ${student.age} years old`}
-                        </ListItem.Subtitle>
-                    </ListItem.Content>
-                </ListItem>
-            )})
-        }
+              <ListItem.Subtitle style={styles.subtitle}>
+                {`${student.gender}, ${student.age} years old`}
+              </ListItem.Subtitle>
+            </ListItem.Content>
+          </ListItem>
+        )})
+      }
     </ScrollView>
   );
 }

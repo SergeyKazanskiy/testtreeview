@@ -1,6 +1,7 @@
 import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { formatDateTime } from '@/src/utils/utils';
 import { useFocusEffect } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { get_group_statistics } from '../../http';
@@ -38,7 +39,6 @@ export const StatisticsReport = () => {
   useFocusEffect(
     useCallback(() => {
       get_group_statistics(group_id, year, month, (statistics => {
-        //alert(objectToJson(statistics))
         const dates = statistics.map(el => formatDateTime(el.timestamp).date);
         setDates(dates);
 
@@ -50,16 +50,18 @@ export const StatisticsReport = () => {
 
   return (
     <PopupContainer visible={isStatisticsScreen} title='Group Statistics' onClose={hideStatisticsScreen}>
-      <CalendarWidget year={year} month={month}
-        selectDate={(year, month) => (setYear(year), setMonth(month))}/>
+      <LinearGradient colors={['#2E4A7C', '#152B52']}>
+        <CalendarWidget year={year} month={month}
+          selectDate={(year, month) => (setYear(year), setMonth(month))}/>
 
-      <ScrollView style={styles.container}>
-        <StaticticsWidget dates={dates} metrics={metrics} metricName='Speed'/>
-        <StaticticsWidget dates={dates} metrics={metrics} metricName='Stamina'/>
-        <StaticticsWidget dates={dates} metrics={metrics} metricName='Climbing'/>
-        <StaticticsWidget dates={dates} metrics={metrics} metricName='Evasion'/>
-        <StaticticsWidget dates={dates} metrics={metrics} metricName='Hiding'/>
-      </ScrollView>
+        <ScrollView style={styles.container}>
+          <StaticticsWidget dates={dates} metrics={metrics} metricName='Speed'/>
+          <StaticticsWidget dates={dates} metrics={metrics} metricName='Stamina'/>
+          <StaticticsWidget dates={dates} metrics={metrics} metricName='Climbing'/>
+          <StaticticsWidget dates={dates} metrics={metrics} metricName='Evasion'/>
+          <StaticticsWidget dates={dates} metrics={metrics} metricName='Hiding'/>
+        </ScrollView>
+      </LinearGradient>
     </PopupContainer>
   )
 }
