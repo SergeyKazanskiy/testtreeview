@@ -21,7 +21,7 @@ export const CampEventCell: React.FC<Props> = ({type, date, time1, time2, desc, 
     <View style={styles.container}>
       <View  style={[styles.column, {width: '20%', borderRightWidth: 1, borderColor:'rgb(110, 151, 6)', alignItems: 'center'}]}>
         {type === 'Training' && <Text style={styles.icon}>❤️</Text>}
-        {type === 'Exam' && <Text style={styles.icon}>🧭</Text>}
+        {type === 'Exam' && <Text style={styles.icon}>🥇</Text>}
         {type === 'Game' && <Text style={styles.icon}>🏆</Text>}
         <Text style={[cellStyles.type, {marginTop: 4}]}>{type}</Text>
       </View>
@@ -43,8 +43,8 @@ export const CampEventCell: React.FC<Props> = ({type, date, time1, time2, desc, 
         </View>
 
         <View style={styles.section}>
-          <Text style={[cellStyles.description, {marginTop: 8}]}>{desc}</Text>
-          <Text style={[cellStyles.date, {paddingRight: 4, marginTop: 8}]}>{time1 + '-' + time2}</Text>
+          <Text style={[cellStyles.description, {marginTop: 6}]}>{desc}</Text>
+          <Text style={[cellStyles.date, {paddingRight: 4, marginTop: 7}]}>{time1 + '-' + time2}</Text>
         </View>
       </View>
     </View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
     paddingLeft: 0,
-    backgroundColor: 'rgba(45, 75, 10, 0.3)',
+    backgroundColor: 'rgba(45, 75, 10, 0.4)',
     borderWidth: 1,
     borderColor: 'rgb(110, 151, 6)',
     flexDirection: 'row',
@@ -72,18 +72,18 @@ const styles = StyleSheet.create({
   },
   icon: {
     paddingTop: 1,
-    fontSize: 24,
+    fontSize: 21,
   },
   desc: {
     flexDirection: 'row',
   },
   button: {
-    height: 28,
+    height: 32,
     paddingHorizontal: 8,
     borderRadius: 5,
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     color: 'gold'
   },
   date: {

@@ -50,18 +50,21 @@ export const StatisticsReport = () => {
 
   return (
     <PopupContainer visible={isStatisticsScreen} title='Group Statistics' onClose={hideStatisticsScreen}>
-      <LinearGradient colors={['#2E4A7C', '#152B52']}>
-        <CalendarWidget year={year} month={month}
-          selectDate={(year, month) => (setYear(year), setMonth(month))}/>
+      <ScrollView style={{backgroundColor: '#152B52'}}>
+        <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.container}>
+          
+          <CalendarWidget year={year} month={month}
+            selectDate={(year, month) => (setYear(year), setMonth(month))}
+          />
 
-        <ScrollView style={styles.container}>
           <StaticticsWidget dates={dates} metrics={metrics} metricName='Speed'/>
           <StaticticsWidget dates={dates} metrics={metrics} metricName='Stamina'/>
           <StaticticsWidget dates={dates} metrics={metrics} metricName='Climbing'/>
           <StaticticsWidget dates={dates} metrics={metrics} metricName='Evasion'/>
           <StaticticsWidget dates={dates} metrics={metrics} metricName='Hiding'/>
-        </ScrollView>
-      </LinearGradient>
+          
+        </LinearGradient>
+      </ScrollView>
     </PopupContainer>
   )
 }
@@ -69,7 +72,7 @@ export const StatisticsReport = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: 16,
     paddingHorizontal: 16,
   },
   summary: {

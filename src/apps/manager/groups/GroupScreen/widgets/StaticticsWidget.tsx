@@ -1,6 +1,6 @@
 import { LineChart } from '@/src/components/widgets/LineChart';
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Metric } from '../../model';
 
 
@@ -20,19 +20,21 @@ export const StaticticsWidget: React.FC<Props> = ({ metrics, metricName, dates }
 
     return (
         <>
-            <Text style={styles.title}>{metricName}</Text>
-
-            <LineChart w={326} h={160}
-                labels={dates}
-                values={getValues()}
-            />
+            
+            <View style={{alignSelf: 'center'}}>
+                <Text style={styles.title}>{metricName}</Text>
+                <LineChart w={326} h={160}
+                    labels={dates}
+                    values={getValues()}
+                />
+            </View>
         </>
     );
 };
 
 const styles = StyleSheet.create({
     title: {
-        color: '#eee',
+        color: '#ddd',
         fontSize: 16,
         fontWeight: '500',
         paddingTop: 28,

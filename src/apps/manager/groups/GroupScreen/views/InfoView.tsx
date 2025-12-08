@@ -30,7 +30,11 @@ export const InfoView = () => {
             </View>
             <View style={styles.row}>
                 <Text style={styles.label}>Group coach:</Text>
-                <SelectedField data={coachesNames} selectedIndex={coach_inx} onSelect={selectCoache}/>
+                <SelectedField w={300}
+                    data={coachesNames}
+                    selectedIndex={coach_inx}
+                    onSelect={selectCoache}
+                />
             </View>
         </View>
     );
@@ -48,9 +52,11 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     row: {
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 8,
+        alignItems: 'center'
+        //marginTop: 8,
     },
     label: {
         width: 150,
@@ -61,13 +67,15 @@ const styles = StyleSheet.create({
     },
     value: {
         color: '#444',
-        fontSize: 16,
+        fontSize: 15,
         paddingHorizontal: 12,
+        paddingVertical: 6,
         //marginBottom: 4,
-        width: '100%',
+        height: 40,
+        width: 200,
         borderRadius: 8,
         backgroundColor: 'rgb(180, 216, 158)',
-        minHeight: 30,
+        //minHeight: 28,
     },
     button: {
         height: 28,

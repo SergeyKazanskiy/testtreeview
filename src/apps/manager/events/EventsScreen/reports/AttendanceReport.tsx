@@ -2,6 +2,7 @@ import { AttendanceCell } from '@/src/components/cells/AttendanceCell';
 import { DrillCell } from '@/src/components/cells/DrillCell';
 import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { useFocusEffect } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useCallback, useState } from "react";
 import { ScrollView, StyleSheet, Text } from "react-native";
 import { get_attendances, get_event_drills } from '../../http';
@@ -32,10 +33,10 @@ export const AttendanceReport = () => {
   return (
     <PopupContainer visible={isAttendanceReport} title='Attendance report' onClose={hideAttendanceReport}>
       <ScrollView
-        style={styles.container}
-        contentContainerStyle={{paddingBottom: 100}}
+        contentContainerStyle={{backgroundColor: '#152B52'}}
         showsVerticalScrollIndicator={false}
       >
+        <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.container}>
         <Text style={styles.title}>Drills</Text>
         {drills.map((item) => (
           <DrillCell
@@ -62,6 +63,7 @@ export const AttendanceReport = () => {
             onSelect={()=>{}}
           />
         ))}
+        </LinearGradient>
       </ScrollView>
     </PopupContainer>
   );

@@ -2,7 +2,7 @@ import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import { get_group_achieves } from '../../http';
 import { Achieve } from '../../model';
 import { useStore } from '../../store';
@@ -27,8 +27,8 @@ export const AchievesReport = () => {
 
   return (
     <PopupContainer visible={isAchievesScreen} title='Group Achievements' onClose={hideAchievesScreen}>
-      <LinearGradient colors={['#2E4A7C', '#152B52']}>
-        <View style={styles.container}>
+      <ScrollView style={{backgroundColor: '#152B52'}}>
+        <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.container}>
           
           <AchievesWidget title='Test achievements' achieves={achieves} category='Test' />
           <AchievesWidget title='Game achievements' achieves={achieves} category='Game' />
@@ -37,8 +37,9 @@ export const AchievesReport = () => {
           <Text style={styles.summary}>Total achievements: 
             <Text style={styles.text}>{summary}</Text>
           </Text>
-        </View>  
-      </LinearGradient>
+         
+        </LinearGradient>
+      </ScrollView> 
     </PopupContainer>
   )
 }

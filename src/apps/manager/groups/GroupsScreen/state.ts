@@ -47,6 +47,7 @@ export const createGroupsSlice = (set: any, get: any): GroupsSlice => ({
   loadCamps: () => {
     get_camps((camps: Camp[]) => {
       set({ camps });
+
       if (camps.length > 0) {
         const camp_id = camps[0].id;
         const { selectCamp }: GroupsSlice = get();

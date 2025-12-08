@@ -13,27 +13,21 @@ export function LineChart({ labels, values, w, h=200 }: Props) {
 
   const data = {
     labels: labels, // days
-    datasets: [
-      {
-        data: values,
-        color: (opacity = 1) => `rgba(209, 255, 77, ${opacity})`, //line color
-        strokeWidth: 8,
-      },
-    ],
+    datasets: [ {
+      data: values,
+      color: (opacity = 1) => `rgba(209, 255, 77, ${opacity})`, //line color
+      strokeWidth: 8,
+    }],
   };
 
   return (
-    <RNLineChart
-      data={data}
-      width={w}
-      height={h}
+    <RNLineChart data={data} width={w} height={h}
       chartConfig={{
         propsForLabels: {
           fontSize: 14,
-          //fontWeight: 800
         },
-        backgroundGradientFrom: 'rgba(45, 75, 10, 0.1)',
-        backgroundGradientTo: 'rgba(45, 75, 10, 0.3)',
+        backgroundGradientFrom: '#2E4A7C',
+        backgroundGradientTo: '#152B52',
         color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, // texts color
         labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
         decimalPlaces: 2,

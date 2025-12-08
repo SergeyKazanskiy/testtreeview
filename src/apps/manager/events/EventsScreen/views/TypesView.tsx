@@ -17,7 +17,7 @@ const FilterCheckBox: React.FC<TypeProps> = ({ label, checked, onPress }) => (
       checked={checked}
       checkedIcon="checkbox-outline"
       uncheckedIcon={'checkbox-blank-outline'}
-      containerStyle={{margin:0, padding: 0, backgroundColor: 'rgba(45, 75, 10, 0.3)'}}
+      containerStyle={{marginRight: 10, backgroundColor: 'rgba(45, 75, 10, 0.3)'}}
       checkedColor='#ddd'
       size={18}
     />

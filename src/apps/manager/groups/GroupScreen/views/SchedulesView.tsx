@@ -13,6 +13,7 @@ export const SchedulesView = () => {
       {weekDays.map((item, inx) => {
         const schedule = schedules.find(el => el.weekday === inx + 1);
         const isSelected = weekday === inx + 1;
+
         return (
           <TouchableOpacity key={inx}
             style={[styles.row, isSelected && styles.selected]}
@@ -34,7 +35,7 @@ export const SchedulesView = () => {
             {isSelected && !schedule && (
               <Icon name="delete" size={20} color="#ccc" style={styles.button} onPress={createSchedule}/>
             )}
-            {!isSelected && <View style={{width: 80}}/>}
+            {!isSelected && <View style={{width: 60}}/>}
           </TouchableOpacity>
         );
       })}
@@ -71,10 +72,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   weekday: {
-    width: 88,
+    width: 90,
     paddingVertical: 4,
     textAlign: 'left',
-    fontSize: 16,
+    fontSize: 15,
     color: '#ddd',
   },
   time: {

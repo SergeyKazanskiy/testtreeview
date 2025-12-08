@@ -1,5 +1,6 @@
+import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { useStore } from '../store';
 import { AddGroupAlert } from './alerts/AddGroupAlert';
@@ -15,9 +16,11 @@ export default function GroupsScreen({ onGroup }: Props) {
   const {  } = useStore();
   const { loadCamps, updateGroup } = useStore();
 
-  useEffect(() => {
-    loadCamps();
-  }, [updateGroup]);
+  useFocusEffect(
+    useCallback(() => {
+      loadCamps();
+    }, [])
+  );
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >

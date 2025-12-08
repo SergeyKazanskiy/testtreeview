@@ -48,11 +48,11 @@ const styles = StyleSheet.create({
     height: 36,
    // width: 160,
     marginBottom: 4,
-    paddingHorizontal: 8,
+    paddingHorizontal: 12,
     borderRadius: 5,
   },
   text: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#ddd'
   },
 });

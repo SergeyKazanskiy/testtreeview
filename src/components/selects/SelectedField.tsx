@@ -9,12 +9,13 @@ export type Option = {
 };
 
 type SelectProps = {
+  w?: number;
   data: Option[];
   selectedIndex: number;
   onSelect: (index: number) => void;
 };
 
-export const SelectedField: React.FC<SelectProps> = ({ data, selectedIndex, onSelect }) => {
+export const SelectedField: React.FC<SelectProps> = ({ w, data, selectedIndex, onSelect }) => {
   const buttonRef = useRef<View>(null);
 
   const [visible, setVisible] = useState(false);
@@ -42,12 +43,12 @@ export const SelectedField: React.FC<SelectProps> = ({ data, selectedIndex, onSe
       <Modal transparent visible={visible} animationType="fade">
         <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={() => setVisible(false)}>
           {position && (
-            <View style={[styles.modalContent, { top: position.y + 2, left: position.x, width: 240 }]}>
+            <View style={[styles.modalContent, { top: position.y + 2, left: position.x, width: w }]}>
               <FlatList data={data}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item, index }) => (
                     <TouchableOpacity style={styles.option} onPress={() => handleSelect(index)}>
-                        <Text style={styles.item} >{item.name}</Text>
+                        <Text style={[styles.item]} >{item.name}</Text>
                     </TouchableOpacity>
                 )}
                 />
