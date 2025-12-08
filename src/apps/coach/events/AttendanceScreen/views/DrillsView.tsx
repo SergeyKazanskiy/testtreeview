@@ -2,7 +2,7 @@ import { DrillCell } from '@/src/components/cells/DrillCell';
 import { Icon } from '@/src/components/icons/CustomIcon';
 import { ListItem } from '@/src/components/widgets/CustomListItem';
 import { useState } from 'react';
-import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -36,13 +36,9 @@ export function DrillsView({ onDrill }: Props) {
         onPress={() => setExpanded(!expanded)}
       />
       {expanded &&
-        <FlatList data={eventDrills}
-          contentContainerStyle={{paddingBottom: 24}}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) =>
-
-            <TouchableOpacity onPress={() => handleSelect(item.drill_id)}>
+        <>
+          {eventDrills.map(item => (
+            <TouchableOpacity key={item.id} onPress={() => handleSelect(item.drill_id)}>
               <DrillCell
                 name={item.category + ' ' + item.name}
                 time={item.time}
@@ -52,8 +48,8 @@ export function DrillsView({ onDrill }: Props) {
                 onCheck={() => updateEventDrill(item.id, !item.completed)}
               />
             </TouchableOpacity>
-          } style={styles.list}
-        />
+          ))}
+        </>
       }
     </View>
   );
@@ -75,7 +71,4 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 16
   },
-  list: {
-    borderRadius: 10
-  },
-});
+})

@@ -23,14 +23,14 @@ export const Button: React.FC<ExpoButtonProps> = ({
   onPress,
   disabled = false,
   type = 'solid',
-  size = 'md',
+  size = 'sm',
   color = '#007AFF',
   buttonStyle,
   containerStyle,
   titleStyle,
 }) => {
   const sizes = {
-    sm: { paddingVertical: 6, paddingHorizontal: 12 },
+    sm: { paddingVertical: 4, paddingHorizontal: 12 },
     md: { paddingVertical: 10, paddingHorizontal: 16 },
     lg: { paddingVertical: 14, paddingHorizontal: 20 },
   };
@@ -55,7 +55,7 @@ export const Button: React.FC<ExpoButtonProps> = ({
             opacity,
             ...sizes[size],
           },
-          buttonStyle,
+          buttonStyle
         ]}
       >
         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
@@ -63,7 +63,7 @@ export const Button: React.FC<ExpoButtonProps> = ({
             {children ? (
             children
             ) : (
-            <Text style={[{ color: '#fff', fontSize: 16 }, titleStyle]}>
+            <Text style={[{ color: '#fff', fontSize: 14 }, titleStyle]}>
                 {title}
             </Text>
             )}

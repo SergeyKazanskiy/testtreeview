@@ -87,12 +87,13 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   button: {
-    height: 28,
-    paddingHorizontal: 8,
+    height: 32,
+    paddingHorizontal: 10,
     borderRadius: 5,
+    marginLeft:4
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     color: 'gold'
   },
 });

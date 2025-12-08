@@ -49,15 +49,15 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         marginTop: 8,
     },
     label: {
         width: 150,
         color: '#ccc',
-        fontSize: 17,
-        marginRight: 8,
-        paddingVertical: 8
+        fontSize: 16,
+        //marginRight: 8,
+        paddingVertical: 4
     },
     value: {
         color: '#444',

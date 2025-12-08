@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#ddd',
     fontWeight: '400',
-    fontSize: 17,
+    fontSize: 16,
     width: '100%',
     paddingLeft: 12,
     paddingTop: 2

@@ -2,9 +2,8 @@ import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack } from 'expo-router';
 import React, { useCallback } from 'react';
-import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useStore } from '../store';
 import { DeleteGroupAlert } from './alerts/DeleteGroupAlert';
 import { AchievesReport } from './reports/AchievesReport';
@@ -34,7 +33,7 @@ export default function GroupScreen({ onStudents, onBack }: Props) {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-      <Stack.Screen options={{ headerShown: false }} />
+
 
       <CustomNavbar title='Group info' onClick={onBack}>
         <Pressable onPress={showDeleteGroupAlert} style={{ marginRight: 4}}>
@@ -44,21 +43,26 @@ export default function GroupScreen({ onStudents, onBack }: Props) {
 
       <DeleteGroupAlert onDelete={onBack}/>
 
-      <InfoView/>
+      <ScrollView
+        contentContainerStyle={{paddingBottom: 240}}
+        showsVerticalScrollIndicator={false}
+      >
+        <InfoView/>
 
-      <Text style={styles.title}>Schedule</Text>
-      <View style={styles.widget}>
-        {isTimeMenu ? <TimeView/> : <SchedulesView/>}
-      </View>
-      
-      <ButtonsView
-        onStudents={onStudents}
-        onStatistics={showStatisticsScreen}
-        onAchievemens={showAchievesScreen}
-      />
-      
-      <AchievesReport/>
-      <StatisticsReport/>
+        <Text style={styles.title}>Schedule</Text>
+        <View style={styles.widget}>
+          {isTimeMenu ? <TimeView/> : <SchedulesView/>}
+        </View>
+        
+        <ButtonsView
+          onStudents={onStudents}
+          onStatistics={showStatisticsScreen}
+          onAchievemens={showAchievesScreen}
+        />
+        
+        <AchievesReport/>
+        <StatisticsReport/>
+      </ScrollView>
     </LinearGradient>
   );
 }

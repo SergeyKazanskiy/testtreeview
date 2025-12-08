@@ -1,4 +1,4 @@
-import LoginScreen from '@/src/screens/CoachLoginScreen';
+import LoginScreen from '@/src/screens/TestLoginScreen';
 import { useRouter } from "expo-router";
 import React from 'react';
 
@@ -9,5 +9,5 @@ export default function LoginRoute() {
   function login() {
     router.replace("/(manager)/(tabs)/groups");
   }
-  return <LoginScreen onLogin={login}/>;
+  return <LoginScreen login={login}/>;
 }

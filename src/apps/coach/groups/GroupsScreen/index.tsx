@@ -21,6 +21,7 @@ export default function GroupsScreen({ pressStudent }: Props) {
 
   useFocusEffect(
     useCallback(() => {
+    //  alert(userId)
       loadGroups(userId);
     }, [])
   );

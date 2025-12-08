@@ -22,7 +22,7 @@ export const SelectedField: React.FC<SelectProps> = ({ data, selectedIndex, onSe
 
   const open = () => {
     buttonRef.current?.measureInWindow((x, y, width, height) => {
-      setPosition({ x: x + width - 236, y: y + height + 2, width, height });
+      setPosition({ x: width - 16, y: y + height - 16, width, height });
       setVisible(true);
     });
   };
@@ -35,7 +35,7 @@ export const SelectedField: React.FC<SelectProps> = ({ data, selectedIndex, onSe
   return (
     <View>
       <TouchableOpacity style={styles.selectBox} ref={buttonRef}  onPress={open}>
-        <Text style={styles.selectText}>{data[selectedIndex]?.name || 'Select...'}</Text>
+        <Text style={styles.selectText}>{data[selectedIndex]?.name || 'Select...  '}</Text>
         <Ionicons name="chevron-down" size={18} color="#ccc" />
       </TouchableOpacity>
 

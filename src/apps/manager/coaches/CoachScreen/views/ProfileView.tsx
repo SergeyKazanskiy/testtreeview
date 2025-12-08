@@ -19,6 +19,7 @@ export const ProfileView = () => {
         setPhone(coach.phone);
         setEmail(coach.email);
     }, [coach]);
+    
     return (
         <View style={styles.container}>
             <View style={styles.section}>
@@ -39,24 +40,20 @@ export const ProfileView = () => {
                     />
                 </View>
             </View>
-            <View style={{marginTop: 4}}>
-                <View style={styles.section}>
-                    <Text style={[styles.label, {width: 64}]}>Phone: </Text>
-                    <TextInput style={styles.value} keyboardType='name-phone-pad' maxLength={20} placeholder="Enter"
-                        value={phone}
-                        onChangeText={setPhone}
-                        onBlur={() => updateCoach({phone: phone})}
-                    />
-                </View>
-                <View style={styles.section}>
-                    <Text style={[styles.label, {width: 64}]}>Email: </Text>
-                    <TextInput style={styles.value} keyboardType='name-phone-pad' maxLength={30} placeholder="Enter"
-                        value={email}
-                        onChangeText={setEmail}
-                        onBlur={() => updateCoach({email: email})}
-                    />
-                </View>
-            </View>
+
+            <Text style={[styles.label, {width: 64}]}>Phone: </Text>
+            <TextInput style={styles.value} keyboardType='name-phone-pad' maxLength={20} placeholder="Enter"
+                value={phone}
+                onChangeText={setPhone}
+                onBlur={() => updateCoach({phone: phone})}
+            />
+
+            <Text style={[styles.label, {width: 64}]}>Email: </Text>
+            <TextInput style={styles.value} keyboardType='name-phone-pad' maxLength={30} placeholder="Enter"
+                value={email}
+                onChangeText={setEmail}
+                onBlur={() => updateCoach({email: email})}
+            />
         </View>
     );
 };
@@ -70,7 +67,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         paddingVertical: 4,
-        width: '100%',
+        //width: '100%',
     },
     group: {
         flex: 1,
@@ -88,8 +85,8 @@ const styles = StyleSheet.create({
     },
     value: {
         color: '#444',
-        fontSize: 18,
-        paddingVertical: 4,
+        fontSize: 16,
+        paddingVertical: 6,
         paddingHorizontal: 12,
         marginBottom: 4,
         width: '100%',

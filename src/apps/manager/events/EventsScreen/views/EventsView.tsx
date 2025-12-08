@@ -25,7 +25,7 @@ export function EventsView() {
         data={filtredEvents}
         contentContainerStyle={{ paddingBottom: 200 }}
         showsVerticalScrollIndicator={false}
-        keyExtractor={(index) => index.toString()}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
 
           <TouchableOpacity style={[

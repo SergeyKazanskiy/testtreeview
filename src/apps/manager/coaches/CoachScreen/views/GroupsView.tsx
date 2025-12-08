@@ -1,6 +1,6 @@
 import { cellStyles } from '@/src/styles/appStyles';
 import { Ionicons } from '@expo/vector-icons';
-import { FlatList, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -10,24 +10,20 @@ export function GroupsView() {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={coachGroups}
-        contentContainerStyle={{paddingBottom: 24}}
-        keyExtractor={(item) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item, index }) =>
+      {coachGroups.map((item) => (
+        
+        <TouchableOpacity
+          key={item.id}
+          style={[styles.group, item.id === coach_group_id && styles.selected ]}
+          onPress={() => selectGroup(item.id)}>
 
-          <TouchableOpacity
-            style={[styles.group, item.id === coach_group_id && styles.selected ]}
-            onPress={() => selectGroup(item.id)}>
-
-              <Text style={styles.title}>{item.name}</Text>
-              <Text style={cellStyles.description}>{item.desc}</Text>
-          </TouchableOpacity>
-        } style={styles.list}
-      />
+            <Text style={styles.title}>{item.name}</Text>
+            <Text style={cellStyles.description}>{item.desc}</Text>
+        </TouchableOpacity>
+      ))}
       
-      <Pressable onPress={loadFreeGroups} style={{ marginLeft: 8}}>
+      
+      <Pressable onPress={loadFreeGroups} style={{ marginLeft: 6, marginTop: 18}}>
           <Ionicons name='add-circle-outline' size={26} color='rgb(180, 216, 158)' />
       </Pressable>
     </View>
@@ -36,17 +32,15 @@ export function GroupsView() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 12,
-    paddingRight: 16,
+    padding: 16,
   },
   group: {
     backgroundColor: '#152B52',
-    borderTopWidth: 1,
-    borderLeftWidth: 1,
-    borderColor: 'green',
+    borderWidth: 1,
+    borderColor: '#152B52',
     marginVertical: 3,
     padding: 10,
-    borderRadius: 4
+    borderRadius: 8
   },
   sections: {
     flexDirection: 'row',
@@ -62,7 +56,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8
   },
   selected: {
-    borderColor: 'yellow',
+    borderColor: '#ddd',
   },
   button: {
     height: 28,

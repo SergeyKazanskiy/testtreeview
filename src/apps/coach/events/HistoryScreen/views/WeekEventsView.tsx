@@ -3,7 +3,7 @@ import { Icon } from '@/src/components/icons/CustomIcon';
 import { ListItem } from '@/src/components/widgets/CustomListItem';
 import { formatDateTime } from '@/src/utils/utils';
 import { useState } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -31,12 +31,8 @@ export function WeekEventsView({ day,  weekday }: {day: number, weekday: string}
           onPress={() => setExpanded(!expanded)}
         />
       {expanded &&
-          <FlatList
-            data={dayEvents}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{paddingBottom: 24}}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) =>
+        <>
+          {dayEvents.map(item => (
 
               <CoachEventCell key={item.id}
                 type={item.type}  
@@ -46,8 +42,8 @@ export function WeekEventsView({ day,  weekday }: {day: number, weekday: string}
                 onGroup={(group_id) => handlePress(item.id, group_id)}
                 group2={groups.find(el => el.id === item.group2_id)}
               />
-            }
-          />
+            ))}
+          </>
         }
     </>
   );

@@ -2,7 +2,7 @@ import { ScheduleEventCell } from '@/src/components/cells/ScheduleEventCell';
 import { Icon } from '@/src/components/icons/CustomIcon';
 import { ListItem } from '@/src/components/widgets/CustomListItem';
 import { useState } from 'react';
-import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -29,10 +29,10 @@ export function SchedulesView({ day, weekday }: {day: number, weekday: string}) 
           onPress={() => setExpanded(!expanded)}
         />
       {expanded &&
-          <FlatList data={dayEvents} 
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) =>
-              <TouchableOpacity style={item.id === 0 && { opacity: 0.6}}
+        <>
+          {dayEvents.map(item => (
+              <TouchableOpacity key={item.id}
+                style={item.id === 0 && { opacity: 0.6}}
                 onPress={() => showCoachesView(item.id)}
               >
                 <ScheduleEventCell
@@ -41,8 +41,8 @@ export function SchedulesView({ day, weekday }: {day: number, weekday: string}) 
                   coach={item.coach_name}
                 />  
               </TouchableOpacity>
-            } style={styles.list}
-          />
+            ))}
+          </>
         }
     </View>
   );
@@ -60,5 +60,4 @@ const styles = StyleSheet.create({
     marginVertical: 3
   },
   title: { color: '#ddd', fontWeight: '500', fontSize: 16 },
-  list: { borderRadius: 10, paddingBottom: 16 },
 });

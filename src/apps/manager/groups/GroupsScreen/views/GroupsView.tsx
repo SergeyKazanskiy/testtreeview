@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { FlatList, Pressable, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -18,27 +18,25 @@ export function GroupsView({ onGroup }: Props) {
   }
 
   return (
-    <>
-      <FlatList
-        data={groups}
-        contentContainerStyle={{paddingBottom: 24}}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item, index }) =>
+    <ScrollView
+      contentContainerStyle={{paddingBottom: 100}}
+      showsVerticalScrollIndicator={false}
+    >
+      {groups.map((item, index) => (
 
-          <TouchableOpacity
-            style={styles.group}
-            onPress={() => handleSelect(item.id, index)}
-          >
-            <Text style={styles.title}>{item.name}</Text>
-            <Text style={styles.description}>{item.description}</Text>
-          </TouchableOpacity>
-        } style={styles.list}
-      />
-      <Pressable onPress={showAddGroupAlert} style={{ marginTop: 8, marginLeft: 8}}>
+        <TouchableOpacity key={item.id}
+          style={styles.group}
+          onPress={() => handleSelect(item.id, index)}
+        >
+          <Text style={styles.title}>{item.name}</Text>
+          <Text style={styles.description}>{item.description}</Text>
+        </TouchableOpacity>
+      ))}
+
+      <Pressable onPress={showAddGroupAlert} style={{ marginTop: 16, marginLeft: 8}}>
         <Ionicons name='add-circle-outline' size={26} color='rgb(180, 216, 158)' />
       </Pressable>
-    </>
+    </ScrollView>
   );
 }
 
@@ -51,13 +49,6 @@ const styles = StyleSheet.create({
     marginVertical: 3,
     padding: 10,
     borderRadius: 4
-  },
-  sections: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  list: {
-    marginTop: 8
   },
   title: {
     color: '#ddd',

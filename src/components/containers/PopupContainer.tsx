@@ -16,7 +16,7 @@ export function PopupContainer({ visible, children, title, onClose }: Props) {
   if (!visible) return null;
 
   return (
-    <Modal visible transparent animationType="fade">
+    <Modal visible animationType="fade">
       <View
         style={styles.fullscreen}
         onLayout={(e) => {
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 20,
     padding: 20,
     backgroundColor: '#152B52',
   },

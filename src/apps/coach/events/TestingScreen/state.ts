@@ -1,5 +1,5 @@
 import { Locations } from '@/src/constants/constants';
-import { NumericFields, objectToJson } from '@/src/utils/utils';
+import { NumericFields } from '@/src/utils/utils';
 import { AttendanceSlice } from "../AttendanceScreen/state";
 import { EventsSlice } from '../EventsScreen/state';
 import { add_all_present_students_new_tests, get_camp_location, get_testers, update_student_test } from '../http';
@@ -123,7 +123,7 @@ export const createTestingSlice = (set: any, get: () => Store): TestingSlice => 
         }
         //alert(objectToJson(data))
         update_student_test(tester.id, tester.test_id, data, (res => {
-            alert(objectToJson(res))
+            //alert(objectToJson(res))
 
             if (res) {
                 tester[exam] = res.score;

@@ -17,9 +17,9 @@ export type Props = {
 export const CoachEventCell: React.FC<Props> = ({type, time, desc, group1, onGroup, group2}) => {
   return (
     <View style={styles.container}>
-      <View  style={[styles.column, {width: '20%', borderRightWidth: 1, borderColor:'rgb(110, 151, 6)', alignItems: 'center'}]}>
+      <View  style={[styles.column, styles.column_left]}>
         {type === 'Training' && <Text style={styles.icon}>❤️</Text>}
-        {type === 'Exam' && <Text style={styles.icon}>🧭</Text>}
+        {type === 'Exam' && <Text style={styles.icon}>🥇</Text>}
         {type === 'Game' && <Text style={styles.icon}>🏆</Text>}
         <Text style={[cellStyles.type, {marginTop: 4}]}>{type}</Text>
       </View>
@@ -37,7 +37,7 @@ export const CoachEventCell: React.FC<Props> = ({type, time, desc, group1, onGro
             />}
           </View>
           
-          <Text style={[styles.camp, {paddingRight: 4}]}>{group1.camp_name}</Text>
+          <Text style={[styles.camp, {padding: 4}]}>{group1.camp_name}</Text>
         </View>
 
         <View style={styles.section}>
@@ -64,24 +64,30 @@ const styles = StyleSheet.create({
   column: {
     flexDirection: 'column',
   },
+  column_left: {
+    paddingTop: 4,
+     width: '20%',
+     borderRightWidth: 1,
+     borderColor:'rgb(110, 151, 6)',
+     alignItems: 'center'
+  },
   section: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   icon: {
-    paddingTop: 1,
-    fontSize: 24,
+    fontSize: 20,
   },
   desc: {
     flexDirection: 'row',
   },
   button: {
-    height: 28,
+    height: 32,
     paddingHorizontal: 8,
     borderRadius: 5,
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     color: 'gold'
   },
   camp: {

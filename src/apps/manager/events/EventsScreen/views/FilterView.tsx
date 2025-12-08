@@ -64,9 +64,10 @@ const styles = StyleSheet.create({
     height: 32,
     paddingHorizontal: 8,
     borderRadius: 5,
+    marginLeft:4
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '400',
     color: 'gold'
   },

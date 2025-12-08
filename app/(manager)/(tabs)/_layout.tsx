@@ -3,9 +3,9 @@ import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
 import { DinivreyHeader } from '@/src/components/widgets/DinivreyHeader';
 import { TabIconRenderProps } from '@/src/styles/types';
 import { Ionicons } from '@expo/vector-icons';
-import { Tabs, useRouter } from 'expo-router';
+import { Tabs, usePathname, useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from "react-native";
-import { useRoutersState } from '../_state';
 
 
 function getIconsData(routeName: string) {
@@ -22,14 +22,30 @@ if (routeName === 'groups') {
     iconName = 'calendar-number-outline';
     label = 'Events';
   }
-
   return { iconName, label };
 }
 
 export default function Layout() {
   const { logoutUser } = useAuthStore();
-  const { showRootTabs } = useRoutersState();
+  const [ showRootTabs, setShowRootTabs] = useState(true)
   const router = useRouter();
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const isInsideGroupTabs =
+    pathname.startsWith("/groups/group") ||
+    pathname.startsWith("/groups/students") ||
+    pathname.startsWith("/coaches/coach") ||
+    pathname.startsWith("/events/camp_events");
+
+    if (isInsideGroupTabs) {
+      setShowRootTabs(false);
+    } else {
+      setShowRootTabs(true);
+    }
+  }, [pathname]);
+
 
   return (
     <ScreenContainer>
@@ -43,11 +59,12 @@ export default function Layout() {
       <Tabs screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarStyle: showRootTabs ? styles.tabbar : { display: 'none' },
+          tabBarStyle: styles.tabbar,
+          //tabBarStyle: showRootTabs ? styles.tabbar : { display: 'none' },
           tabBarIcon: ({ focused }: TabIconRenderProps) => {
             const { iconName, label } = getIconsData(route.name);
             return (
-              <View style={{ alignItems: 'center', justifyContent: 'center'}}>
+              <View style={{ alignItems: 'center', justifyContent: 'center', width: 160}}>
                 <Ionicons name={iconName} style={[styles.icon, focused && styles.focused]} />
                 <Text style={[styles.label, focused && styles.focused]}>{label}</Text>
               </View>
@@ -72,13 +89,14 @@ const styles = StyleSheet.create({
   },
   label: {
     color: '#888888',
-    fontSize: 14,
-    marginTop: 3
+    fontSize: 12,
+    //marginTop: 3
   },
   focused: {
     color: '#E4FF3E'
   },
-    icon: {
+  icon: {
+    marginTop: 4,
     color: '#888888',
     fontSize: 24,
   },

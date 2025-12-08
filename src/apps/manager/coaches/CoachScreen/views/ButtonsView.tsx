@@ -53,12 +53,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     button: {
-        height: 28,
-        paddingHorizontal: 8,
+        height: 32,
+        paddingHorizontal: 10,
         borderRadius: 5,
+        marginRight: 4
     },
     title: {
-        fontSize: 16,
+        fontSize: 14,
         color: 'gold'
     },
     image: {

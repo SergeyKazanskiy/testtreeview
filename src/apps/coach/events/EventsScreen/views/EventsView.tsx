@@ -4,7 +4,7 @@ import { ListItem } from '@/src/components/widgets/CustomListItem';
 import { formatDateTime } from '@/src/utils/utils';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -49,14 +49,10 @@ export function EventsView({ onEvent, day, weekday }: EventsViewProps) {
           onPress={() => setExpanded(!expanded)}
         />
       {expanded &&
-        <FlatList
-          data={dayEvents}
-          contentContainerStyle={{paddingBottom: 24}}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.timestamp.toString()}
-          renderItem={({ item }) =>
-
-            <View style={item.id === 0 && { opacity: 0.6}}>
+        <>
+          {events_shedules.map(item => (
+            <View key={item.id} style={item.id === 0 && { opacity: 0.6}}>
+              
               <CoachEventCell
                 type={item.type}  
                 time={formatDateTime(item.timestamp).time}
@@ -66,8 +62,8 @@ export function EventsView({ onEvent, day, weekday }: EventsViewProps) {
                 group2={groups.find(el => el.id === item.group2_id)}
               />
             </View>
-          }
-        />
+          ))}
+        </>
       }
     </>
   );

@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
     alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
     maxWidth: Platform.OS === 'web' ? 360 : undefined,
     width: '100%',
-    padding: 16,
+    paddingHorizontal: 16,
   },
 });

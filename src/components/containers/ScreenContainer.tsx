@@ -21,7 +21,6 @@ export function ScreenContainer({ children }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  //  backgroundColor: '#152B52',
     alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
     maxWidth: Platform.OS === 'web' ? 360 : undefined,
     width: '100%',
@@ -29,6 +28,6 @@ const styles = StyleSheet.create({
     wrapper: {
     flex: 1,
     width: '100%',
-  //  padding: 16,
+    height: '100%',
   },
 });

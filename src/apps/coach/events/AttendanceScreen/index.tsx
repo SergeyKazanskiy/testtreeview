@@ -188,12 +188,12 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   button: {
-    height: 28,
+    height: 32,
     paddingHorizontal: 8,
     borderRadius: 5,
   },
   title: {
-    fontSize: 15,
+    fontSize: 14,
     color: 'gold'
   },
   allSelect: {

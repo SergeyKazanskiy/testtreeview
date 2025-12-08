@@ -1,5 +1,5 @@
 import { weekDays } from '@/src/constants/constants';
-import { getChanges, objectToJson } from '@/src/utils/utils';
+import { getChanges } from '@/src/utils/utils';
 import { get_coaches } from '../../coaches/http';
 import { CoachShort } from '../../coaches/model';
 import { GroupsSlice } from '../GroupsScreen/state';
@@ -212,8 +212,7 @@ export const createGroupSlice = (set: any, get: any): GroupSlice => ({
       const { group_id, weekday, updateGroup, groups, group_inx, coach_id }: GroupSlice & GroupsSlice = get();
       const hour = 16; const minute = 0;
       const schedule: Omit<Schedule, 'id'> = { group_id, weekday, hour, minute, coach_id }
-      alert(objectToJson(schedule))
-
+      //alert(objectToJson(schedule))
       
       create_group_schedule(schedule, (res)=> {
           if (res) {

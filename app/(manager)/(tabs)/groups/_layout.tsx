@@ -1,28 +1,12 @@
-import { Stack, usePathname } from 'expo-router';
-import { useEffect } from 'react';
-import { useRoutersState } from '../../_state';
+import { Stack } from 'expo-router';
 
 
 export default function Index() {
-  const setShowRootTabs = useRoutersState((state) => state.setShowRootTabs);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    const isInsideGroupTabs =
-    pathname.startsWith("/groups/group") ||
-    pathname.startsWith("/groups/students");
-
-    if (isInsideGroupTabs) {
-      setShowRootTabs(false);
-    } else {
-      setShowRootTabs(true);
-    }
-  }, [pathname]);
-
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
-      <Stack.Screen name="(tabs)/profile" />
+      <Stack.Screen name="group" />
+      <Stack.Screen name="students" />
     </Stack>
   );
 }

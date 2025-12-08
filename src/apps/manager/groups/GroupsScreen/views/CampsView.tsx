@@ -1,6 +1,6 @@
 import { Button } from '@/src/components/buttons/CustomButton';
 import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -9,25 +9,31 @@ export function CampsView() {
   const { selectCamp } = useStore();
 
   return (
-    <FlatList horizontal
-      data={camps} 
-      showsHorizontalScrollIndicator={false}
-      keyExtractor={(item) => '№' + item}
-      renderItem={({ item, index }) => (
+    <View style={styles.container}>
+      <FlatList horizontal
+        data={camps} 
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(item) => '№' + item}
+        renderItem={({ item, index }) => (
 
-        <Button key={item.id.toString()}
-            size='sm'
-            title={item.name}
-            type={item.id === camp_id ? 'solid' : 'outline'}
-            buttonStyle={[styles.item, item.id === camp_id && {backgroundColor: '#152B52'}]}
-            titleStyle={styles.text}
-            onPress={() => selectCamp(item.id, index)}
-        />
-      )}/>
+          <Button key={item.id.toString()}
+              size='sm'
+              title={item.name}
+              type={item.id === camp_id ? 'solid' : 'outline'}
+              buttonStyle={[styles.item, item.id === camp_id && {backgroundColor: '#152B52'}]}
+              titleStyle={styles.text}
+              onPress={() => selectCamp(item.id, index)}
+          />
+        )}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 16
+  },
   item: {
     borderWidth: 1,
     borderColor: 'green',

@@ -37,12 +37,12 @@ const styles = StyleSheet.create({
     fontSize: 22
   },
   button: {
-    height: 28,
+    height: 32,
     paddingHorizontal: 8,
     borderRadius: 5,
   },
   title: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#ddd'
   },
 });

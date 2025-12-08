@@ -2,9 +2,8 @@ import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack } from 'expo-router';
 import React, { useCallback } from 'react';
-import { Platform, Pressable, StyleSheet } from 'react-native';
+import { Platform, Pressable, ScrollView, StyleSheet } from 'react-native';
 import { useStore } from '../store';
 import { DeleteCoachAlert } from './alerts/DeleteCoachAlert';
 import { DeleteGroupAlert } from './alerts/DeleteGroupAlert';
@@ -31,7 +30,6 @@ export default function CoachScreen({ onBack }: Props) {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper}>
-      <Stack.Screen options={{ headerShown: false }} />
 
       <CustomNavbar title='Profile' onClick={() => onBack()}>
         <Pressable onPress={showDeleteAlert} style={{ marginRight: 4}}>
@@ -42,11 +40,14 @@ export default function CoachScreen({ onBack }: Props) {
       <DeleteCoachAlert onDelete={() => onBack()}/>
       <DeleteGroupAlert/>
 
-      <ProfileView/>
-      <ButtonsView/>
-
-      {isSignature && <SignatureView/>}
-      {!isSignature &&  <GroupsView/>}
+      <ScrollView
+        contentContainerStyle={{paddingBottom: 240}}
+        showsVerticalScrollIndicator={false}
+      >
+        <ProfileView/>
+        <ButtonsView/>
+        {isSignature ? <SignatureView/> : <GroupsView/>}
+      </ScrollView>
       
       <FreeGroupsView/>
     </LinearGradient>

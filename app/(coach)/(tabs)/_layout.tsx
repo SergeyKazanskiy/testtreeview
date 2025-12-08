@@ -45,7 +45,7 @@ export default function Layout() {
           tabBarIcon: ({ focused }: TabIconRenderProps) => {
             const { iconName, label } = getIconsData(route.name);
             return (
-              <View style={{ alignItems: 'center', justifyContent: 'center'}}>
+              <View style={{ alignItems: 'center', justifyContent: 'center', width: 160}}>
                 <Ionicons name={iconName} style={[styles.icon, focused && styles.focused]} />
                 <Text style={[styles.label, focused && styles.focused]}>{label}</Text>
               </View>
@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
   },
   label: {
     color: '#888888',
-    fontSize: 14,
-    marginTop: 3
+    fontSize: 12,
+    marginTop: 3,
   },
   focused: {
     color: '#E4FF3E'
