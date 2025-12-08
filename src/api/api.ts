@@ -1,14 +1,14 @@
 import Constants from "expo-constants";
 
 const appRole = Constants.expoConfig?.extra?.appRole;
-//export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://admin.dinivrey.com/api';
-export const API_BASE_URL = 'http://192.168.1.4:8000'
-
 let token: string | null = null;
 
+
+export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://admin.dinivrey.com/api';
+
 export const api = {
+
   setToken(newToken: string) {
-    //alert(newToken)
     token = newToken;
   },
 

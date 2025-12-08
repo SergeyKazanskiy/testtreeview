@@ -1,5 +1,5 @@
+import { api } from "@/src/api/api";
 import { request as httpWrapper } from '@/src/api/request';
-import { api } from "@/src/api/utils";
 import { Camp, Coach, CoachGroup, CoachShort, FreeGroup } from './model';
 
 

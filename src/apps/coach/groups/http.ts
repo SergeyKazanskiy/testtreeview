@@ -1,5 +1,5 @@
+import { api } from "@/src/api/api";
 import { request as httpWrapper } from '@/src/api/request';
-import { api } from "@/src/api/utils";
 import { Achieve, AchieveAttach, Achievement, Attendance, Comment, Game, Group, Lider, Parent, Student, Test } from './model';
 
 

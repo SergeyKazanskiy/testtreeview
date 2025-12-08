@@ -1,7 +1,7 @@
+import { API_BASE_URL } from '@/src/api/api';
 import { auth, signInWithToken } from "@/src/api/firebaseConfig";
 import { useAuthState } from "@/src/api/state";
 import { useAuthStore } from '@/src/api/store';
-import { API_BASE_URL } from '@/src/api/utils';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { LoadingToast } from '@/src/components/toasts/LoadingToast';
 import { DinivreyHeader } from '@/src/components/widgets/DinivreyHeader';

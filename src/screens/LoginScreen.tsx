@@ -1,7 +1,7 @@
+import { api } from '@/src/api/api';
 import { request } from '@/src/api/request';
 import { useAuthState } from '@/src/api/state';
 import { useAuthStore } from '@/src/api/store';
-import { api } from '@/src/api/utils';
 import { AuthButton } from '@/src/components/buttons/AuthButton';
 import { AlertContainer } from '@/src/components/containers/AlertContainer';
 import { ScreenContainer } from '@/src/components/containers/ScreenContainer';

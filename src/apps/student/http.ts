@@ -1,18 +1,18 @@
+import { api } from "@/src/api/api";
 import { request as httpWrapper } from '@/src/api/request';
-import { api } from "@/src/api/utils";
 import {
-    Achieve,
-    Achievement,
-    Camp,
-    Event,
-    Game,
-    GameReport, Gamer,
-    Group,
-    Lider,
-    Schedule,
-    Student,
-    Team,
-    Test
+  Achieve,
+  Achievement,
+  Camp,
+  Event,
+  Game,
+  GameReport, Gamer,
+  Group,
+  Lider,
+  Schedule,
+  Student,
+  Team,
+  Test
 } from './model';
 
 
