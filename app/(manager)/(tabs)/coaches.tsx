@@ -7,6 +7,6 @@ export default function CoachesRoute() {
   const router = useRouter();
   
   return (
-     <CoachesScreen onCoach={() => router.push('/(manager)/(tabs)/coaches/coach')}/>
+     <CoachesScreen onCoach={() => router.push('/(manager)/coaches_coach')}/>
   );
 }

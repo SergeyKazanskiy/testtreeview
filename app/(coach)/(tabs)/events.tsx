@@ -7,7 +7,7 @@ export default function EventsRoute() {
   const router = useRouter();
 
   const pressEvent = () => {
-    router.push('/(coach)/(tabs)/events/attendance');
+    router.push('/(coach)/events_attendance');
   }
   return <EventsScreen  onEvent={pressEvent}/>;
 }

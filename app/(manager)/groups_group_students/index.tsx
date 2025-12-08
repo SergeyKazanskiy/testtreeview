@@ -7,7 +7,7 @@ export default function StudentsRoute() {
   const router = useRouter();
 
   return <StudentsScreen
-  onStudent={() => router.push('/(manager)/(tabs)/groups/students/(tabs)/profile')}
+    onStudent={() => router.push('/(manager)/groups_group_students/(tabs)/profile')}
     onBack={() => router.back()}
   />;
 }

@@ -5,8 +5,7 @@ import { TabIconRenderProps } from '@/src/styles/types';
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs, useRouter } from 'expo-router';
 import { Image, StyleSheet, Text, View } from "react-native";
-import { useRoutersState } from '../_state';
-//import { EventsRouter } from './events';
+
 
 function getIconsData(routeName: string) {
   let iconName: any;
@@ -19,29 +18,23 @@ function getIconsData(routeName: string) {
     iconName = 'calendar-number-outline';
     label = 'Events';
   }
-
   return { iconName, label };
 }
 
+
 export default function Layout() {
   const { logoutUser } = useAuthStore();
-  const { showRootTabs } = useRoutersState();
   const router = useRouter();
 
   return (
     <ScreenContainer >
-      {showRootTabs && (
-        <>
-          <DinivreyHeader title='Coach' onExit={()=>(router.replace('/'), logoutUser())}/>
-          <Image style={[styles.image]} source={require('@/assets/images/DinivreyCompany.png')} />
-          {/* <EventsRouter /> */}
-        </>
-      )}
-      
+      <DinivreyHeader title='Coach' onExit={()=>(router.replace('/'), logoutUser())}/>
+      <Image style={[styles.image]} source={require('@/assets/images/DinivreyCompany.png')} />
+  
       <Tabs screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarStyle: showRootTabs ? styles.tabbar : { display: 'none' },
+          tabBarStyle: styles.tabbar,
           tabBarIcon: ({ focused }: TabIconRenderProps) => {
             const { iconName, label } = getIconsData(route.name);
             return (

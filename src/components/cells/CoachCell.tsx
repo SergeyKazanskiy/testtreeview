@@ -21,11 +21,11 @@ export const CoachCell: React.FC<Props> = ({first_name, last_name, onSelect}) =>
 const styles = StyleSheet.create({
   container: {
     borderRadius: 8,
-    padding: 10,
+    padding: 12,
     backgroundColor: 'rgba(45, 75, 10, 0.3)',
     borderWidth: 1,
     borderColor: 'rgb(110, 151, 6)',
-    marginVertical: 2
+    marginVertical: 4
   },
   section: {
     flexDirection: 'row',
@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#ddd',
-    fontWeight: '400',
-    fontSize: 18
+    fontWeight: '500',
+    fontSize: 16
   }
 });
 

@@ -36,7 +36,7 @@ export const AttendanceReport = () => {
         contentContainerStyle={[styles.container, {backgroundColor: '#152B52'}]}
         showsVerticalScrollIndicator={false}
       >
-        <LinearGradient colors={['#2E4A7C', '#152B52']} style={{padding: 16}}>
+        <LinearGradient colors={['#2E4A7C', '#152B52']} style={{flex: 1, padding: 16}}>
         <Text style={styles.title}>Drills</Text>
         {drills.map((item) => (
           <DrillCell

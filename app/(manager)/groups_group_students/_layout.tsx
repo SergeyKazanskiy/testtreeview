@@ -1,11 +1,11 @@
 import { Stack } from 'expo-router';
 
 
-export default function Index() {
+export default function RootLayput() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
-      <Stack.Screen name="camp_events" />
+      <Stack.Screen name="(tabs)" />
     </Stack>
   );
 }

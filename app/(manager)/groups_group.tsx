@@ -7,7 +7,7 @@ export default function GroupRoute() {
   const router = useRouter();
 
   return <GroupScreen
-    onStudents={() => router.push('/(manager)/(tabs)/groups/students')}
+    onStudents={() => router.push('/(manager)/groups_group_students')}
     onBack={() => router.back()}
   />;
 }

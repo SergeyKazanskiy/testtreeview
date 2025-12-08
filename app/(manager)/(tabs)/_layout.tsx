@@ -3,8 +3,7 @@ import { ScreenContainer } from '@/src/components/containers/ScreenContainer';
 import { DinivreyHeader } from '@/src/components/widgets/DinivreyHeader';
 import { TabIconRenderProps } from '@/src/styles/types';
 import { Ionicons } from '@expo/vector-icons';
-import { Tabs, usePathname, useRouter } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { Tabs, useRouter } from 'expo-router';
 import { Image, StyleSheet, Text, View } from "react-native";
 
 
@@ -27,40 +26,17 @@ if (routeName === 'groups') {
 
 export default function Layout() {
   const { logoutUser } = useAuthStore();
-  const [ showRootTabs, setShowRootTabs] = useState(true)
   const router = useRouter();
-
-  const pathname = usePathname();
-
-  useEffect(() => {
-    const isInsideGroupTabs =
-    pathname.startsWith("/groups/group") ||
-    pathname.startsWith("/groups/students") ||
-    pathname.startsWith("/coaches/coach") ||
-    pathname.startsWith("/events/camp_events");
-
-    if (isInsideGroupTabs) {
-      setShowRootTabs(false);
-    } else {
-      setShowRootTabs(true);
-    }
-  }, [pathname]);
-
 
   return (
     <ScreenContainer>
-      {showRootTabs && (
-        <>
-          <DinivreyHeader title='Manager' onExit={()=>(router.replace('/'), logoutUser())}/>
-          <Image style={[styles.image]} source={require('@/assets/images/DinivreyCompany.png')} />
-        </>
-      )}
+      <DinivreyHeader title='Manager' onExit={()=>(router.replace('/'), logoutUser())}/>
+      <Image style={[styles.image]} source={require('@/assets/images/DinivreyCompany.png')} />
       
       <Tabs screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
           tabBarStyle: styles.tabbar,
-          //tabBarStyle: showRootTabs ? styles.tabbar : { display: 'none' },
           tabBarIcon: ({ focused }: TabIconRenderProps) => {
             const { iconName, label } = getIconsData(route.name);
             return (
@@ -74,7 +50,7 @@ export default function Layout() {
       >
         <Tabs.Screen name="groups" />
         <Tabs.Screen name="coaches" />
-        <Tabs.Screen name="events" />
+        <Tabs.Screen name="cams" />
       </Tabs>
     </ScreenContainer>
   );

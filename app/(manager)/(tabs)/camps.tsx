@@ -7,6 +7,6 @@ export default function EventsRoute() {
   const router = useRouter();
   
   return (
-     <CampsScreen onCamp={() => router.push('/(manager)/(tabs)/events/camp_events')}/>
+     <CampsScreen onCamp={() => router.push('/(manager)/camps_events')}/>
   );
 }
