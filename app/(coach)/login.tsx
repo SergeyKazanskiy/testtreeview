@@ -6,8 +6,8 @@ import React from 'react';
 export default function LoginRoute() {
   const router = useRouter();
 
-  function login() {
+  function handleRoute() {
     router.replace("/(coach)/(tabs)/groups");
   }
-  return <LoginScreen login={login}/>;
+  return <LoginScreen onLoginSuccess={handleRoute}/>;
 }

@@ -14,16 +14,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 interface Props {
-  login: () => void;
+  onLoginSuccess: () => void;
 }
 
-export default function StudentLoginScreen({login}: Props) {
+export default function StudentLoginScreen({onLoginSuccess}: Props) {
 
   const { loginUser } = useAuthStore();
   const { isError, errorMessage, clearMessages, setError, showLoading, hideLoading } = useAuthState();
 
-  const [name, setName] = useState("New");
-  const [password, setPassword] = useState("+16505551234");
+  const [name, setName] = useState("David");
+  const [password, setPassword] = useState("+447700900001");
 
 
   const handleLogin = async () => {
@@ -49,7 +49,7 @@ export default function StudentLoginScreen({login}: Props) {
       const idToken = await auth.currentUser?.getIdToken(true)!;
 
       loginUser(idToken, id);
-      login();
+      onLoginSuccess();
     } catch (error: any) {
       setError(error.message || "Unknown login error");
     } finally {
