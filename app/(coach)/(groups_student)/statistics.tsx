@@ -6,5 +6,5 @@ import React from 'react';
 export default function StatisticsRoute() {
   const router = useRouter();
   
-  return <StatisticsScreen onBack={() => router.replace('/(coach)/(tabs)/groups')} />;
+  return <StatisticsScreen onBack={() => router.replace('/(coach)/(groups_student)/profile')} />;
 }

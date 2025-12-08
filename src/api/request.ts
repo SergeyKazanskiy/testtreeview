@@ -5,8 +5,8 @@ import { useAuthStore } from './store';
 
 export const request = async (
   apiCall: () => Promise<any>,
-  callback: (data: any) => void) => {
-
+  callback: (data: any) => void
+) => {
   useAuthState.getState().showLoading();
 
   const run = async (): Promise<boolean> => {
@@ -14,6 +14,7 @@ export const request = async (
       const response = await apiCall();
       callback(response.data);
       return true;
+
     } catch (error: any) {
       const message = error?.response?.data?.detail || 'Server error';
       const status = error?.response?.status;
@@ -22,12 +23,15 @@ export const request = async (
         const refreshed = await retryWithFreshToken(apiCall, callback);
         return refreshed;
       }
+
       useAuthState.getState().setError(message);
       return false;
+
     } finally {
       useAuthState.getState().hideLoading();
     }
   };
+
   await run();
 };
 
@@ -36,14 +40,19 @@ async function retryWithFreshToken(
   callback: (data: any) => void
 ): Promise<boolean> {
   try {
+    await new Promise(resolve => setTimeout(resolve, 500));
+
     const newToken = await auth.currentUser?.getIdToken(true);
+    //alert(newToken)
     if (!newToken) throw new Error('Token refresh failed');
 
     await useAuthStore.getState().refreshToken(newToken);
+
     const retryResponse = await apiCall();
     callback(retryResponse.data);
 
     return true;
+
   } catch (error: any) {
     const message = error?.response?.data?.detail || 'Server error';
     useAuthState.getState().setError(message);
