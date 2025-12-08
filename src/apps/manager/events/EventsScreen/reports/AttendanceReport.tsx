@@ -33,10 +33,10 @@ export const AttendanceReport = () => {
   return (
     <PopupContainer visible={isAttendanceReport} title='Attendance report' onClose={hideAttendanceReport}>
       <ScrollView
-        contentContainerStyle={{backgroundColor: '#152B52'}}
+        contentContainerStyle={[styles.container, {backgroundColor: '#152B52'}]}
         showsVerticalScrollIndicator={false}
       >
-        <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.container}>
+        <LinearGradient colors={['#2E4A7C', '#152B52']} style={{padding: 16}}>
         <Text style={styles.title}>Drills</Text>
         {drills.map((item) => (
           <DrillCell
@@ -71,7 +71,8 @@ export const AttendanceReport = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16
+    flex: 1,
+    height: '100%'
   },
   title: {
     color: '#ddd',

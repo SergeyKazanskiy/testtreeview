@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
     maxWidth: Platform.OS === 'web' ? 360 : undefined,
     width: '100%',
+    backgroundColor: '#152B52'
   },
     wrapper: {
     flex: 1,

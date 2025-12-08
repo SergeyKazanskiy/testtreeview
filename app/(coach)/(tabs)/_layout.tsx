@@ -29,7 +29,7 @@ export default function Layout() {
   const router = useRouter();
 
   return (
-    <ScreenContainer>
+    <ScreenContainer >
       {showRootTabs && (
         <>
           <DinivreyHeader title='Coach' onExit={()=>(router.replace('/'), logoutUser())}/>
