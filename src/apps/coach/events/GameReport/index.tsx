@@ -2,7 +2,7 @@ import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 import { useCallback } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { useStore } from '../store';
@@ -19,11 +19,13 @@ const formatDate = (timestamp: number): string => {
 };
 
 
-export default function GameReport() {
+type Props = {
+  onBack: () => void;
+}
+
+export default function GameReport({ onBack }: Props) {
   const { game_id, gameDate, gamers } = useStore();
   const { loadGame, deleteGame, showGameDeleteAlert } = useStore();
-  
-  const router = useRouter();
 
   useFocusEffect(
     useCallback(() => {
@@ -37,14 +39,13 @@ export default function GameReport() {
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper}>
       <Stack.Screen options={{ headerShown: false }} />
 
-      <CustomNavbar title={titleHeader} onClick={() => router.back()}>
+      <CustomNavbar title={titleHeader} onClick={onBack}>
         <Ionicons name='trash-outline' size={20} color='#D1FF4D' style={{ marginRight: 1, marginTop: 4 }}
           onPress={showGameDeleteAlert}
         />
       </CustomNavbar>
 
-      <GameDeleteAlert onDelete={() => (deleteGame(game_id), router.back())}/>
-      {/* <SuccessGameDeleteAlert onClose={() => router.back()} /> */}
+      <GameDeleteAlert onDelete={() => (deleteGame(game_id), onBack())}/>
 
       <GameView/>
     </LinearGradient>

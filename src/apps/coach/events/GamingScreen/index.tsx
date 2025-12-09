@@ -1,7 +1,7 @@
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { formatDateTime } from '@/src/utils/utils';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import { Student } from '../model';
@@ -21,13 +21,17 @@ import { PlayersView } from './views/PlayersView';
 import { TitleView } from './views/TitleView';
 
 
-export default function GamingScreen() {
+type Props = {
+  onBack: () => void;
+}
+
+export default function GamingScreen({ onBack }: Props) {
   const { isHeader, currentRound, attendances, gameStep, gameState, gameDate, isEvadersDialog } = useStore();
   const { currentTeam, pointsDifference, winner } = useStore();
   const { setAvailableStudents, onNavbarBack, hideBackAlert, onErrorExit, step_on_settings, clearPlayers} = useStore();
   const { onFixPoints, switch_on_completion, hideCheckingAlert } = useStore();
 
-  const router = useRouter();
+  //const router = useRouter();
 
 
   useEffect(() => {
@@ -45,7 +49,7 @@ export default function GamingScreen() {
   function handleBack() {
     if (gameStep === 'Settings') {
       clearPlayers();
-      setTimeout(() => router.back(), 300);
+      setTimeout(onBack, 300);
     } else {
       onNavbarBack();
     }
@@ -53,7 +57,7 @@ export default function GamingScreen() {
 
   function handleFinishGame() {
     step_on_settings();
-    setTimeout(() => router.back(), 300);
+    setTimeout(onBack, 300);
   }
 
   return (
@@ -65,7 +69,7 @@ export default function GamingScreen() {
 
       {/* Alerts */}
       <BackAlert
-        onBack={() => (router.back(), onErrorExit())}
+        onBack={() => (onBack(), onErrorExit())}
         onCancel={hideBackAlert}
       />
       <GameOverAlert

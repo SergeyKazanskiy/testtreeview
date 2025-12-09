@@ -9,9 +9,9 @@ export default function AttendanceRoute() {
   return (
     <AttendanceScreen
       onBack={() => router.back()}
-      onGame={() => router.push("/shared/gaming")}
+      onGame={() => router.push("/(coach)/events_attendance/gaming")}
       onTest={() => router.push('/(coach)/events_attendance/testing')}
-      onGameReport={() => router.push('/shared/report')}
+      onGameReport={() => router.push('/(coach)/events_attendance/report')}
       onDrill={() => router.push('/(coach)/events_attendance/drill')}
       onStudent={() => router.replace('/(coach)/(groups_student)/profile')}
     />
