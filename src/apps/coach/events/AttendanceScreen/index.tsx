@@ -51,14 +51,17 @@ export default function AttendanceScreen({ onBack, onTest, onGame, onGameReport,
 
   function handleAddBlank() {
     if (isPast(event_timestamp)) {
+      alert('isPast')
       setTenses('past');
       setIsCreateAlert(true);
       return
     } else if (isFuture(event_timestamp)) {
+      alert('isFuture')
       setTenses('future');
       setIsCreateAlert(true);
       return
     }
+    alert('addAttendances')
     addAttendances();
   }
 
@@ -134,15 +137,20 @@ export default function AttendanceScreen({ onBack, onTest, onGame, onGameReport,
 
         <View style={styles.container}>
           <View style={styles.section}>
-
-            <Button title={isStudentsView ? 'Add Blank' : 'Delete Blank'}
-              disabled={students.length === 0} 
-              type='outline' 
+            {isStudentsView && <Button title ='Add Blank'
+              disabled={students.length === 0}
+              type='outline'
               buttonStyle={styles.button}
               titleStyle={styles.title}
-              containerStyle={{marginBottom: 4}}
-              onPress={isAttendanceView ? handleAddBlank : handleDeleteBlank}
-            />  
+              containerStyle={{marginLeft: 2}}
+              onPress={handleAddBlank} />}
+            {isAttendanceView && <Button  title ='Delete Blank'
+              color="blue"
+              type='outline'
+              buttonStyle={styles.button}
+              titleStyle={styles.title}
+              containerStyle={{marginLeft: 2}}
+              onPress={handleDeleteBlank}/>}
 
             <View style={[styles.section, {marginRight: 11}]}>
               {isAttendanceView && checkedStudents.length === 0 && <>

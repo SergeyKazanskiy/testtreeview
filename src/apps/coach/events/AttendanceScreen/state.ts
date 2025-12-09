@@ -1,3 +1,4 @@
+import { useAuthStore } from '@/src/api/store';
 import { formatDateTime } from '@/src/utils/utils';
 import { GroupsSlice } from '../../groups/GroupsScreen/state';
 import { EventsSlice } from '../EventsScreen/state';
@@ -52,15 +53,8 @@ export interface AttendanceSlice {
 }
 
 export const createAttendanceSlice = (set: any, get: any): AttendanceSlice => ({
-    attendances: [
-        //{ id: 1, student_id: 1, first_name: 'Name 1', last_name: 'Name 12', present: true },
-       // { id: 2, student_id: 2, first_name: 'Name 2', last_name: 'Name 22', present: true },
-    ],
-
-    students: [
-       // { first_name: 'Name 1', last_name: 'Name 12' },
-       // { first_name: 'Name 2', last_name: 'Name 22' },
-    ],
+    attendances: [],
+    students: [],
     attendance_id: 0,
     isAllChecked: false,
 
@@ -86,7 +80,6 @@ export const createAttendanceSlice = (set: any, get: any): AttendanceSlice => ({
         set({ isAllChecked: false});
         
         get_attendances(event_id, group_id, event_timestamp, (attendances: Attendance[]) => {
-            //alert(objectToJson(attendances))
             if (attendances.length > 0) {
                 const attendancesAmount = attendances.reduce((acc, item) => {
                     if (item.present) {
@@ -104,7 +97,7 @@ export const createAttendanceSlice = (set: any, get: any): AttendanceSlice => ({
         })
     },
 
-    loadStudentsNames: (group_id: number) => {
+    loadStudentsNames: (group_id: number) => {        
         get_students_names(group_id, (students: Student[]) => {
             set({ students, isStudentsView: true, isAttendanceView: false });
         });
@@ -118,16 +111,12 @@ export const createAttendanceSlice = (set: any, get: any): AttendanceSlice => ({
         if (attendance) {
             update_attendance(attendance_id, {student_id: attendance.student_id, present: !attendance.present}, (res) => {
                 if (res.isOk) {
-                    //alert(objectToJson(res))
-
-                    
                     const currentEvent = events_shedules.find(el => el.id === event_id);
 
                     if (currentEvent && currentEvent.type === 'Exam') {
                         if (attendance.present && attendance.test_id > 0) {
                             delete_student_test(attendance.test_id!, (res => {
                                 if (res.isOk) {
-                                    //alert('test deleted')
                                     attendance.test_id = 0;
                                 } 
                             }));
@@ -141,7 +130,6 @@ export const createAttendanceSlice = (set: any, get: any): AttendanceSlice => ({
                             };
                             add_student_test(newTest, (res) => {
                                 if (res.id) {
-                                   // alert('test created')
                                     attendance.test_id = res.id;
                                 }     
                             })
@@ -220,7 +208,6 @@ export const createAttendanceSlice = (set: any, get: any): AttendanceSlice => ({
     },
 
     updateComment: (attendance_id: number, comment: string)  => {
-        //alert(comment)
         update_attendance(attendance_id, {comment}, (res) => {
             if (res.isOk) {
                 set((state: AttendanceSlice) => ({
@@ -245,7 +232,9 @@ export const createAttendanceSlice = (set: any, get: any): AttendanceSlice => ({
     sendAttedanceReport: () => {
         set({ isSendingReport: true });
 
+        const { userId } = useAuthStore()
         const { event_id, group_id, events_shedules, groups, group_number }: EventsSlice & GroupsSlice = get();
+        
         const event = events_shedules.find(el => el.id === event_id)!;
         const group = groups.find(el => el.id === group_id)!;
 
@@ -257,7 +246,7 @@ export const createAttendanceSlice = (set: any, get: any): AttendanceSlice => ({
             camp_name: group.camp_name,
             group_name: group.name,
             group_number,
-            coach_id: 1 //???
+            coach_id: userId
         }
 
         send_attendance_report(data, (res) => {

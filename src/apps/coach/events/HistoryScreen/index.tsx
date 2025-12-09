@@ -1,3 +1,4 @@
+import { useAuthStore } from '@/src/api/store';
 import { widgetStyles } from '@/src/styles/appStyles';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,12 +11,13 @@ import { WeekEventsView } from './views/WeekEventsView';
 
 
 export default function HistoryScreen() {
+  const { userId } = useAuthStore()
   const { isWeekFilter, days, groups, group_inx } = useStore();
   const { loadGroups, selectGroup } = useStore();
   
   useFocusEffect(
     useCallback(() => {
-      loadGroups(2, () => {});
+      loadGroups(userId, () => {});
     }, [])
   );
 

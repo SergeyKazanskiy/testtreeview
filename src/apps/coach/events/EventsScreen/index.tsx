@@ -1,3 +1,4 @@
+import { useAuthStore } from '@/src/api/store';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { widgetStyles } from '@/src/styles/appStyles';
@@ -18,16 +19,17 @@ type EventsScreenProps = {
 };
 
 export default function EventsScreen({ onEvent }: EventsScreenProps) {
+  const { userId } = useAuthStore()
+  const { schedule_days, isEventAddAlert } = useStore();
+  const { loadGroups, loadSchedules, closeAddAlert, addEvent } = useStore();
+
   const [isPast, setIsPast] = useState(false);
   const [isFuture, setIsFuture] = useState(false);
   const [eventType, setEventType] = useState('Training');
 
-  const { schedule_days, isEventAddAlert } = useStore();
-  const { loadGroups, loadSchedules, closeAddAlert, addEvent } = useStore();
-
   useFocusEffect(
     useCallback(() => {
-      loadGroups(2, () => {
+      loadGroups(userId, () => {
         loadSchedules();
       });
     }, [])

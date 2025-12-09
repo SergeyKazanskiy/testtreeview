@@ -14,14 +14,12 @@ interface Props {
 }
   
 export default function GroupsScreen({ pressStudent }: Props) {
+  const { userId } = useAuthStore();
   const { groups, group_id } = useStore();
   const { loadGroups, selectGroup } = useStore();
 
-  const { userId } = useAuthStore();
-
   useFocusEffect(
     useCallback(() => {
-    //  alert(userId)
       loadGroups(userId);
     }, [])
   );
