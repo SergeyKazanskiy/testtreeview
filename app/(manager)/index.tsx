@@ -1,22 +1,32 @@
 import { useAuthStore } from '@/src/api/store';
-import { Slot, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
+import { ActivityIndicator, View } from 'react-native';
 
 
 export default function ManagerLayout() {
-  const { isLogin } = useAuthStore();
+  const { isLogin, isLoadingAuth, restoreAuth } = useAuthStore();
   const router = useRouter()
 
+
   useEffect(() => {
-    if (isLogin === false) {
+    restoreAuth();
+  }, []);
+
+  useEffect(() => {
+    if (!isLoadingAuth && isLogin === false) {
       router.replace("/(manager)/login");
-    } else {
+    }
+
+    if (!isLoadingAuth && isLogin === true) {
       router.replace("/(manager)/(tabs)/groups");
     }
-  }, [isLogin]);
+  }, [isLoadingAuth]);
 
-  if (isLogin === false) return null;
-
-  return <Slot />;
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <ActivityIndicator size="large" color="#007bff" />
+    </View>
+  );
 }
 

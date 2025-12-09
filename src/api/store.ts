@@ -8,7 +8,7 @@ interface AuthStore {
   token: string | null;
   userId: number;
   isLogin: boolean;
-
+  isLoadingAuth: boolean;
 
   loginUser: (token: string, userId: number) => void;
   logoutUser: () => void;
@@ -17,12 +17,13 @@ interface AuthStore {
   restoreAuth: () => Promise<void>;
 }
 
-export const useAuthStore = create<AuthStore>((set: any) => ({
+export const useAuthStore = create<AuthStore>((set: any, get: any) => ({
   token: null,
   userId: 0,
   isLogin: false,
+  isLoadingAuth: true,
 
-
+  
   loginUser: (token: string = '', userId: number) => {
     setToken(token);
     set({ token, isLogin: true, userId });
@@ -57,6 +58,7 @@ export const useAuthStore = create<AuthStore>((set: any) => ({
     if (token && userId > 0) {
       set({ token, userId: Number(user_id), isLogin: true });
     }
+    set({ isLoadingAuth: false });
   },
 }));
 
