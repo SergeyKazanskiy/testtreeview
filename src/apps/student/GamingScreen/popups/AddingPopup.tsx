@@ -63,7 +63,6 @@ export function AddingPopup() {
           onPress={() => (addPlayers(), hideAddingPopup())}
         />
       </View>
-
       </View>
     </Modal>
   );
@@ -73,12 +72,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-    //   // width: Platform.OS === 'web' ? 760 : undefined,
-    //   // maxHeight: Platform.OS === 'web' ? 360 : undefined,
-       width: '100%',
-       backgroundColor: '#152B52',
-       height: '100%',
-       //marginRight: 40
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#152B52',
   },
   header: {
     flexDirection: 'row',

@@ -1,7 +1,6 @@
 import { Button } from '@/src/components/buttons/CustomButton';
-import { PopupWrapper } from '@/src/components/containers/PopupWrapper';
 import { Icon } from '@/src/components/icons/CustomIcon';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Student } from '../../model';
 import { useStore } from '../../store';
 
@@ -21,7 +20,14 @@ export function AddingPopup() {
   }
 
   return (
-     <PopupWrapper visible={isAddingPopup} title='Choose players to add' onClose={hideAddingPopup}>
+    <Modal visible={isAddingPopup} animationType='fade'>
+      <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>  </Text>
+        <Text style={styles.title}>Choose players to add</Text>
+        <Icon size={20} color="#D1FF4D" name="close" onPress={hideAddingPopup} />
+      </View>
+
       {columns.length === 0 && <Text style={styles.title}>No available students</Text>}
 
       <ScrollView horizontal contentContainerStyle={styles.rowScroll}>
@@ -57,11 +63,27 @@ export function AddingPopup() {
           onPress={() => (addPlayers(), hideAddingPopup())}
         />
       </View>
-    </PopupWrapper>
+      </View>
+    </Modal>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#152B52',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 16,
+    paddingVertical: 5,
+    padding: 20
+  },
   title: {
     fontSize: 22,
     color: 'white',
