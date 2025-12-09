@@ -33,7 +33,7 @@ export const GameReport = () => {
       <View  style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>  </Text>
-          <Text style={styles.title}>Choose players to add</Text>
+          <Text style={styles.title}>{titleHeader}</Text>
           <Icon size={20} color="#D1FF4D" name="close" onPress={hideGameReport} />
         </View>
 

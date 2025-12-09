@@ -3,7 +3,7 @@ import { formatDateTime } from '@/src/utils/utils';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Student } from '../model';
 import { useStore } from '../store';
 import { BackAlert } from './alerts/BackAlert';
@@ -20,7 +20,6 @@ import { HeaderView } from './views/HeaderView';
 import { PlayersView } from './views/PlayersView';
 import { TitleView } from './views/TitleView';
 
-
 type Props = {
   onBack: () => void;
 }
@@ -31,10 +30,7 @@ export default function GamingScreen({ onBack }: Props) {
   const { setAvailableStudents, onNavbarBack, hideBackAlert, onErrorExit, step_on_settings, clearPlayers} = useStore();
   const { onFixPoints, switch_on_completion, hideCheckingAlert } = useStore();
 
-  //const router = useRouter();
-
-
-  useEffect(() => {
+  useEffect(() => { // ???
     const availables = attendances.filter(el => el.present === true);
     const students: Student[] = availables.map(el => ({
       id: el.student_id,
@@ -119,9 +115,6 @@ export default function GamingScreen({ onBack }: Props) {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-    maxWidth: Platform.OS === 'web' ? 760 : undefined,
-    maxHeight: Platform.OS === 'web' ? 360 : undefined,
     width: '100%',
   },
   row: {

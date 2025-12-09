@@ -59,9 +59,7 @@ export default function GamingScreen({ pressBack }: Props) {
     pressBack();
   };
 
-  return (
-    // <SafeAreaView edges={['left']}>
-        
+  return (        
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
       <Stack.Screen options={{ headerShown: false }} />
       <HorizontalNavbar title='    Dinivrey - Game Mode    ' onClick={handleBack}>
@@ -114,22 +112,17 @@ export default function GamingScreen({ pressBack }: Props) {
 
       {!isHeader && !isEvadersDialog && <FooterView/>}
     </LinearGradient>
-    // </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-      flex: 1,
-    //  alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-    //  maxWidth: Platform.OS === 'web' ? 960 : undefined,
-    //  maxHeight: Platform.OS === 'web' ? 360 : undefined,
-      width: '100%',
+    flex: 1,
+    width: '100%',
   },
   row: {
     flex: 1,
     flexDirection: 'row',
-  //  justifyContent: 'space-between'
   },
   section: {
     flex: 1,

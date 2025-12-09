@@ -1,5 +1,5 @@
-import { PopupWrapper } from '@/src/components/containers/PopupWrapper';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Icon } from '@/src/components/icons/CustomIcon';
+import { Modal, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Role, Team } from '../../model';
 import { useStore } from '../../store';
 import { FooterReport } from '../views/FooterReport';
@@ -29,10 +29,15 @@ export const GameReport = () => {
    const role_1 = role_2 === Role.CHASER ? Role.EVADER : Role.CHASER
 
   return (
-    <PopupWrapper visible={isGameReport} title={titleHeader} onClose={hideGameReport}>
-      <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+    <Modal visible={isGameReport} animationType='fade'>
+      <View  style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>  </Text>
+          <Text style={styles.title}>{titleHeader}</Text>
+          <Icon size={20} color="#D1FF4D" name="close" onPress={hideGameReport} />
+        </View>
 
+        <ScrollView contentContainerStyle={styles.scrollContent}>
           <View style={styles.section}>
             <Text style={styles.text}>Players - {teams_totals[0].amount} </Text>
             <Text style={styles.text}>Players - {teams_totals[1].amount} </Text>
@@ -49,16 +54,17 @@ export const GameReport = () => {
           <FooterReport/>
         </ScrollView>
       </View>
-    </PopupWrapper>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-   // backgroundColor: '#1E2A38',
-    paddingHorizontal: 16,
-    paddingBottom: 16,
+      alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
+      width: Platform.OS === 'web' ? 760 : undefined,
+      maxHeight: Platform.OS === 'web' ? 360 : undefined,
+      backgroundColor: '#152B52'
   },
   section: {
     flexDirection: 'row',

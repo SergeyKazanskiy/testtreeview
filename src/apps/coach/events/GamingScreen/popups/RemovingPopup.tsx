@@ -1,8 +1,7 @@
 import { Button } from '@/src/components/buttons/CustomButton';
-import { PopupWrapper } from '@/src/components/containers/PopupWrapper';
 import { Icon } from '@/src/components/icons/CustomIcon';
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Player } from '../../model';
 import { useStore } from '../../store';
 import { RemoveAlert } from '../alerts/RemoveAlert';
@@ -47,7 +46,14 @@ export function RemovingPopup() {
   }
 
   return (
-    <PopupWrapper visible={isRemovingPopup} title='Remove players' onClose={hideRemovingPopup}>
+    <Modal visible={isRemovingPopup} animationType='fade'>
+      <View  style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>  </Text>
+          <Text style={styles.title}>Remove players</Text>
+          <Icon size={20} color="#D1FF4D" name="close" onPress={hideRemovingPopup} />
+        </View>
+    
       <RemoveAlert name={name} onCancel={closeAlert} onRemove={handleRemove}/>
 
       <ScrollView horizontal contentContainerStyle={styles.rowScroll}>
@@ -80,11 +86,26 @@ export function RemovingPopup() {
           onPress={() => (removePlayers(), hideRemovingPopup())}
         />
       </View>
-    </PopupWrapper>
+    </View>
+    </Modal>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+      alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
+      width: '100%',
+      backgroundColor: '#152B52'
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 16,
+    paddingVertical: 5,
+    padding: 20
+  },
   title: {
     fontSize: 22,
     color: 'white',

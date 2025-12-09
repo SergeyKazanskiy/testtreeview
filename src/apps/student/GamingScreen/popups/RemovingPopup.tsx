@@ -51,7 +51,7 @@ export function RemovingPopup() {
         <View style={styles.header}>
           <Text style={styles.title}>  </Text>
           <Text style={styles.title}>Remove players</Text>
-          <Icon size={20} color="#D1FF4D" name="close" onPress={handleRemove} />
+          <Icon size={20} color="#D1FF4D" name="close" onPress={hideRemovingPopup} />
         </View>
 
       <RemoveAlert name={name} onCancel={closeAlert} onRemove={handleRemove}/>
@@ -95,8 +95,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
       alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-      // width: Platform.OS === 'web' ? 760 : undefined,
-      // maxHeight: Platform.OS === 'web' ? 360 : undefined,
       width: '100%',
       backgroundColor: '#152B52'
   },
