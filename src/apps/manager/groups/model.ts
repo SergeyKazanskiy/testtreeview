@@ -139,7 +139,7 @@ export interface StudentProfile {
     achieve_id: number;
     in_profile: boolean;
     category: string;
-    level: string;
+    level: number;
     trigger: string;
     effect: string;
   }

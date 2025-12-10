@@ -1,11 +1,12 @@
 import { AchieveIcon } from '@/src/components/icons/AchieveIcon';
 import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
-import { Achieve } from '../../model';
+import { Achievement } from '../../model';
+
 
 
 export type Props = {
-  achieves: Achieve[];
+  achieves: Achievement[];
   achieve_id: number;
   category: string;
   onClick: (id: number) => void;
@@ -18,7 +19,7 @@ export const AchievesPanel: React.FC<Props> = ({ achieves, achieve_id, category,
         <View style={[ styles.container]}>
             <FlatList horizontal
                 data={data} 
-                keyExtractor={(achieve) => achieve.image}
+                keyExtractor={achieve => achieve.id.toString()}
                 contentContainerStyle={{ justifyContent: 'flex-start', alignItems: 'center', flexGrow: 1}}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => (
@@ -28,7 +29,7 @@ export const AchievesPanel: React.FC<Props> = ({ achieves, achieve_id, category,
                             size={72}
                             image={item.image}
                             label={item.name}
-                            level={1}
+                            level={item.level}
                             effect={item.effect}
                         />
                     </View>

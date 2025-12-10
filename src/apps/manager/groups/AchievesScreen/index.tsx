@@ -30,8 +30,8 @@ export const AchievesScreen = ({ onBack }: Props) => {
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
       <CustomNavbar title='Achievements' onClick={onBack}>
-        <Ionicons name='trash-outline' size={20} color={achievement_id === 0 ? 'gray' :'#D1FF4D'}
-          onPress={detachAchieve}
+        <Ionicons name='trash-outline' size={22} color={achievement_id === 0 ? '#D1FF4D' :'red'}
+          onPress={detachAchieve} style={{paddingLeft: 8}}
         />
       </CustomNavbar>
 

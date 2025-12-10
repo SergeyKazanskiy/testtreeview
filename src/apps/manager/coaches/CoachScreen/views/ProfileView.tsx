@@ -74,12 +74,12 @@ const styles = StyleSheet.create({
         marginLeft: 16,
     },
     avatar: {
-        width: 100,
-        height: 100,
+        width: 110,
+        height: 110,
         borderRadius: 4,
     },
     label: {
-        color: '#ccc',
+        color: '#F8E187',
         fontSize: 15,
         marginRight: 8,
     },

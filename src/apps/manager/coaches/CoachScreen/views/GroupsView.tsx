@@ -1,4 +1,3 @@
-import { cellStyles } from '@/src/styles/appStyles';
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useStore } from '../../store';
@@ -18,7 +17,7 @@ export function GroupsView() {
           onPress={() => selectGroup(item.id)}>
 
             <Text style={styles.title}>{item.name}</Text>
-            <Text style={cellStyles.description}>{item.desc}</Text>
+            <Text style={styles.description}>{item.desc}</Text>
         </TouchableOpacity>
       ))}
       
@@ -52,8 +51,13 @@ const styles = StyleSheet.create({
   title: {
     color: '#ddd',
     fontWeight: '500',
-    fontSize: 16,
+    fontSize: 15,
     paddingBottom: 8
+  },
+  description: {
+    color: '#A7CFF5',
+    fontSize: 14,
+    fontWeight: 'medium'
   },
   selected: {
     borderColor: '#ddd',

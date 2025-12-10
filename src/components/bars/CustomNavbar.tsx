@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
 export type Props = {
@@ -12,9 +12,9 @@ export type Props = {
 export const CustomNavbar: React.FC<Props> = ({ title, onClick, children }) => {
   return (
     <View style={styles.container}>
-        <Ionicons name='chevron-back' size={20} color='#D1FF4D' style={styles.backIcons}
-          onPress={onClick}
-        />
+        <TouchableOpacity onPress={onClick} style={{paddingVertical: 8}}>
+          <Ionicons name='chevron-back' size={20} color='#D1FF4D' style={styles.backIcons}/>
+        </TouchableOpacity>
         <View style={styles.titleWrapper}>
           <Text style={styles.title}>{title}</Text>
         </View>
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: '#152B52',
     justifyContent: 'space-between',
-    paddingVertical: 16,
+    paddingVertical: 8,
     paddingHorizontal: 32,
     height: 64
   },
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   iconsWrapper: {
   //  position: 'absolute',
     top: 4,
-    //right: 16,
+    minWidth: 40,
     flexDirection: 'row',
     alignItems: 'center',
    // gap: 26, // если используешь RN >= 0.71

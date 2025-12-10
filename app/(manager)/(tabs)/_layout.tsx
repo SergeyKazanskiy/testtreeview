@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
   label: {
     color: '#888888',
     fontSize: 12,
-    //marginTop: 3
   },
   focused: {
     color: '#E4FF3E'
