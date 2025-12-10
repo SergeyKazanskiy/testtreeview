@@ -1,7 +1,7 @@
-import { Store } from "../store";
-import { Student, Parent, Attendance, Test } from "../model";
-import { get_student, get_student_parents, get_last_test, get_student_attendance_percent } from '../http';
 import { GroupsSlice } from '../GroupsScreen/state';
+import { get_last_test, get_student, get_student_attendance_percent, get_student_parents } from '../http';
+import { Attendance, Parent, Student, Test } from "../model";
+import { Store } from "../store";
 
 
 export interface ProfileSlice {
@@ -41,11 +41,9 @@ export const createProfileSlice = (set: any, get: () => Store): ProfileSlice => 
     const { student_id }: GroupsSlice = get();
 
     get_student(student_id, (student: Student) => {
-      //alert(objectToJson(student))
       set({ student });
       
       get_student_parents(student_id, (parents: Parent[]) => {
-        //alert(objectToJson(parents))
         if (parents.length === 2) {
           set({ parents });
         } else {

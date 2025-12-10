@@ -84,7 +84,7 @@ export const createStatisticsSlice = (set: any, get: any): StatisticsSlice => ({
 
     togleStatistic: () => {
         const { student_id, isTests }: StatisticsSlice & GroupsSlice = get();
-       // alert(isTests)
+
         if (isTests) {
             get_last_game_date(student_id, (res => {
                 set({ year: res.year, month: res.month });

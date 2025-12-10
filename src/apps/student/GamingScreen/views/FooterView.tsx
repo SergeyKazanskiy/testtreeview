@@ -13,7 +13,6 @@ export function FooterView() {
   const { currentRound, round_times, blockTimeSettings} = useStore();
   const { showTimeSetter } = useStore();
 
- // alert(currentRound.round + '_' + round_times[0]+ '_' + round_times[1]) //!!!
   const time = round_times[currentRound.round - 1];
 
   return (

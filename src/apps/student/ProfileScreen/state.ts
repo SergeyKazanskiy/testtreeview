@@ -177,8 +177,6 @@ export const createProfileSlice = (set: any, get: () => Store): ProfileSlice => 
 
   loadNotifications: (studentId: number) => {
     get_notifications(studentId, (notifications: string[]) => {
-      //alert(objectToJson(notifications))
-
       set({notifications});
     })
   },

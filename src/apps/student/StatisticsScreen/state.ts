@@ -89,7 +89,6 @@ export const createStatisticsSlice = (set: any, get: any): StatisticsSlice => ({
 
     togleStatistic: () => {
         const { student_id, isTests }: StatisticsSlice & ProfileSlice = get();
-       // alert(isTests)
         if (isTests) {
             get_last_game_date(student_id, (res => {
                 set({ year: res.year, month: res.month });
@@ -166,7 +165,6 @@ export const createStatisticsSlice = (set: any, get: any): StatisticsSlice => ({
         const { student_id }: ProfileSlice = get();
 
         get_last_tests_limit(student_id, limit, (tests: Test[]) => {
-            //alert(objectToJson(tests))
             if (tests.length > 0) {
                 const metrics = convertTestsToMetrics(tests);
                 

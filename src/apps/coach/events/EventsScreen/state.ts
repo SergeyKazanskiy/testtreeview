@@ -45,7 +45,6 @@ export const createEventsSlice = (set: any, get: any): EventsSlice => ({
         const { group_ids, groups }: HistorySlice = get();
 
         get_coach_schedule(group_ids, (res => {
-            //alert(objectToJson(res))
             if (res) {
                 let currentDay: number = 0;
                 let days: {day: number, weekday: string}[]=[];
@@ -62,8 +61,6 @@ export const createEventsSlice = (set: any, get: any): EventsSlice => ({
                     const competition = getExistingEvent(res.events, schedule.weekday, schedule.hour, schedule.minute)
                     if (competition) {
                         if (!checkContentEvent(events_shedules, competition.id)) {
-                            //competition.day = day;
-                            //alert(objectToJson(competition))
                             events_shedules.push(competition);
                         }
                     } else {
@@ -96,7 +93,7 @@ export const createEventsSlice = (set: any, get: any): EventsSlice => ({
                 }
                 const sortedDays = days.sort((a, b) => a.day - b.day);
                 const sortedEvents = events_shedules.sort((a, b) => a.timestamp - b.timestamp);
-                //alert(objectToJson(sortedEvents))
+        
                 set({schedule_days: sortedDays, events_shedules: sortedEvents});
             }
         }));
@@ -111,7 +108,7 @@ export const createEventsSlice = (set: any, get: any): EventsSlice => ({
     addEvent: (type: string) => {
         const { events_shedules, group_id, event_timestamp, groups }: EventsSlice & HistorySlice= get();
         const planingEvent = events_shedules.find(el => el.group1_id === group_id && el.timestamp === event_timestamp);
-        //alert(group_id + '   ' + event_timestamp)
+        
         if (planingEvent) {
             const {timestamp, desc, group1_id, group2_id } = planingEvent
             const group = groups.find(el => el.id === group1_id)!
@@ -163,8 +160,7 @@ function getExistingEvent(events: Event[], w: number, h: number, m: number): Eve
    
     for (let event of events) {
         const { dayOfWeek, hours, minutes } = getWeekHourMinute(event.timestamp);
-        //alert('111  ' + w  + ',  ' + h  + ',  ' + m)
-       // alert('222  ' + dayOfWeek  + ',  ' + hours  + ',  ' + minutes)
+
         if ( dayOfWeek === w &&  hours === h && minutes === m) {
             event.day = getWeekHourMinute(event.timestamp).dayOfWeek;
             return event;

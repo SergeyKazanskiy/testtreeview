@@ -21,11 +21,9 @@ export const createDrillSlice = (set: any, get: any): DrillSlice => ({
     },
 
     loadDrill: (drill_id: number) => {
-        //alert(objectToJson(drill_id))
         get_drill(drill_id, (drill => {
             set({drill});
         }));
     },
-
 });
 

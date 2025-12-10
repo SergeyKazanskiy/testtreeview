@@ -38,8 +38,8 @@ export const createAshievesSlice = (set: any, get: () => Store): AshievesSlice =
 
   loadAchieves: () => {
     const { student_id }: ProfileSlice = get();
+
     get_student_achieves(student_id, (achievements: Achievement[]) => {
-      //alert(objectToJson(achievements))
       set({unlocked_achieves: achievements });
 
       const profileAchievements = achievements.filter(el => el.in_profile === true);
@@ -48,7 +48,6 @@ export const createAshievesSlice = (set: any, get: () => Store): AshievesSlice =
       }
     })
     get_locked_achieves(student_id, (achieves: Achieve[]) => {
-      //alert(objectToJson(achieves))
       set({ locked_achieves: achieves });
     })
   },

@@ -81,7 +81,6 @@ export const createGamingSlice = (set: any, get: any): GamingSlice => ({
     isGamingScreen: false,
     setGamingScreen: (isGamingScreen: boolean) => {
         set({isGamingScreen});
-       // alert(isGamingScreen)
     },
 
     // Data
@@ -121,7 +120,6 @@ export const createGamingSlice = (set: any, get: any): GamingSlice => ({
         const { student }: ProfileSlice = get();
        
         get_students(student.group_id, (students: Student[]) => {
-           // alert(objectToJson(students))
             set({ students });
         })
     },

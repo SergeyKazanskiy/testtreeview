@@ -43,7 +43,6 @@ async function retryWithFreshToken(
     await new Promise(resolve => setTimeout(resolve, 500));
 
     const newToken = await auth.currentUser?.getIdToken(true);
-    //alert(newToken)
     if (!newToken) throw new Error('Token refresh failed');
 
     await useAuthStore.getState().refreshToken(newToken);

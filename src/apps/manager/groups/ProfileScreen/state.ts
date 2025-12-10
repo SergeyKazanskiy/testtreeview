@@ -38,11 +38,9 @@ export const createProfileSlice = (set: any, get: () => Store): ProfileSlice => 
 
   loadStudent: (student_id: number) => {
     get_student(student_id, (student: Student) => {
-      //alert(objectToJson(student))
       set({ student });
       
       get_student_parents(student_id, (parents: Parent[]) => {
-        //alert(objectToJson(parents))
         if (parents.length === 2) {
           set({ parents });
         } else {

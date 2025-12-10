@@ -50,7 +50,6 @@ export const createHistorySlice = (set: any, get: any): HistorySlice => ({
 
     loadGroups: (coach_id: number, callback: () => void) => {
         get_groups(coach_id, (groups: Group[]) => {
-           // alert(objectToJson(groups))
             set({ groups });
             if (groups.length > 0) {
                 const group_ids: number[] = groups.map(el => el.id);
@@ -66,7 +65,6 @@ export const createHistorySlice = (set: any, get: any): HistorySlice => ({
 
     loadLastEvent:(group_ids: number[]) => {
         get_coach_last_event(group_ids, (res => {
-            //alert(objectToJson(res))
             if (res.isEvents) {
                 
                 const { loadEvents }: HistorySlice = get();

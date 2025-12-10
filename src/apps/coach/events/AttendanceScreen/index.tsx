@@ -51,17 +51,14 @@ export default function AttendanceScreen({ onBack, onTest, onGame, onGameReport,
 
   function handleAddBlank() {
     if (isPast(event_timestamp)) {
-      alert('isPast')
       setTenses('past');
       setIsCreateAlert(true);
       return
     } else if (isFuture(event_timestamp)) {
-      alert('isFuture')
       setTenses('future');
       setIsCreateAlert(true);
       return
     }
-    alert('addAttendances')
     addAttendances();
   }
 

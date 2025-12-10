@@ -260,7 +260,6 @@ export const createAttendanceSlice = (set: any, get: any): AttendanceSlice => ({
 
     loadWasReportSent: () => {
         const { event_id, group_number}: EventsSlice = get();
-        //alert(event_id + '_' + group_number)
         get_is_report(event_id, group_number, (res)=> {
             if (res) {
                 set({ wasReportSent: res.is_report});
@@ -269,11 +268,9 @@ export const createAttendanceSlice = (set: any, get: any): AttendanceSlice => ({
     },
 
     loadGames: () => {
-        //alert('loadGames')
         const { event_id, group_id}: EventsSlice = get();
 
         get_event_games(event_id, group_id, (games: Game[]) => {
-            //alert(objectToJson(games))
             set({ games });
         })
     },

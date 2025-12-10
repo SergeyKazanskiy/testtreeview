@@ -146,7 +146,7 @@ export const createReportSlice = (set: any, get: any): ReportSlice => ({
             freeded: el.team !== first_chaser_team ? el.points : 0,
             is_survived: survived_ids.includes(el.id)
         }));
-        //alert(objectToJson(gamers))
+        
         set({ gamers });
         calculateWinner(); //Warning ???
         set({ isReportButton: true });
@@ -166,7 +166,7 @@ export const createReportSlice = (set: any, get: any): ReportSlice => ({
                 is_survived: !isChaser ? survived_ids.includes(player.id) : gamer.is_survived,
             };
         });
-        //alert(objectToJson(updated))
+        
         set({ gamers: updated });
         calculateWinner();
         set({ isReportButton: false });

@@ -26,7 +26,6 @@ export const createStudentsSlice = (set: any, get: any): StudentsSlice => ({
 
   loadStudents: (group_id: number) => {
     get_students(group_id, (students: StudentShort[]) => {
-      //alert(objectToJson(students))
       set({ students });
     })
   },
@@ -49,7 +48,7 @@ export const createStudentsSlice = (set: any, get: any): StudentsSlice => ({
             photo,
             active: true
         }
-       // alert(objectToJson(data))
+       
         create_student(studentData, (res)=> {
             if (res.id) {
                 const parentsData: Omit<Parent, 'id'>[] = [

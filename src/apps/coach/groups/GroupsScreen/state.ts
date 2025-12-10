@@ -45,7 +45,6 @@ export const createGroupsSlice = (set: any, get: any): GroupsSlice => ({
 
   loadStudents: (group_id: number) => {
     get_students(group_id, (students: Student[]) => {
-      //alert(objectToJson(students))
       set({ students, group_id });
     })
   },

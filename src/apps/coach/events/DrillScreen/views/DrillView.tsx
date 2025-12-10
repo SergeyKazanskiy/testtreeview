@@ -1,7 +1,7 @@
-import { StyleSheet, Platform, Text } from 'react-native';
-import { useStore } from '../../store';
-import { WebView } from 'react-native-webview';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Platform, StyleSheet, Text } from 'react-native';
+import { WebView } from 'react-native-webview';
+import { useStore } from '../../store';
 
 
 export function DrillView() {
@@ -17,7 +17,7 @@ export function DrillView() {
         <iframe
           style={{ width: '100%', height: 200 }}
           src={`https://www.youtube.com/embed/X2XfWVLC2dU`}
-          frameBorder="0"
+          //frameBorder="0"
           allowFullScreen
         />
       ) : (

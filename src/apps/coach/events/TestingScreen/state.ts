@@ -50,7 +50,6 @@ export const createTestingSlice = (set: any, get: () => Store): TestingSlice => 
         const { event_id, group_id, event_timestamp }: EventsSlice = get();
 
         get_testers(event_id, group_id, event_timestamp, (testers: Tester[]) => {
-            //alert(objectToJson(testers));
             const participants = testers.map(el => ({...el, participate: true}))
             set({ exam: 'speed', testers: participants });
         })
@@ -121,14 +120,12 @@ export const createTestingSlice = (set: any, get: () => Store): TestingSlice => 
             value: examValue,
             camp_id: exam === 'speed' ? 0: location_inx
         }
-        //alert(objectToJson(data))
+        
         update_student_test(tester.id, tester.test_id, data, (res => {
-            //alert(objectToJson(res))
-
             if (res) {
                 tester[exam] = res.score;
                 if (res.time) tester[exam + '_time'] = res.time;
-               // alert(objectToJson(tester));
+        
                 set((state: TestingSlice) => ({
                     examValue,
                     testers: state.testers.map(el => el.id === tester_id ? tester : el),

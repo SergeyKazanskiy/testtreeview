@@ -65,7 +65,6 @@ export const createLidersSlice = (set: any, get: () => Store): LidersSlice => ({
     },
 
     loadLiders: (group_id: number, group_name: string) => {
-        //alert('kkk ' + group_name)
         get_liders(group_id, (liders: Lider[]) => {
             set({
                 loaded_group_name: group_name,

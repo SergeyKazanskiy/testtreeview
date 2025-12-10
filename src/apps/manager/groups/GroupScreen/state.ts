@@ -95,7 +95,6 @@ export const createGroupSlice = (set: any, get: any): GroupSlice => ({
   loadGroupCoache: (group_id: number) => {
     get_group_coach(group_id, (res => {
       if (res) {
-        //alert(objectToJson(res))
         if (res.id > 0) {
           const { coaches }: GroupSlice = get();
           const coach_inx = coaches.findIndex(el => el.id === res.id);
@@ -127,7 +126,6 @@ export const createGroupSlice = (set: any, get: any): GroupSlice => ({
   },
 
   updateGroup: (name: string, description: string) => {
-    //alert('updateGroup2')
     const { camp_id, group_id, groups }: GroupsSlice = get();
     const updatedGroup: Group = {id: group_id, camp_id, name, description}; 
     const group = groups.find(item => item.id === group_id)!
@@ -163,7 +161,7 @@ export const createGroupSlice = (set: any, get: any): GroupSlice => ({
   
   selectSchedule: (id: number, inx: number) => {
       const { weekday }: GroupSlice = get();
-      //alert(id)
+    
       if (inx + 1 === weekday) {
           set({ schedule_id: 0, weekday: 0 });
       } else {
@@ -212,7 +210,6 @@ export const createGroupSlice = (set: any, get: any): GroupSlice => ({
       const { group_id, weekday, updateGroup, groups, group_inx, coach_id }: GroupSlice & GroupsSlice = get();
       const hour = 16; const minute = 0;
       const schedule: Omit<Schedule, 'id'> = { group_id, weekday, hour, minute, coach_id }
-      //alert(objectToJson(schedule))
       
       create_group_schedule(schedule, (res)=> {
           if (res) {
