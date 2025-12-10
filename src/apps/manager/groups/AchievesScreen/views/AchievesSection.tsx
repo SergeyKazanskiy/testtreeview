@@ -1,5 +1,4 @@
 import { PopoverButton } from '@/src/components/buttons/PopoverButton';
-import { widgetStyles } from '@/src/styles/appStyles';
 import { StyleSheet, Text, View } from 'react-native';
 import { useStore } from '../../store';
 import { AchievesModal } from './AchievesModal';
@@ -18,7 +17,7 @@ export const AchievesSection: React.FC<Props> = ({ title, category}) => {
     return (
       <>
         <View style={styles.section}>
-          <Text style={[widgetStyles.title, styles.title]}>{title}</Text>
+          <Text style={styles.title}>{title}</Text>
           
           <PopoverButton title="Add"
             h={120} w={330}
@@ -47,7 +46,10 @@ const styles = StyleSheet.create({
   },
   title: {   
     paddingTop: 20,
-    paddingBottom: 8
+    paddingBottom: 8,
+    fontSize: 16,
+    color: '#F8E187',
+    fontWeight: '600',
   },
   button: {
     borderWidth: 1,
@@ -55,4 +57,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#2E4A7C'
   }
 });
+
 

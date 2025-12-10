@@ -20,13 +20,13 @@ export const AchievesWidget: React.FC<Props> = ({ title, achieves, category }) =
             <View style={[ styles.container]}>
                 <FlatList horizontal
                     data={data} 
-                    keyExtractor={(achieve) => achieve.image}
+                    keyExtractor={(achieve) => achieve.id.toString()}
                     contentContainerStyle={styles.content}
-                    showsHorizontalScrollIndicator={true}
+                    showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) =>
 
                         <AchieveIcon onClick={() => {}}
-                            size={80}
+                            size={72}
                             image={item.image}
                             label={item.name + ' x' + item.count}
                             level={1}
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         flexGrow: 1
     },
     title: {
-        color: '#ddd',
+        color: '#F8E187',
         fontSize: 16,
         fontWeight: '400',
         paddingTop: 20,

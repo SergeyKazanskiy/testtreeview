@@ -50,7 +50,10 @@ export const StatisticsReport = () => {
 
   return (
     <PopupContainer visible={isStatisticsScreen} title='Group Statistics' onClose={hideStatisticsScreen}>
-      <ScrollView style={{backgroundColor: '#152B52'}}>
+      <ScrollView
+        style={{backgroundColor: '#152B52'}}
+        showsVerticalScrollIndicator = {false}
+      >
         <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.container}>
           
           <CalendarWidget year={year} month={month}
@@ -81,11 +84,5 @@ const styles = StyleSheet.create({
     fontWeight: 'medium',
     marginTop: 40, 
     textAlign: 'left',
-  },
-  text: {
-    color: 'gold',
-    fontSize: 20,
-    fontWeight: 'medium',
-    paddingLeft: 8
   },
 });

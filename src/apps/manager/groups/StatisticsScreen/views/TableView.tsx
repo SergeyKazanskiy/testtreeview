@@ -20,7 +20,9 @@ export function TableView() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 8
+    borderRadius: 10,
+    backgroundColor: 'rgba(45, 75, 10, 0.3)',
+    borderWidth: 1,
+    borderColor: 'rgb(110, 151, 6)'
   },
 });
-

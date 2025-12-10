@@ -13,10 +13,10 @@ export function CampsView() {
       <FlatList horizontal
         data={camps} 
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => '№' + item}
+        keyExtractor={item => item.id.toString()}
         renderItem={({ item, index }) => (
 
-          <Button key={item.id.toString()}
+          <Button
               size='sm'
               title={item.name}
               type={item.id === camp_id ? 'solid' : 'outline'}

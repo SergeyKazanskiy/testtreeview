@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useCallback, useEffect, useState } from 'react';
-import { Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Platform, Pressable, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
 import { useStore } from '../store';
 import { CalendarView } from './views/CalendarView';
 import { ChartView } from './views/ChartView';
@@ -56,23 +56,27 @@ export default function StatisticsScreen({ onBack }: Props) {
           />
       </CustomAlert>
 
-      <View style={{paddingTop: 12}}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={{paddingBottom: 200}}
+        showsVerticalScrollIndicator={false}
+      >
         <CalendarView/>
-      </View>
 
-      {timestamp > 0 &&
-        <>
-          {/* <Text style={styles.metric}>{metricName}</Text> */}
-          <ChartView/>
-          <DatesView/>
-          <TableView/>
+        {timestamp > 0 &&
+          <>
+            {/* <Text style={styles.metric}>{metricName}</Text> */}
+            <ChartView/>
+            <DatesView/>
+            <TableView/>
 
-          <Text style={[screenStyles.gold, styles.summary]}
-            onPress={() => setIsSummaryInput(true)}>
-              {summaryText === '' ? 'Enter summary' : summaryText}
-          </Text>
-        </>
-      }
+            <Text style={[screenStyles.gold, styles.summary]}
+              onPress={() => setIsSummaryInput(true)}>
+                {summaryText === '' ? 'Enter summary' : summaryText}
+            </Text>
+          </>
+        }
+      </ScrollView>
     </LinearGradient>
   );
 };
@@ -84,6 +88,10 @@ const styles = StyleSheet.create({
     maxWidth: Platform.OS === 'web' ? 360 : undefined,
     width: '100%',
     height: '100%',
+  },
+  container: {
+    flex: 1,
+    padding: 16,
   },
   navButton: {
     color: '#D1FF4D',
@@ -110,8 +118,7 @@ const styles = StyleSheet.create({
   summary: { 
     marginTop: 'auto', 
     textAlign: 'center',
-    paddingBottom: 20
+    paddingVertical: 20
   },
 });
 
-//<Text style={styles.navButton}>{isTests ? 'Test' : 'Game'}</Text>

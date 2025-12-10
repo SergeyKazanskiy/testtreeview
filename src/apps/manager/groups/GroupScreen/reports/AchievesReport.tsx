@@ -27,7 +27,10 @@ export const AchievesReport = () => {
 
   return (
     <PopupContainer visible={isAchievesScreen} title='Group Achievements' onClose={hideAchievesScreen}>
-      <ScrollView style={{backgroundColor: '#152B52'}}>
+      <ScrollView
+        style={{backgroundColor: '#152B52'}}
+        showsVerticalScrollIndicator = {false}
+      >
         <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.container}>
           
           <AchievesWidget title='Test achievements' achieves={achieves} category='Test' />
