@@ -29,8 +29,8 @@ export default function StudentLoginScreen({onLoginSuccess}: Props) {
   const handleLogin = async () => {
     const role = Constants.expoConfig?.extra?.appRole;
     showLoading();
-    //alert(`${API_BASE_URL}/${role}/test_login`)
-    
+    alert(`${API_BASE_URL}/${role}/test_login`)
+
     try {
       const res = await fetch(`${API_BASE_URL}/${role}/test_login`, {
         method: "POST",

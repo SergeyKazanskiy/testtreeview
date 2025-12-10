@@ -15,7 +15,7 @@ export const AchievesPanel: React.FC<Props> = ({ achieves, achieve_id, category,
     const data = achieves.filter(achieve => achieve.category === category);
 
     return (
-        <View style={[ styles.section]}>
+        <View style={[ styles.container]}>
             <FlatList horizontal
                 data={data} 
                 keyExtractor={(achieve) => achieve.image}
@@ -25,7 +25,7 @@ export const AchievesPanel: React.FC<Props> = ({ achieves, achieve_id, category,
 
                     <View style={ item.id === achieve_id && styles.selected }>
                         <AchieveIcon onClick={() => onClick(item.id)}
-                            size={80}
+                            size={72}
                             image={item.image}
                             label={item.name}
                             level={1}
@@ -39,10 +39,10 @@ export const AchievesPanel: React.FC<Props> = ({ achieves, achieve_id, category,
 };
 
 const styles = StyleSheet.create({
-    section: {
+    container: {
         height: 120,
-        borderRadius: 10,
         paddingLeft: 12,
+        borderRadius: 10,
         backgroundColor: 'rgba(45, 75, 10, 0.3)',
         borderWidth: 1,
         borderColor: 'rgb(110, 151, 6)'

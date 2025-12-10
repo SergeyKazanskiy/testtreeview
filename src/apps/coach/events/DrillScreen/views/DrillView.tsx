@@ -1,34 +1,16 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { Platform, StyleSheet, Text } from 'react-native';
-import { WebView } from 'react-native-webview';
 import { useStore } from '../../store';
+import YoutubeView from './YoutubeView';
 
 
 export function DrillView() {
   const { drill } = useStore();
 
-  //const videoId = extractYouTubeVideoId(drill.link);
-  //alert(`https://www.youtube.com/embed/${drill.link}`)
-
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-      
-      {Platform.OS === 'web' ? (
-        <iframe
-          style={{ width: '100%', height: 200 }}
-          src={`https://www.youtube.com/embed/X2XfWVLC2dU`}
-          //frameBorder="0"
-          allowFullScreen
-        />
-      ) : (
-        <WebView
-          style={styles.video}
-          javaScriptEnabled
-          source={{ uri: `https://www.youtube.com/embed/X2XfWVLC2dU` }}
-        />
-      )}
+      <YoutubeView source={drill.link} />
 
-      {/* <Text style={styles.label}>{drill.link}</Text> */}
       <Text style={styles.label}>Category</Text>
       <Text style={styles.text}>{drill.category}</Text>
 
@@ -44,12 +26,6 @@ export function DrillView() {
   );    
 }
 
-function extractYouTubeVideoId(url: string): string | null {
-  const regExp = /(?:v=|\/)([0-9A-Za-z_-]{11})(?:\?|&|$)/;
-  const match = url.match(regExp);
-  return match ? match[1] : null;
-}
-
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -59,36 +35,30 @@ const styles = StyleSheet.create({
     height: '100%',
     padding: 16
   },
-  video: {
-    height: 200,
-    marginBottom: 16,
-  },
-  error: {
-    color: 'red',
-    marginBottom: 16,
-  },
   label: {
     fontSize: 16,
     fontWeight: '500',
-    color: '#ddd',
-    padding: 8,
-    marginTop: 16
+    color: '#F8E187',
+    paddingTop: 12,
+    paddingBottom: 6,
   },
   textArea: {
+    borderRadius: 8,
+    backgroundColor: 'rgba(45, 75, 10, 0.3)',
     borderWidth: 1,
-    borderColor: 'green',
-    borderRadius: 6,
+    borderColor: 'rgb(110, 151, 6)',
     padding: 10,
     fontSize: 15,
     minHeight: 100,
     color: '#A7CFF5',
   },
   text: {
+    borderRadius: 8,
+    backgroundColor: 'rgba(45, 75, 10, 0.3)',
     borderWidth: 1,
-    borderColor: 'green',
-    borderRadius: 6,
+    borderColor: 'rgb(110, 151, 6)',
     padding: 10,
-    fontSize: 16,
+    fontSize: 15,
     color: '#A7CFF5',
   },
 });

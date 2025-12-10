@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   title: {
     marginLeft: 12,
     fontSize: 16,
-    color: '#fff',
+    color: '#F8E187',
     fontWeight: '600',
     marginBottom: 6,
   },

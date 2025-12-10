@@ -34,7 +34,6 @@ export const AttendanceView: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 16,
     padding: 12,
     borderRadius: 10,
     borderWidth: 1,
@@ -44,8 +43,8 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 24,
-    alignItems: 'baseline'
+    alignItems: 'baseline',
+    padding: 8
   },
   section: {
     flexDirection: 'row',
@@ -55,7 +54,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 16,
     color: '#F8E187',
-    //marginBottom: 2,
   },
   cell: {
     flexDirection: 'row',
@@ -68,16 +66,6 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 15,
     color: '#A7CFF5',
-  },
-  button: {
-    height: 28,
-    paddingHorizontal: 8,
-    borderRadius: 5,
-   // marginBottom: 4
-  },
-  label: {
-    fontSize: 15,
-    color: '#ddd'
   },
 });
 

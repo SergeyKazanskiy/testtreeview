@@ -41,7 +41,11 @@ export default function ProfileScreen({ onBack }: Props) {
         <CommentsScreen/>
       </PopupContainer>
 
-      <ScrollView style={styles.container} contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={{paddingBottom: 200}}
+        showsVerticalScrollIndicator={false}
+      >
         <ProfileView/>
         <PerentsView/>
         <AddressView/>
@@ -50,11 +54,9 @@ export default function ProfileScreen({ onBack }: Props) {
           <RadarChart test={last_test} onExam={(exam)=>{}}/>
           <StatsIndicators stats={[last_test.climbing, last_test.stamina, last_test.speed, last_test.evasion, last_test.hiding]}/>  
         </View>
-      </ScrollView>
 
-      <View style={styles.summary}>
         <AttendanceView/>
-      </View>
+      </ScrollView>
     </LinearGradient>
   );
 }

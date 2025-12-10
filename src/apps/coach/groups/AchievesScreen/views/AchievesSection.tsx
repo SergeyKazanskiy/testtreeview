@@ -1,5 +1,4 @@
 import { PopoverButton } from '@/src/components/buttons/PopoverButton';
-import { widgetStyles } from '@/src/styles/appStyles';
 import { StyleSheet, Text, View } from 'react-native';
 import { useStore } from '../../store';
 import { AchievesModal } from './AchievesModal';
@@ -16,21 +15,26 @@ export const AchievesSection: React.FC<Props> = ({ title, category}) => {
     const { loadBaseAchieves, selectAchieve, selectAchievement} = useStore();
 
     return (
-        <>
-            <View style={styles.section}>
-                <Text style={[widgetStyles.title, styles.title]}>{title}</Text>
-                
-                <PopoverButton title="Add" h={120} w={330}
-                    buttonStyle={{ borderWidth: 1, borderColor: 'green', backgroundColor: '#2E4A7C'}}
-                    textStyle={{color: '#fff'}}
-                    onClick={() => loadBaseAchieves(category)}>
+      <>
+        <View style={styles.section}>
+          <Text style={styles.title}>{title}</Text>
+          
+          <PopoverButton title="Add"
+            h={120} w={330}
+            buttonStyle={styles.button}
+            textStyle={{color: '#fff'}}
+            onClick={() => loadBaseAchieves(category)}
+          >
+            <AchievesModal achieves={baseAchieves} onClick={selectAchieve}/>
+          </PopoverButton>
+        </View>
 
-                    <AchievesModal achieves={baseAchieves} onClick={selectAchieve}/>
-                </PopoverButton>
-            </View>
-            <AchievesPanel achieves={studentAchieves} achieve_id={achievement_id} category={category}
-                onClick={selectAchievement}/>
-        </>
+        <AchievesPanel
+          achieves={studentAchieves}
+          achieve_id={achievement_id}
+          category={category}
+          onClick={selectAchievement}/>
+      </>
     );
 };
 
@@ -41,7 +45,14 @@ const styles = StyleSheet.create({
   },
   title: {   
     paddingTop: 20,
-    paddingBottom: 8
+    paddingBottom: 8,
+    fontSize: 16,
+    color: '#F8E187',
+    fontWeight: '600',
   },
+  button: {
+    borderWidth: 1,
+    borderColor: 'green',
+    backgroundColor: '#2E4A7C'
+  }
 });
-

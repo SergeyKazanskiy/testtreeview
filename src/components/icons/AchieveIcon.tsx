@@ -24,7 +24,7 @@ const effectMapping: Record<string, Animatable.Animation> = {
 };
 
 
-export const AchieveIcon: React.FC<AnimatedIconProps> = ({ onClick, image, label, level, size = 80, effect: selectedEffect, isGif, isAnimate = true}) => {
+export const AchieveIcon: React.FC<AnimatedIconProps> = ({ onClick, image, label, level, size = 72, effect: selectedEffect, isGif, isAnimate = true}) => {
   const frameSrc: ImageSourcePropType = { uri: `${BACKEND_APP_IMAGES_URL}/achieves/frames/${RuleLevels[level - 1]}.png` };
   const pngSrc: ImageSourcePropType = { uri: `${BACKEND_APP_IMAGES_URL}/achieves/images/${image}.png` };
   const gifSrc: ImageSourcePropType = { uri: `${BACKEND_APP_IMAGES_URL}/achieves/gifs/${image}.gif` };
@@ -89,9 +89,9 @@ const styles = StyleSheet.create({
     borderRadius: 9999, //  for circle
   },
   label: {
-    fontSize: 15,
-    color: '#F8E187',
+    fontSize: 14,
+    color: '#ddd',
     textAlign: 'center',
-    marginTop: 4,
+    paddingTop: 2
   },
 });

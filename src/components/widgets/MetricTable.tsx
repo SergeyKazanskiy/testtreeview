@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
 export interface Metric {
@@ -18,54 +18,47 @@ interface Props {
 
 export function MetricTable({ metricName, metrics, onClick }: Props) {
   return (
-    <View style={styles.metricsTable}>
-        <View style={styles.tableRow}>
+    <View style={styles.container}>
+        <View style={styles.tableHeader}>
             <Text style={styles.tableCol}>Metric</Text>
             <Text style={styles.tableCol}>Score</Text>
             <Text style={styles.tableCol}>Time</Text>
             <Text style={styles.tableCol}>Unit</Text>
         </View>
 
-        <FlatList
-            data={metrics}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item.name}
-            renderItem={({ item }) =>
-                
-                <TouchableOpacity style={item.name === metricName ? styles.selectedRow : styles.tableRow}
-                    onPress={() => onClick(item.name)} >
+        {metrics.map((item) => (
+            <TouchableOpacity key={item.name}
+                style={[styles.tableRow, item.name === metricName && styles.selectedRow]}
+                onPress={() => onClick(item.name)} >
 
-                    <Text style={styles.tableCol1}>{item.name}</Text>
-                    <Text style={styles.tableCol2}>{item.score}</Text>
-                    <Text style={styles.tableCol3}>{item.time}</Text>
-                    <Text style={styles.tableCol3}>{item.unit}</Text>
-                </TouchableOpacity>
-            }
-        />
+                <Text style={styles.tableCol1}>{item.name}</Text>
+                <Text style={styles.tableCol2}>{item.score}</Text>
+                <Text style={styles.tableCol3}>{item.time}</Text>
+                <Text style={styles.tableCol3}>{item.unit}</Text>
+            </TouchableOpacity>
+        ))}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    metricsTable: {
-        marginVertical: 4,
+    container: {
         backgroundColor: 'rgba(54, 72, 32, 0.3)',
         borderRadius: 8,
-        padding: 8,
+    },
+    tableHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingVertical: 10,
     },
     tableRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingVertical: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgb(110, 151, 6)',
+        borderTopWidth: 1,
+        borderTopColor: 'rgb(110, 151, 6)',
     },
     selectedRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgb(110, 151, 6)',
         backgroundColor: 'green'
     },
     tableCol: {

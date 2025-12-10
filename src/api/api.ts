@@ -4,7 +4,7 @@ const appRole = Constants.expoConfig?.extra?.appRole;
 let token: string | null = null;
 
 
-export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://admin.dinivrey.com/api';
+export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://admin.dinivrey.com';
 
 export const api = {
 

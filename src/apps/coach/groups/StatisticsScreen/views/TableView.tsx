@@ -9,18 +9,21 @@ export function TableView() {
 
   return (
     <View style={styles.container}>
-        <MetricTable
-          metricName={metricName}
-          metrics={metrics.filter(el => el.timestamp === timestamp)}
-          onClick={selectMetric}
-        />
+      <MetricTable
+        metricName={metricName}
+        metrics={metrics.filter(el => el.timestamp === timestamp)}
+        onClick={selectMetric}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 8
+    borderRadius: 10,
+    backgroundColor: 'rgba(45, 75, 10, 0.3)',
+    borderWidth: 1,
+    borderColor: 'rgb(110, 151, 6)'
   },
 });
 

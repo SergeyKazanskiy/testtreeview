@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: 4,
     paddingHorizontal: 16,
   },
   section: {
@@ -99,4 +99,3 @@ const styles = StyleSheet.create({
 });
 
 export default AchievesScreen;
-

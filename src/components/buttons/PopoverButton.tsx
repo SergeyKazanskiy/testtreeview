@@ -33,7 +33,7 @@ export const PopoverButton: React.FC<Props> = ({
   return (
     <>
       <TouchableOpacity ref={buttonRef} onPress={open} style={[styles.button, buttonStyle]}>
-        <Text style={[{alignSelf: 'center'}, textStyle]}>{visible ? 'Close' : title}</Text>
+        <Text style={[{paddingVertical: 4, alignSelf: 'center'}, textStyle]}>{visible ? 'Close' : title}</Text>
       </TouchableOpacity>
 
       <Modal transparent visible={visible} animationType="fade" onRequestClose={close}>
@@ -51,11 +51,10 @@ export const PopoverButton: React.FC<Props> = ({
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#eee',
-    padding: 8,
     borderRadius: 8,
     height: 32,
-    marginTop: 12,
-    width: 72
+    marginTop:12,
+    width: 70
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,

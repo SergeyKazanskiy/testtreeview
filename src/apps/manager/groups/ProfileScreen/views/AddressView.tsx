@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     fontWeight: '600',
     fontSize: 16,
-    color: '#fff',
+    color: '#F8E187',
     marginBottom: 6,
   },
   cell: {

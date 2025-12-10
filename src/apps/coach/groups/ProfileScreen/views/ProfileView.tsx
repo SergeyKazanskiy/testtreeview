@@ -17,7 +17,7 @@ export const ProfileView = () => {
         <View style={styles.group}>
             <Text style={styles.name}>{student.first_name}</Text>
             <Text style={styles.name}>{student.last_name}</Text>
-            <Text style={styles.age}>{student.gender}, {student.age} years old</Text>
+            <Text style={styles.name}>{student.gender}, {student.age} years old</Text>
         </View>
     </View>
   );
@@ -27,34 +27,25 @@ const styles = StyleSheet.create({
     container: {
         padding: 4,
         flexDirection: 'row',
-        justifyContent: 'flex-start',
-    },
-    group: {
-        marginLeft: 16,
+        justifyContent: "space-between",
     },
     avatar: {
-        width: 100,
-        height: 100,
-        borderRadius: 4,
+        width: 110,
+        height: 110,
+        borderRadius: 16,
+    },
+    group: {
+        flex: 1,
+        marginLeft: 16,
     },
     name: {
         color: '#444',
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: '400',
         marginBottom: 4,
         paddingVertical: 4,
         paddingHorizontal: 12,
-        width: 200,
-        borderRadius: 10,
-        backgroundColor: 'rgb(180, 216, 158)',
-    },
-    age: {
-        //marginTop: 8,
-        color: '#444',
-        fontSize: 18,
-        paddingVertical: 4,
-        paddingHorizontal: 12,
-        width: 200,
+        width: '100%',
         borderRadius: 10,
         backgroundColor: 'rgb(180, 216, 158)',
     },
