@@ -1,4 +1,4 @@
-import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
+import { BACKEND_APP_IMAGES_URL } from '@/src/api/api';
 import { widgetStyles } from '@/src/styles/appStyles';
 import React from 'react';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

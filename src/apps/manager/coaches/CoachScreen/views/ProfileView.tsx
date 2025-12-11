@@ -1,4 +1,4 @@
-import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
+import { BACKEND_APP_IMAGES_URL } from '@/src/api/api';
 import { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useStore } from '../../store';

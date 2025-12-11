@@ -1,4 +1,4 @@
-import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
+import { BACKEND_APP_IMAGES_URL } from '@/src/api/api';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import Svg, { Circle, Defs, Line, Polygon, RadialGradient, Stop } from 'react-native-svg';

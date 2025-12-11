@@ -1,8 +1,8 @@
+import { BACKEND_APP_IMAGES_URL } from '@/src/api/api';
 import { useAuthState } from '@/src/api/state';
 import { Avatar } from '@/src/components/avatars/CustomAvatar';
 import { Badge } from '@/src/components/buttons/CustomBadge';
 import { ListItem } from '@/src/components/widgets/CustomListItem';
-import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { ActivityIndicator, StyleSheet } from 'react-native';

@@ -1,6 +1,6 @@
+import { BACKEND_APP_IMAGES_URL } from '@/src/api/api';
 import { Avatar } from '@/src/components/avatars/CustomAvatar';
 import { ListItem } from '@/src/components/widgets/CustomListItem';
-import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
 import { ScrollView, StyleSheet } from 'react-native';
 import { useStore } from '../../store';
 

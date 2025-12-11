@@ -1,6 +1,7 @@
-import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
+import { BACKEND_APP_IMAGES_URL } from '@/src/api/api';
 import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+
 
 export type Props = {
     onAvatar: (avatar: string) => void;

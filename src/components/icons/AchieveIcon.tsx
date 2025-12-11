@@ -1,4 +1,5 @@
-import { BACKEND_APP_IMAGES_URL, RuleLevels } from '@/src/constants/constants';
+import { BACKEND_APP_IMAGES_URL } from '@/src/api/api';
+import { RuleLevels } from '@/src/constants/constants';
 import React, { useState } from 'react';
 import { Image, ImageSourcePropType, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';

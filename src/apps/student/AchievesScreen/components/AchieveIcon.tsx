@@ -1,4 +1,5 @@
-import { AchieveGradientColors, BACKEND_APP_IMAGES_URL, RuleLevels } from '@/src/constants/constants';
+import { BACKEND_APP_IMAGES_URL } from '@/src/api/api';
+import { AchieveGradientColors, RuleLevels } from '@/src/constants/constants';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { Image, ImageBackground, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';

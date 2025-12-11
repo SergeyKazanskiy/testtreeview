@@ -1,5 +1,6 @@
+import { BACKEND_APP_IMAGES_URL } from '@/src/api/api';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
-import { BACKEND_APP_IMAGES_URL, Genders, StudentsIcons } from '@/src/constants/constants';
+import { Genders, StudentsIcons } from '@/src/constants/constants';
 import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import { Image, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';

@@ -1,5 +1,6 @@
+import { BACKEND_APP_IMAGES_URL } from '@/src/api/api';
 import { AchieveIcon } from '@/src/components/icons/AchieveIcon';
-import { BACKEND_APP_IMAGES_URL, examColors, RuleTests } from '@/src/constants/constants';
+import { examColors, RuleTests } from '@/src/constants/constants';
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { ExamBanner2 } from '../../../../components/bars/ExamBanner2';

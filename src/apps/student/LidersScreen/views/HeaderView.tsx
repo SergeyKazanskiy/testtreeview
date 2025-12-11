@@ -1,4 +1,5 @@
-import { BACKEND_APP_IMAGES_URL, examColors, RuleTests } from '@/src/constants/constants';
+import { BACKEND_APP_IMAGES_URL } from '@/src/api/api';
+import { examColors, RuleTests } from '@/src/constants/constants';
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { AvatarWrapper } from '../../../../components/avatars/AvatarWrapper';

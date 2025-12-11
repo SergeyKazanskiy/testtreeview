@@ -7,6 +7,15 @@ let testUrl: string = '';
 
 export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://admin.dinivrey.com';
 
+export var BACKEND_APP_IMAGES_URL =
+  process.env.EXPO_PUBLIC_IMAGES_URL ?? "";
+
+export function setTestDestUrl(url: string) {
+  testUrl = url;
+  BACKEND_APP_IMAGES_URL =  testUrl.length > 0  ? `${testUrl}/images` : process.env.EXPO_PUBLIC_IMAGES_URL ?? "";
+}
+
+
 export const api = {
 
   setToken(newToken: string) {
@@ -73,6 +82,6 @@ export function setToken(newToken: string) {
   api.setToken(newToken);
 }
 
-export function setTestDestUrl(url: string) {
-  api.setTestUrl(url);
-}
+// export function setTestDestUrl(url: string) {
+//   api.setTestUrl(url);
+// }
