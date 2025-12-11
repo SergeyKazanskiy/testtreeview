@@ -10,8 +10,8 @@ interface AuthStore {
   isLogin: boolean;
   isLoadingAuth: boolean;
 
-  testUrl: string
-  setTestUrl: (testUrl: string) => void;
+  // testUrl: string
+  // setTestUrl: (testUrl: string) => void;
 
   loginUser: (token: string, userId: number) => void;
   logoutUser: () => void;
@@ -26,8 +26,8 @@ export const useAuthStore = create<AuthStore>((set: any, get: any) => ({
   isLogin: false,
   isLoadingAuth: true,
 
-  testUrl: '',
-  setTestUrl: (testUrl: string) => set({ testUrl }),
+  // testUrl: '',
+  // setTestUrl: (testUrl: string) => set({ testUrl }),
 
 
   loginUser: (token: string = '', userId: number) => {

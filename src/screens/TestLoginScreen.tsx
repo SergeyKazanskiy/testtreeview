@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '@/src/api/api';
+import { API_BASE_URL, setTestDestUrl } from '@/src/api/api';
 import { auth, signInWithToken } from "@/src/api/firebaseConfig";
 import { useAuthState } from "@/src/api/state";
 import { useAuthStore } from '@/src/api/store';
@@ -19,13 +19,14 @@ interface Props {
 }
 
 export default function StudentLoginScreen({onLoginSuccess}: Props) {
-  const { loginUser, setTestUrl, testUrl } = useAuthStore();
+  const { loginUser } = useAuthStore();
   const { isError, errorMessage, clearMessages, setError, showLoading, hideLoading } = useAuthState();
 
   const [name, setName] = useState("David");
   const [password, setPassword] = useState("+447700900001");
 
   const [expanded, setExpanded] = useState(false);
+  const [testUrl, setTestUrl] = useState('');
 
 
   const handleLogin = async () => {
@@ -33,7 +34,7 @@ export default function StudentLoginScreen({onLoginSuccess}: Props) {
     showLoading();
 
     const destinationUrl = testUrl.length === 0 ? API_BASE_URL : testUrl //???
-    alert(`${API_BASE_URL}/${role}/test_login`)
+    alert(`${destinationUrl}/${role}/test_login`)
 
     try {
       const res = await fetch(`${destinationUrl}/${role}/test_login`, {
@@ -97,13 +98,13 @@ export default function StudentLoginScreen({onLoginSuccess}: Props) {
         />
         <Text style={styles.label}>Use test server</Text>
         <Ionicons name='close' size={20} color={'#bbb'}
-          onPress={() => (setTestUrl(''), setExpanded(false))}
+          onPress={() => (setTestDestUrl(''),  setTestUrl(''), setExpanded(false))}
         />
       </View>
 
       {expanded && <TextInput multiline numberOfLines={4} textAlignVertical="top"
         value={testUrl}
-        onChangeText={setTestUrl}
+        onChangeText={(url) => (setTestDestUrl(url), setTestUrl(url))}
         style={styles.textArea}
         placeholder="Enter url"
       />}

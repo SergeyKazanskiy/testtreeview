@@ -2,6 +2,7 @@ import Constants from "expo-constants";
 
 const appRole = Constants.expoConfig?.extra?.appRole;
 let token: string | null = null;
+let testUrl: string = '';
 
 
 export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://admin.dinivrey.com';
@@ -10,6 +11,10 @@ export const api = {
 
   setToken(newToken: string) {
     token = newToken;
+  },
+
+  setTestUrl(url: string) {
+    testUrl = url;
   },
 
   async get(endpoint: string) {
@@ -30,7 +35,8 @@ export const api = {
 };
 
 async function makeRequest(method: string, endpoint: string, body?: any) {
-  const url = `${API_BASE_URL}/${appRole}_api/${endpoint}`;
+  const destUrl = testUrl.length > 0 ? testUrl : API_BASE_URL
+  const url = `${destUrl}/${appRole}_api/${endpoint}`;
   
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -65,4 +71,8 @@ async function makeRequest(method: string, endpoint: string, body?: any) {
 
 export function setToken(newToken: string) {
   api.setToken(newToken);
+}
+
+export function setTestDestUrl(url: string) {
+  api.setTestUrl(url);
 }
