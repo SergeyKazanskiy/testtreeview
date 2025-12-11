@@ -90,17 +90,23 @@ export default function StudentLoginScreen({onLoginSuccess}: Props) {
         <Button title="Login" onPress={handleLogin} />
       </View>
 
+      {/* For test server */}
       <View style={styles.section}>
         <Ionicons name={expanded ? 'chevron-up-outline' : 'chevron-down-outline'} size={20} color={'#bbb'}
           onPress={() => {expanded ? setExpanded(false) : setExpanded(true)}}
         />
-        <TextInput multiline numberOfLines={4} textAlignVertical="top"
-          value={testUrl}
-          onChangeText={setTestUrl}
-          style={styles.textArea}
-          placeholder="Enter url"
+        <Text style={styles.label}>Use test server</Text>
+        <Ionicons name='close' size={20} color={'#bbb'}
+          onPress={() => (setTestUrl(''), setExpanded(false))}
         />
       </View>
+
+      {expanded && <TextInput multiline numberOfLines={4} textAlignVertical="top"
+        value={testUrl}
+        onChangeText={setTestUrl}
+        style={styles.textArea}
+        placeholder="Enter url"
+      />}
 
       <LoadingToast/>
     </LinearGradient>
@@ -117,9 +123,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   section: {
+    marginTop: 50,
     paddingLeft: 4,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
   textArea: {
     marginTop: 8,
