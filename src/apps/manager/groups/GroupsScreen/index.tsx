@@ -1,7 +1,8 @@
+import { useAuthState } from '@/src/api/state';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useCallback } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { ActivityIndicator, Platform, StyleSheet } from 'react-native';
 import { useStore } from '../store';
 import { AddGroupAlert } from './alerts/AddGroupAlert';
 import { CampsView } from './views/CampsView';
@@ -13,8 +14,9 @@ type Props = {
 };
 
 export default function GroupsScreen({ onGroup }: Props) {
-  const {  } = useStore();
-  const { loadCamps, updateGroup } = useStore();
+  const { isLoading } = useAuthState();
+  const { groups, camps } = useStore();
+  const { loadCamps } = useStore();
 
   useFocusEffect(
     useCallback(() => {
@@ -28,6 +30,10 @@ export default function GroupsScreen({ onGroup }: Props) {
       
       <CampsView/>
       <GroupsView onGroup={onGroup}/>
+
+      { (groups.length === 0 || camps.length === 0) && isLoading &&
+        <ActivityIndicator size="large" color="#fff" />
+      }
     </LinearGradient>
   );
 }

@@ -1,11 +1,10 @@
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { screenStyles } from '@/src/styles/appStyles';
-import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useCallback, useEffect, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput } from 'react-native';
 import { useStore } from '../store';
 import { CalendarView } from './views/CalendarView';
 import { ChartView } from './views/ChartView';
@@ -37,9 +36,9 @@ export default function StatisticsScreen({ onBack }: Props) {
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
       <CustomNavbar title='Statistics' onClick={onBack}>
-        <Pressable style={{ marginRight: 15 }} onPress={togleStatistic} >
+        {/* <Pressable style={{ marginRight: 15 }} onPress={togleStatistic} >
           <Ionicons name='repeat-outline' size={21} color="#D1FF4D" />
-        </Pressable>
+        </Pressable> */}
       </CustomNavbar>
 
       <CustomAlert visible={isSummaryInput} 

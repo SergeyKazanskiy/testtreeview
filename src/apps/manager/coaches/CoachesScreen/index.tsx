@@ -1,6 +1,7 @@
+import { useAuthState } from '@/src/api/state';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useEffect } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { ActivityIndicator, Platform, StyleSheet } from 'react-native';
 import { useStore } from '../store';
 import { AddCoachAlert } from './alerts/AddCoachAlert';
 import { CampsView } from './views/CampsView';
@@ -12,7 +13,9 @@ type Props = {
 };
 
 export default function CoachesScreen({ onCoach }: Props) {
-  const { campId, camp_inx } = useStore();
+  const { isLoading } = useAuthState();
+
+  const { campId, camp_inx, coaches } = useStore();
   const { loadCamps, selectCamp, updateCoach } = useStore();
 
   useEffect(() => {
@@ -29,6 +32,10 @@ export default function CoachesScreen({ onCoach }: Props) {
       
       <CampsView/>
       <CoachesView onCoach={onCoach} />
+      
+      { coaches.length === 0 && isLoading &&
+        <ActivityIndicator size="large" color="#fff" />
+      }
     </LinearGradient>
   );
 }

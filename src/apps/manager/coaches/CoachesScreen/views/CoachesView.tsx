@@ -8,14 +8,14 @@ type Props = {
   onCoach: () => void;
 };
 
-export const CoachesView = ({ onCoach }: Props) => { 
-    const { coaches} = useStore();
-    const { selectCoach, showAddAlert } = useStore();
-  
-    function handleSelect(id: number) {
-      selectCoach(id);
-      onCoach();
-    }
+export const CoachesView = ({ onCoach }: Props) => {
+  const { coaches} = useStore();
+  const { selectCoach, showAddAlert } = useStore();
+
+  function handleSelect(id: number) {
+    selectCoach(id);
+    onCoach();
+  }
 
   return (
     <ScrollView
@@ -23,7 +23,6 @@ export const CoachesView = ({ onCoach }: Props) => {
       showsVerticalScrollIndicator={false}
     >
       {coaches.map((item) => (
-
         <CoachCell
           key={item.id.toString()}
           first_name={item.first_name}
@@ -38,5 +37,3 @@ export const CoachesView = ({ onCoach }: Props) => {
     </ScrollView>
   );
 };
-
-

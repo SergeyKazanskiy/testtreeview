@@ -1,10 +1,11 @@
+import { useAuthState } from '@/src/api/state';
 import { useAuthStore } from '@/src/api/store';
 import { Icon } from '@/src/components/icons/CustomIcon';
 import { ListItem } from '@/src/components/widgets/CustomListItem';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet } from 'react-native';
 import { useStore } from '../store';
 import { StudentList } from './views/StudentList';
 
@@ -15,6 +16,8 @@ interface Props {
   
 export default function GroupsScreen({ pressStudent }: Props) {
   const { userId } = useAuthStore();
+  const { isLoading } = useAuthState();
+
   const { groups, group_id } = useStore();
   const { loadGroups, selectGroup } = useStore();
 
@@ -48,6 +51,10 @@ export default function GroupsScreen({ pressStudent }: Props) {
           </ListItem.Accordion>
         )}
       </ScrollView>
+
+      { groups.length === 0 && isLoading &&
+        <ActivityIndicator size="large" color="#fff" />
+      }
     </LinearGradient>
   );
 }

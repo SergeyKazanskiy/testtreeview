@@ -1,3 +1,4 @@
+import { useAuthState } from '@/src/api/state';
 import { useAuthStore } from '@/src/api/store';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { PopupContainer } from '@/src/components/containers/PopupContainer';
@@ -5,7 +6,7 @@ import { widgetStyles } from '@/src/styles/appStyles';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useState } from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text } from 'react-native';
 import CompetitionsScreen from '../CompetitionsScreen';
 import HistoryScreen from '../HistoryScreen';
 import { useStore } from '../store';
@@ -20,6 +21,8 @@ type EventsScreenProps = {
 
 export default function EventsScreen({ onEvent }: EventsScreenProps) {
   const { userId } = useAuthStore()
+  const { isLoading } = useAuthState()
+
   const { schedule_days, isEventAddAlert } = useStore();
   const { loadGroups, loadSchedules, closeAddAlert, addEvent } = useStore();
 
@@ -64,6 +67,9 @@ export default function EventsScreen({ onEvent }: EventsScreenProps) {
             <EventsView key={day.day} day={day.day} weekday={day.weekday} onEvent={onEvent}/>
           ))}
         </ScrollView>
+      }
+      { schedule_days.length === 0 && isLoading &&
+        <ActivityIndicator size="large" color="#fff" />
       }
     </LinearGradient>
   );

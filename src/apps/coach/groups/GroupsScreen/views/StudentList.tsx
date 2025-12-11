@@ -1,10 +1,11 @@
+import { useAuthState } from '@/src/api/state';
 import { Avatar } from '@/src/components/avatars/CustomAvatar';
 import { Badge } from '@/src/components/buttons/CustomBadge';
 import { ListItem } from '@/src/components/widgets/CustomListItem';
 import { BACKEND_APP_IMAGES_URL } from '@/src/constants/constants';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -13,6 +14,8 @@ interface Props {
 }
 
 export function StudentList({ pressStudent }: Props) {
+  const { isLoading } = useAuthState();
+
   const { students, camp_name, group_name } = useStore();
   const { selectStudent } = useStore();
 
@@ -50,6 +53,9 @@ export function StudentList({ pressStudent }: Props) {
                     <Badge value={student.test_avg} status="success" />
                 </ListItem>
             )})
+        }
+        { students.length === 0 && isLoading &&
+          <ActivityIndicator size="large" color="#fff" />
         }
     </LinearGradient>
   );

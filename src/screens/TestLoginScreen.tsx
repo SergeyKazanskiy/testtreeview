@@ -5,6 +5,7 @@ import { useAuthStore } from '@/src/api/store';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { LoadingToast } from '@/src/components/toasts/LoadingToast';
 import { DinivreyHeader } from '@/src/components/widgets/DinivreyHeader';
+import { Ionicons } from '@expo/vector-icons';
 import Constants from "expo-constants";
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
@@ -18,21 +19,24 @@ interface Props {
 }
 
 export default function StudentLoginScreen({onLoginSuccess}: Props) {
-
-  const { loginUser } = useAuthStore();
+  const { loginUser, setTestUrl, testUrl } = useAuthStore();
   const { isError, errorMessage, clearMessages, setError, showLoading, hideLoading } = useAuthState();
 
   const [name, setName] = useState("David");
   const [password, setPassword] = useState("+447700900001");
 
+  const [expanded, setExpanded] = useState(false);
+
 
   const handleLogin = async () => {
     const role = Constants.expoConfig?.extra?.appRole;
     showLoading();
+
+    const destinationUrl = testUrl.length === 0 ? API_BASE_URL : testUrl //???
     alert(`${API_BASE_URL}/${role}/test_login`)
 
     try {
-      const res = await fetch(`${API_BASE_URL}/${role}/test_login`, {
+      const res = await fetch(`${destinationUrl}/${role}/test_login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ first_name: name, password }),
@@ -86,12 +90,24 @@ export default function StudentLoginScreen({onLoginSuccess}: Props) {
         <Button title="Login" onPress={handleLogin} />
       </View>
 
+      <View style={styles.section}>
+        <Ionicons name={expanded ? 'chevron-up-outline' : 'chevron-down-outline'} size={20} color={'#bbb'}
+          onPress={() => {expanded ? setExpanded(false) : setExpanded(true)}}
+        />
+        <TextInput multiline numberOfLines={4} textAlignVertical="top"
+          value={testUrl}
+          onChangeText={setTestUrl}
+          style={styles.textArea}
+          placeholder="Enter url"
+        />
+      </View>
+
       <LoadingToast/>
     </LinearGradient>
     </SafeAreaView>
   );
 }
-
+//onUpdate(destUrl)
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -99,6 +115,21 @@ const styles = StyleSheet.create({
     maxWidth: Platform.OS === 'web' ? 360 : undefined,
     width: '100%',
     paddingHorizontal: 16,
+  },
+  section: {
+    paddingLeft: 4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  textArea: {
+    marginTop: 8,
+    borderWidth: 1,
+    borderColor: 'green',
+    borderRadius: 6,
+    padding: 10,
+    fontSize: 15,
+    minHeight: 10,
+    color: '#bbb'
   },
   image: {
     alignSelf: 'center',
