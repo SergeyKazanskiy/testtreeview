@@ -1,9 +1,10 @@
+import { useAuthState } from '@/src/api/state';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback } from 'react';
-import { Platform, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { ActivityIndicator, Platform, Pressable, StyleSheet } from 'react-native';
 import { useStore } from '../store';
 import { DeleteCoachAlert } from './alerts/DeleteCoachAlert';
 import { DeleteGroupAlert } from './alerts/DeleteGroupAlert';
@@ -19,7 +20,9 @@ type Props = {
 };
 
 export default function CoachScreen({ onBack }: Props) {
-  const { coach_id, isSignature } = useStore();
+  const { isLoading } = useAuthState();
+
+  const { coach_id, isSignature, coachGroups } = useStore();
   const { loadCoach, showDeleteAlert } = useStore();
 
   useFocusEffect(
@@ -40,15 +43,14 @@ export default function CoachScreen({ onBack }: Props) {
       <DeleteCoachAlert onDelete={() => onBack()}/>
       <DeleteGroupAlert/>
 
-      <ScrollView
-        contentContainerStyle={{paddingBottom: 240}}
-        showsVerticalScrollIndicator={false}
-      >
-        <ProfileView/>
-        <ButtonsView/>
-        {isSignature ? <SignatureView/> : <GroupsView/>}
-      </ScrollView>
+      <ProfileView/>
+      <ButtonsView/>
+      {isSignature ? <SignatureView/> : <GroupsView/>}
       
+      { coachGroups.length === 0 && isLoading &&
+        <ActivityIndicator size="large" color="#fff" />
+      }
+
       <FreeGroupsView/>
     </LinearGradient>
   );

@@ -6,5 +6,5 @@ import React from 'react';
 export default function AchievesRoute() {
   const router = useRouter();
 
-  return <AchievesScreen onBack={() => router.replace('/(manager)/(tabs)/groups')} />;
+  return <AchievesScreen onBack={() => router.replace('/(manager)/groups_group_students')} />;
 }

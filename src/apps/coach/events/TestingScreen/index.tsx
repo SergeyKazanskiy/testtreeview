@@ -1,10 +1,11 @@
+import { useAuthState } from '@/src/api/state';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { formatDateTime } from '@/src/utils/utils';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { ActivityIndicator, Platform, StyleSheet } from 'react-native';
 import { useStore } from '../store';
 import { ExamModal } from './views/ExamModal';
 import { HeaderMenu } from './views/HeaderMenu';
@@ -17,7 +18,9 @@ type TestingScreenProps = {
 };
 
 export default function TestingScreen({ onBack }: TestingScreenProps) {
-  const { event_timestamp, group_name } = useStore();
+  const { isLoading } = useAuthState();
+
+  const { event_timestamp, group_name, testers } = useStore();
   const { loadTesters, loadLocation, selectMenu } = useStore();
 
   const [isMenu, setIsMenu] = useState(false);
@@ -48,6 +51,10 @@ export default function TestingScreen({ onBack }: TestingScreenProps) {
 
       <SportsView/>
       <TestersView/>
+
+      { testers.length === 0  && isLoading &&
+        <ActivityIndicator size="large" color="#fff" />
+      }
     </LinearGradient>
   );
 };

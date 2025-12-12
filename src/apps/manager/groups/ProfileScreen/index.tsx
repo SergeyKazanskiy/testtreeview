@@ -1,3 +1,4 @@
+import { useAuthState } from '@/src/api/state';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { StatsIndicators } from '@/src/components/widgets/StatsIndicators';
@@ -5,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useCallback } from 'react';
-import { Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Platform, ScrollView, StyleSheet, View } from 'react-native';
 import CommentsScreen from '../CommentsScreen';
 import { useStore } from '../store';
 import { AddressView } from './views/AddressView';
@@ -20,7 +21,9 @@ type Props = {
 };
 
 export default function ProfileScreen({ onBack }: Props) {
-  const { isCommentsScreen, last_test, student_id } = useStore();
+  const { isLoading } = useAuthState();
+
+  const { isCommentsScreen, last_test, student_id, parents } = useStore();
   const { loadStudent, showComments } = useStore();
 
   useFocusEffect(
@@ -47,6 +50,9 @@ export default function ProfileScreen({ onBack }: Props) {
         showsVerticalScrollIndicator={false}
       >
         <ProfileView/>
+        { parents.length === 0 && isLoading &&
+          <ActivityIndicator size="large" color="#fff" />
+        }
         <PerentsView/>
         <AddressView/>
 

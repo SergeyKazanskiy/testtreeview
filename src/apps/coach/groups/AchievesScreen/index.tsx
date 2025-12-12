@@ -1,3 +1,4 @@
+import { useAuthState } from '@/src/api/state';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { screenStyles } from '@/src/styles/appStyles';
@@ -5,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useCallback, useState } from 'react';
-import { Platform, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
+import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
 import { useStore } from '../store';
 import { AchievesSection } from './views/AchievesSection';
 
@@ -15,7 +16,9 @@ export interface Props {
 }
 
 export const AchievesScreen = ({ onBack }: Props) => {
-  const { achievement_id, student } = useStore();
+  const { isLoading } = useAuthState();
+
+  const { achievement_id, student, studentAchieves } = useStore();
   const { loadStudentAchieves, detachAchieve, setAchievesSummary } = useStore();
 
   useFocusEffect(
@@ -48,7 +51,9 @@ export const AchievesScreen = ({ onBack }: Props) => {
               keyboardType='default'
           />
       </CustomAlert>
-
+      { studentAchieves.length === 0 && isLoading &&
+        <ActivityIndicator size="large" color="#fff" />
+      }
       <ScrollView style={styles.container} contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false}>
         <AchievesSection title='Test achievements' category='Test' />
         <AchievesSection title='Game achievements' category='Game' />

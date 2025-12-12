@@ -20,7 +20,6 @@ export const StaticticsWidget: React.FC<Props> = ({ metrics, metricName, dates }
 
     return (
         <>
-            
             <View style={{alignSelf: 'center'}}>
                 <Text style={styles.title}>{metricName}</Text>
                 <LineChart w={326} h={160}

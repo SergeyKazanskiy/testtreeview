@@ -16,7 +16,7 @@ export function PopupContainer({ visible, children, title, onClose }: Props) {
   if (!visible) return null;
 
   return (
-    <Modal visible animationType="fade">
+    <Modal visible animationType="fade" statusBarTranslucent presentationStyle='formSheet'>
       <View
         style={styles.fullscreen}
         onLayout={(e) => {
@@ -42,7 +42,6 @@ export function PopupContainer({ visible, children, title, onClose }: Props) {
 
 const styles = StyleSheet.create({
   fullscreen: {
-    //...StyleSheet.absoluteFillObject,
     flex: 1,
     width: Platform.OS === 'web' ? 360 : '100%',
   },
@@ -52,6 +51,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 12,
     backgroundColor: '#152B52',
+    paddingTop: 40
   },
   title: {
     color: '#D1FF4D',
@@ -59,3 +59,5 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
 });
+
+    //...StyleSheet.absoluteFillObject,

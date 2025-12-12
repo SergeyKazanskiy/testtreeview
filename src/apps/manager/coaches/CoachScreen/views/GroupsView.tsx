@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useStore } from '../../store';
 
 
@@ -8,7 +8,7 @@ export function GroupsView() {
   const { selectGroup, loadFreeGroups } = useStore();
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{paddingBottom: 200}}>
       {coachGroups.map((item) => (
         
         <TouchableOpacity
@@ -25,7 +25,7 @@ export function GroupsView() {
       <Pressable onPress={loadFreeGroups} style={{ marginLeft: 6, marginTop: 18}}>
           <Ionicons name='add-circle-outline' size={26} color='rgb(180, 216, 158)' />
       </Pressable>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -35,11 +35,12 @@ const styles = StyleSheet.create({
   },
   group: {
     backgroundColor: '#152B52',
-    borderWidth: 1,
-    borderColor: '#152B52',
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    borderColor: '#216176',
     marginVertical: 3,
     padding: 10,
-    borderRadius: 8
+    borderRadius: 4
   },
   sections: {
     flexDirection: 'row',

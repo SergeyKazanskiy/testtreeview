@@ -1,10 +1,11 @@
+import { useAuthState } from '@/src/api/state';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { screenStyles } from '@/src/styles/appStyles';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useCallback, useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
 import { useStore } from '../store';
 import { CalendarView } from './views/CalendarView';
 import { ChartView } from './views/ChartView';
@@ -17,7 +18,9 @@ type Props = {
 }
 
 export default function StatisticsScreen({ onBack }: Props) {
-  const { timestamp,  metricName, summary } = useStore();
+  const { isLoading } = useAuthState();
+
+  const { timestamp, metrics, summary } = useStore();
   const { loadStatistics, togleStatistic, setSummary } = useStore();
 
   useFocusEffect(
@@ -68,6 +71,9 @@ export default function StatisticsScreen({ onBack }: Props) {
             <DatesView/>
             <TableView/>
 
+            { metrics.length === 0 && isLoading &&
+              <ActivityIndicator size="large" color="#fff" />
+            }
             <Text style={[screenStyles.gold, styles.summary]}
               onPress={() => setIsSummaryInput(true)}>
                 {summaryText === '' ? 'Enter summary' : summaryText}

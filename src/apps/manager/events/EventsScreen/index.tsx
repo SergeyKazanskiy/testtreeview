@@ -1,3 +1,4 @@
+import { useAuthState } from '@/src/api/state';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { months } from '@/src/constants/constants';
@@ -5,9 +6,8 @@ import { widgetStyles } from '@/src/styles/appStyles';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack } from 'expo-router';
 import React, { useCallback } from 'react';
-import { Platform, ScrollView, StyleSheet, Text } from 'react-native';
+import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text } from 'react-native';
 import { AttendanceReport } from '../EventsScreen/reports/AttendanceReport';
 import { useStore } from '../store';
 import { AddCompetitionAlert } from './alerts/AddCompetitionAlert';
@@ -24,8 +24,10 @@ type Props = {
 };
 
 export default function EventsScreen({ onBack }: Props) {
+  const { isLoading } = useAuthState();
+
   const { days, camp_id, year, month, camps, camp_inx, event_id } = useStore();
-  const { isSchedulesView, isEditAlert, isAddingErrorAlert} = useStore();
+  const { isSchedulesView, isEditAlert, isAddingErrorAlert, filtredEvents} = useStore();
   const { loadGroups, loadEvents, loadShedules, setToday, hideAddingErrorAlert } = useStore();
   const { showEditAlert, hideEditAlert, showAddAlert, showDeleteAlert } = useStore();
 
@@ -47,8 +49,6 @@ export default function EventsScreen({ onBack }: Props) {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper}>
-      <Stack.Screen options={{ headerShown: false }} />
-
       <CustomNavbar title={title} onClick={onBack}>
         {!isSchedulesView && event_id > 0 &&
           <Ionicons name='menu-outline' size={21} color="#D1FF4D" onPress={showEditAlert}/>}
@@ -70,20 +70,36 @@ export default function EventsScreen({ onBack }: Props) {
 
       {isSchedulesView &&
         <>
-          {days.length === 0 && <Text style={[widgetStyles.label, styles.title]}>No events</Text>}
+          { days.length === 0 && isLoading &&
+            <ActivityIndicator size="large" color="#fff" />
+          }
+          {days.length === 0 && !isLoading &&
+            <Text style={[widgetStyles.label, styles.title]}>No events</Text>
+          }
           
           {days.length > 0 &&
-          <ScrollView
-            contentContainerStyle={{paddingBottom: 200}}
-            showsVerticalScrollIndicator={false}
-          > 
-            {days.map(day => (
-              <SchedulesView key={day.day} day={day.day} weekday={day.weekday}/>
-            ))}
-          </ScrollView>}
+            <ScrollView
+              contentContainerStyle={{paddingBottom: 200}}
+              showsVerticalScrollIndicator={false}
+            > 
+              {days.map(day => (
+                <SchedulesView key={day.day} day={day.day} weekday={day.weekday}/>
+              ))}
+            </ScrollView>
+          }
         </>
       }
-      {!isSchedulesView && <EventsView/>}
+      {!isSchedulesView && 
+        <>
+          { filtredEvents.length === 0 && isLoading &&
+            <ActivityIndicator size="large" color="#fff" />
+          }
+          { filtredEvents.length === 0 && !isLoading &&
+            <Text style={[widgetStyles.label, styles.title]}>No events</Text>
+          }
+          <EventsView/>
+        </>
+      }
 
       <CoachesScreen/>
       <AttendanceReport/>

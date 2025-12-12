@@ -1,10 +1,11 @@
+import { useAuthState } from '@/src/api/state';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { screenStyles } from '@/src/styles/appStyles';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useCallback, useEffect, useState } from 'react';
-import { Platform, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
+import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text, TextInput } from 'react-native';
 import { useStore } from '../store';
 import { CalendarView } from './views/CalendarView';
 import { ChartView } from './views/ChartView';
@@ -17,7 +18,9 @@ type Props = {
 };
 
 export default function StatisticsScreen({ onBack }: Props) {
-  const { timestamp, summary } = useStore();
+  const { isLoading } = useAuthState();
+  
+  const { timestamp, summary, timestamps } = useStore();
   const { loadStatistics, togleStatistic, setSummary } = useStore();
 
   useFocusEffect(
@@ -74,6 +77,9 @@ export default function StatisticsScreen({ onBack }: Props) {
                 {summaryText === '' ? 'Enter summary' : summaryText}
             </Text>
           </>
+        }
+        { timestamps.length === 0 && isLoading &&
+          <ActivityIndicator size="large" color="#fff" />
         }
       </ScrollView>
     </LinearGradient>

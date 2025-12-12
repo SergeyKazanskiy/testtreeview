@@ -30,7 +30,7 @@ export const InfoView = () => {
             </View>
             <View style={styles.row}>
                 <Text style={styles.label}>Group coach:</Text>
-                <SelectedField w={300}
+                <SelectedField w={210}
                     data={coachesNames}
                     selectedIndex={coach_inx}
                     onSelect={selectCoache}

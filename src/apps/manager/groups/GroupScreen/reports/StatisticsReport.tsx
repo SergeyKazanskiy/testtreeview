@@ -1,9 +1,10 @@
+import { useAuthState } from '@/src/api/state';
 import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { formatDateTime } from '@/src/utils/utils';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet } from 'react-native';
 import { get_group_statistics } from '../../http';
 import { Metric, Statistic } from '../../model';
 import { useStore } from '../../store';
@@ -12,6 +13,8 @@ import { StaticticsWidget } from '../widgets/StaticticsWidget';
 
 
 export const StatisticsReport = () => {
+  const { isLoading } = useAuthState();
+
   const { isStatisticsScreen, group_id } = useStore();
   const { hideStatisticsScreen } = useStore();
 
@@ -60,6 +63,9 @@ export const StatisticsReport = () => {
             selectDate={(year, month) => (setYear(year), setMonth(month))}
           />
 
+          { dates.length === 0 && isLoading &&
+            <ActivityIndicator size="large" color="#fff" />
+          }
           <StaticticsWidget dates={dates} metrics={metrics} metricName='Speed'/>
           <StaticticsWidget dates={dates} metrics={metrics} metricName='Stamina'/>
           <StaticticsWidget dates={dates} metrics={metrics} metricName='Climbing'/>

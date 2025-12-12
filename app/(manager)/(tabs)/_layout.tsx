@@ -50,7 +50,7 @@ export default function Layout() {
       >
         <Tabs.Screen name="groups" />
         <Tabs.Screen name="coaches" />
-        <Tabs.Screen name="cams" />
+        <Tabs.Screen name="camps" />
       </Tabs>
     </ScreenContainer>
   );

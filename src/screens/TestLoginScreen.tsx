@@ -10,7 +10,7 @@ import Constants from "expo-constants";
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React, { useState } from "react";
-import { Button, Image, Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, Image, Platform, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
@@ -34,7 +34,7 @@ export default function StudentLoginScreen({onLoginSuccess}: Props) {
     showLoading();
 
     const destinationUrl = testUrl.length === 0 ? API_BASE_URL : testUrl //???
-    alert(`${destinationUrl}/${role}/test_login`)
+    //alert(`${destinationUrl}/${role}/test_login`)
 
     try {
       const res = await fetch(`${destinationUrl}/${role}/test_login`, {
@@ -43,12 +43,15 @@ export default function StudentLoginScreen({onLoginSuccess}: Props) {
         body: JSON.stringify({ first_name: name, password }),
       });
 
+    
       if (!res.ok) {
         const err = await res.text();
         throw new Error(err || "Login failed");
       }
 
       const { id, token } = await res.json();
+      //alert(id + '_' + token)
+
       await signInWithToken(token);
       const idToken = await auth.currentUser?.getIdToken(true)!;
 
@@ -73,6 +76,9 @@ export default function StudentLoginScreen({onLoginSuccess}: Props) {
         onClose={clearMessages}>
         <Text style={styles.alertText}>{errorMessage}</Text> 
       </CustomAlert>
+
+      <ScrollView contentContainerStyle={{paddingBottom: 400}} style={{flex: 1, height: "100%"}}>
+      
 
       <Text style={styles.label}>First name and phone</Text>
       <TextInput style={styles.value}
@@ -109,6 +115,7 @@ export default function StudentLoginScreen({onLoginSuccess}: Props) {
         placeholder="Enter url"
       />}
 
+      </ScrollView>
       <LoadingToast/>
     </LinearGradient>
     </SafeAreaView>

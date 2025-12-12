@@ -1,9 +1,10 @@
+import { useAuthState } from '@/src/api/state';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback } from 'react';
-import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useStore } from '../store';
 import { DeleteGroupAlert } from './alerts/DeleteGroupAlert';
 import { AchievesReport } from './reports/AchievesReport';
@@ -20,9 +21,10 @@ type Props = {
 };
 
 export default function GroupScreen({ onStudents, onBack }: Props) {
-  const { camp_id, group_id, isTimeMenu } = useStore();
-  const { loadSchedule, showDeleteGroupAlert, loadCoaches } = useStore();
-  const { showAchievesScreen, showStatisticsScreen } = useStore();
+  const { isLoading } = useAuthState();
+
+  const { camp_id, group_id, isTimeMenu, schedules } = useStore();
+  const { loadSchedule, showDeleteGroupAlert, loadCoaches, showAchievesScreen, showStatisticsScreen } = useStore();
 
   useFocusEffect(
     useCallback(() => {
@@ -54,6 +56,10 @@ export default function GroupScreen({ onStudents, onBack }: Props) {
           {isTimeMenu ? <TimeView/> : <SchedulesView/>}
         </View>
         
+        { schedules.length === 0 && isLoading &&
+          <ActivityIndicator size="large" color="#fff" />
+        }
+
         <ButtonsView
           onStudents={onStudents}
           onStatistics={showStatisticsScreen}

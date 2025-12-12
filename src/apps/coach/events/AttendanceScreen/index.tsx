@@ -1,3 +1,4 @@
+import { useAuthState } from '@/src/api/state';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { LoadingAlert } from '@/src/components/alerts/LoadingAlert';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
@@ -8,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useCallback, useState } from 'react';
-import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { NotificationsView } from '../AttendanceScreen/views/NotificationsView';
 import DrillsScreen from '../DrillsScreen';
 import { useStore } from '../store';
@@ -28,9 +29,11 @@ interface Props {
 }
   
 export default function AttendanceScreen({ onBack, onTest, onGame, onGameReport, onDrill, onStudent }: Props) {
+  const { isLoading } = useAuthState();
+
   const { isStudentsView, isAttendanceView, students, event_timestamp, isAllChecked, event_type, group_name } = useStore();
   const { studentsAmount, attendancesAmount, isSendingReport, isReportSent, wasReportSent, games, attendances} = useStore();
-  const { isNotificationsModal, notifications } = useStore();
+  const { isNotificationsModal, notifications, drills } = useStore();
   const { loadAttendances, addAttendances, deleteAttendances, setAllChecked, loadWasReportSent } = useStore();
   const { openDrillsModal, loadEventDrills, sendAttedanceReport, closeSuccessAlert, selectGameReport } = useStore();
   const { loadGames, showNotificationsModal, hideNotificationsModal } = useStore();
@@ -163,6 +166,10 @@ export default function AttendanceScreen({ onBack, onTest, onGame, onGameReport,
       
           {isStudentsView && <StudentsView/>}
           {isAttendanceView && <AttendanceView onStudent={onStudent}/>}
+
+          { (attendances.length === 0 || drills.length === 0) && isLoading &&
+            <ActivityIndicator size="large" color="#fff" />
+          }
         </View>
       </ScrollView>
 

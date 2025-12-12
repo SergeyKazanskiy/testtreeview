@@ -1,10 +1,11 @@
+import { useAuthState } from '@/src/api/state';
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack } from 'expo-router';
 import React, { useCallback } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { ActivityIndicator, Platform, StyleSheet } from 'react-native';
 import { useStore } from '../store';
 import { AddStudentAlert } from './alerts/AddStudentAlert';
 import { StudentsView } from './views/StudentsView';
@@ -16,7 +17,9 @@ type Props = {
 };
 
 export default function StudentsScreen({ onStudent, onBack }: Props) {
-  const { group_id, groups } = useStore();
+  const { isLoading } = useAuthState();
+
+  const { group_id, groups, students } = useStore();
   const { loadStudents, clearStudents, showAddAlert } = useStore();
 
   const group = groups.find(el => el.id === group_id)
@@ -42,6 +45,10 @@ export default function StudentsScreen({ onStudent, onBack }: Props) {
       <AddStudentAlert/>
 
       <StudentsView onStudent={onStudent} />
+      
+      { (groups.length === 0 || students.length === 0) && isLoading &&
+        <ActivityIndicator size="large" color="#fff" />
+      }
     </LinearGradient>
   );
 }

@@ -4,7 +4,6 @@ const appRole = Constants.expoConfig?.extra?.appRole;
 let token: string | null = null;
 let testUrl: string = '';
 
-
 export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://admin.dinivrey.com';
 
 export var BACKEND_APP_IMAGES_URL =
@@ -14,7 +13,6 @@ export function setTestDestUrl(url: string) {
   testUrl = url;
   BACKEND_APP_IMAGES_URL =  testUrl.length > 0  ? `${testUrl}/images` : process.env.EXPO_PUBLIC_IMAGES_URL ?? "";
 }
-
 
 export const api = {
 
@@ -52,8 +50,9 @@ async function makeRequest(method: string, endpoint: string, body?: any) {
   };
   if (token) headers['Authorization'] = `Bearer ${token}`;
 
-  //alert(`Making ${method} request to ${url} and Bearer ${token}`);
+  //await new Promise(res => setTimeout(res, 2000)); // ⬅️ uncomment to simulate slow server
 
+  //alert(`Making ${method} request to ${url} and Bearer ${token}`);
 
   const response = await fetch(url, {
     method,
@@ -81,7 +80,3 @@ async function makeRequest(method: string, endpoint: string, body?: any) {
 export function setToken(newToken: string) {
   api.setToken(newToken);
 }
-
-// export function setTestDestUrl(url: string) {
-//   api.setTestUrl(url);
-// }

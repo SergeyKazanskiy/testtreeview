@@ -1,9 +1,10 @@
+import { useAuthState } from '@/src/api/state';
 import { useAuthStore } from '@/src/api/store';
 import { widgetStyles } from '@/src/styles/appStyles';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback } from 'react';
-import { Platform, ScrollView, StyleSheet, Text } from 'react-native';
+import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text } from 'react-native';
 import { useStore } from '../store';
 import { CalendarView } from './views/CalendarView';
 import { GroupEventsView } from './views/GroupEventsView';
@@ -11,7 +12,9 @@ import { WeekEventsView } from './views/WeekEventsView';
 
 
 export default function HistoryScreen() {
-  const { userId } = useAuthStore()
+  const { isLoading } = useAuthState();
+  const { userId } = useAuthStore();
+
   const { isWeekFilter, days, groups, group_inx } = useStore();
   const { loadGroups, selectGroup } = useStore();
   
@@ -38,6 +41,10 @@ export default function HistoryScreen() {
         </>
       }
       {!isWeekFilter && <GroupEventsView/>}
+
+      { groups.length === 0  && isLoading &&
+        <ActivityIndicator size="large" color="#fff" />
+      }
     </LinearGradient>
   );
 }

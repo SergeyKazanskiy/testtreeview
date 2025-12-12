@@ -1,8 +1,9 @@
+import { useAuthState } from '@/src/api/state';
 import { PopupContainer } from '@/src/components/containers/PopupContainer';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useState } from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text } from 'react-native';
 import { get_group_achieves } from '../../http';
 import { Achieve } from '../../model';
 import { useStore } from '../../store';
@@ -10,6 +11,8 @@ import { AchievesWidget } from '../widgets/AchievesWidget';
 
 
 export const AchievesReport = () => {
+  const { isLoading } = useAuthState();
+
   const { isAchievesScreen, group_id } = useStore();
   const { hideAchievesScreen } = useStore();
 
@@ -36,6 +39,10 @@ export const AchievesReport = () => {
           <AchievesWidget title='Test achievements' achieves={achieves} category='Test' />
           <AchievesWidget title='Game achievements' achieves={achieves} category='Game' />
           <AchievesWidget title='Participate achievements' achieves={achieves} category='Participate' />
+
+          { achieves.length === 0 && isLoading &&
+            <ActivityIndicator size="large" color="#fff" />
+          }
 
           <Text style={styles.summary}>Total achievements: 
             <Text style={styles.text}>{summary}</Text>

@@ -15,7 +15,7 @@ type SelectProps = {
   onSelect: (index: number) => void;
 };
 
-export const SelectedField: React.FC<SelectProps> = ({ w, data, selectedIndex, onSelect }) => {
+export const SelectedField: React.FC<SelectProps> = ({ w = 210, data, selectedIndex, onSelect }) => {
   const buttonRef = useRef<View>(null);
 
   const [visible, setVisible] = useState(false);
@@ -23,7 +23,7 @@ export const SelectedField: React.FC<SelectProps> = ({ w, data, selectedIndex, o
 
   const open = () => {
     buttonRef.current?.measureInWindow((x, y, width, height) => {
-      setPosition({ x: width - 16, y: y + height - 16, width, height });
+      setPosition({ x: x - w + width, y: y + height - 20, width, height });
       setVisible(true);
     });
   };
@@ -43,7 +43,7 @@ export const SelectedField: React.FC<SelectProps> = ({ w, data, selectedIndex, o
       <Modal transparent visible={visible} animationType="fade">
         <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={() => setVisible(false)}>
           {position && (
-            <View style={[styles.modalContent, { top: position.y + 2, left: position.x, width: w }]}>
+            <View style={[styles.modalContent, { top: position.y, left: position.x, width: w }]}>
               <FlatList data={data}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item, index }) => (
@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
   item: {
     color: '#ccc',
     fontSize: 15,
-    //paddingVertical: 2
   },
   option: {
     paddingVertical: 10,
