@@ -11,7 +11,7 @@ export const NotificationsView = () => {
       data={notifications}
       contentContainerStyle={{paddingBottom: 4}}
       showsVerticalScrollIndicator={false}
-      keyExtractor={(index) => index.toString()}
+      keyExtractor={(item, index) => index.toString() + item.first_name + '_' + item.second_name}
       renderItem={({ item }) =>
         
       <NotificationCell 

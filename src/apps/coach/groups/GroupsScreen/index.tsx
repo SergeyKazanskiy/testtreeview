@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
   },
   group: {
     backgroundColor: '#152B52',
-    // borderTopWidth: 1,
-    // borderLeftWidth: 1,
-    // borderColor: 'green',
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    borderColor: '#216176',
     paddingTop: 6,
     paddingBottom: 4,
     marginVertical: 3

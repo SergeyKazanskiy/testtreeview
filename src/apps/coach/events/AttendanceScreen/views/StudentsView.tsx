@@ -11,7 +11,7 @@ export const StudentsView = () => {
     <FlatList
       data={students} 
       showsVerticalScrollIndicator={false}
-      keyExtractor={(index) => index.toString()}
+      keyExtractor={(item, index) => index.toString() + item.first_name + item.last_name}
       renderItem={({ item }) =>
 
         <StudentCell

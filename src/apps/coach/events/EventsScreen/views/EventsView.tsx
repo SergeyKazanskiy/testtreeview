@@ -50,8 +50,8 @@ export function EventsView({ onEvent, day, weekday }: EventsViewProps) {
         />
       {expanded &&
         <>
-          {events_shedules.map(item => (
-            <View key={item.id} style={item.id === 0 && { opacity: 0.6}}>
+          {dayEvents.map(item => (
+            <View key={day + '_' + item.group1_id} style={item.id === 0 && { opacity: 0.6}}>
               
               <CoachEventCell
                 type={item.type}  
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#152B52',
     borderTopWidth: 1,
     borderLeftWidth: 1,
-    borderColor: 'green',
+    borderColor: '#216176',
     marginVertical: 3
   },
   title: {
