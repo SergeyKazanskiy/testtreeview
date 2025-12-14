@@ -1,7 +1,6 @@
 import { useAuthState } from '@/src/api/state';
-import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useCallback } from 'react';
+import { useEffect } from 'react';
 import { ActivityIndicator, Platform, StyleSheet } from 'react-native';
 import { useStore } from '../store';
 import { AddGroupAlert } from './alerts/AddGroupAlert';
@@ -15,14 +14,22 @@ type Props = {
 
 export default function GroupsScreen({ onGroup }: Props) {
   const { isLoading } = useAuthState();
-  const { groups, camps } = useStore();
-  const { loadCamps } = useStore();
+  const { groups, camps, camp_id, camp_inx } = useStore();
+  const { loadCamps, updateGroup, deleteGroup, selectCamp } = useStore();
 
-  useFocusEffect(
-    useCallback(() => {
-      loadCamps();
-    }, [])
-  );
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     loadCamps();
+  //   }, [])
+  // );
+
+  useEffect(() => {
+    loadCamps();
+  }, []);
+
+  useEffect(() => {
+    if (camp_inx > -1) selectCamp(camp_id, camp_inx);
+  }, [updateGroup, deleteGroup]);
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >

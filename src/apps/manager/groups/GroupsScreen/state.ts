@@ -66,11 +66,14 @@ export const createGroupsSlice = (set: any, get: any): GroupsSlice => ({
 
   selectCamp: (campId: number, camp_inx: number) => {
     const { camps, camp_id, loadGroups }: GroupsSlice = get();
-      set({
-        camp_id: campId,
-        camp_name: sanitizeName(camps[camp_inx].name),
-      })
-      loadGroups(campId);
+    if (campId === camp_id) return;
+    
+    set({
+      camp_id: campId,
+      camp_name: sanitizeName(camps[camp_inx].name),
+      groups: []
+    })
+    loadGroups(campId);
   },
 
   selectGroup: (group_id: number, group_inx: number) => {

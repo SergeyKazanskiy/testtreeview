@@ -72,6 +72,7 @@ export const createCoachesSlice = (set: any, get: any): CoachesSlice => ({
             set({
                 campId: camp_id, camp_inx,
                 camp_name: sanitizeName(camps[camp_inx].name),
+                coaches:[]
             });
             loadCoaches(camp_id);
         } 
