@@ -13,7 +13,7 @@ export default ({ config }: any) => {
     name: `testtreeview-${appRole}`,
     slug: `testtreeview-${appRole}`,
     version: "1.0.0",
-    orientation: "default",
+    orientation: "portrait",
     icon: "./assets/images/icon.png",
     scheme: "testtreeview",
     userInterfaceStyle: "light",

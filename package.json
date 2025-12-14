@@ -10,7 +10,6 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "deploy": "npx gh-pages -d dist",
-
     "test": "APP_ROLE=test expo start -c",
     "start:student": "APP_ROLE=student expo start -c",
     "start:coach": "APP_ROLE=coach expo start -c",
@@ -52,6 +51,7 @@
     "expo-linking": "~8.0.8",
     "expo-notifications": "^0.32.13",
     "expo-router": "^6.0.15",
+    "expo-screen-orientation": "^9.0.8",
     "expo-splash-screen": "~31.0.10",
     "expo-status-bar": "~3.0.8",
     "expo-symbols": "~1.0.7",
