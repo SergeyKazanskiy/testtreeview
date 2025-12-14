@@ -11,7 +11,7 @@ export default function StudentsRoute() {
     <ScreenContainer>
       <StudentsScreen
         onStudent={() => router.push('/(manager)/groups_group_students/(tabs)/profile')}
-        onBack={() => router.replace('/(manager)/groups_group')}
+        onBack={() => router.back()}
       />
     </ScreenContainer>
   )

@@ -54,7 +54,7 @@ export const DateView: React.FC<Props> = ({ timestamp, setDate }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 6,
   },
   section: {
     flexDirection: 'row',
@@ -66,9 +66,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     color: 'gold',
-    marginHorizontal: 1,
-    marginTop: 8,
-    marginBottom: 4
+    marginHorizontal: 4,
+    marginTop: 12,
   },
   gridRow: {
     flexDirection: 'row',
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
     margin: 1,
   },
   dayButton: {
-    width: 40,
+    width: 46,
     height: 36,
     borderRadius: 6,
     marginHorizontal: 1,
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   buttonText: {
-    fontSize: 15,
+    fontSize: 13,
     color: '#ddd',
   },
 });

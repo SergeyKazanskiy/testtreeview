@@ -84,7 +84,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ test, onExam }) => {
 
       {outerPoints.map((p, i) => (
         <TouchableOpacity key={i}
-          style={[styles.iconWrapper, { left: p.x - 24, top: p.y + 50 }]}
+          style={[styles.iconWrapper, { left: p.x - 24, top: p.y + 40 }]}
           onPress={() => onExam(labels[i])} >
 
           <Image key={i} source={{ uri: icons[i] }}

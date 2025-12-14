@@ -19,7 +19,7 @@ export const TimeView = () => {
       <View style={styles.grid}>
         {Array.from({ length: 12 }, (_, i) => i + 8).map((h) => (
           <Button key={h}
-            title={h.toString()}
+            title={String(h)}
             type={hour === h ? 'solid' : 'outline'}
             buttonStyle={styles.button}
             titleStyle={[styles.text, hour === h && styles.selected]}
@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 6,
+    gap: 5,
   },
   button: {
-    width: 40,
+    width: 46,
     height: 36,
     padding: 0,
     margin: 3,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     color: '#eee'
   },
   text: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#ddd'
   },
 });

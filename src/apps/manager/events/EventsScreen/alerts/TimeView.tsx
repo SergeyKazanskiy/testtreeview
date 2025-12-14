@@ -45,7 +45,7 @@ export const TimeView: React.FC<Props> = ({ hour, minute, setHour, setMinute }) 
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 6,
   },
   section: {
     flexDirection: 'row',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   button: {
-    width: 40,
+    width: 46,
     height: 36,
     padding: 0,
     margin: 3,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     color: '#eee'
   },
   text: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#ddd'
   },
 });

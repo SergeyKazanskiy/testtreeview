@@ -10,6 +10,8 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "deploy": "npx gh-pages -d dist",
+
+    "test": "APP_ROLE=test expo start -c",
     "start:student": "APP_ROLE=student expo start -c",
     "start:coach": "APP_ROLE=coach expo start -c",
     "start:manager": "APP_ROLE=manager expo start -c",

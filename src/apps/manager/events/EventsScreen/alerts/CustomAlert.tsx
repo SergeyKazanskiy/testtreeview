@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Modal, View, Text, StyleSheet, Animated, Platform} from 'react-native';
-import { TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { Animated, Modal, Platform, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 
 
 interface Props {
@@ -123,11 +122,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   date: {
-    fontSize: 15,
+    fontSize: 14,
     color: 'yellow',
     fontWeight: '600',
-    paddingVertical: 4,
-    paddingHorizontal: 8,
+    paddingVertical: 2,
+    paddingHorizontal: 12,
     marginRight: 12,
     height: 28,
     borderWidth: 1,
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#A4FAAA',
     fontWeight: '500',
-    paddingVertical: 4,
+    paddingVertical: 2,
     paddingHorizontal: 8,
     height: 28,
     borderWidth: 1,
