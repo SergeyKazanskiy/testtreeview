@@ -2,7 +2,6 @@ import { CoachEventCell } from '@/src/components/cells/CoachEventCell';
 import { Icon } from '@/src/components/icons/CustomIcon';
 import { ListItem } from '@/src/components/widgets/CustomListItem';
 import { formatDateTime } from '@/src/utils/utils';
-import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useStore } from '../../store';
@@ -22,7 +21,6 @@ export function EventsView({ onEvent, day, weekday }: EventsViewProps) {
 
   //alert(objectToJson(events_shedules))
   const dayEvents = events_shedules.filter(el => el.day === day);
-  const router = useRouter();
 
   function handlePressGroup( event_id: number, group_id: number, timestamp: number, group_number: number) {
     selectEvent(event_id, group_id, timestamp, group_number);

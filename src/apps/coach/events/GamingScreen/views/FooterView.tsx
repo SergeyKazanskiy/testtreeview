@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     minWidth: 160,
-    paddingHorizontal: 8,
+    //paddingHorizontal: 8,
 
     borderRadius: 18,
     borderWidth: 1,
@@ -75,14 +75,15 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: '600',
+    paddingHorizontal: 8
   },
   button: {
     backgroundColor: '#bbb',
-    //minWidth: 120,
-    alignItems: 'center',
+    minWidth: 68,
+    //alignItems: 'center',
     paddingVertical: 4,
-    paddingHorizontal: 4,
-    borderRadius: 8,
+    //paddingHorizontal: 4,
+    borderRadius: 16,
   },
   label: {
     color: '#222'

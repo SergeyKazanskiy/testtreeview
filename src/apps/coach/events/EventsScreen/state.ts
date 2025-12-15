@@ -46,6 +46,8 @@ export const createEventsSlice = (set: any, get: any): EventsSlice => ({
 
         get_coach_schedule(group_ids, (res => {
             if (res) {
+               // alert(objectToJson(res.events))
+
                 let currentDay: number = 0;
                 let days: {day: number, weekday: string}[]=[];
                 let events_shedules: Event[] = [];
@@ -93,7 +95,7 @@ export const createEventsSlice = (set: any, get: any): EventsSlice => ({
                 }
                 const sortedDays = days.sort((a, b) => a.day - b.day);
                 const sortedEvents = events_shedules.sort((a, b) => a.timestamp - b.timestamp);
-        
+                
                 set({schedule_days: sortedDays, events_shedules: sortedEvents});
             }
         }));

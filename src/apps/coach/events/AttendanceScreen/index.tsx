@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useCallback, useState } from 'react';
-import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Platform, StyleSheet, Text, View } from 'react-native';
 import { NotificationsView } from '../AttendanceScreen/views/NotificationsView';
 import DrillsScreen from '../DrillsScreen';
 import { useStore } from '../store';
@@ -132,7 +132,7 @@ export default function AttendanceScreen({ onBack, onTest, onGame, onGameReport,
         onNotifications={showNotificationsModal}
       />
 
-      <ScrollView>
+      <View>
         <DrillsView onDrill={onDrill}/>
 
         <View style={styles.container}>
@@ -171,7 +171,7 @@ export default function AttendanceScreen({ onBack, onTest, onGame, onGameReport,
             <ActivityIndicator size="large" color="#fff" />
           }
         </View>
-      </ScrollView>
+      </View>
 
       <DrillsScreen/>
     </LinearGradient>

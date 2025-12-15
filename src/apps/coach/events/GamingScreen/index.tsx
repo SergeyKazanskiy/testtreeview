@@ -2,7 +2,6 @@ import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { formatDateTime } from '@/src/utils/utils';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack } from 'expo-router';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -77,8 +76,7 @@ export default function GamingScreen({ onBack }: Props) {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-      <Stack.Screen options={{ headerShown: false }} />
-      <CustomNavbar title={formatDateTime(gameDate).date + ', Game Mode ('  + gameStep + ', '+ gameState + ')'} onClick={handleBack}>
+      <CustomNavbar title={formatDateTime(gameDate).date + ', Game Mode'} onClick={handleBack}>
         <HeaderView/>
       </CustomNavbar>
 
@@ -139,10 +137,10 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'row',
+    gap: 1
   },
   section: {
     flex: 1,
     width: '50%',
-    paddingHorizontal: 4
   }
 });
