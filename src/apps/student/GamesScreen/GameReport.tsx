@@ -1,7 +1,6 @@
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack } from 'expo-router';
 import { useCallback } from 'react';
 import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { FooterReport } from '../GamingScreen/views/FooterReport';
@@ -47,13 +46,9 @@ const GameReport = ({ pressBack }: Props) => {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper}>
-      <Stack.Screen options={{ headerShown: false }} />
-
       <CustomNavbar title={titleHeader} onClick={handleBack}/>
 
-      <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-
           <View style={styles.section}>
             <Text style={styles.text}>Players - {teams_totals[0].amount} </Text>
             <Text style={styles.text}>Players - {teams_totals[1].amount} </Text>
@@ -69,7 +64,6 @@ const GameReport = ({ pressBack }: Props) => {
           />
           <FooterReport/>
         </ScrollView>
-      </View>
     </LinearGradient>
   );
 };
@@ -82,11 +76,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     marginRight: 48,
-  },
-  container: {
-    // flex: 1,
-    // width: '100%',
-    // paddingBottom: 8,
   },
   section: {
     flexDirection: 'row',
@@ -110,7 +99,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingTop: 16,
-    paddingBottom: 32,
+    paddingBottom: 200,
   },
 });
 

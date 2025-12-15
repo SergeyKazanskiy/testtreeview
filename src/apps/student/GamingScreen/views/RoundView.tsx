@@ -13,7 +13,7 @@ type Props = {
 
 export function RoundView({ team, role, title }: Props) {
   const { gamers } = useStore();
-
+  //alert(objectToJson(gamers))
   const teamGamers: Gamer[] = gamers.filter(el => el.team === team )!;
   const players: Player[] = teamGamers.map(el => ({
       id: 0,
@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
    text: {
     flex: 1,
     fontSize: 14,
-    fontWeight: '500'
+    fontWeight: '500',
+    color: '#333'
   },
   capsule: {
     borderRadius: 10,

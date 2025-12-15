@@ -1,7 +1,8 @@
-import { HorizontalNavbar } from '@/src/components/bars/HorizontalNavbar';
+import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack } from 'expo-router';
+import * as ScreenOrientation from 'expo-screen-orientation';
 import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useStore } from '../store';
@@ -30,8 +31,22 @@ export default function GamingScreen({ pressBack }: Props) {
   const { loadStudents, onNavbarBack, hideBackAlert, onErrorExit, step_on_settings, clearPlayers} = useStore();
   const { onFixPoints, switch_on_completion, hideCheckingAlert, setGamingScreen } = useStore();
 
-  const { isGamingScreen } = useStore();
-  const w = isGamingScreen ? 760 : 360
+  useFocusEffect(
+    useCallback(() => {
+      // при входе на экран
+      ScreenOrientation.lockAsync(
+        ScreenOrientation.OrientationLock.LANDSCAPE
+      );
+
+      return () => {
+        // при уходе с экрана
+        ScreenOrientation.lockAsync(
+          ScreenOrientation.OrientationLock.PORTRAIT
+        );
+      };
+    }, [])
+  );
+
 
   useFocusEffect(
     useCallback(() => {
@@ -62,9 +77,9 @@ export default function GamingScreen({ pressBack }: Props) {
   return (        
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
       <Stack.Screen options={{ headerShown: false }} />
-      <HorizontalNavbar title='    Dinivrey - Game Mode    ' onClick={handleBack}>
+      <CustomNavbar title='Dinivrey - Game Mode' onClick={handleBack}>
         <HeaderView/>
-      </HorizontalNavbar>
+      </CustomNavbar>
 
       {/* Alerts */}
       <BackAlert
@@ -123,10 +138,11 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'row',
+    gap: 1,
   },
   section: {
     flex: 1,
     width: '50%',
-    paddingHorizontal: 4
+   // paddingHorizontal: 4
   }
 });
