@@ -10,7 +10,7 @@ export default function GamingRoute() {
 
   return (
      <SafeAreaView style={{ flex: 1 }} edges={['top','left', 'right']}>
-       <StatusBar style="light" backgroundColor="#152B52" />
+      <StatusBar hidden />
       <GamingScreen onBack={() => router.back()} />
      </SafeAreaView>
   );
