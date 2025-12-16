@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
   image: {
     height: 52,
     width: 52,
-   // backgroundColor: "#000",
   },
   title: {
     color: "#fff",
@@ -98,7 +97,6 @@ const styles = StyleSheet.create({
   },
   calendar: {
     marginTop: 4,
-   // backgroundColor: 'green',
     borderRadius: 28
   }
 });

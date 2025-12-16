@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#152B52',
     borderTopWidth: 1,
     borderLeftWidth: 1,
-    borderColor: 'green',
+    borderColor: '#216176',
     marginVertical: 3
   },
   title: {
