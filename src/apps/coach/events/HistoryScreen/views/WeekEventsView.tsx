@@ -13,7 +13,7 @@ export function WeekEventsView({ day,  weekday }: {day: number, weekday: string}
  
   const dayEvents = events.filter(el => el.day === day);
 
-  function handlePress(event_id: number, group_id: number) {
+  function handlePress(event_id: number, group_id: number) { //???
   }
 
   return (
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#152B52',
     borderTopWidth: 1,
     borderLeftWidth: 1,
-    borderColor: 'green',
+    borderColor: '#216176',
     marginVertical: 3
   },
   title: {

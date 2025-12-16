@@ -59,16 +59,18 @@ export default function EventsScreen({ onEvent }: EventsScreenProps) {
           <TypesView type={eventType} onType={setEventType}/>
       </CustomAlert>
 
-      {schedule_days.length === 0 && <Text style={[widgetStyles.label, styles.title]}>No events</Text>}
+      {schedule_days.length === 0 && !isLoading &&
+        <Text style={[widgetStyles.label, styles.title]}>No events</Text>
+      }
       
-      {schedule_days.length > 0 &&
+      {schedule_days.length > 0 && !isLoading &&
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 100}}> 
           {schedule_days.map(day => (
             <EventsView key={day.day} day={day.day} weekday={day.weekday} onEvent={onEvent}/>
           ))}
         </ScrollView>
       }
-      { schedule_days.length === 0 && isLoading &&
+      {isLoading &&
         <ActivityIndicator size="large" color="#fff" />
       }
     </LinearGradient>

@@ -1,8 +1,9 @@
 import { useAuthState } from '@/src/api/state';
+import { widgetStyles } from '@/src/styles/appStyles';
 import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback } from 'react';
-import { ActivityIndicator, Platform, StyleSheet } from 'react-native';
+import { ActivityIndicator, Platform, StyleSheet, Text } from 'react-native';
 import { useStore } from '../store';
 import { CompetitionsView } from './views/CompetitionsView';
 
@@ -19,8 +20,13 @@ export default function HistoryScreen() {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper}>
-      <CompetitionsView/>
-      { competitions.length === 0&& isLoading &&
+      { competitions.length === 0 && !isLoading &&
+        <Text style={[widgetStyles.label, styles.title]}>No events</Text>
+      }
+      { competitions.length > 0 && !isLoading &&
+        <CompetitionsView/>
+      }
+      { isLoading &&
         <ActivityIndicator size="large" color="#fff" />
       }
     </LinearGradient>
@@ -34,5 +40,9 @@ const styles = StyleSheet.create({
     maxWidth: Platform.OS === 'web' ? 360 : undefined,
     width: '100%',
     paddingHorizontal: 16,
+  },
+  title: {   
+    paddingTop: 60,
+    alignSelf:'center'
   },
 });

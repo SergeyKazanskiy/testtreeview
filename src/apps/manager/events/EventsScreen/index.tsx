@@ -70,14 +70,11 @@ export default function EventsScreen({ onBack }: Props) {
 
       {isSchedulesView &&
         <>
-          { days.length === 0 && isLoading &&
-            <ActivityIndicator size="large" color="#fff" />
-          }
           {days.length === 0 && !isLoading &&
             <Text style={[widgetStyles.label, styles.title]}>No events</Text>
           }
           
-          {days.length > 0 &&
+          {days.length > 0 && !isLoading &&
             <ScrollView
               contentContainerStyle={{paddingBottom: 200}}
               showsVerticalScrollIndicator={false}
@@ -87,17 +84,22 @@ export default function EventsScreen({ onBack }: Props) {
               ))}
             </ScrollView>
           }
+          {isLoading &&
+            <ActivityIndicator size="large" color="#fff" />
+          }
         </>
       }
       {!isSchedulesView && 
         <>
-          { filtredEvents.length === 0 && isLoading &&
-            <ActivityIndicator size="large" color="#fff" />
-          }
           { filtredEvents.length === 0 && !isLoading &&
             <Text style={[widgetStyles.label, styles.title]}>No events</Text>
           }
-          <EventsView/>
+          { filtredEvents.length > 0 && !isLoading &&
+            <EventsView/>
+          }
+          { filtredEvents.length === 0 && isLoading &&
+            <ActivityIndicator size="large" color="#fff" />
+          }
         </>
       }
 

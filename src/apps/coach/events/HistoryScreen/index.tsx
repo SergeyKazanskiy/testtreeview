@@ -30,9 +30,11 @@ export default function HistoryScreen() {
 
       {isWeekFilter &&
         <>
-          {days.length === 0 && <Text style={[widgetStyles.label, styles.title]}>No events</Text>}
+          {days.length === 0 && !isLoading &&
+            <Text style={[widgetStyles.label, styles.title]}>No events</Text>
+          }
           
-          {days.length > 0 &&
+          {days.length > 0 && !isLoading &&
           <ScrollView> 
             {days.map(day => (
               <WeekEventsView key={day.day} day={day.day} weekday={day.weekday}/>
@@ -42,7 +44,7 @@ export default function HistoryScreen() {
       }
       {!isWeekFilter && <GroupEventsView/>}
 
-      { groups.length === 0  && isLoading &&
+      {isLoading &&
         <ActivityIndicator size="large" color="#fff" />
       }
     </LinearGradient>
