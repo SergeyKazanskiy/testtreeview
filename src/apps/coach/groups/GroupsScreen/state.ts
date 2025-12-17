@@ -44,24 +44,41 @@ export const createGroupsSlice = (set: any, get: any): GroupsSlice => ({
   },
 
   loadStudents: (group_id: number) => {
+    //alert('loadStudents ' + group_id)
+
     get_students(group_id, (students: Student[]) => {
-      set({ students, group_id });
+     // alert('count ' + students.length)
+      if (students.length > 0) {
+        set({ students });
+      } else {
+        set({ group_id: 0, group_inx: -1, group_name: '', students: [], camp_id: 0, camp_name: ''});
+      }
     })
   },
 
   selectGroup: (groupId: number, group_inx: number) => {
     const { groups, group_id, loadStudents }: GroupsSlice = get();
-    if (groupId !== group_id) { // ???
-      set({group_id, group_inx,
-        group_name: sanitizeName(groups[group_inx].name),
-        camp_id: groups[group_inx].camp_id,
-        camp_name: sanitizeName(groups[group_inx].camp_name),
-      });
 
-      loadStudents(groupId);
-    } else {
+    if (groupId === group_id) {
       set({ group_id: 0, group_inx: -1, group_name: '', students: []});
+      return;
     }
+
+    if (group_id !== 0) {
+      set({
+        students: [],
+      });
+    }
+
+    set({
+      group_id: groupId,
+      group_inx,
+      group_name: sanitizeName(groups[group_inx].name),
+      camp_id: groups[group_inx].camp_id,
+      camp_name: sanitizeName(groups[group_inx].camp_name),
+    });
+
+    loadStudents(groupId);
   },
 
   selectStudent: (student_id: number) => set({ student_id }),

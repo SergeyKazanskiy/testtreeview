@@ -1,12 +1,6 @@
-import React, { ReactNode, useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TextStyle,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
+import React, { ReactNode, useEffect, useState } from 'react';
+import { StyleSheet, Text, TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native';
+
 
 interface ListItemProps {
   children?: ReactNode;
@@ -36,19 +30,9 @@ interface ListItemAccordionProps {
   isExpanded?: boolean;
   onPress?: () => void;
   children?: ReactNode;
-  icon?: {
-    name?: string;
-    color?: string;
-    size?: number;
-  };
 }
 
-export const ListItem = ({
-  children,
-  containerStyle,
-  bottomDivider,
-  onPress,
-}: ListItemProps) => {
+export const ListItem = ({ children, containerStyle, bottomDivider, onPress }: ListItemProps) => {
   return (
     <TouchableOpacity
       activeOpacity={onPress ? 0.7 : 1}
@@ -76,15 +60,13 @@ ListItem.Subtitle = ({ children, style }: ListItemSubtitleProps) => (
   <Text style={[styles.subtitle, style]}>{children}</Text>
 );
 
-ListItem.Accordion = ({
-  containerStyle,
-  content,
-  isExpanded = false,
-  onPress,
-  children,
-  icon,
-}: ListItemAccordionProps) => {
+
+ListItem.Accordion = ({ containerStyle, content, onPress, children, isExpanded = false }: ListItemAccordionProps) => {
   const [expanded, setExpanded] = useState(isExpanded);
+
+  useEffect(() => {
+    setExpanded(isExpanded)
+  }, [isExpanded]);
 
   const handlePress = () => {
     setExpanded(!expanded);
@@ -101,6 +83,7 @@ ListItem.Accordion = ({
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -135,7 +118,6 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   accordionContent: {
-  //  paddingHorizontal: 16,
     paddingVertical: 8,
     backgroundColor: 'transparent',
   },

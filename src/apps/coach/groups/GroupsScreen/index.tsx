@@ -29,25 +29,25 @@ export default function GroupsScreen({ pressStudent }: Props) {
 
   return (
     <LinearGradient colors={['#2E4A7C', '#152B52']} style={styles.wrapper} >
-      <ScrollView contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false}> 
+      <ScrollView contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false}>
+
         {groups.map((group, index) =>
-          <ListItem.Accordion key={index}
+          <ListItem.Accordion key={group.id}
             containerStyle={styles.group}
             isExpanded={group.id === group_id}
             onPress={() => selectGroup(group.id, index)}
-            icon={{}}
             content={
               <>
                 <Icon name={group.id === group_id ? 'chevron-down' : 'chevron-right'}
                   type="material-community" color="white" style={{ marginRight: 10 }} />
                 <ListItem.Content>
                   <ListItem.Title style={styles.title}>{group.camp_name}, {group.name}</ListItem.Title>
-                  <ListItem.Subtitle style={styles.subtitle}>{group.description}</ListItem.Subtitle>
+                  <ListItem.Subtitle style={styles.subtitle}>{group.description} </ListItem.Subtitle>
                 </ListItem.Content>
               </>
             }
           >
-            <StudentList pressStudent={pressStudent}/>
+            <StudentList pressStudent={pressStudent} /> 
           </ListItem.Accordion>
         )}
       </ScrollView>

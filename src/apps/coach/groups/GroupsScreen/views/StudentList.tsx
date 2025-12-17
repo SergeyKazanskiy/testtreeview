@@ -3,7 +3,6 @@ import { useAuthState } from '@/src/api/state';
 import { Avatar } from '@/src/components/avatars/CustomAvatar';
 import { Badge } from '@/src/components/buttons/CustomBadge';
 import { ListItem } from '@/src/components/widgets/CustomListItem';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 import { useStore } from '../../store';
@@ -27,8 +26,9 @@ export function StudentList({ pressStudent }: Props) {
   }
 
   return (
-    <LinearGradient colors={['#2E4A7C', '#152B52']} style={{width: '100%', flex: 1}} >
+    <>
         {students.map(student => {
+            const itemStyle = styles.item;
             const photoPath = student.photo === 'Student_boy.png' || student.photo === 'Student_girl.png' ?
             BACKEND_APP_IMAGES_URL + '/photos/' + student.photo :
             BACKEND_APP_IMAGES_URL + '/photos/' + camp_name + '/students/' + group_name + '/' + student.photo
@@ -37,7 +37,7 @@ export function StudentList({ pressStudent }: Props) {
                 <ListItem key={student.id}
                     bottomDivider
                     onPress={() => handlePress(student.id)}
-                    containerStyle={styles.item}
+                    containerStyle={itemStyle}
                 >
                     <Avatar size={44} source={{ uri: `${photoPath}` }} rounded />
 
@@ -57,7 +57,7 @@ export function StudentList({ pressStudent }: Props) {
         { students.length === 0 && isLoading &&
           <ActivityIndicator size="large" color="#fff" />
         }
-    </LinearGradient>
+    </>
   );
 }
 

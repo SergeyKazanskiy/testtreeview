@@ -19,7 +19,6 @@ export function EventsView({ onEvent, day, weekday }: EventsViewProps) {
   const { events_shedules, groups } = useStore();
   const { openAddAlert, selectEvent } = useStore();
 
-  //alert(objectToJson(events_shedules))
   const dayEvents = events_shedules.filter(el => el.day === day);
 
   function handlePressGroup( event_id: number, group_id: number, timestamp: number, group_number: number) {
@@ -34,7 +33,7 @@ export function EventsView({ onEvent, day, weekday }: EventsViewProps) {
 
   return (
     <>
-        <ListItem.Accordion containerStyle={styles.group} isExpanded={expanded} icon={{}}
+        <ListItem.Accordion containerStyle={styles.group} isExpanded={expanded}
           content={
             <>
               <Icon name={expanded ? 'chevron-down' : 'chevron-right'}
