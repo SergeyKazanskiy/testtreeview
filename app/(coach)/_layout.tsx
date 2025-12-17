@@ -8,7 +8,7 @@ export default function RootLayout() {
       <Stack.Screen name="login" />
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="(groups_student)" />
-      <Stack.Screen name="events_attendance" />
+      <Stack.Screen name="events_attendance" options={{ headerShown: false, animation: 'fade_from_bottom'}}/>
     </Stack>
   );
 }

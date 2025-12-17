@@ -22,7 +22,7 @@ export default function EventsAttendanceLayout() {
   );
 
   return (
-    <Stack screenOptions={{ headerShown: false, animation: 'slide_from_bottom' }}>
+    <Stack screenOptions={{ headerShown: false, animation: 'fade_from_bottom' }}>
       <Stack.Screen name="index" />
       <Stack.Screen name="addStudents" />
       <Stack.Screen name="removeStudents" />
