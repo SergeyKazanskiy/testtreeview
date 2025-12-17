@@ -1,11 +1,10 @@
-import { API_BASE_URL, setTestDestUrl } from '@/src/api/api';
+import { API_BASE_URL } from '@/src/api/api';
 import { auth, signInWithToken } from "@/src/api/firebaseConfig";
 import { useAuthState } from "@/src/api/state";
 import { useAuthStore } from '@/src/api/store';
 import { CustomAlert } from '@/src/components/alerts/CustomAlert';
 import { LoadingToast } from '@/src/components/toasts/LoadingToast';
 import { DinivreyHeader } from '@/src/components/widgets/DinivreyHeader';
-import { Ionicons } from '@expo/vector-icons';
 import Constants from "expo-constants";
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
@@ -98,7 +97,7 @@ export default function StudentLoginScreen({onLoginSuccess}: Props) {
       </View>
 
       {/* For test server */}
-      <View style={styles.section}>
+      {/* <View style={styles.section}>
         <Ionicons name={expanded ? 'chevron-up-outline' : 'chevron-down-outline'} size={20} color={'#bbb'}
           onPress={() => {expanded ? setExpanded(false) : setExpanded(true)}}
         />
@@ -113,7 +112,7 @@ export default function StudentLoginScreen({onLoginSuccess}: Props) {
         onChangeText={(url) => (setTestDestUrl(url), setTestUrl(url))}
         style={styles.textArea}
         placeholder="Enter url"
-      />}
+      />} */}
 
       </ScrollView>
       <LoadingToast/>
