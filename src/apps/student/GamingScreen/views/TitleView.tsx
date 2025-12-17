@@ -8,11 +8,13 @@ import { useStore } from '../../store';
 interface Props {
   team: Team;
   role: Role;
+  onAddStudents: () => void;
+  onRemoveStudents: () => void;
 }
 
-export function TitleView({ team, role }: Props) {
+export function TitleView({ team, role, onAddStudents, onRemoveStudents }: Props) {
   const { blockPlayersAdding } = useStore();
-  const { showAddingPopup, showRemovingPopup, setCurrentTeam, setCurrentRole } = useStore();
+  const { setCurrentTeam, setCurrentRole } = useStore();
 
   const teamName = team + ' Team'
 
@@ -24,14 +26,14 @@ export function TitleView({ team, role }: Props) {
         <View style={styles.wrapperAdd}>
           <Ionicons name='add-circle-outline' size={25} color='#333'
             disabled={blockPlayersAdding}
-            onPress={() => (setCurrentTeam(team), setCurrentRole(role), showAddingPopup())}
+            onPress={() => (setCurrentTeam(team), setCurrentRole(role), onAddStudents())}
           />
         </View>
         
         <View style={styles.wrapperRemove}>
           <Icon name="delete" color='#A90F11' size={21}
             disabled={blockPlayersAdding}
-            onPress={() => (setCurrentTeam(team), setCurrentRole(role), showRemovingPopup())}
+            onPress={() => (setCurrentTeam(team), setCurrentRole(role), onRemoveStudents())}
           />
         </View>
         <Text style={styles.role}>Role: {role}</Text>

@@ -1,15 +1,20 @@
 import { Button } from '@/src/components/buttons/CustomButton';
 import { Icon } from '@/src/components/icons/CustomIcon';
-import { Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Student } from '../../model';
 import { useStore } from '../../store';
 
-const COLUMN_HEIGHT = 5;
 
 
-export function AddingPopup() {
-  const { isAddingPopup, students, players, selectedStudentIds } = useStore();
-  const { hideAddingPopup, selectStudent, addPlayers, showAddNewDialog } = useStore();
+type Props = {
+  onBack:() => void;
+}
+
+export function AddingPopup({onBack}: Props) {
+  const COLUMN_HEIGHT = 5;
+
+  const { students, players, selectedStudentIds } = useStore();
+  const { selectStudent, addPlayers, showAddNewDialog } = useStore();
 
   const columns: Student[][] = [];
   const playersIds = players.map(el => (el.id))
@@ -20,15 +25,14 @@ export function AddingPopup() {
   }
 
   return (
-    <Modal visible={isAddingPopup} animationType='fade'>
-      <View style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>  </Text>
         <Text style={styles.title}>Choose players to add</Text>
-        <Icon size={20} color="#D1FF4D" name="close" onPress={hideAddingPopup} />
+        <Icon size={20} color="#D1FF4D" name="close" onPress={onBack} />
       </View>
 
-      {columns.length === 0 && <Text style={styles.title}>No available students</Text>}
+      {columns.length === 0 && <Text style={styles.text}>No available students</Text>}
 
       <ScrollView horizontal contentContainerStyle={styles.rowScroll} showsHorizontalScrollIndicator={false}>
         {columns.map((column, colIndex) => (
@@ -57,23 +61,19 @@ export function AddingPopup() {
 
       <View style={styles.buttonRow}>
         <Button title="ADD NEW PLAYER" buttonStyle={styles.greyBtn} titleStyle={{color:'#222'}}
-          onPress={() => (hideAddingPopup(), showAddNewDialog())}
+          onPress={() => (onBack(), showAddNewDialog())}
         />
         <Button title="ADD PLAYERS" buttonStyle={styles.greenBtn} titleStyle={{color:'#eee'}}
-          onPress={() => (addPlayers(), hideAddingPopup())}
+          onPress={() => (addPlayers(), onBack())}
         />
       </View>
-      </View>
-    </Modal>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-    width: '100%',
-    height: '100%',
     backgroundColor: '#152B52',
   },
   header: {
@@ -86,9 +86,16 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
+    color: '#D1FF4D',
+    textAlign: 'center',
+    marginBottom: 16,
+    fontWeight: 'bold',
+  },
+  text: {
+    fontSize: 16,
     color: 'white',
     textAlign: 'center',
-    fontWeight: 'bold',
+    paddingTop: 12
   },
   rowScroll: {
     paddingBottom: 16,

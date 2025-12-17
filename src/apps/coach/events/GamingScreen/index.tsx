@@ -25,7 +25,7 @@ type Props = {
 }
 
 export default function GamingScreen({ onBack, onAddStudents, onRemoveStudents }: Props) {
-  const { isHeader, currentRound, attendances, gameStep, gameState, gameDate, isEvadersDialog } = useStore();
+  const { isHeader, currentRound, attendances, gameStep, gameDate, isEvadersDialog } = useStore();
   const { currentTeam, pointsDifference, winner } = useStore();
   const { setAvailableStudents, onNavbarBack, hideBackAlert, onErrorExit, step_on_settings, clearPlayers} = useStore();
   const { onFixPoints, switch_on_completion, hideCheckingAlert } = useStore();
@@ -101,15 +101,14 @@ export default function GamingScreen({ onBack, onAddStudents, onRemoveStudents }
                         role={currentRound.teams[0].role} />
         </View>
         <View style={styles.section}>
-           {isHeader && 
-              <TitleView
-                team={currentRound.teams[1].team}
-                role={currentRound.teams[1].role}
-                onAddStudents={onAddStudents}
-                onRemoveStudents={onRemoveStudents}
-              />
-            }
-
+          {isHeader && 
+            <TitleView
+              team={currentRound.teams[1].team}
+              role={currentRound.teams[1].role}
+              onAddStudents={onAddStudents}
+              onRemoveStudents={onRemoveStudents}
+            />
+          }
           <PlayersView team={currentRound.teams[1].team}
                         role={currentRound.teams[1].role} />
         </View>

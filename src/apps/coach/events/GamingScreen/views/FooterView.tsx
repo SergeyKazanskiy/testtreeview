@@ -65,8 +65,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     minWidth: 160,
-    //paddingHorizontal: 8,
-
     borderRadius: 18,
     borderWidth: 1,
     borderColor: '#444'
@@ -80,9 +78,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#bbb',
     minWidth: 68,
-    //alignItems: 'center',
     paddingVertical: 4,
-    //paddingHorizontal: 4,
     borderRadius: 16,
   },
   label: {

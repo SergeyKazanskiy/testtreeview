@@ -33,10 +33,10 @@ export function AddingPopup({ onBack }: Props) {
 
       {columns.length === 0 && <Text style={styles.text}>No available students</Text>}
 
-      <ScrollView horizontal contentContainerStyle={styles.rowScroll}>
+      <ScrollView horizontal contentContainerStyle={styles.rowScroll} showsHorizontalScrollIndicator={false}>
         {columns.map((column, colIndex) => (
 
-          <View key={colIndex} style={styles.column}>
+          <View key={`column2-${colIndex}`} style={styles.column}>
             {column.map((student) => {
               const isSelected = selectedStudentIds.includes(student.id);
 
@@ -73,9 +73,6 @@ export function AddingPopup({ onBack }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignSelf: Platform.OS === 'web' ? 'flex-start' : 'stretch',
-    // width: '100%',
-    // height: '100%',
     backgroundColor: '#152B52',
   },
   header: {

@@ -8,7 +8,7 @@ export default function GamesPage() {
   
   return (
     <GamesScreen
-      pressNewGame={() => router.push("/shared/gaming")}
+      pressNewGame={() => router.push("/shared/game")}
       pressGameReport={() => router.push('/shared/report')}
     />
   );

@@ -14,7 +14,7 @@ type Props = {
 export function RemovingPopup({onBack}: Props) {
   const COLUMN_HEIGHT = 5;
 
-  const { isRemovingPopup, playersToRemove, players, currentTeam } = useStore();
+  const { playersToRemove, players, currentTeam } = useStore();
   const { removePlayers, confirmRemovePlayer, showRemoveAlert, hideRemoveAlert } = useStore();
 
   const columns: Player[][] = [];
@@ -61,7 +61,7 @@ export function RemovingPopup({onBack}: Props) {
 
       <RemoveAlert name={name} onCancel={closeAlert} onRemove={handleRemove}/>
 
-      <ScrollView horizontal contentContainerStyle={styles.rowScroll}>
+      <ScrollView horizontal contentContainerStyle={styles.rowScroll} showsVerticalScrollIndicator={false}>
         {columns.map((column, colIndex) => (
 
           <View key={colIndex} style={styles.column}>
@@ -69,7 +69,7 @@ export function RemovingPopup({onBack}: Props) {
               const isSelected = playersToRemove.includes(player.id);
 
               return (
-                <Pressable key={player.id}
+                <Pressable key={`player-${player.id}`}
                   style={[styles.cell, { backgroundColor: isSelected ? '#ef4444' : 'white'}]}
                   onPress={() => handleSelect(player.id, player.name)}
                 >
