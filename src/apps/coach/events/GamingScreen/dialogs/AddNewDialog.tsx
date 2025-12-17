@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 12,
     marginBottom: 4,
-    width: '100%',
+    width: '80%',
     borderRadius: 8,
     backgroundColor: 'rgb(180, 216, 158)',
     minHeight: 30,

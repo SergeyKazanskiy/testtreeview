@@ -1,17 +1,21 @@
 import { Button } from '@/src/components/buttons/CustomButton';
 import { Icon } from '@/src/components/icons/CustomIcon';
 import { useState } from 'react';
-import { Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Player } from '../../model';
 import { useStore } from '../../store';
 import { RemoveAlert } from '../alerts/RemoveAlert';
 
-const COLUMN_HEIGHT = 5;
 
+type Props = {
+  onBack:() => void;
+}
 
-export function RemovingPopup() {
+export function RemovingPopup({onBack}: Props) {
+  const COLUMN_HEIGHT = 5;
+
   const { isRemovingPopup, playersToRemove, players, currentTeam } = useStore();
-  const { hideRemovingPopup, removePlayers, confirmRemovePlayer, showRemoveAlert, hideRemoveAlert } = useStore();
+  const { removePlayers, confirmRemovePlayer, showRemoveAlert, hideRemoveAlert } = useStore();
 
   const columns: Player[][] = [];
   const teamPlayers = players.filter(el => el.team === currentTeam)
@@ -46,21 +50,24 @@ export function RemovingPopup() {
   }
 
   return (
-    <Modal visible={isRemovingPopup} animationType='fade'>
       <View  style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>  </Text>
           <Text style={styles.title}>Remove players</Text>
-          <Icon size={20} color="#D1FF4D" name="close" onPress={hideRemovingPopup} />
+          <Icon size={20} color="#D1FF4D" name="close" onPress={onBack} />
         </View>
     
+      {columns.length === 0 && <Text style={styles.text}>No available students</Text>}
+
       <RemoveAlert name={name} onCancel={closeAlert} onRemove={handleRemove}/>
 
       <ScrollView horizontal contentContainerStyle={styles.rowScroll}>
         {columns.map((column, colIndex) => (
+
           <View key={colIndex} style={styles.column}>
             {column.map((player) => {
               const isSelected = playersToRemove.includes(player.id);
+
               return (
                 <Pressable key={player.id}
                   style={[styles.cell, { backgroundColor: isSelected ? '#ef4444' : 'white'}]}
@@ -79,15 +86,16 @@ export function RemovingPopup() {
         ))}
       </ScrollView>
 
-      <View style={styles.buttonRow}>
-        <Button
-          title="REMOTE"
-          buttonStyle={styles.removeBtn}
-          onPress={() => (removePlayers(), hideRemovingPopup())}
-        />
-      </View>
+      {columns.length > 0 && 
+        <View style={styles.buttonRow}>
+          <Button
+            title="REMOTE"
+            buttonStyle={styles.removeBtn}
+            onPress={() => (removePlayers(), onBack())}
+          />
+        </View>
+      }
     </View>
-    </Modal>
   );
 }
 
@@ -108,10 +116,16 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    color: 'white',
+    color: '#D1FF4D',
     textAlign: 'center',
     marginBottom: 16,
     fontWeight: 'bold',
+  },
+  text: {
+    fontSize: 16,
+    color: 'white',
+    textAlign: 'center',
+    paddingTop: 12
   },
   rowScroll: {
     paddingBottom: 16,

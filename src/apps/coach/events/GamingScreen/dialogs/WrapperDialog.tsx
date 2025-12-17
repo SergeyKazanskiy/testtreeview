@@ -1,6 +1,6 @@
 import { Icon } from '@/src/components/icons/CustomIcon';
 import React, { useEffect, useRef } from 'react';
-import { Animated, Modal, Platform, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Animated, Modal, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 
 
 interface Props {
@@ -27,13 +27,15 @@ export const WrapperDialog: React.FC<Props> = ({ visible, children, title, onClo
       <TouchableWithoutFeedback  onPress={onClose}>
         <View style={styles.backdrop}>
         <TouchableWithoutFeedback>
-          <Animated.View style={[styles.alertBox, { transform: [{ translateY: slideAnim }] }]}>
+          <Animated.View style={[styles.alertBox, { transform: [{ translateY: slideAnim }, {translateX: 20}] }]}>
 
             <View style={{alignItems: 'center'}}>
               <View style={{flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
                 <Text style={{width: 20}}>   </Text>
                 <Text style={styles.title}>{title}</Text>
-                <Icon size={20} color="#D1FF4D" name="close" onPress={onClose}/>
+                <TouchableOpacity style={{padding:8}} onPress={onClose}>
+                  <Icon size={20} color="#D1FF4D" name="close"/>
+                </TouchableOpacity>
               </View>
 
               {children}
@@ -50,12 +52,10 @@ export const WrapperDialog: React.FC<Props> = ({ visible, children, title, onClo
 const styles = StyleSheet.create({
   backdrop: {
     flex: 1,
-    ...StyleSheet.absoluteFillObject,
-    ...(Platform.OS === 'web' ? { width: 748, alignSelf: 'flex-start' } : {}),
   },
   alertBox: {
     marginTop: 60,
-    width: 348,
+    width: 360,
     margin: 'auto',
     padding: 20,
     backgroundColor: '#0e1d38ff',

@@ -1,9 +1,7 @@
 import { CustomNavbar } from '@/src/components/bars/CustomNavbar';
 import { formatDateTime } from '@/src/utils/utils';
-import { useFocusEffect } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import * as ScreenOrientation from 'expo-screen-orientation';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Student } from '../model';
 import { useStore } from '../store';
@@ -13,9 +11,7 @@ import { GameOverAlert } from './alerts/GameOverAlert';
 import { AddNewDialog } from './dialogs/AddNewDialog';
 import { EvadersDialog } from './dialogs/EvadersDialog';
 import { TimeSetter } from './dialogs/TimeSetter';
-import { AddingPopup } from './popups/AddingPopup';
 import { GameReport } from './popups/GameReport';
-import { RemovingPopup } from './popups/RemovingPopup';
 import { FooterView } from './views/FooterView';
 import { HeaderView } from './views/HeaderView';
 import { PlayersView } from './views/PlayersView';
@@ -24,29 +20,15 @@ import { TitleView } from './views/TitleView';
 
 type Props = {
   onBack: () => void;
+  onAddStudents: () => void;
+  onRemoveStudents: () => void;
 }
 
-export default function GamingScreen({ onBack }: Props) {
+export default function GamingScreen({ onBack, onAddStudents, onRemoveStudents }: Props) {
   const { isHeader, currentRound, attendances, gameStep, gameState, gameDate, isEvadersDialog } = useStore();
   const { currentTeam, pointsDifference, winner } = useStore();
   const { setAvailableStudents, onNavbarBack, hideBackAlert, onErrorExit, step_on_settings, clearPlayers} = useStore();
   const { onFixPoints, switch_on_completion, hideCheckingAlert } = useStore();
-
-  useFocusEffect(
-    useCallback(() => {
-      // при входе на экран
-      ScreenOrientation.lockAsync(
-        ScreenOrientation.OrientationLock.LANDSCAPE
-      );
-
-      return () => {
-        // при уходе с экрана
-        ScreenOrientation.lockAsync(
-          ScreenOrientation.OrientationLock.PORTRAIT
-        );
-      };
-    }, [])
-  );
 
   useEffect(() => { // ???
     const availables = attendances.filter(el => el.present === true);
@@ -98,8 +80,6 @@ export default function GamingScreen({ onBack }: Props) {
       />
 
       {/* Modals */}
-      <AddingPopup/>
-      <RemovingPopup/>
       <TimeSetter/>
       <GameReport/>
       <AddNewDialog/>
@@ -109,15 +89,26 @@ export default function GamingScreen({ onBack }: Props) {
 
       {!isEvadersDialog && <View style={styles.row}>
         <View style={styles.section}>
-          {isHeader && <TitleView team={currentRound.teams[0].team}
-                                  role={currentRound.teams[0].role} />}
-
+          {isHeader &&
+            <TitleView
+              team={currentRound.teams[0].team}
+              role={currentRound.teams[0].role}
+              onAddStudents={onAddStudents}
+              onRemoveStudents={onRemoveStudents}
+            />
+          }
           <PlayersView team={currentRound.teams[0].team}
                         role={currentRound.teams[0].role} />
         </View>
         <View style={styles.section}>
-           {isHeader && <TitleView team={currentRound.teams[1].team}
-                                    role={currentRound.teams[1].role} />}
+           {isHeader && 
+              <TitleView
+                team={currentRound.teams[1].team}
+                role={currentRound.teams[1].role}
+                onAddStudents={onAddStudents}
+                onRemoveStudents={onRemoveStudents}
+              />
+            }
 
           <PlayersView team={currentRound.teams[1].team}
                         role={currentRound.teams[1].role} />

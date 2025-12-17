@@ -6,7 +6,7 @@ export default function AttendanceLayout() {
     <Stack screenOptions={{ headerShown: false, animation: 'fade', presentation: 'card' }}>
       <Stack.Screen name="index" />
       <Stack.Screen name="drill" />
-      <Stack.Screen name="gaming" />
+      <Stack.Screen name="game" />
       <Stack.Screen name="testing" />
     </Stack>
   );

@@ -21,6 +21,8 @@ export default function HistoryScreen() {
   useFocusEffect(
     useCallback(() => {
       loadGroups(userId, () => {});
+
+      //NavigationBar.setBackgroundColorAsync('#000000');
     }, [])
   );
 

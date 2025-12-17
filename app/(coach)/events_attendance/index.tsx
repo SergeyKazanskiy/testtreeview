@@ -11,7 +11,7 @@ export default function AttendanceRoute() {
     <ScreenContainer>
       <AttendanceScreen
         onBack={() => router.back()}
-        onGame={() => router.push("/(coach)/events_attendance/gaming")}
+        onGame={() => router.push("/(coach)/events_attendance/game")}
         onTest={() => router.push('/(coach)/events_attendance/testing')}
         onGameReport={() => router.push('/(coach)/events_attendance/report')}
         onDrill={() => router.push('/(coach)/events_attendance/drill')}
